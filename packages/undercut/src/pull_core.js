@@ -1,11 +1,5 @@
 export function pullLine(pipeline, source) {
-	let iterable = source;
-
-	for (const generator of pipeline) {
-		iterable = generator(iterable);
-	}
-
-	return iterable;
+	return pipeline.reduce((iterable, generator) => generator(iterable), source);
 }
 
 export function pull(target, pipeline, source) {

@@ -1,4 +1,4 @@
-import { reducePull } from "./reduce";
+import { reducePull } from "./reduce.js";
 
 function summator(acc, x) {
 	return acc + x;

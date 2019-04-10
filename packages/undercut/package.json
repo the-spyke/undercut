@@ -1,10 +1,11 @@
 {
   "name": "undercut",
   "version": "0.1.0",
-  "description": "",
+  "description": "JavaScript data processing pipelines and utilities",
   "type": "module",
   "main": "src/pull.js",
   "module": "src/pull.js",
+  "sideEffects": false,
   "scripts": {
     "test": "babel-node src/test.js"
   },
@@ -12,6 +13,14 @@
     "@babel/core": "^7.4.3",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/the-spyke/undercut.git",
+    "directory": "packages/undercut"
+  },
+  "bugs": {
+    "url": "https://github.com/the-spyke/undercut/issues"
   },
   "author": "Anton Alexandrenok",
   "license": "MIT"

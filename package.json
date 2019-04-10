@@ -1,7 +1,7 @@
 {
   "name": "undercut-monorepo",
   "version": "1.0.0",
-  "description": "",
+  "description": "JavaScript data processing pipelines and utilities",
   "private": true,
   "scripts": {
   },
