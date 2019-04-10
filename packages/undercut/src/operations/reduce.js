@@ -1,9 +1,11 @@
-export function reducePull(predicate, initial) {
+export function reducePull(reducer, initial) {
 	return function* (iterable) {
 		let acc = initial;
+
 		for (const item of iterable) {
-			acc = predicate(acc, item);
+			acc = reducer(acc, item);
 		}
+
 		yield acc;
 	};
 }

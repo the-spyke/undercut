@@ -1,7 +1,7 @@
-export function mapPull(predicate) {
+export function mapPull(mapper) {
 	return function* (iterable) {
 		for (const item of iterable) {
-			yield predicate(item);
+			yield mapper(item);
 		}
 	};
 }

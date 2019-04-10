@@ -41,8 +41,8 @@ export function toSet(line) {
 }
 
 export function toValue(line) {
+	let result = undefined;
 	let i = 0;
-	let result;
 
 	for (const item of line) {
 		result = item;

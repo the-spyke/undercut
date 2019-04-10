@@ -2,6 +2,9 @@
   "name": "undercut",
   "version": "0.1.0",
   "description": "",
+  "type": "module",
+  "main": "src/pull.js",
+  "module": "src/pull.js",
   "scripts": {
     "test": "babel-node src/test.js"
   },
