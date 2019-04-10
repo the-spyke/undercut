@@ -6,6 +6,8 @@ export { flatPull as flat } from "./operations/flat.js";
 export { forEachPull as forEach } from "./operations/for_each.js";
 export { includesPull as includes } from "./operations/includes.js";
 export { mapPull as map } from "./operations/map.js";
+export { maxPull as max } from "./operations/max.js";
+export { minPull as min } from "./operations/min.js";
 export { reducePull as reduce } from "./operations/reduce.js";
 export { skipPull as skip } from "./operations/skip.js";
 export { somePull as some } from "./operations/some.js";

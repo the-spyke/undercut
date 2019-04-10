@@ -1,5 +1,5 @@
 import { pull, pullLine } from "./pull_core.js";
-import { filter, map, reduce, skip, sum, take } from "./pull_operations.js";
+import { filter, map, min, reduce, skip, sum, take } from "./pull_operations.js";
 import { toArray, toMap, toObject, toSet, toValue } from "./pull_targets.js";
 
 const data1 = [1, 2, 3, 4, 5, 6, 7];
@@ -27,3 +27,5 @@ pull(toValue, [
 	sum(),
 	map(x => x + 0.5)
 ], line1);
+
+pull(toArray, [min()], data1);

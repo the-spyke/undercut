@@ -7,6 +7,7 @@ JavaScript data processing pipelines and utilities
 * No precompilation, use your own
 * ES Modules only
 * Tree shaking friendly
+* No dependencies
 * Adapters for replacing transient dependencies
 
 ## Installation
@@ -45,13 +46,12 @@ console.log(result); // [8, 10, 14]
 * Typings
 * CI
 * Push pipelines
+* Async iteration and operations
 * Code coverage
 * ESLint config
 * [Changelog](https://keepachangelog.com)
-* Node 8 precompiled package (EOL 2019-12-31)
-* Node 10 precompiled package (EOL 2021-04-01)
-* Node 12 precompiled package (EOL 2022-04-01)
-* Browser precompiled package, versions/featureset TBD
+* Node precompiled packages
+* Browser precompiled package
 * `lodash` adapter package
 * `underscore` adapter package
 
