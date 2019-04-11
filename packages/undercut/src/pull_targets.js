@@ -1,13 +1,9 @@
 export function toArray(line) {
-	const result = Array.from(line);
-	console.log(result);
-	return result;
+	return Array.from(line);
 }
 
 export function toMap(line) {
-	const result = new Map(line);
-	console.log(result);
-	return result;
+	return new Map(line);
 }
 
 export function toObject(line) {
@@ -17,8 +13,6 @@ export function toObject(line) {
 	for (const [key, value] of line) {
 		result[key] = value;
 	}
-
-	console.log(result);
 
 	return result;
 }
@@ -36,9 +30,7 @@ export function toObject(line) {
 // }
 
 export function toSet(line) {
-	const result = new Set(line);
-	console.log(result);
-	return result;
+	return new Set(line);
 }
 
 export function toValue(line) {
@@ -46,15 +38,13 @@ export function toValue(line) {
 	let i = 0;
 
 	for (const item of line) {
-		result = item;
-		i += 1;
-
-		if (i > 1) {
+		if (i >= 1) {
 			throw new Error(`"toValue()" may be applied only to a sequence of one item.`);
 		}
-	}
 
-	console.log(result);
+		result = item;
+		i += 1;
+	}
 
 	return result;
 }
