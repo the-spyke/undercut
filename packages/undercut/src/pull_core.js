@@ -3,5 +3,5 @@ export function pullLine(pipeline, source) {
 }
 
 export function pull(target, pipeline, source) {
-	target(pullLine(pipeline, source));
+	return target(pullLine(pipeline, source));
 }

@@ -11,6 +11,7 @@ export function toMap(line) {
 }
 
 export function toObject(line) {
+	// const result = Object.fromEntries(line);
 	const result = {};
 
 	for (const [key, value] of line) {
