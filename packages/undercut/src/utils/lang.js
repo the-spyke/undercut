@@ -2,8 +2,9 @@ export function isFunction(value) {
 	return typeof value === "function";
 }
 
-export function isIterable(value) { // TODO: improve
-	return value && (value[Symbol.iterator] || isFunction(value.next))
+export function isIterable(value) {
+	// TODO: improve condition
+	return value != null && isFunction(value[Symbol.iterator] || value.next);
 }
 
 export function isNull(value) {

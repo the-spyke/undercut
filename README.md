@@ -38,9 +38,11 @@ console.log(result); // [8, 10, 14]
 
 ## TODO
 
+* Node 12 ES Modules compliance
 * More operations and sources/targets
 * Utilities
 * Unit tests
+* Work out entry point exports
 * Performance tests/comparison
 * Documentation
 * Typings
