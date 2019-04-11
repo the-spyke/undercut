@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "JavaScript data processing pipelines and utilities",
   "private": true,
-  "scripts": {
+  "scripts": {},
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-plugin-jest": "^22.4.1"
   },
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "author": "Anton Alexandrenok",
   "license": "MIT"
 }
