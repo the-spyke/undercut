@@ -1,3 +1,15 @@
+export function isBoolean(value) {
+	return typeof value === "boolean";
+}
+
+export function isDefined(value) {
+	return typeof value !== "undefined";
+}
+
+export function isFalsy(value) {
+	return !value;
+}
+
 export function isFunction(value) {
 	return typeof value === "function";
 }
@@ -11,14 +23,30 @@ export function isNull(value) {
 	return value === null;
 }
 
-export function isNullOrUndef(value) { // TODO: improve naming
+export function isNullOrUndef(value) { // TODO: decide on naming
 	return value == null;
 }
 
-export function isUndefined(value) {
-	return value === undefined;
+export function isNumber(value) {
+	return typeof value === "number";
 }
 
-export function isTrue(value) {
-	return Boolean(value);
+export function isObject(value) {
+	return typeof value === "object";
+}
+
+export function isString(value) {
+	return typeof value === "string";
+}
+
+export function isSymbol(value) {
+	return typeof value === "symbol";
+}
+
+export function isTruthy(value) {
+	return !!value;
+}
+
+export function isUndefined(value) {
+	return typeof value === "undefined";
 }
