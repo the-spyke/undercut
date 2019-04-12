@@ -50,8 +50,6 @@ console.log(result); // [8, 10, 14]
 * Push pipelines
 * Async iteration and operations
 * Code coverage
-* ESLint config
-* [Changelog](https://keepachangelog.com)
 * Node precompiled packages
 * Browser precompiled package
 * `lodash` adapter package
