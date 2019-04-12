@@ -1,3 +1,7 @@
+export function isArray(value) {
+	return Array.isArray(value);
+}
+
 export function isBoolean(value) {
 	return typeof value === "boolean";
 }
