@@ -9,12 +9,15 @@
   "scripts": {
     "examples": "jest src/examples.test.js",
     "lint": "eslint 'src/**'",
+    "perf": "babel-node",
     "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.3",
     "babel-jest": "^24.7.1",
+    "benchmark": "^2.1.4",
     "jest": "^24.7.1"
   },
   "repository": {
