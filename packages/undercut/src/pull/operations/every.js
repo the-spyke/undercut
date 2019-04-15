@@ -1,4 +1,4 @@
-export function everyPull(predicate) {
+export function every(predicate) {
 	return function* (iterable) {
 		for (const item of iterable) {
 			if (!predicate(item)) {

@@ -1,4 +1,4 @@
-export function minPull() {
+export function min() {
 	return function* (iterable) {
 		let min = null;
 

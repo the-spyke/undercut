@@ -1,4 +1,4 @@
-import { runPerfSuite } from "../utils/perf.js";
+import { runPerfSuite } from "../../utils/perf.js";
 
 const x = [1, 2, 4];
 

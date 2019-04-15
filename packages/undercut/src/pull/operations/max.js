@@ -1,4 +1,4 @@
-export function maxPull() {
+export function max() {
 	return function* (iterable) {
 		let max = null;
 

@@ -1,4 +1,4 @@
-export function findPull(predicate) {
+export function find(predicate) {
 	return function* (iterable) {
 		for (const item of iterable) {
 			if (predicate(item)) {

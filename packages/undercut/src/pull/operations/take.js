@@ -1,4 +1,4 @@
-export function takePull(count) {
+export function take(count) {
 	return function* (iterable) {
 		let i = 0;
 

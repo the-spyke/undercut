@@ -1,4 +1,4 @@
-export function includesPull(value) { // TODO: fromIndex
+export function includes(value) { // TODO: fromIndex
 	return function* (iterable) {
 		for (const item of iterable) {
 			if (item === value) {

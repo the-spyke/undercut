@@ -1,4 +1,4 @@
-export function skipPull(count) {
+export function skip(count) {
 	return function* (iterable) {
 		let i = 0;
 

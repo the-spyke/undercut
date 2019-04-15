@@ -1,4 +1,4 @@
-export function reducePull(reducer, initial) {
+export function reduce(reducer, initial) {
 	return function* (iterable) {
 		let acc = initial;
 

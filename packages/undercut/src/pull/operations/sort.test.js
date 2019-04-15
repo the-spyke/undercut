@@ -1,4 +1,4 @@
-import { targetOf } from "../utils/tests.js";
+import { targetOf } from "../../utils/tests.js";
 
 import { sort, sortNumbers, sortStrings } from "./sort.js";
 

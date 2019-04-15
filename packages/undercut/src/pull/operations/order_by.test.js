@@ -1,6 +1,6 @@
-import * as compare from "../utils/compare.js";
-import { identity } from "../utils/function.js";
-import { targetOf } from "../utils/tests.js";
+import * as compare from "../../utils/compare.js";
+import { identity } from "../../utils/function.js";
+import { targetOf } from "../../utils/tests.js";
 
 import { orderBy, asc, desc } from "./order_by.js";
 

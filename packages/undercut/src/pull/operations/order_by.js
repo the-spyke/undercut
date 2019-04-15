@@ -1,5 +1,5 @@
-import { identity } from "../utils/function.js";
-import { isFunction } from "../utils/lang.js";
+import { identity } from "../../utils/function.js";
+import { isFunction } from "../../utils/lang.js";
 import { sort } from "./sort.js";
 
 export function orderBy(...orderingSpecs) {

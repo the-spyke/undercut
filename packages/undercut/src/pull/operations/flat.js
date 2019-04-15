@@ -1,6 +1,6 @@
-import { isIterable } from "../utils/lang.js";
+import { isIterable } from "../../utils/lang.js";
 
-export function flatPull() { // TODO: depth
+export function flat() { // TODO: depth
 	return function* (iterable) {
 		for (const item of iterable) {
 			if (isIterable(item)) {

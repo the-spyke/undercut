@@ -1,7 +1,7 @@
-import { isTruthy } from "../utils/lang.js";
+import { isTruthy } from "../../utils/lang.js";
 
-import { filterPull } from "./filter.js";
+import { filter } from "./filter.js";
 
-export function compactPull() {
-	return filterPull(isTruthy);
+export function compact() {
+	return filter(isTruthy);
 }

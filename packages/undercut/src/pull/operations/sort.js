@@ -1,5 +1,5 @@
-import { numbers, strings } from "../utils/compare.js";
-import { isFunction } from "../utils/lang.js";
+import { numbers, strings } from "../../utils/compare.js";
+import { isFunction } from "../../utils/lang.js";
 
 function reverseComparator(comparator) {
 	return function (a, b) {
