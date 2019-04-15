@@ -1,4 +1,6 @@
 export * from "./operations/compact.js";
+export * from "./operations/concat_end.js";
+export * from "./operations/concat_start.js";
 export * from "./operations/every.js";
 export * from "./operations/filter.js";
 export * from "./operations/find.js";

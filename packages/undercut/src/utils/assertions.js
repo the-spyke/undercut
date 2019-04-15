@@ -1,4 +1,4 @@
-import { isFunction } from "./lang.js";
+import { isFunction, isIterable } from "./lang.js";
 
 export function assert(condition, message) {
 	if (!condition) {
@@ -12,4 +12,8 @@ export function assertComparator(comparator) {
 
 export function assertPredicate(predicate) {
 	assert(isFunction(predicate), "Predicate is required.");
+}
+
+export function assertSource(source) {
+	assert(isIterable(source), "Source is required and must be iterable.");
 }
