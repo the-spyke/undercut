@@ -23,12 +23,12 @@ export function isIterable(value) {
 	return value != null && isFunction(value[Symbol.iterator] || value.next);
 }
 
-export function isNull(value) {
-	return value === null;
+export function isNil(value) {
+	return value == null;
 }
 
-export function isNullOrUndef(value) { // TODO: decide on naming
-	return value == null;
+export function isNull(value) {
+	return value === null;
 }
 
 export function isNumber(value) {
