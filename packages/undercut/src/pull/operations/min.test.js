@@ -2,7 +2,7 @@ import { targetOf } from "../../utils/tests.js";
 
 import { min } from "./min.js";
 
-test("minPull", () => {
+test("min", () => {
 	expect(targetOf(min(), [])).toEqual([]);
 	expect(targetOf(min(), [1])).toEqual([1]);
 	expect(targetOf(min(), [0])).toEqual([0]);
