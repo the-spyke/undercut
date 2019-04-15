@@ -2,13 +2,14 @@
 
 JavaScript data processing pipelines and utilities
 
+Goals:
+
 * Lazy evaluation
 * Based on the Iterator protocol
 * No precompilation, use your own
 * ES Modules only
 * Tree shaking friendly
 * No dependencies
-* Adapters for replacing transient dependencies
 
 ## Installation
 
@@ -52,8 +53,6 @@ console.log(result); // [8, 10, 14]
 * Code coverage
 * Node precompiled packages
 * Browser precompiled package
-* `lodash` adapter package
-* `underscore` adapter package
 
 ## License
 
