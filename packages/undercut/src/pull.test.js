@@ -1,6 +1,8 @@
-import { pull, pullLine } from "./pull/pull_core.js";
-import { filter, map, min, skip, sum, take } from "./pull/pull_operations.js";
-import { toArray, toObject, toValue } from "./pull/pull_targets.js";
+import {
+	pull, pullLine,
+	filter, map, min, skip, sum, take,
+	toArray, toObject, toValue
+} from "./pull.js";
 
 test("simple scenarios", () => {
 	const data1 = [1, 2, 3, 4, 5, 6, 7];
