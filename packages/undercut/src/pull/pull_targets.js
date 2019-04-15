@@ -1,4 +1,4 @@
-import { assert } from "../utils/helpers.js";
+import { assert } from "../utils/assertions.js";
 
 export function toArray(line) {
 	return Array.from(line);

@@ -1,9 +1,3 @@
-export function assert(condition, message) {
-	if (!condition) {
-		throw new Error(message);
-	}
-}
-
 const emptyIterable = Object.freeze({
 	[Symbol.iterator]() {
 		return this;

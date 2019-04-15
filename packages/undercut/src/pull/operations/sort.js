@@ -1,6 +1,5 @@
+import { assertComparator } from "../../utils/assertions.js";
 import { numbers, strings } from "../../utils/compare.js";
-import { assert } from "../../utils/helpers.js";
-import { isFunction } from "../../utils/lang.js";
 
 function reverseComparator(comparator) {
 	return function (a, b) {
@@ -9,7 +8,7 @@ function reverseComparator(comparator) {
 }
 
 export function sort(comparator, isReverse = false) {
-	assert(isFunction(comparator), "comparator is required.");
+	assertComparator(comparator);
 
 	const actualComparator = isReverse ? reverseComparator(comparator) : comparator;
 

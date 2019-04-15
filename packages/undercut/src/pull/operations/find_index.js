@@ -1,8 +1,7 @@
-import { assert } from "../../utils/helpers.js";
-import { isFunction } from "../../utils/lang.js";
+import { assertPredicate } from "../../utils/assertions.js";
 
 export function findIndex(predicate) {
-	assert(isFunction(predicate), "Predicate is required.");
+	assertPredicate(predicate);
 
 	return function* (iterable) {
 		let index = 0;
