@@ -21,7 +21,7 @@ yarn add undercut
 
 ## Usage
 
-`undercut` is an ES Module and use latest JS syntax. This means you get more precise and cleaner code + tree shaking support. To leverage with power and extract as much browser performance as possible, you need to compile `undercut` together with your own app. Nowadays, the most of the apps use Babel or other compiler anyway, so it shouldn't be difficult.
+By using latest JS syntax you could get more precise and optimized code. Delivering ES Modules makes dependencies clean and gives more possibilities of tree shaking. Modern applications are trying to leverage this power and compile their code with Babel or other compilers. `undercut` follows this trend and provides raw code in the package, so you could get best browser and Node experience or customize for your needs.
 
 ```js
 import { pull, filter, map, skip, toArray } from "undercut";
