@@ -1,9 +1,3 @@
-export function identity(value) {
-	return value;
-}
-
-export function noop() { }
-
 const emptyIterable = Object.freeze({
 	[Symbol.iterator]() {
 		return this;
@@ -11,7 +5,7 @@ const emptyIterable = Object.freeze({
 	next() {
 		return { value: undefined, done: true };
 	},
-	return() {}
+	return() { }
 });
 
 export function peekIterable(iterable) {
