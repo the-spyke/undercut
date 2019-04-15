@@ -1,3 +1,5 @@
+import { assert } from "../utils/helpers.js";
+
 export function toArray(line) {
 	return Array.from(line);
 }
@@ -38,9 +40,7 @@ export function toValue(line) {
 	let i = 0;
 
 	for (const item of line) {
-		if (i >= 1) {
-			throw new Error(`"toValue()" may be applied only to a sequence of one item.`);
-		}
+		assert(i <= 1, `"toValue()" may be applied only to a sequence of one item.`);
 
 		result = item;
 		i += 1;

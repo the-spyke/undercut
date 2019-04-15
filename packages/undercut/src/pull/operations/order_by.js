@@ -1,4 +1,5 @@
 import { identity } from "../../utils/function.js";
+import { assert } from "../../utils/helpers.js";
 import { isFunction } from "../../utils/lang.js";
 import { sort } from "./sort.js";
 
@@ -24,17 +25,13 @@ function orderingFactory(specs) {
 }
 
 export function asc(comparator, selector = identity) {
-	if (!isFunction(comparator)) {
-		throw new Error("comparator is required.");
-	}
+	assert(isFunction(comparator), "comparator is required.");
 
 	return [selector, 1, comparator];
 }
 
 export function desc(comparator, selector = identity) {
-	if (!isFunction(comparator)) {
-		throw new Error("comparator is required.");
-	}
+	assert(isFunction(comparator), "comparator is required.");
 
 	return [selector, -1, comparator];
 }

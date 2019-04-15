@@ -1,4 +1,5 @@
 import { numbers, strings } from "../../utils/compare.js";
+import { assert } from "../../utils/helpers.js";
 import { isFunction } from "../../utils/lang.js";
 
 function reverseComparator(comparator) {
@@ -8,9 +9,7 @@ function reverseComparator(comparator) {
 }
 
 export function sort(comparator, isReverse = false) {
-	if (!isFunction(comparator)) {
-		throw new Error("comparator is required.");
-	}
+	assert(isFunction(comparator), "comparator is required.");
 
 	const actualComparator = isReverse ? reverseComparator(comparator) : comparator;
 
