@@ -21,6 +21,8 @@ test("desc", () => {
 });
 
 test("orderBy", () => {
+	expect(targetOf(orderBy(), [])).toEqual([]);
+
 	expect(targetOf(orderBy(
 		asc(compare.numbers)
 	), [])).toEqual([]);
