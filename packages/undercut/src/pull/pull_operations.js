@@ -2,6 +2,7 @@ export * from "./operations/compact.js";
 export * from "./operations/every.js";
 export * from "./operations/filter.js";
 export * from "./operations/find.js";
+export * from "./operations/find_index.js";
 export * from "./operations/flat.js";
 export * from "./operations/for_each.js";
 export * from "./operations/includes.js";
