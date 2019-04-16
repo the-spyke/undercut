@@ -1,13 +1,19 @@
-export function every(predicate) {
-	return function* (iterable) {
-		for (const item of iterable) {
-			if (!predicate(item)) {
-				yield false;
+import { assertPredicate } from "../../utils/assertions.js";
 
-				return;
+export function every(predicate) {
+	assertPredicate(predicate);
+
+	return function* (iterable) {
+		let result = true;
+
+		for (const item of iterable) {
+			result = predicate(item);
+
+			if (!result) {
+				break;
 			}
 		}
 
-		yield true;
+		yield result;
 	};
 }
