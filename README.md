@@ -4,12 +4,20 @@ JavaScript data processing pipelines and utilities
 
 Goals:
 
-* Lazy evaluation
-* Based on the Iterator protocol
-* No precompilation, use your own
-* ES Modules only
+* All-in-one library for data processing
+* Neat API: not too imperative, not too functional
+* Lazy evaluation when possible
+* Base on the Iterator protocol and enrich existing JS ecosystem
+* Provide raw codebase (compile in place)
+* Pure ES Module
 * Tree shaking friendly
-* No dependencies
+* Typings
+
+## Milestones
+
+* 0.1.0 - MVP, test concepts and API convenience
+* 0.2.0 - Retrospective, documentation
+* 0.3.0 - More operations/utilities
 
 ## Installation
 
@@ -21,7 +29,7 @@ yarn add undercut
 
 ## Usage
 
-By using latest JS syntax you could get more precise and optimized code. Delivering ES Modules makes dependencies clean and gives more possibilities of tree shaking. Modern applications are trying to leverage this power and compile their code with Babel or other compilers. `undercut` follows this trend and provides raw code in the package, so you could get best browser and Node experience or customize for your needs.
+By using latest JS syntax you could get more precise and optimized code. Delivering ES Modules makes dependencies clean and gives more possibilities of tree shaking. Modern applications are trying to leverage this power and compile their code with [Babel](https://babeljs.io/) or other compilers. `undercut` follows this trend and provides raw code in the package, so you could get best browser and Node experience or customize for your needs.
 
 ```js
 import { pull, filter, map, skip, toArray } from "undercut";
@@ -40,8 +48,6 @@ console.log(result); // [8, 10, 14]
 ## TODO
 
 * Node 12 ES Modules compliance
-* More operations and sources/targets
-* Utilities
 * Unit tests
 * Work out entry point exports
 * Performance tests/comparison
@@ -49,7 +55,7 @@ console.log(result); // [8, 10, 14]
 * Typings
 * CI
 * Push pipelines
-* Async iteration and operations
+* Async iteration
 * Code coverage
 * Node precompiled packages
 * Browser precompiled package
