@@ -1,0 +1,17 @@
+export function average() {
+	return function* (iterable) {
+		let sum = 0;
+		let count = 0;
+
+		for (const item of iterable) {
+			sum += item;
+			count += 1;
+		}
+
+		if (count > 0) {
+			yield sum / count;
+		} else {
+			yield 0;
+		}
+	};
+}
