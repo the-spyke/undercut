@@ -1,4 +1,8 @@
+import { assertCount } from "../../utils/assertions.js";
+
 export function skip(count) {
+	assertCount(count);
+
 	return function* (iterable) {
 		let i = 0;
 

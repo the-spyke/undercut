@@ -1,8 +1,7 @@
-import { assert } from "../../utils/assertions.js";
-import { isNumber } from "../../utils/lang.js";
+import { assertCount } from "../../utils/assertions.js";
 
 export function take(count) {
-	assert(isNumber(count) && count >= 0, "Count is required and must be >= 0");
+	assertCount(count);
 
 	return function* (iterable) {
 		let i = 0;
