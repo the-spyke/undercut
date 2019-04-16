@@ -15,8 +15,8 @@ Goals:
 
 Milestones:
 
-* 0.1.0 - MVP, test concepts and API convenience
-* 0.2.0 - TBD
+* 0.1.0 - [2019-04-22] - MVP, test concepts and API convenience
+* 0.2.0 - [2019-05-06] - TBD
 
 ## Installation
 
