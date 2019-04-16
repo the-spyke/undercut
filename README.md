@@ -1,6 +1,6 @@
 # ✂ undercut ✂
 
-JavaScript data processing pipelines and utilities
+JavaScript data processing pipelines and utilities.
 
 Goals:
 
@@ -13,11 +13,10 @@ Goals:
 * Tree shaking friendly
 * Typings
 
-## Milestones
+Milestones:
 
 * 0.1.0 - MVP, test concepts and API convenience
-* 0.2.0 - Retrospective, documentation
-* 0.3.0 - More operations/utilities
+* 0.2.0 - TBD
 
 ## Installation
 
@@ -29,7 +28,7 @@ yarn add undercut
 
 ## Usage
 
-By using latest JS syntax you could get more precise and optimized code. Delivering ES Modules makes dependencies clean and gives more possibilities of tree shaking. Modern applications are trying to leverage this power and compile their code with [Babel](https://babeljs.io/) or other compilers. `undercut` follows this trend and provides raw code in the package, so you could get best browser and Node experience or customize for your needs.
+By using latest JS syntax you could get more precise and optimized code. Delivering ES Modules makes dependencies clean and gives more possibilities of tree shaking. Modern applications are trying to leverage this power and compile their code with [Babel](https://babeljs.io/) or other compilers. `undercut` follows this trend and provides raw code in the package, so you could get better browser/node experience and customize for your needs.
 
 ```js
 import { pull, filter, map, skip, toArray } from "undercut";
