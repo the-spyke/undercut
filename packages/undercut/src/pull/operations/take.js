@@ -1,4 +1,4 @@
-import { assertCount } from "../../utils/assertions.js";
+import { assertCount, assertPredicate } from "../../utils/assertions.js";
 
 export function take(count) {
 	assertCount(count);
@@ -14,6 +14,20 @@ export function take(count) {
 			}
 
 			yield item;
+		}
+	};
+}
+
+export function takeWhile(predicate) {
+	assertPredicate(predicate);
+
+	return function* (iterable) {
+		for (const item of iterable) {
+			if (predicate(item)) {
+				yield item;
+			} else {
+				return;
+			}
 		}
 	};
 }

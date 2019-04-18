@@ -25,5 +25,6 @@ export * from "./operations/some.js";
 export * from "./operations/sort.js";
 export * from "./operations/sum.js";
 export * from "./operations/take.js";
-export * from "./operations/take_while.js";
 export * from "./operations/unique.js";
+export * from "./operations/unzip.js";
+export * from "./operations/zip.js";
