@@ -21,7 +21,6 @@ export * from "./operations/prepend.js";
 export * from "./operations/reduce.js";
 export * from "./operations/reverse.js";
 export * from "./operations/skip.js";
-export * from "./operations/skip_while.js";
 export * from "./operations/some.js";
 export * from "./operations/sort.js";
 export * from "./operations/sum.js";

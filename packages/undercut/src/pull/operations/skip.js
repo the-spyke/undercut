@@ -1,4 +1,4 @@
-import { assertCount } from "../../utils/assertions.js";
+import { assertCount, assertPredicate } from "../../utils/assertions.js";
 
 export function skip(count) {
 	assertCount(count);
@@ -12,6 +12,26 @@ export function skip(count) {
 			} else {
 				i += 1;
 			}
+		}
+	};
+}
+
+export function skipWhile(predicate) {
+	assertPredicate(predicate);
+
+	return function* (iterable) {
+		let doSkip = true;
+
+		for (const item of iterable) {
+			if (doSkip) {
+				doSkip = predicate(item);
+
+				if (doSkip) {
+					continue;
+				}
+			}
+
+			yield item;
 		}
 	};
 }
