@@ -5,11 +5,12 @@ JavaScript data processing pipelines and utilities.
 Goals:
 
 * All-in-one library for data processing
-* Neat API: not too imperative, not too functional
+* Simple API: not too imperative, not too functional
 * Lazy evaluation when possible
 * Base on the Iterator protocol and enrich existing JS ecosystem
+* Custom operations
 * Provide raw codebase (compile in place)
-* Pure ES Module
+* Pure ES Modules
 * Tree shaking friendly
 * Typings
 
