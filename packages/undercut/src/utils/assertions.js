@@ -6,8 +6,12 @@ export function assert(condition, message) {
 	}
 }
 
+export function assertIsRequired(condition, name) {
+	assert(condition, `${name} is required.`);
+}
+
 export function assertComparator(comparator) {
-	assert(isFunction(comparator), "Comparator is required.");
+	assertIsRequired(isFunction(comparator), "Comparator");
 }
 
 export function assertCount(count) {
@@ -15,11 +19,15 @@ export function assertCount(count) {
 }
 
 export function assertPredicate(predicate) {
-	assert(isFunction(predicate), "Predicate is required.");
+	assertIsRequired(isFunction(predicate), "Predicate");
+}
+
+export function assertReducer(reducer) {
+	assertIsRequired(isFunction(reducer), "Reducer");
 }
 
 export function assertSelector(selector) {
-	assert(isFunction(selector), "Selector is required.");
+	assertIsRequired(isFunction(selector), "Selector");
 }
 
 export function assertSource(source) {
