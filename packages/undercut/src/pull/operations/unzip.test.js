@@ -61,4 +61,9 @@ test("unzipWith", () => {
 		unzipWith(item => item.split(",").map(Number)),
 		["1,2,3", "4,5,6"]
 	)).toEqual([[1, 4], [2, 5], [3, 6]]);
+
+	expect(() => targetOf(
+		unzipWith(item => (new Array(item)).fill(item)),
+		[1, 2, 1]
+	)).toThrow("Items Extractor returns variable length arrays: was 1, now 2");
 });

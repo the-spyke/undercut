@@ -7,9 +7,9 @@ Goals:
 * All-in-one library for data processing
 * Simple API: not too imperative, not too functional
 * Lazy evaluation when possible
-* Base on the Iterator protocol and enrich existing JS ecosystem
-* Custom operations
-* Provide raw codebase (compile in place)
+* Use existing protocols and existing JS ecosystem
+* Easy extencibility
+* Raw code in the npm package (compile in place)
 * Pure ES Modules
 * Tree shaking friendly
 * Typings
