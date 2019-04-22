@@ -1,3 +1,6 @@
+/**
+ * Multisets are not supported.
+ */
 export function intersection(...sources) {
 	return function* (iterable) {
 		if (sources.length === 0) {

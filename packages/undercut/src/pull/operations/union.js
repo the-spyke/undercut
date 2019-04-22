@@ -1,3 +1,6 @@
+/**
+ * Multisets are not supported.
+ */
 export function union(...sources) {
 	return function* (iterable) {
 		const items = new Set();

@@ -1,3 +1,6 @@
+/**
+ * Multisets are not supported.
+ */
 export function difference(...sources) {
 	return function* (iterable) {
 		const items = new Set();
@@ -14,6 +17,9 @@ export function difference(...sources) {
 	};
 }
 
+/**
+ * Multisets are not supported.
+ */
 export function symmetricDifference(...sources) {
 	return function* (iterable) {
 		const items = new Map();
