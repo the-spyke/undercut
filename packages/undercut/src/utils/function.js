@@ -8,9 +8,9 @@ export function negate(predicate) {
 	}
 }
 
-export function negateSign(func) {
+export function negateSign(operation) {
 	return function (...args) {
-		return -1 * func(...args);
+		return -1 * operation(...args);
 	}
 }
 
