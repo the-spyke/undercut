@@ -30,6 +30,11 @@
   "bugs": {
     "url": "https://github.com/the-spyke/undercut/issues"
   },
+  "files": [
+    "src/",
+    "index.js",
+    "README.md"
+  ],
   "keywords": [
     "array",
     "data",
