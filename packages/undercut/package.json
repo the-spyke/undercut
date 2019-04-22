@@ -29,5 +29,19 @@
   },
   "bugs": {
     "url": "https://github.com/the-spyke/undercut/issues"
-  }
+  },
+  "keywords": [
+    "array",
+    "data",
+    "es6",
+    "iterable",
+    "iteration",
+    "iterator",
+    "lazy",
+    "lodash",
+    "modules",
+    "pipeline",
+    "underscore",
+    "util"
+  ]
 }
