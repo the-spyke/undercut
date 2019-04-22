@@ -37,13 +37,13 @@ export function toSet(line) {
 
 export function toValue(line) {
 	let result = undefined;
-	let i = 0;
+	let index = 0;
 
 	for (const item of line) {
-		assert(i <= 1, `"toValue()" may be applied only to a sequence of one item.`);
+		assert(index === 0, `"toValue()" may be applied only to a sequence of one item.`);
 
 		result = item;
-		i += 1;
+		index++;
 	}
 
 	return result;

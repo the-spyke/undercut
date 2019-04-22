@@ -5,10 +5,14 @@ export function forEach(action) {
 	assertIsRequired(isFunction(action), "Action");
 
 	return function* (iterable) {
+		let index = 0;
+
 		for (const item of iterable) {
-			action(item);
+			action(item, index);
 
 			yield item;
+
+			index++;
 		}
 	};
 }

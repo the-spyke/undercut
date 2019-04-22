@@ -18,6 +18,8 @@ function zipCore(itemFactory, sources) {
 
 		sources.forEach(source => iters.push(source[Symbol.iterator]()));
 
+		let index = 0;
+
 		while (true) {
 			let done = true;
 
@@ -33,7 +35,9 @@ function zipCore(itemFactory, sources) {
 				break;
 			}
 
-			yield itemFactory(values);
+			yield itemFactory(values, index);
+
+			index++;
 		}
 	};
 }

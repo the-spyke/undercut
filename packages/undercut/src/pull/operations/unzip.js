@@ -12,8 +12,10 @@ export function unzipWith(itemsExtractor) {
 	return function* (iterable) {
 		const results = [];
 
+		let index = 0;
+
 		for (const item of iterable) {
-			const values = itemsExtractor(item);
+			const values = itemsExtractor(item, index);
 
 			if (results.length === 0) {
 				values.forEach(() => results.push([]));
@@ -22,6 +24,8 @@ export function unzipWith(itemsExtractor) {
 			}
 
 			values.forEach((v, i) => results[i].push(v));
+
+			index++;
 		}
 
 		yield* results;

@@ -1,9 +1,15 @@
-import { targetOf } from "../../utils/tests.js";
+import { targetOf, expectCallbackArgsToBe } from "../../utils/tests.js";
 
 import { every } from "./every.js";
 
 test("every", () => {
 	expect(() => every()).toThrow();
+
+	expectCallbackArgsToBe(
+		() => true,
+		cb => targetOf(every(cb), [3, 4]),
+		[3, 0], [4, 1]
+	);
 
 	const predicate = x => x > 5;
 

@@ -4,13 +4,13 @@ export function skip(count) {
 	assertCount(count);
 
 	return function* (iterable) {
-		let i = 0;
+		let index = 0;
 
 		for (const item of iterable) {
-			if (i >= count) {
+			if (index >= count) {
 				yield item;
 			} else {
-				i += 1;
+				index++;
 			}
 		}
 	};
@@ -21,10 +21,12 @@ export function skipWhile(predicate) {
 
 	return function* (iterable) {
 		let doSkip = true;
+		let index = 0;
 
 		for (const item of iterable) {
 			if (doSkip) {
-				doSkip = predicate(item);
+				doSkip = predicate(item, index);
+				index++;
 
 				if (doSkip) {
 					continue;

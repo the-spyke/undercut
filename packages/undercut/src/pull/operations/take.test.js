@@ -1,4 +1,4 @@
-import { targetOf } from "../../utils/tests.js";
+import { targetOf, expectCallbackArgsToBe } from "../../utils/tests.js";
 
 import { take, takeWhile } from "./take.js";
 
@@ -14,6 +14,11 @@ test("take", () => {
 
 test("takeWhile", () => {
 	expect(() => takeWhile()).toThrow();
+	expectCallbackArgsToBe(
+		() => true,
+		cb => targetOf(takeWhile(cb), [3, 4]),
+		[3, 0], [4, 1]
+	);
 
 	const predicate = x => x < 10;
 

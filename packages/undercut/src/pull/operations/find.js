@@ -4,12 +4,16 @@ export function find(predicate) {
 	assertPredicate(predicate);
 
 	return function* (iterable) {
+		let index = 0;
+
 		for (const item of iterable) {
-			if (predicate(item)) {
+			if (predicate(item, index)) {
 				yield item;
 
 				return;
 			}
+
+			index++;
 		}
 	};
 }
@@ -21,13 +25,13 @@ export function findIndex(predicate) {
 		let index = 0;
 
 		for (const item of iterable) {
-			if (predicate(item)) {
+			if (predicate(item, index)) {
 				yield index;
 
 				return;
 			}
 
-			index += 1;
+			index++;
 		}
 	};
 }

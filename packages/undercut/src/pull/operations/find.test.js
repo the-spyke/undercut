@@ -1,9 +1,15 @@
-import { targetOf } from "../../utils/tests.js";
+import { targetOf, expectCallbackArgsToBe } from "../../utils/tests.js";
 
 import { find, findIndex } from "./find.js";
 
 test("find", () => {
 	expect(() => find()).toThrow();
+
+	expectCallbackArgsToBe(
+		() => false,
+		cb => targetOf(find(cb), [3, 4]),
+		[3, 0], [4, 1]
+	);
 
 	const predicate = x => x === 2;
 
@@ -25,6 +31,12 @@ test("find", () => {
 
 test("findIndex", () => {
 	expect(() => findIndex()).toThrow();
+
+	expectCallbackArgsToBe(
+		() => false,
+		cb => targetOf(findIndex(cb), [3, 4]),
+		[3, 0], [4, 1]
+	);
 
 	const predicate = x => x === 2;
 

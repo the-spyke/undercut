@@ -4,12 +4,16 @@ export function some(predicate) {
 	assertPredicate(predicate);
 
 	return function* (iterable) {
+		let index = 0;
+
 		for (const item of iterable) {
-			if (predicate(item)) {
+			if (predicate(item, index)) {
 				yield true;
 
 				return;
 			}
+
+			index++;
 		}
 
 		yield false;

@@ -6,8 +6,10 @@ export function groupBy(keySelector) {
 	return function* (iterable) {
 		const groups = new Map();
 
+		let index = 0;
+
 		for (const item of iterable) {
-			const key = keySelector(item);
+			const key = keySelector(item, index);
 
 			let groupItems = groups.get(key);
 
@@ -17,6 +19,8 @@ export function groupBy(keySelector) {
 			}
 
 			groupItems.push(item);
+
+			index++;
 		}
 
 		yield* groups;

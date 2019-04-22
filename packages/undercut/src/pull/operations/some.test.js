@@ -1,9 +1,14 @@
-import { targetOf } from "../../utils/tests.js";
+import { targetOf, expectCallbackArgsToBe } from "../../utils/tests.js";
 
 import { some } from "./some.js";
 
 test("some", () => {
 	expect(() => some()).toThrow();
+	expectCallbackArgsToBe(
+		() => false,
+		cb => targetOf(some(cb), [3, 4]),
+		[3, 0], [4, 1]
+	);
 
 	const predicate = x => x > 5;
 

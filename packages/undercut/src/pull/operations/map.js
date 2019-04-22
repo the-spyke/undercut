@@ -5,8 +5,12 @@ export function map(mapper) {
 	assertIsRequired(isFunction(mapper), "Mapper");
 
 	return function* (iterable) {
+		let index = 0;
+
 		for (const item of iterable) {
-			yield mapper(item);
+			yield mapper(item, index);
+
+			index++;
 		}
 	};
 }

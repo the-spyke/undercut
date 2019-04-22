@@ -14,7 +14,7 @@ export function nth(n) {
 				return;
 			}
 
-			index += 1;
+			index++;
 		}
 	};
 }

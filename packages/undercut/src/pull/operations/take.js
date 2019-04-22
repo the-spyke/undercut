@@ -4,12 +4,12 @@ export function take(count) {
 	assertCount(count);
 
 	return function* (iterable) {
-		let i = 0;
+		let index = 0;
 
 		for (const item of iterable) {
-			i += 1;
+			index++;
 
-			if (i > count) {
+			if (index > count) {
 				return;
 			}
 
@@ -22,12 +22,16 @@ export function takeWhile(predicate) {
 	assertPredicate(predicate);
 
 	return function* (iterable) {
+		let index = 0;
+
 		for (const item of iterable) {
-			if (predicate(item)) {
+			if (predicate(item, index)) {
 				yield item;
 			} else {
 				return;
 			}
+
+			index++;
 		}
 	};
 }
