@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "JavaScript data processing pipelines and utilities",
   "private": true,
+  "author": "Anton Alexandrenok",
+  "license": "MIT",
   "scripts": {
   },
   "devDependencies": {
@@ -14,7 +16,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "author": "Anton Alexandrenok",
-  "license": "MIT"
+  ]
 }
