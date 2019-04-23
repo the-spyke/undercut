@@ -12,7 +12,7 @@ Goals:
 * Simple API: not too imperative, not too functional
 * Lazy evaluation when possible
 * Use existing protocols and existing JS ecosystem
-* Easy extencibility
+* Easy extensibility
 * Raw code in the npm package (compile in place)
 * Pure ES Modules
 * Tree shaking friendly
