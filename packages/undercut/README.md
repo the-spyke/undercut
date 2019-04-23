@@ -30,4 +30,4 @@ console.log(result); // [8, 10, 14]
 
 ## License
 
-Licensed under the MIT License.
+Licensed under the MIT License, see [LICENSE](LICENSE) for more information.
