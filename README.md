@@ -1,8 +1,8 @@
 # ✂ undercut ✂
 
-![npm](https://img.shields.io/npm/v/undercut.svg?style=flat-square)
-![npm](https://img.shields.io/npm/dm/undercut.svg?style=flat-square)
-![NPM](https://img.shields.io/npm/l/undercut.svg?style=flat-square)
+[![npm version](https://img.shields.io/npm/v/undercut.svg?style=flat-square)](https://www.npmjs.com/package/undercut)
+[![npm downloads](https://img.shields.io/npm/dm/undercut.svg?style=flat-square)](https://www.npmjs.com/package/undercut)
+[![license](https://img.shields.io/npm/l/undercut.svg?style=flat-square)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
 
 JavaScript data processing pipelines and utilities.
 
