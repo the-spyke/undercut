@@ -6,3 +6,5 @@
 
 utils/perf.js
 utils/tests.js
+
+babel.config.js

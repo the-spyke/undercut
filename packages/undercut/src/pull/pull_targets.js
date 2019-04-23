@@ -1,22 +1,15 @@
 import { assert } from "../utils/assertions.js";
 
-export function toArray(line) {
-	return Array.from(line);
+export function toArray(pullLine) {
+	return Array.from(pullLine);
 }
 
-export function toMap(line) {
-	return new Map(line);
+export function toMap(pullLine) {
+	return new Map(pullLine);
 }
 
-export function toObject(line) {
-	// const result = Object.fromEntries(line);
-	const result = {};
-
-	for (const [key, value] of line) {
-		result[key] = value;
-	}
-
-	return result;
+export function toObject(pullLine) {
+	return Object.fromEntries(pullLine);
 }
 
 // export function toPushLine(pushLine) {
@@ -31,15 +24,15 @@ export function toObject(line) {
 // 	}
 // }
 
-export function toSet(line) {
-	return new Set(line);
+export function toSet(pullLine) {
+	return new Set(pullLine);
 }
 
-export function toValue(line) {
+export function toValue(pullLine) {
 	let result = undefined;
 	let index = 0;
 
-	for (const item of line) {
+	for (const item of pullLine) {
 		assert(index === 0, `"toValue()" may be applied only to a sequence of one item.`);
 
 		result = item;
