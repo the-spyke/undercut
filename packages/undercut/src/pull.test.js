@@ -54,4 +54,13 @@ test("simple scenarios", () => {
 			d: 7
 		}))
 	).toEqual({ c: 12, e: 15 });
+
+	const data2 = [1, 2, 3];
+	const line2 = pullLine(pipeline1, data2);
+
+	data2.push(5, 6);
+
+	expect(
+		Array.from(line2)
+	).toEqual([2, 3, 5, 6]);
 });
