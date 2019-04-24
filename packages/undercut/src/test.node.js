@@ -1,15 +1,15 @@
 /* eslint-env node */
 
-import assert from "assert";
+import { deepEqual } from "assert";
 
 import {
 	pull,
-	filter, map, skip, sum, take,
-	toValue
+	filter, map, skip, take,
+	toArray
 } from "./pull.js";
 
-const data1 = [1, 2, 3, 4, 5, 6, 7];
-const pipeline1 = [
+const data = [1, 2, 3, 4, 5, 6, 7];
+const pipeline = [
 	map(x => x + 3),
 	skip(1),
 	take(100),
@@ -17,12 +17,8 @@ const pipeline1 = [
 	filter(x => x !== 4),
 ];
 
-const result = pull(toValue, [
-	...pipeline1,
-	sum(),
-	map(x => x + 0.5),
-], data1);
+const result = pull(toArray, pipeline, data);
 
-assert(result === 23.5, "Invalid result");
+deepEqual(result, [2 ,3, 5, 6, 7]);
 
 console.info("OK");
