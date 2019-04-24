@@ -1,4 +1,4 @@
-/* globals module */
+/* eslint-env node */
 
 const presets = [
 	[

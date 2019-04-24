@@ -14,7 +14,7 @@ Goals:
 * Use existing protocols and existing JS ecosystem
 * Easy extensibility
 * Raw code in the npm package (compile in place)
-* Pure ES Modules
+* Pure ES Modules, Node 12 compliance
 * Tree shaking friendly
 * Typings
 
@@ -95,7 +95,6 @@ You may look for more examples in unit tests while the documentation is under co
 
 ## TODO
 
-* Node 12 ES Modules compliance
 * Work out entry point exports
 * Performance tests/comparison
 * Documentation
