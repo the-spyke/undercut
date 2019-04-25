@@ -8,15 +8,14 @@ JavaScript data processing pipelines and utilities.
 
 Goals:
 
-* All-in-one library for data processing
-* Simple API: not too imperative, not too functional
-* Lazy evaluation when possible
-* Use existing protocols and existing JS ecosystem
-* Easy extensibility
-* Raw code in the npm package (compile in place)
-* Pure ES Modules, Node 12 compliance
-* Tree shaking friendly
-* Typings
+- Simple API: not too imperative, not too functional
+- Lazy evaluation when possible
+- Use existing protocols and existing JS ecosystem
+- Easy extensibility
+- Raw code in the npm package (compile in place)
+- Pure ES Modules, Node 12 compliance
+- Tree shaking friendly
+- Typings
 
 ## Installation
 
@@ -98,21 +97,21 @@ Push lines work by creating a pipeline and pushing items individually over time.
 
 ## Milestones
 
-* 0.1.0 - [2019-04-22] - MVP, test concepts and API convenience
-* 0.2.0 - [2019-05-06] - TBD
+- 0.1.0 - [2019-04-22] - MVP, test concepts and API convenience
+- 0.2.0 - [2019-05-06] - TBD
 
 ## TODO
 
-* Work out entry point exports
-* Performance tests/comparison
-* Documentation
-* TypeScript
-* CI
-* Push pipelines
-* Async iteration
-* Code coverage
-* Node precompiled packages
-* Browser precompiled package
+- Work out entry point exports
+- Performance tests/comparison
+- Documentation
+- TypeScript type definitions
+- CI
+- Push pipelines
+- Async iteration
+- Code coverage
+- Node precompiled packages
+- Browser precompiled package
 
 ## License
 
