@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `chunk()` pull operation. Splits a sequence into arrays of N items.
+- `isFinite()` lang utility. Just a wrapper for `Number.isFinite()`.
+- `range()` pull source. Generates a range `[start, end)`, you may also specify a step.
 - `remove()` pull operation. It's an opposite to the `filter()` operation.
 
 ## [0.1.1] - 2019-04-24

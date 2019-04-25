@@ -12,31 +12,19 @@ export function toObject(pullLine) {
 	return Object.fromEntries(pullLine);
 }
 
-// export function toPushLine(pushLine) {
-// 	return function (pullLine) {
-// 		try {
-// 			for (const item of pullLine) {
-// 				pushLine.next(item);
-// 			}
-// 		} finally {
-// 			pushLine.return();
-// 		}
-// 	}
-// }
-
 export function toSet(pullLine) {
 	return new Set(pullLine);
 }
 
 export function toValue(pullLine) {
 	let result = undefined;
-	let index = 0;
+	let isFirstValue = true;
 
 	for (const item of pullLine) {
-		assert(index === 0, `"toValue()" may be applied only to a sequence of one item.`);
+		assert(isFirstValue, `"toValue()" may be applied only to a sequence of one item.`);
 
 		result = item;
-		index++;
+		isFirstValue = false;
 	}
 
 	return result;

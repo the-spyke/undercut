@@ -14,6 +14,10 @@ export function isFalsy(value) {
 	return !value;
 }
 
+export function isFinite(value) {
+	return Number.isFinite(value);
+}
+
 export function isFunction(value) {
 	return typeof value === "function";
 }

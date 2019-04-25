@@ -1,4 +1,4 @@
-import { isFunction, isIterable, isNumber } from "./lang.js";
+import { isFunction, isIterable } from "./lang.js";
 
 export function assert(condition, message) {
 	if (!condition) {
@@ -15,7 +15,7 @@ export function assertComparator(comparator) {
 }
 
 export function assertCount(count) {
-	assert(isNumber(count) && count >= 0, "Count is required and must be >= 0");
+	assert(Number.isFinite(count) && count >= 0, "Count is required and must be >= 0");
 }
 
 export function assertPredicate(predicate) {

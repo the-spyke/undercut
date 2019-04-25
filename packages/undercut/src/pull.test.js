@@ -1,5 +1,6 @@
 import {
 	pull, pullLine,
+	range,
 	filter, map, min, skip, sum, take,
 	toArray, toObject, toValue
 } from "./pull.js";
@@ -63,4 +64,8 @@ test("simple scenarios", () => {
 	expect(
 		Array.from(line2)
 	).toEqual([2, 3, 5, 6]);
+
+	expect(
+		pull(toArray, [map(x => 2 ** x)], range(0, 3))
+	).toEqual([1, 2, 4]);
 });
