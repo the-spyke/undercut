@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `chunk()` pull operation. Splits a sequence into arrays of N items.
 - `isFinite()` lang utility. Just a wrapper for `Number.isFinite()`.
+- `join()` pull operation. Works the same way as `Array.prototype.join()`.
 - `range()` pull source. Generates a range `[start, end)`, you may also specify a step.
 - `remove()` pull operation. It's an opposite to the `filter()` operation.
 
