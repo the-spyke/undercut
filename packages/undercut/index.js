@@ -1,2 +1,2 @@
-export * from "./src/utils.js";
-export * from "./src/pull.js";
+export * from "./utils.js";
+export * from "./pull.js";

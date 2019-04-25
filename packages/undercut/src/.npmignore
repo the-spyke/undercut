@@ -7,5 +7,4 @@
 utils/perf.js
 utils/tests.js
 
-babel.config.js
 test.node.js

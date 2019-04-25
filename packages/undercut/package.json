@@ -36,7 +36,9 @@
     "src/",
     "index.js",
     "LICENSE",
-    "README.md"
+    "pull.js",
+    "README.md",
+    "utils.js"
   ],
   "keywords": [
     "array",
