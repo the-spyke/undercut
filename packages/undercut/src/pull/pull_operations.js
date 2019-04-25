@@ -1,5 +1,6 @@
 export * from "./operations/append.js";
 export * from "./operations/average.js";
+export * from "./operations/chunk.js";
 export * from "./operations/compact.js";
 export * from "./operations/concat.js";
 export * from "./operations/count.js";
@@ -21,6 +22,7 @@ export * from "./operations/nth.js";
 export * from "./operations/order_by.js";
 export * from "./operations/prepend.js";
 export * from "./operations/reduce.js";
+export * from "./operations/remove.js";
 export * from "./operations/reverse.js";
 export * from "./operations/skip.js";
 export * from "./operations/some.js";
