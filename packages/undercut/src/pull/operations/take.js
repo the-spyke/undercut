@@ -7,13 +7,13 @@ export function take(count) {
 		let index = 0;
 
 		for (const item of iterable) {
-			index++;
-
-			if (index > count) {
+			if (index >= count) {
 				return;
 			}
 
 			yield item;
+
+			index++;
 		}
 	};
 }
