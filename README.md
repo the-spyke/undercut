@@ -95,11 +95,6 @@ There're more than 40 operations for pull lines in `0.1.0`. You may look for mor
 
 Push lines work by creating a pipeline and pushing items individually over time. Basically, they are Observables. Push lines and async iteration aren't ready yet.
 
-## Milestones
-
-- 0.1.0 - [2019-04-22] - MVP, test concepts and API convenience
-- 0.2.0 - [2019-05-06] - TBD
-
 ## TODO
 
 - Work out entry point exports
