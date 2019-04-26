@@ -31,5 +31,5 @@ export function assertSelector(selector) {
 }
 
 export function assertSource(source) {
-	assert(isIterable(source), "Source is required and must be iterable.");
+	assert(isIterable(source), "Source is required, could be any iterable.");
 }

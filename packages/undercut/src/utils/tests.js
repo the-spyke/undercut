@@ -2,6 +2,14 @@ export function targetOf(operation, source) {
 	return [...operation(source)];
 }
 
+export function lineTargetOf(pullLine) {
+	return [...pullLine];
+}
+
+export function sourceItems(source) {
+	return [...source];
+}
+
 export function expectCallbackArgsToBe(cb, setup, ...calls) {
 	const callback = jest.fn(cb);
 

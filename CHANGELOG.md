@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `range()` pull source. Generates a range `[start, end)`, you may also specify a step.
 - `remove()` pull operation. It's an opposite to the `filter()` operation.
 
+### Fixed
+
+- Fixed re-iteration support of pull lines.
+
 ## [0.1.1] - 2019-04-24
 
 This version works fine on Node 12.0.0 without ESM-to-CJS transpilation, just use `--experimental-modules` flag.
