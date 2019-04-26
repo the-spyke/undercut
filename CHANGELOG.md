@@ -10,14 +10,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `chunk()` pull operation. Splits a sequence into arrays of N items.
-- `isFinite()` lang utility. Just a wrapper for `Number.isFinite()`.
 - `join()` pull operation. Works the same way as `Array.prototype.join()`.
-- `range()` pull source. Generates a range `[start, end)`, you may also specify a step.
 - `remove()` pull operation. It's an opposite to the `filter()` operation.
+- `range()` pull source. Generates a range `[start, end)`, you may also specify a step.
+- `getIterator()` helper.
+- `tryCloseIterator()` helper.
+- `isFinite()` lang utility. Just a wrapper for `Number.isFinite()`.
 
 ### Changed
 
 - **[BREAKING]** Renamed `pullLine()` into `createPullLine()`.
+
+### Removed
+
+- **[BREAKING]** Removed `peekIterable()` helper.
 
 ### Fixed
 

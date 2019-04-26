@@ -1,5 +1,6 @@
 import { assertIsRequired } from "../../utils/assertions.js";
 import { identity } from "../../utils/function.js";
+import { getIterator, tryCloseIterator } from "../../utils/iterable.js";
 import { isFunction } from "../../utils/lang.js";
 
 export function zip(...sources) {
@@ -14,30 +15,35 @@ function zipCore(itemFactory, sources) {
 	assertIsRequired(isFunction(itemFactory), "Item Factory");
 
 	return function* (iterable) {
-		const iters = [iterable[Symbol.iterator]()];
+		const iters = [];
 
-		sources.forEach(source => iters.push(source[Symbol.iterator]()));
+		try {
+			iters.push(getIterator(iterable));
+			sources.forEach(source => iters.push(getIterator(source)));
 
-		let index = 0;
+			let index = 0;
 
-		while (true) {
-			let done = true;
+			while (true) {
+				let done = true;
 
-			const values = iters.map(iter => {
-				const item = iter.next();
+				const values = iters.map(iter => {
+					const item = iter.next();
 
-				done = done && item.done;
+					done = done && item.done;
 
-				return item.value;
-			});
+					return item.value;
+				});
 
-			if (done) {
-				break;
+				if (done) {
+					break;
+				}
+
+				yield itemFactory(values, index);
+
+				index++;
 			}
-
-			yield itemFactory(values, index);
-
-			index++;
+		} finally {
+			iters.forEach(tryCloseIterator);
 		}
 	};
 }

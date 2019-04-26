@@ -1,4 +1,5 @@
 import { assert, assertSource } from "../utils/assertions.js";
+import { getIterator } from "../utils/iterable.js";
 import { isFunction, isIterable } from "../utils/lang.js";
 
 import Iterable from "../iterable.js";
@@ -17,7 +18,7 @@ function operationsToIterator(operations, source) {
 	}
 
 	if (result === source) {
-		return source[Symbol.iterator]();
+		return getIterator(source);
 	}
 
 	return result;

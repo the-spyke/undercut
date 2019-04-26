@@ -24,7 +24,7 @@ export function isFunction(value) {
 
 export function isIterable(value) {
 	// TODO: improve condition
-	return value != null && isFunction(value[Symbol.iterator] || value.next);
+	return value != null && isFunction(value[Symbol.iterator]);
 }
 
 export function isNil(value) {
