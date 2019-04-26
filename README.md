@@ -50,20 +50,21 @@ The `pull` function immediately pulls all items froms the source data and applie
 You can also create pull lines (operations bound to some data) and reuse them later:
 
 ```js
-import { pullLine, append, compact, skip, toArray } from "undercut";
+import { createPullLine, append, compact, skip, toArray } from "undercut";
 
 const data = [0, 1, 2, 3];
-const line = pullLine([
+
+const pullLine = createPullLine([
     append(4, 5),
     compact(),
     skip(2)
 ], data);
 
-const result1 = toArray(line); // [3, 4, 5]
+const result1 = toArray(pullLine); // [3, 4, 5]
 
 data.push(7);
 
-const result2 = toArray(line); // [3, 7, 4, 5]
+const result2 = toArray(pullLine); // [3, 7, 4, 5]
 ```
 
 You can create you own operations too. `undercut` is built on top of existing JavaScript protocols and generators:
@@ -78,17 +79,16 @@ function pow(exponent) {
 }
 
 const data = [1, 2, 3];
-const result = pull(toArray, [
-    pow(2)
-], data); // [1, 4, 9]
+
+const result = pull(toArray, [pow(2)], data); // [1, 4, 9]
 ```
 
 Targets `toArray()`, `toMap()`, and soem others are just shortcuts for `Array.from`, `new Map()`, etc. Many native objects support iterables in their constructors, pull lines are iterables too:
 
 ```js
-const results1 = pull(Array.from, operations, data);
+pull(Array.from, operations, data);
 // or even
-const results2 = Array.from(pullLine(operations, data));
+Array.from(createPullLine(operations, data));
 ```
 
 There're more than 40 operations for pull lines in `0.1.0`. You may look for more examples in unit tests while the documentation is under construction.
