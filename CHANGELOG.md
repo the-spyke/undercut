@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `range()` pull source. Generates a range `[start, end)`, you may also specify a step.
 - `remove()` pull operation. It's an opposite to the `filter()` operation.
 
+### Changed
+
+- **[BREAKING]** Renamed `pullLine()` into `createPullLine()`.
+
 ### Fixed
 
 - Fixed re-iteration support of pull lines.

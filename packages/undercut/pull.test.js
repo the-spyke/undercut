@@ -1,5 +1,5 @@
 import {
-	pull, pullLine,
+	pull, createPullLine,
 	range,
 	filter, map, min, skip, sum, take,
 	toArray, toObject, toValue
@@ -28,16 +28,16 @@ test("simple scenarios", () => {
 	).toEqual([23.5]);
 
 	expect(
-		toArray(pullLine(pipeline1, data1))
+		toArray(createPullLine(pipeline1, data1))
 	).toEqual([2, 3, 5, 6, 7]);
 
-	const line1 = pullLine(pipeline1, data1);
+	const pullLine1 = createPullLine(pipeline1, data1);
 
 	expect(
 		pull(toValue, [
 			sum(),
 			map(x => x + 0.5)
-		], line1)
+		], pullLine1)
 	).toEqual(23.5);
 
 	expect(
@@ -57,12 +57,12 @@ test("simple scenarios", () => {
 	).toEqual({ c: 12, e: 15 });
 
 	const data2 = [1, 2, 3];
-	const line2 = pullLine(pipeline1, data2);
+	const pullLine2 = createPullLine(pipeline1, data2);
 
 	data2.push(5, 6);
 
 	expect(
-		Array.from(line2)
+		Array.from(pullLine2)
 	).toEqual([2, 3, 5, 6]);
 
 	expect(

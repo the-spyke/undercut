@@ -23,7 +23,7 @@ function operationsToIterator(operations, source) {
 	return result;
 }
 
-export function pullLine(operations, source) {
+export function createPullLine(operations, source) {
 	assert(isIterable(operations), "Operations are required, could be an array or another iterable.");
 	assertSource(source);
 

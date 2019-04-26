@@ -2,23 +2,23 @@ import { lineTargetOf } from "../utils/tests.js";
 
 import { map } from "./operations/map.js";
 
-import { pull, pullLine } from "./pull_core.js";
+import { pull, createPullLine } from "./pull_core.js";
 
-test("pullLine", () => {
-	expect(() => pullLine()).toThrow();
-	expect(() => pullLine([])).toThrow();
-	expect(() => pullLine(1, [])).toThrow();
-	expect(() => pullLine(1, 2)).toThrow();
+test("createPullLine", () => {
+	expect(() => createPullLine()).toThrow();
+	expect(() => createPullLine([])).toThrow();
+	expect(() => createPullLine(1, [])).toThrow();
+	expect(() => createPullLine(1, 2)).toThrow();
 
-	expect(lineTargetOf(pullLine([], []))).toEqual([]);
-	expect(lineTargetOf(pullLine([], [2, 3]))).toEqual([2, 3]);
+	expect(lineTargetOf(createPullLine([], []))).toEqual([]);
+	expect(lineTargetOf(createPullLine([], [2, 3]))).toEqual([2, 3]);
 
-	const line = pullLine([
+	const pullLine = createPullLine([
 		map(x => x * 2)
 	], [0, 1, 2]);
 
-	expect(lineTargetOf(line)).toEqual([0, 2, 4]);
-	expect([...line, 7, ...line]).toEqual([0, 2, 4, 7, 0, 2, 4]);
+	expect(lineTargetOf(pullLine)).toEqual([0, 2, 4]);
+	expect([...pullLine, 7, ...pullLine]).toEqual([0, 2, 4, 7, 0, 2, 4]);
 });
 
 test("pull", () => {
