@@ -13,6 +13,7 @@ export * from "./operations/flatten.js";
 export * from "./operations/for_each.js";
 export * from "./operations/group_by.js";
 export * from "./operations/includes.js";
+export * from "./operations/interleave.js";
 export * from "./operations/intersection.js";
 export * from "./operations/join.js";
 export * from "./operations/last.js";
