@@ -1,4 +1,4 @@
-import { assert, assertSource } from "../utils/assertions.js";
+import { assert, assertPipeline, assertSource } from "../utils/assertions.js";
 import { getIterator } from "../utils/iterable.js";
 import { isFunction, isIterable } from "../utils/lang.js";
 
@@ -6,35 +6,48 @@ import Iterable from "../iterable.js";
 
 const operationErrorMessage = "An operation must be a function taking an iterable as an argument and returning another iterable.";
 
-function operationsToIterator(operations, source) {
-	let result = source;
+function connectPipeline(pipeline, source) {
+	assertPipeline(pipeline);
+	assertSource(source);
 
-	for (const operation of operations) {
+	let iterable = source;
+
+	for (const operation of pipeline) {
 		assert(isFunction(operation), operationErrorMessage);
 
-		result = operation(result);
+		iterable = operation(iterable);
 
-		assert(isIterable(result), operationErrorMessage);
+		assert(isIterable(iterable), operationErrorMessage);
 	}
 
-	if (result === source) {
-		return getIterator(source);
-	}
-
-	return result;
+	return iterable;
 }
 
-export function createPullLine(operations, source) {
-	assert(isIterable(operations), "Operations are required, could be an array or another iterable.");
+export function composeOperations(pipeline) {
+	return function (iterable) {
+		return connectPipeline(pipeline, iterable);
+	};
+}
+
+export function createPullLine(pipeline, source) {
+	assertPipeline(pipeline);
 	assertSource(source);
 
-	return new Iterable(() => operationsToIterator(operations, source));
+	function iteratorFactory() {
+		const iterator = connectPipeline(pipeline, source);
+
+		if (!isFunction(iterator.next)) {
+			return getIterator(source);
+		}
+
+		return iterator;
+	}
+
+	return new Iterable(iteratorFactory);
 }
 
-export function pull(target, operations, source) {
+export function pull(target, pipeline, source) {
 	assert(isFunction(target), "Target is required, must be a function accepting an iterable.");
-	assert(isIterable(operations), "Operations are required, could be an array or another iterable.");
-	assertSource(source);
 
-	return target(operationsToIterator(operations, source));
+	return target(connectPipeline(pipeline, source));
 }

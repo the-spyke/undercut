@@ -10,6 +10,20 @@ export function sourceItems(source) {
 	return [...source];
 }
 
+export function testOperation(callback) {
+	return function* (iterable) {
+		let index = 0;
+
+		for (const item of iterable) {
+			callback && callback(item, index);
+
+			yield item;
+
+			index++;
+		}
+	};
+}
+
 export function expectCallbackArgsToBe(cb, setup, ...calls) {
 	const callback = jest.fn(cb);
 

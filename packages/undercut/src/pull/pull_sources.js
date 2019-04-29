@@ -14,6 +14,13 @@ function* rangeGen(start, end, step) {
 	}
 }
 
+/**
+ * Creates an iterable of numbers in range `[start, end)` with optional step.
+ * @param {Number} start
+ * @param {Number} end
+ * @param {Number} [step=1]
+ * @returns {Iterable<Number>}
+ */
 export function range(start, end, step = 1) {
 	assert(Number.isFinite(start), "Start is required and must be a number.");
 	assert(Number.isFinite(end), "End is required and must be a number.");

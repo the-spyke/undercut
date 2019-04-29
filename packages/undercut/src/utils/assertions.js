@@ -18,6 +18,10 @@ export function assertCount(count) {
 	assert(Number.isFinite(count) && count >= 0, "Count is required and must be >= 0");
 }
 
+export function assertPipeline(pipeline) {
+	assert(isIterable(pipeline), "Pipeline is required, could be an array or another iterable of operations.");
+}
+
 export function assertPredicate(predicate) {
 	assertIsRequired(isFunction(predicate), "Predicate");
 }
@@ -32,4 +36,8 @@ export function assertSelector(selector) {
 
 export function assertSource(source) {
 	assert(isIterable(source), "Source is required, could be any iterable.");
+}
+
+export function assertSources(sources) {
+	sources.forEach(source => assert(isIterable(source), "Every source in this operation must be an iterable."));
 }

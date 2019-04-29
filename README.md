@@ -25,7 +25,7 @@ npm install --save undercut
 yarn add undercut
 ```
 
-`undercut` provides raw code in the package, **don't forget** to include its directory into [Babel](https://babeljs.io/) config or another compiler you use.
+`undercut` provides raw latest ES code in the package, **don't forget** to include its directory into [Babel](https://babeljs.io/) config or another compiler you use.
 
 ## Usage
 
@@ -37,15 +37,24 @@ const data = [1, 2, 3, 4, 5, 6, 7];
 const result = pull(toArray, [
     skip(2),
     filter(x => x % 3 === 0),
-    map(x => x * 2) // will be executed only 3 times
+    map(x => x * 2) // Will be executed only 3 times.
 ], data);
 
 console.log(result); // [8, 10, 14]
 ```
 
-The `pull` function immediately pulls all items froms the source data and applies operations in order to them: `(target, operations, source) => result`. The `target` is a function extracting results from the pipeline. It has a single argument which is an `iterable`, its return type will be the return type of the `pull`. The `operations` is an array of operations you want to apply to the data. The `source` is an `iterable`: arrays, maps, sets, strings, etc.
+### Main concepts
 
-You can also create pull lines (operations bound to some data) and reuse them later:
+- `operation` -- a function taking an `iterable` and returning another `iterable`. Will be applied to the data source's items.
+- `pipeline` -- an ordered sequence of `operation`s. May be an `array` or any `iterable`.
+- `source` -- an `iterable` which items will be processed. Many native objects are iterable out of the box: arrays, maps, sets, strings.
+- `target` -- a function for extracting the result of a pipeline execution. Takes an `iterable` and returns some value. Many native functions do this: `Array.from()`, `new Map()`, `Object.fromEntries()`, etc. Targets provided by the `undercut` are just wrappers around those native functions/constructors for convenience.
+- `pull` -- a function that immediately pulls all items from the data `source` through the `pipeline` to the `target`: `pull(target, pipeline, source) => result`. The return value of the `target` is the return value of the `pull()` call.
+- `pull line` -- an `iterable` that binds a `pipeline` and a data `source`. It's made with `createPullLine()` function that takes a `pipeline` and a data `source` as arguments and returns an `iterable` -- the `pull line`. Pull lines are useful when you want to pass a result somewhere without evaluating it first or being able to recalcualte the result several times.
+
+### Examples
+
+Creating a pull line and reusing it later:
 
 ```js
 import { createPullLine, append, compact, skip, toArray } from "undercut";
@@ -56,7 +65,7 @@ const pullLine = createPullLine([
     append(4, 5),
     compact(),
     skip(2)
-], data);
+], data); // No evaluation happens at this step.
 
 const result1 = toArray(pullLine); // [3, 4, 5]
 
@@ -65,7 +74,17 @@ data.push(7);
 const result2 = toArray(pullLine); // [3, 7, 4, 5]
 ```
 
-You can create you own operations too. `undercut` is built on top of existing JavaScript protocols and generators:
+Using different targets or calling them directly:
+
+```js
+pull(Array.from, pipeline, data);
+// or
+Array.from(createPullLine(pipeline, data));
+// or
+toArray(createPullLine(pipeline, data));
+```
+
+Creating your own operations is simple. `undercut` is built on top of existing JavaScript protocols and features like generators:
 
 ```js
 function pow(exponent) {
@@ -81,13 +100,28 @@ const data = [1, 2, 3];
 const result = pull(toArray, [pow(2)], data); // [1, 4, 9]
 ```
 
-Targets `toArray()`, `toMap()`, and soem others are just shortcuts for `Array.from`, `new Map()`, etc. Many native objects support iterables in their constructors, pull lines are iterables too:
+Composing several existing operations into a new one:
 
 ```js
-pull(Array.from, operations, data);
-// or even
-Array.from(createPullLine(operations, data));
+import { composeOperations, flatten, zip } from "undercut";
+
+function interleave(...sources) {
+    const pipeline = [
+        zip(...sources),
+        flatten()
+    ];
+
+    return composeOperations(pipeline);
+}
+
+const data = [1, 3, 5];
+
+const result = pull(toArray, [
+    interleave([2, 4, 6])
+], data); // [1, 2, 3, 4, 5, 6]
 ```
+
+### Tips
 
 There're more than 40 operations for pull lines in `0.1.0`. You may look for more examples in unit tests while the documentation is under construction.
 

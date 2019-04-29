@@ -13,7 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `interleave()` pull operation. Joins sequences by alternating their values.
 - `join()` pull operation. Works the same way as `Array.prototype.join()`.
 - `remove()` pull operation. It's an opposite to the `filter()` operation.
-- `range()` pull source. Generates a range `[start, end)`, you may also specify a step.
+- `range()` pull source. Creates an iterable of numbers in range `[start, end)` with optional step.
+- `composeOperations()` helper. Allows to compose a new operation from several existing.
 - `getIterator()` helper.
 - `tryCloseIterator()` helper.
 - `isFinite()` lang utility. Just a wrapper for `Number.isFinite()`.
