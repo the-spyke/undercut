@@ -103,7 +103,7 @@ const result = pull(toArray, [pow(2)], data); // [1, 4, 9]
 Composing several existing operations into a new one:
 
 ```js
-import { composeOperations, flatten, zip } from "undercut";
+import { composeOperations, pull, flatten, zip, toArray } from "undercut";
 
 function interleave(...sources) {
     const pipeline = [
