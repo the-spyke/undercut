@@ -54,7 +54,7 @@ console.log(result); // [8, 10, 14]
 
 ### Examples
 
-Creating a pull line and reusing it later:
+#### Creating a pull line and reusing it later
 
 ```js
 import { createPullLine, append, compact, skip, toArray } from "undercut";
@@ -74,7 +74,7 @@ data.push(7);
 const result2 = toArray(pullLine); // [3, 7, 4, 5]
 ```
 
-Using different targets or calling them directly:
+#### Using different targets or calling them directly
 
 ```js
 pull(Array.from, pipeline, data);
@@ -84,7 +84,9 @@ Array.from(createPullLine(pipeline, data));
 toArray(createPullLine(pipeline, data));
 ```
 
-Creating your own operations is simple. `undercut` is built on top of existing JavaScript protocols and features like generators:
+#### Creating your own operations
+
+`undercut` is built on top of existing JavaScript protocols and features like generators:
 
 ```js
 function pow(exponent) {
@@ -100,7 +102,7 @@ const data = [1, 2, 3];
 const result = pull(toArray, [pow(2)], data); // [1, 4, 9]
 ```
 
-Composing several existing operations into a new one:
+#### Composing several existing operations into a new one
 
 ```js
 import { composeOperations, pull, flatten, zip, toArray } from "undercut";
