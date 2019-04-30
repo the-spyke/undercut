@@ -25,7 +25,7 @@ npm install --save undercut
 yarn add undercut
 ```
 
-`undercut` provides raw latest ES code in the package, **don't forget** to include its directory into [Babel](https://babeljs.io/) config or another compiler you use.
+`Undercut` provides raw latest ES code in the package, **don't forget** to include its directory into [Babel](https://babeljs.io/) config or another compiler you use.
 
 ## Usage
 
@@ -43,16 +43,42 @@ const result = pull(toArray, [
 console.log(result); // [8, 10, 14]
 ```
 
-### Main concepts
+### Concepts
 
-- `operation` -- a function taking an `iterable` and returning another `iterable`. Will be applied to the data source's items.
-- `pipeline` -- an ordered sequence of `operation`s. May be an `array` or any `iterable`.
+`Undercut` helps constructing pipelines for data processing. Instead of creating new concepts `undercut` leverages existing JavaScript protocols and features like [Iterable & Iterator protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) and [Generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
+
+`Pipelines` are just ordered sequences of operations on data `source` items.
+
+```text
+source ----> [ op_0 | op_1 | ... | op_N ] ----> target
+                       pipeline
+```
+
+Depending on the fact whether the data is or isn't yet available there are two different pipeline types: `pull` and `push`.
+
+In `pull` pipelines the data `source` items are available at the moment of execution, so everything is synchronous and based on iteration. The `source` and the `pipeline` are combined into an `iterable` (called a `pull line`) which then is passed to the `target` function. The `target` drives the entire execution by iterating the provided `pull line`, i.e. pulling all items from the `source` through the `pipeline`.
+
+`Push` pipelines are useful when data `source` items are unavailable or can't be calculated synchronously. In this case you want to define what to do when an item appears and where to put the result by creating a `push line`. Later at some moment in time you will `push` items into the `push line` or using it as an `observer`.
+
+### Pull
+
+Terms in releation to `pull lines`:
+
+- `operation` -- a function taking an `iterable` and returning another `iterable`.
+- `pipeline` -- an ordered sequence of `operations`. May be an `array` or any `iterable`.
 - `source` -- an `iterable` which items will be processed. Many native objects are iterable out of the box: arrays, maps, sets, strings.
-- `target` -- a function for extracting the result of a pipeline execution. Takes an `iterable` and returns some value. Many native functions do this: `Array.from()`, `new Map()`, `Object.fromEntries()`, etc. Targets provided by the `undercut` are just wrappers around those native functions/constructors for convenience.
-- `pull` -- a function that immediately pulls all items from the data `source` through the `pipeline` to the `target`: `pull(target, pipeline, source) => result`. The return value of the `target` is the return value of the `pull()` call.
-- `pull line` -- an `iterable` that binds a `pipeline` and a data `source`. It's made with `createPullLine()` function that takes a `pipeline` and a data `source` as arguments and returns an `iterable` -- the `pull line`. Pull lines are useful when you want to pass a result somewhere without evaluating it first or being able to recalcualte the result several times.
+- `target` -- a function for extracting the result of a pipeline execution. Takes an `iterable` and returns some value. Many native functions behave this way: `Array.from()`, `new Map()`, `Object.fromEntries()`, etc. Targets provided by the `undercut` are just wrappers around those native functions/constructors. Feel free to use the originals.
 
-### Examples
+The interaction is based mostly on calling `createPullLine()` and `pull()` functions:
+
+- `createPullLine(pipeline, target) => Iterable`
+
+  Creating a `pull line` directly is useful when you want to pass it somewhere or being able to re-evaluate the result several times in a row.
+- `pull(target, pipeline, source) => any`
+
+  A convenience function that calls `createPillLine()` and `target()` for you. You saw an example [earlier](#usage).
+
+*There're more than 40 operations for pull lines in `0.1.0`. You may look for more examples in unit tests while the documentation is under construction.*
 
 #### Creating a pull line and reusing it later
 
@@ -84,7 +110,7 @@ Array.from(createPullLine(pipeline, data));
 toArray(createPullLine(pipeline, data));
 ```
 
-#### Creating your own operations
+#### Creating your own operation
 
 `undercut` is built on top of existing JavaScript protocols and features like generators:
 
@@ -123,11 +149,9 @@ const result = pull(toArray, [
 ], data); // [1, 2, 3, 4, 5, 6]
 ```
 
-### Tips
+### Push
 
-There're more than 40 operations for pull lines in `0.1.0`. You may look for more examples in unit tests while the documentation is under construction.
-
-Push lines work by creating a pipeline and pushing items individually over time. Basically, they are Observables. Push lines and async iteration aren't ready yet.
+Push lines and async iteration aren't implemented yet.
 
 ## TODO
 
