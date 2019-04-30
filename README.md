@@ -10,7 +10,7 @@ Goals:
 
 - Simple API: not too imperative, not too functional
 - Lazy evaluation when possible
-- Use existing protocols and existing JS ecosystem
+- Use existing JS protocols and language features
 - Easy extensibility
 - Raw code in the npm package (compile in place)
 - Pure ES Modules, Node 12 compliance
