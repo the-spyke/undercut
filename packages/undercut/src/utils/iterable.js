@@ -7,5 +7,9 @@ export function getIterator(iterable) {
 export function tryCloseIterator(iterator) {
 	if (isFunction(iterator.return)) {
 		iterator.return();
+
+		return true;
 	}
+
+	return false;
 }
