@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `chunk()` pull operation. Splits a sequence into arrays of N items.
+- `flattenIterables()` pull operation. Classic `flatten()` operates only on arrays. Both now support `depth` parameter.
 - `interleave()` pull operation. Joins sequences by alternating their values.
 - `join()` pull operation. Works the same way as `Array.prototype.join()`.
 - `remove()` pull operation. It's an opposite to the `filter()` operation.
