@@ -11,7 +11,8 @@
   "scripts": {
     "babel": "babel",
     "lint": "eslint 'src/**' 'index.js'",
-    "node": "babel-node",
+    "node": "node --experimental-modules",
+    "nodeb": "babel-node",
     "test": "jest"
   },
   "devDependencies": {
