@@ -1,16 +1,28 @@
+import { assertSelector } from "../../utils/assertions.js";
+import { identity } from "../../utils/function.js";
+
 /**
  * Multisets are not supported.
  */
-export function difference(...sources) {
+export const difference = differenceBy.bind(undefined, identity);
+
+/**
+ * Multisets are not supported.
+ */
+export function differenceBy(selector, ...sources) {
+	assertSelector(selector);
+
 	return function* (iterable) {
-		const items = new Set();
+		const keys = new Set();
 
 		for (const source of sources) {
-			scanToSet(items, source);
+			scanToSet(keys, selector, source);
 		}
 
 		for (const item of iterable) {
-			if (!items.has(item)) {
+			const key = selector(item);
+
+			if (!keys.has(key)) {
 				yield item;
 			}
 		}
@@ -20,18 +32,25 @@ export function difference(...sources) {
 /**
  * Multisets are not supported.
  */
-export function symmetricDifference(...sources) {
-	return function* (iterable) {
-		const items = new Map();
+export const symmetricDifference = symmetricDifferenceBy.bind(undefined, identity);
 
-		scanToMap(items, iterable);
+/**
+ * Multisets are not supported.
+ */
+export function symmetricDifferenceBy(selector, ...sources) {
+	assertSelector(selector);
+
+	return function* (iterable) {
+		const infos = new Map();
+
+		scanToMap(infos, selector, iterable);
 
 		for (const source of sources) {
-			scanToMap(items, source);
+			scanToMap(infos, selector, source);
 		}
 
-		for (const item of items.keys()) {
-			const count = items.get(item);
+		for (const key of infos.keys()) {
+			const { count, item } = infos.get(key);
 
 			if (count % 2 > 0) {
 				yield item;
@@ -40,22 +59,25 @@ export function symmetricDifference(...sources) {
 	};
 }
 
-function scanToSet(items, source) {
+function scanToSet(keys, selector, source) {
 	for (const item of source) {
-		if (!items.has(item)) {
-			items.add(item);
+		const key = selector(item);
+
+		if (!keys.has(key)) {
+			keys.add(key);
 		}
 	}
 }
 
-function scanToMap(items, source) {
+function scanToMap(infos, selector, source) {
 	for (const item of source) {
-		const count = items.get(item);
+		const key = selector(item);
+		const info = infos.get(key);
 
-		if (count === undefined) {
-			items.set(item, 1);
+		if (info === undefined) {
+			infos.set(key, { count: 1, item });
 		} else {
-			items.set(item, count + 1);
+			info.count++;
 		}
 	}
 }

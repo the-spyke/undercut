@@ -10,11 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `chunk()` pull operation. Splits a sequence into arrays of N items.
+- `differenceBy()` pull operation. Same as `difference()` by accepts a `selector` as the first argument.
 - `flattenIterables()` pull operation. Classic `flatten()` operates only on arrays. Both now support `depth` parameter.
 - `interleave()` pull operation. Joins sequences by alternating their values.
 - `join()` pull operation. Works the same way as `Array.prototype.join()`.
 - `remove()` pull operation. It's an opposite to the `filter()` operation.
 - `range()` pull source. Creates an iterable of numbers in range `[start, end)` with optional step.
+- `symmetricDifferenceBy()` pull operation. Same as `symmetricDifference()` by accepts a `selector` as the first argument.
 - `composeOperations()` helper. Allows to compose a new operation from several existing.
 - `getIterator()` helper.
 - `tryCloseIterator()` helper.
