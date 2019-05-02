@@ -8,14 +8,15 @@ JavaScript data processing pipelines and utilities.
 
 Goals:
 
-- Simple API: not too imperative, not too functional
+- Balanced API: not too imperative, not too functional
 - Lazy evaluation when possible
 - Use existing JS protocols and language features
 - Easy extensibility
 - Raw code in the npm package (compile in place)
-- Pure ES Modules, Node 12 compliance
+- Pure ES Modules with Node 12 compliance
 - Tree shaking friendly
-- Typings
+- Typings and documentation
+- Good test coverage
 
 ## Installation
 
