@@ -79,7 +79,7 @@ The interaction is based mostly on calling `createPullLine()` and `pull()` funct
 
   A convenience function that calls `createPillLine()` and `target()` for you. You saw an example [earlier](#usage).
 
-*There're more than 40 operations for pull lines in `0.1.0`. You may look for more examples in unit tests while the documentation is under construction.*
+*There're more than 40 operations for pull lines in `0.1.0`. You may look for more examples in unit tests while the documentation is under construction. There is also a document with [Undercut to Lodash mappings](https://docs.google.com/spreadsheets/d/1SdEfGV-pxTXi9Ur3Lw7IjDo2VVkz_EExUHmPrxRu_do).*
 
 #### Creating a pull line and reusing it later
 
