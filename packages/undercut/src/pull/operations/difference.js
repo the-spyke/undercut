@@ -41,16 +41,16 @@ export function symmetricDifferenceBy(selector, ...sources) {
 	assertSelector(selector);
 
 	return function* (iterable) {
-		const infos = new Map();
+		const keyInfos = new Map();
 
-		scanToMap(infos, selector, iterable);
+		scanToMap(keyInfos, selector, iterable);
 
 		for (const source of sources) {
-			scanToMap(infos, selector, source);
+			scanToMap(keyInfos, selector, source);
 		}
 
-		for (const key of infos.keys()) {
-			const { count, item } = infos.get(key);
+		for (const key of keyInfos.keys()) {
+			const { count, item } = keyInfos.get(key);
 
 			if (count % 2 > 0) {
 				yield item;
@@ -69,13 +69,13 @@ function scanToSet(keys, selector, source) {
 	}
 }
 
-function scanToMap(infos, selector, source) {
+function scanToMap(keyInfos, selector, source) {
 	for (const item of source) {
 		const key = selector(item);
-		const info = infos.get(key);
+		const info = keyInfos.get(key);
 
 		if (info === undefined) {
-			infos.set(key, { count: 1, item });
+			keyInfos.set(key, { count: 1, item });
 		} else {
 			info.count++;
 		}
