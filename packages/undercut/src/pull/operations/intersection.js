@@ -1,16 +1,28 @@
+import { assertSelector } from "../../utils/assertions.js";
+import { identity } from "../../utils/function.js";
+
 /**
  * Multisets are not supported.
  */
-export function intersection(...sources) {
+export const intersection = intersectionBy.bind(undefined, identity);
+
+/**
+ * Multisets are not supported.
+ */
+export function intersectionBy(selector, ...sources) {
+	assertSelector(selector);
+
 	return function* (iterable) {
 		if (sources.length === 0) {
 			return;
 		}
 
-		const items = new Map();
+		const keyCounts = new Map();
 
 		for (const item of sources[0]) {
-			items.set(item, 1);
+			const key = selector(item);
+
+			keyCounts.set(key, 1);
 		}
 
 		for (let i = 1; i < sources.length; i++) {
@@ -18,10 +30,11 @@ export function intersection(...sources) {
 			const nextCount = i + 1;
 
 			for (const item of source) {
-				const count = items.get(item);
+				const key = selector(item);
+				const count = keyCounts.get(key);
 
 				if (count === i) {
-					items.set(item, nextCount);
+					keyCounts.set(key, nextCount);
 				}
 			}
 		}
@@ -29,10 +42,11 @@ export function intersection(...sources) {
 		const expectedCount = sources.length;
 
 		for (const item of iterable) {
-			const count = items.get(item);
+			const key = selector(item);
+			const count = keyCounts.get(key);
 
 			if (count === expectedCount) {
-				items.delete(item);
+				keyCounts.delete(key);
 
 				yield item;
 			}
