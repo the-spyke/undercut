@@ -10,18 +10,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `chunk()` pull operation. Splits a sequence into arrays of N items.
+- `composeOperations()` helper. Allows to compose a new operation from several existing.
 - `differenceBy()` pull operation. Same as `difference()`, but with a `selector` as the first argument.
 - `flattenIterables()` pull operation. Classic `flatten()` operates only on arrays. Both now support `depth` parameter.
+- `getIterator()` helper.
 - `interleave()` pull operation. Joins sequences by alternating their values.
 - `intersectionBy()` pull operation. Same as `intersection()`, but with a `selector` as the first argument.
-- `join()` pull operation. Works the same way as `Array.prototype.join()`.
-- `remove()` pull operation. It's an opposite to the `filter()` operation.
-- `range()` pull source. Creates an iterable of numbers in range `[start, end)` with optional step.
-- `symmetricDifferenceBy()` pull operation. Same as `symmetricDifference()` by accepts a `selector` as the first argument.
-- `composeOperations()` helper. Allows to compose a new operation from several existing.
-- `getIterator()` helper.
-- `tryCloseIterator()` helper.
 - `isFinite()` lang utility. Just a wrapper for `Number.isFinite()`.
+- `join()` pull operation. Works the same way as `Array.prototype.join()`.
+- `range()` pull source. Creates an iterable of numbers in range `[start, end)` with optional step.
+- `remove()` pull operation. It's an opposite to the `filter()` operation.
+- `symmetricDifferenceBy()` pull operation. Same as `symmetricDifference()` by accepts a `selector` as the first argument.
+- `tryCloseIterator()` helper.
+- `unionBy` pull operation. Same as `union()`, but with a `selector` as the first argument.
 
 ### Changed
 

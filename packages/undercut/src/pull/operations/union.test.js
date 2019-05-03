@@ -1,6 +1,6 @@
 import { targetOf } from "../../utils/tests.js";
 
-import { union } from "./union.js";
+import { union, unionBy } from "./union.js";
 
 test("union", () => {
 	expect(targetOf(union(), [])).toEqual([]);
@@ -17,4 +17,17 @@ test("union", () => {
 	];
 
 	expect(targetOf(union([users[0], users[0]]), [users[1], users[0]])).toEqual([users[1], users[0]]);
+});
+
+test("unionBy", () => {
+	expect(() => unionBy()).toThrow();
+	expect(() => unionBy([1])).toThrow();
+
+	const selector = item => item.x;
+
+	expect(targetOf(unionBy(selector), [])).toEqual([]);
+	expect(targetOf(
+		unionBy(selector, [{ x: 1 }, { x: 2 }, { y: 1 }]),
+		[{ x: 2 }, { x: 3 }, { y: 1 }]
+	)).toEqual([{ x: 2 }, { x: 3 }, { y: 1 }, { x: 1 }]);
 });

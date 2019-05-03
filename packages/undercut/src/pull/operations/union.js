@@ -1,22 +1,34 @@
+import { assertSelector } from "../../utils/assertions.js";
+import { identity } from "../../utils/function.js";
+
 /**
  * Multisets are not supported.
  */
-export function union(...sources) {
-	return function* (iterable) {
-		const items = new Set();
+export const union = unionBy.bind(undefined, identity);
 
-		yield* scanSource(items, iterable);
+/**
+ * Multisets are not supported.
+ */
+export function unionBy(selector, ...sources) {
+	assertSelector(selector);
+
+	return function* (iterable) {
+		const keys = new Set();
+
+		yield* scanSource(keys, selector, iterable);
 
 		for (const source of sources) {
-			yield* scanSource(items, source);
+			yield* scanSource(keys, selector, source);
 		}
 	};
 }
 
-function* scanSource(items, source) {
+function* scanSource(keys, selector, source) {
 	for (const item of source) {
-		if (!items.has(item)) {
-			items.add(item);
+		const key = selector(item);
+
+		if (!keys.has(key)) {
+			keys.add(key);
 
 			yield item;
 		}
