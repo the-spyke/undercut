@@ -22,7 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `remove()` pull operation. It's an opposite to the `filter()` operation.
 - `symmetricDifferenceBy()` pull operation. Same as `symmetricDifference()` by accepts a `selector` as the first argument.
 - `tryCloseIterator()` helper.
-- `unionBy` pull operation. Same as `union()`, but with a `selector` as the first argument.
+- `unionBy()` pull operation. Same as `union()`, but with a `selector` as the first argument.
+- `uniqueBy()` pull operation. Same as `unique()`, but with a `selector` as the first argument.
 
 ### Changed
 

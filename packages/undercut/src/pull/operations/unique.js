@@ -1,13 +1,20 @@
+import { assertSelector } from "../../utils/assertions.js";
+import { identity } from "../../utils/function.js";
+
+import { unionBy } from "./union.js";
+
+/**
+ * Multisets are not supported.
+ */
 export function unique() {
-	return function* (iterable) {
-		const items = new Set();
+	return unionBy(identity);
+}
 
-		for (const item of iterable) {
-			if (!items.has(item)) {
-				items.add(item);
+/**
+ * Multisets are not supported.
+ */
+export function uniqueBy(selector) {
+	assertSelector(selector);
 
-				yield item;
-			}
-		}
-	};
+	return unionBy(selector);
 }

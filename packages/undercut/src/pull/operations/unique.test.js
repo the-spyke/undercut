@@ -1,6 +1,6 @@
 import { targetOf } from "../../utils/tests.js";
 
-import { unique } from "./unique.js";
+import { unique, uniqueBy } from "./unique.js";
 
 test("unique", () => {
 	expect(targetOf(unique(), [])).toEqual([]);
@@ -16,4 +16,17 @@ test("unique", () => {
 	];
 
 	expect(targetOf(unique(), [users[0], users[0], users[1], users[0], users[1]])).toEqual([users[0], users[1]]);
+});
+
+test("uniqueBy", () => {
+	expect(() => uniqueBy()).toThrow();
+	expect(() => uniqueBy([1])).toThrow();
+
+	const selector = item => item.x;
+
+	expect(targetOf(uniqueBy(selector), [])).toEqual([]);
+	expect(targetOf(
+		uniqueBy(selector),
+		[{ x: 1 }, { x: 1 }, { y: 1 }, { x: 2 }]
+	)).toEqual([{ x: 1 }, { y: 1 }, { x: 2 }]);
 });
