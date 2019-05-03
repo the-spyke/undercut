@@ -1,7 +1,7 @@
-import { assertSelector } from "../../utils/assertions.js";
+import { assertFunctor } from "../../utils/assertions.js";
 
 export function groupBy(keySelector) {
-	assertSelector(keySelector);
+	assertFunctor(keySelector, "keySelector");
 
 	return function* (iterable) {
 		const groups = new Map();

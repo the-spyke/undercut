@@ -1,7 +1,7 @@
-import { assertPredicate } from "../../utils/assertions.js";
+import { assertFunctor } from "../../utils/assertions.js";
 
 export function remove(predicate) {
-	assertPredicate(predicate);
+	assertFunctor(predicate, "predicate");
 
 	return function* (iterable) {
 		let index = 0;

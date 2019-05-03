@@ -1,4 +1,4 @@
-import { assertSelector } from "../../utils/assertions.js";
+import { assertFunctor } from "../../utils/assertions.js";
 import { identity } from "../../utils/function.js";
 
 /**
@@ -10,7 +10,7 @@ export const union = unionBy.bind(undefined, identity);
  * Multisets are not supported.
  */
 export function unionBy(selector, ...sources) {
-	assertSelector(selector);
+	assertFunctor(selector, "selector");
 
 	return function* (iterable) {
 		const keys = new Set();

@@ -70,5 +70,5 @@ test("unzipWith", () => {
 	expect(() => targetOf(
 		unzipWith(item => (new Array(item)).fill(item)),
 		[1, 2, 1]
-	)).toThrow("Items Extractor returns variable length arrays: was 1, now 2");
+	)).toThrow(`"itemsExtractor" returns variable length arrays: was 1, now 2`);
 });

@@ -1,7 +1,7 @@
 import { assert } from "../../utils/assertions.js";
 
 export function chunk(size) {
-	assert(Number.isFinite(size) && size > 0, "Size is required and must be > 0.");
+	assert(Number.isSafeInteger(size) && size > 0, `"size" is required, must an be integer > 0.`);
 
 	return function* (iterable) {
 		let chunk = [];

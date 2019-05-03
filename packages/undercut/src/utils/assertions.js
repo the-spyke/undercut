@@ -6,32 +6,16 @@ export function assert(condition, message) {
 	}
 }
 
-export function assertIsRequired(condition, name) {
-	assert(condition, `${name} is required.`);
-}
-
-export function assertComparator(comparator) {
-	assertIsRequired(isFunction(comparator), "Comparator");
+export function assertFunctor(functor, name) {
+	assert(isFunction(functor), `"${name}" is required, must be a function.`);
 }
 
 export function assertCount(count) {
-	assert(Number.isFinite(count) && count >= 0, "Count is required and must be >= 0");
+	assert(Number.isSafeInteger(count) && count >= 0, `"count" is required, must be an integer >= 0.`);
 }
 
 export function assertPipeline(pipeline) {
-	assert(isIterable(pipeline), "Pipeline is required, could be an array or another iterable of operations.");
-}
-
-export function assertPredicate(predicate) {
-	assertIsRequired(isFunction(predicate), "Predicate");
-}
-
-export function assertReducer(reducer) {
-	assertIsRequired(isFunction(reducer), "Reducer");
-}
-
-export function assertSelector(selector) {
-	assertIsRequired(isFunction(selector), "Selector");
+	assert(isIterable(pipeline), `"pipeline" is required, must be an array or another iterable of operations.`);
 }
 
 export function assertSource(source) {
@@ -39,5 +23,5 @@ export function assertSource(source) {
 }
 
 export function assertSources(sources) {
-	sources.forEach(source => assert(isIterable(source), "Every source in this operation must be an iterable."));
+	sources.forEach(source => assert(isIterable(source), `Every "source" in this operation must be an iterable.`));
 }

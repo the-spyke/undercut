@@ -16,8 +16,7 @@ function* spreadRec(canSpread, maxDepth, currentDepth, value) {
 }
 
 function flattenCore(canSpread, depth) {
-	assert(isFunction(canSpread), "Predicate is required, must be a function.");
-	assert(Number.isFinite(depth) && depth >= 0, "Depth is required, must be an integer >= 0.");
+	assert(Number.isSafeInteger(depth) && depth >= 0, `"depth" is required, must be an integer >= 0.`);
 
 	depth = Math.trunc(depth);
 

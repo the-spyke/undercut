@@ -14,13 +14,13 @@ export function interleave(...sources) {
 			while (iters.length) {
 				for (let i = 0; i < iters.length; i++) {
 					const iter = iters[i];
-					const item = iter.next();
+					const result = iter.next();
 
-					if (item.done) {
+					if (result.done) {
 						tryCloseIterator(iter);
 						itersToRemove.add(iter);
 					} else {
-						yield item.value;
+						yield result.value;
 					}
 				}
 

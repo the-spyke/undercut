@@ -1,4 +1,4 @@
-import { assertSelector } from "../../utils/assertions.js";
+import { assertFunctor } from "../../utils/assertions.js";
 import { identity } from "../../utils/function.js";
 
 import { unionBy } from "./union.js";
@@ -14,7 +14,7 @@ export function unique() {
  * Multisets are not supported.
  */
 export function uniqueBy(selector) {
-	assertSelector(selector);
+	assertFunctor(selector, "selector");
 
 	return unionBy(selector);
 }

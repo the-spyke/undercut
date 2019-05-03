@@ -8,20 +8,20 @@ test("asc", () => {
 	const selector = x => x;
 
 	expect(() => asc()).toThrow();
-	expect(asc(compare.numbers)).toEqual([identity, 1, compare.numbers]);
-	expect(asc(compare.numbers, selector)).toEqual([selector, 1, compare.numbers]);
+	expect(asc(compare.numbers)).toEqual([compare.numbers, identity, 1]);
+	expect(asc(compare.numbers, selector)).toEqual([compare.numbers, selector, 1]);
 });
 
 test("desc", () => {
 	const selector = x => x;
 
 	expect(() => desc()).toThrow();
-	expect(desc(compare.numbers)).toEqual([identity, -1, compare.numbers]);
-	expect(desc(compare.numbers, selector)).toEqual([selector, -1, compare.numbers]);
+	expect(desc(compare.numbers)).toEqual([compare.numbers, identity, -1]);
+	expect(desc(compare.numbers, selector)).toEqual([compare.numbers, selector, -1]);
 });
 
 test("orderBy", () => {
-	expect(targetOf(orderBy(), [])).toEqual([]);
+	expect(() => orderBy()).toThrow();
 
 	expect(targetOf(orderBy(
 		asc(compare.numbers)

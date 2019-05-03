@@ -1,14 +1,16 @@
-import { assertComparator } from "../../utils/assertions.js";
+import { assert, assertFunctor } from "../../utils/assertions.js";
 import { identity } from "../../utils/function.js";
 import { sort } from "./sort.js";
 
 export function orderBy(...orderingSpecs) {
+	assert(orderingSpecs.length > 0, `You must specify at least 1 ordering spec with "asc()" or "desc()"`);
+
 	return sort(orderingFactory(orderingSpecs));
 }
 
 function orderingFactory(specs) {
 	return function (a, b) {
-		for (const [selector, order, comparator] of specs) {
+		for (const [comparator, selector, order] of specs) {
 			const x = selector(a);
 			const y = selector(b);
 
@@ -24,13 +26,15 @@ function orderingFactory(specs) {
 }
 
 export function asc(comparator, selector = identity) {
-	assertComparator(comparator);
+	assertFunctor(comparator, "comparator");
+	assertFunctor(selector, "selector");
 
-	return [selector, 1, comparator];
+	return [comparator, selector, 1];
 }
 
 export function desc(comparator, selector = identity) {
-	assertComparator(comparator);
+	assertFunctor(comparator, "comparator");
+	assertFunctor(selector, "selector");
 
-	return [selector, -1, comparator];
+	return [comparator, selector, -1];
 }

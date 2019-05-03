@@ -1,7 +1,7 @@
-import { assertReducer } from "../../utils/assertions.js";
+import { assertFunctor } from "../../utils/assertions.js";
 
 export function reduce(reducer, initial) {
-	assertReducer(reducer);
+	assertFunctor(reducer, "reducer");
 
 	return function* (iterable) {
 		let acc = initial;

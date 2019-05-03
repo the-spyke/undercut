@@ -1,4 +1,4 @@
-import { assertSelector } from "../../utils/assertions.js";
+import { assertFunctor } from "../../utils/assertions.js";
 import { identity } from "../../utils/function.js";
 
 /**
@@ -10,10 +10,10 @@ export const intersection = intersectionBy.bind(undefined, identity);
  * Multisets are not supported.
  */
 export function intersectionBy(selector, ...sources) {
-	assertSelector(selector);
+	assertFunctor(selector, "selector");
 
 	return function* (iterable) {
-		if (sources.length === 0) {
+		if (!sources.length) {
 			return;
 		}
 

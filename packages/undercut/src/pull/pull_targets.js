@@ -17,15 +17,15 @@ export function toSet(pullLine) {
 }
 
 export function toValue(pullLine) {
-	let result = undefined;
+	let value = undefined;
 	let isFirstValue = true;
 
 	for (const item of pullLine) {
 		assert(isFirstValue, `"toValue()" may be applied only to a sequence of one item.`);
 
-		result = item;
+		value = item;
 		isFirstValue = false;
 	}
 
-	return result;
+	return value;
 }

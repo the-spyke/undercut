@@ -1,4 +1,4 @@
-import { assertIsRequired } from "../../utils/assertions.js";
+import { assert } from "../../utils/assertions.js";
 import { identity } from "../../utils/function.js";
 import { isFunction } from "../../utils/lang.js";
 
@@ -7,7 +7,7 @@ export function unzip() {
 }
 
 export function unzipWith(itemsExtractor) {
-	assertIsRequired(isFunction(itemsExtractor), "Items Extractor");
+	assert(isFunction(itemsExtractor), `"itemsExtractor" is required, must be a function.`);
 
 	return function* (iterable) {
 		const results = [];
@@ -20,7 +20,7 @@ export function unzipWith(itemsExtractor) {
 			if (results.length === 0) {
 				values.forEach(() => results.push([]));
 			} else if (results.length !== values.length) {
-				throw new Error(`Items Extractor returns variable length arrays: was ${results.length}, now ${values.length}`);
+				throw new Error(`"itemsExtractor" returns variable length arrays: was ${results.length}, now ${values.length}`);
 			}
 
 			values.forEach((v, i) => results[i].push(v));

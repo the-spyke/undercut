@@ -1,14 +1,14 @@
-import { assertPredicate } from "../../utils/assertions.js";
+import { assertFunctor } from "../../utils/assertions.js";
 
-export function find(predicate) {
-	assertPredicate(predicate);
+function findCore(predicate, isIndex) {
+	assertFunctor(predicate, "predicate");
 
 	return function* (iterable) {
 		let index = 0;
 
 		for (const item of iterable) {
 			if (predicate(item, index)) {
-				yield item;
+				yield isIndex ? index : item;
 
 				return;
 			}
@@ -18,20 +18,10 @@ export function find(predicate) {
 	};
 }
 
+export function find(predicate) {
+	return findCore(predicate, false);
+}
+
 export function findIndex(predicate) {
-	assertPredicate(predicate);
-
-	return function* (iterable) {
-		let index = 0;
-
-		for (const item of iterable) {
-			if (predicate(item, index)) {
-				yield index;
-
-				return;
-			}
-
-			index++;
-		}
-	};
+	return findCore(predicate, true);
 }

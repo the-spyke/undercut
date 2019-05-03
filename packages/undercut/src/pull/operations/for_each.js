@@ -1,8 +1,8 @@
-import { assertIsRequired } from "../../utils/assertions.js";
+import { assert } from "../../utils/assertions.js";
 import { isFunction } from "../../utils/lang.js";
 
 export function forEach(action) {
-	assertIsRequired(isFunction(action), "Action");
+	assert(isFunction(action), `"action" is required, must be a function.`);
 
 	return function* (iterable) {
 		let index = 0;

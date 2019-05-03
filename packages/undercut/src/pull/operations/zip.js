@@ -1,4 +1,4 @@
-import { assertIsRequired, assertSources } from "../../utils/assertions.js";
+import { assert, assertSources } from "../../utils/assertions.js";
 import { identity } from "../../utils/function.js";
 import { getIterator, tryCloseIterator } from "../../utils/iterable.js";
 import { isFunction } from "../../utils/lang.js";
@@ -12,7 +12,7 @@ export function zipWith(itemFactory, ...sources) {
 }
 
 function zipCore(itemFactory, sources) {
-	assertIsRequired(isFunction(itemFactory), "Item Factory");
+	assert(isFunction(itemFactory), `"itemFactory" is required, must be a function.`);
 	assertSources(sources);
 
 	return function* (iterable) {
