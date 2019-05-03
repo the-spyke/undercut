@@ -1,7 +1,3 @@
-export function isArray(value) {
-	return Array.isArray(value);
-}
-
 export function isBoolean(value) {
 	return typeof value === "boolean";
 }
@@ -12,10 +8,6 @@ export function isDefined(value) {
 
 export function isFalsy(value) {
 	return !value;
-}
-
-export function isFinite(value) {
-	return Number.isFinite(value);
 }
 
 export function isFunction(value) {

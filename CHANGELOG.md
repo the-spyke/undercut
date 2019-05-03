@@ -16,7 +16,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `getIterator()` helper.
 - `interleave()` pull operation. Joins sequences by alternating their values.
 - `intersectionBy()` pull operation. Same as `intersection()`, but with a `selector` as the first argument.
-- `isFinite()` lang utility. Just a wrapper for `Number.isFinite()`.
 - `join()` pull operation. Works the same way as `Array.prototype.join()`.
 - `range()` pull source. Creates an iterable of numbers in range `[start, end)` with optional step.
 - `remove()` pull operation. It's an opposite to the `filter()` operation.
@@ -31,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- **[BREAKING]** Removed `isArray()` lang utility. Use `Array.isArray()` instead.
 - **[BREAKING]** Removed `peekIterable()` helper.
 
 ### Fixed
