@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/undercut.svg?style=flat-square)](https://www.npmjs.com/package/undercut)
 [![npm downloads](https://img.shields.io/npm/dm/undercut.svg?style=flat-square)](https://www.npmjs.com/package/undercut)
-[![license](https://img.shields.io/npm/l/undercut.svg?style=flat-square)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
+[![license](https://img.shields.io/npm/l/undercut.svg?style=flat-square)](https://github.com/the-spyke/undercut/blob/master/LICENSE) [![Join the chat at https://gitter.im/undercutjs/community](https://badges.gitter.im/undercutjs/community.svg)](https://gitter.im/undercutjs/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 JavaScript data processing pipelines and utilities.
 
