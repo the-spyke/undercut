@@ -12,6 +12,7 @@ Goals:
 - Lazy evaluation when possible
 - Use existing JS protocols and language features
 - Easy extensibility
+- Replace `Lodash.chain()`
 - Raw code in the npm package (compile in place)
 - Pure ES Modules with Node 12 compliance
 - Tree shaking friendly
