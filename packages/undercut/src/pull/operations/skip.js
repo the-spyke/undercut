@@ -1,4 +1,4 @@
-import { assertCount, assertFunctor } from "../../utils/assertions.js";
+import { assertCount, assertFunctor } from "../../utils/assert.js";
 
 export function skip(count) {
 	assertCount(count);

@@ -1,5 +1,5 @@
-import { assert } from "../../utils/assertions.js";
-import { isFunction } from "../../utils/lang.js";
+import { assert } from "../../utils/assert.js";
+import { isFunction } from "../../utils/language.js";
 
 export function map(mapper) {
 	assert(isFunction(mapper), `"mapper" is required, must be a function.`);

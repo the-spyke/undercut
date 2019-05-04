@@ -1,5 +1,5 @@
-import { assert } from "./utils/assertions.js";
-import { isFunction } from "./utils/lang.js";
+import { assert } from "./utils/assert.js";
+import { isFunction } from "./utils/language.js";
 
 /**
  * A wrapper for generators to make them re-iterable.

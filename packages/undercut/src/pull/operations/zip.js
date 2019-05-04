@@ -1,7 +1,7 @@
-import { assert, assertSources } from "../../utils/assertions.js";
+import { assert, assertSources } from "../../utils/assert.js";
 import { identity } from "../../utils/function.js";
 import { getIterator, tryCloseIterator } from "../../utils/iterable.js";
-import { isFunction } from "../../utils/lang.js";
+import { isFunction } from "../../utils/language.js";
 
 export function zip(...sources) {
 	return zipCore(identity, sources);

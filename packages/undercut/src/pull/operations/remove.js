@@ -1,4 +1,4 @@
-import { assertFunctor } from "../../utils/assertions.js";
+import { assertFunctor } from "../../utils/assert.js";
 
 export function remove(predicate) {
 	assertFunctor(predicate, "predicate");

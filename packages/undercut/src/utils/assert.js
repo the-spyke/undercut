@@ -1,4 +1,4 @@
-import { isFunction, isIterable } from "./lang.js";
+import { isFunction, isIterable } from "./language.js";
 
 export function assert(condition, message) {
 	if (!condition) {

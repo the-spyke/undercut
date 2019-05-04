@@ -1,4 +1,4 @@
-import { isFunction } from "./lang.js";
+import { isFunction } from "./language.js";
 
 export function getIterator(iterable) {
 	return iterable[Symbol.iterator]();

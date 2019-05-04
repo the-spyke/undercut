@@ -1,4 +1,4 @@
-import { assertFunctor } from "../../utils/assertions.js";
+import { assertFunctor } from "../../utils/assert.js";
 
 function findCore(predicate, isIndex) {
 	assertFunctor(predicate, "predicate");

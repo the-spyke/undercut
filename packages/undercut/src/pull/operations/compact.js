@@ -1,4 +1,4 @@
-import { isTruthy } from "../../utils/lang.js";
+import { isTruthy } from "../../utils/language.js";
 
 import { filter } from "./filter.js";
 

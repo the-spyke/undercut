@@ -1,4 +1,4 @@
-import { assert } from "../../utils/assertions.js";
+import { assert } from "../../utils/assert.js";
 
 export function nth(n) {
 	assert(Number.isSafeInteger(n) && n >= 0, `"n" is required, must be an integer >= 0.`);

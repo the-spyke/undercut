@@ -1,4 +1,4 @@
-import { assert } from "../../utils/assertions.js";
+import { assert } from "../../utils/assert.js";
 
 export function chunk(size) {
 	assert(Number.isSafeInteger(size) && size > 0, `"size" is required, must an be integer > 0.`);

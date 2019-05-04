@@ -1,4 +1,4 @@
-import { assertFunctor } from "../../utils/assertions.js";
+import { assertFunctor } from "../../utils/assert.js";
 import { numbers, strings } from "../../utils/compare.js";
 
 function reverseComparator(comparator) {

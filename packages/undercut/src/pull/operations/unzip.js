@@ -1,6 +1,6 @@
-import { assert } from "../../utils/assertions.js";
+import { assert } from "../../utils/assert.js";
 import { identity } from "../../utils/function.js";
-import { isFunction } from "../../utils/lang.js";
+import { isFunction } from "../../utils/language.js";
 
 export function unzip() {
 	return unzipWith(identity);

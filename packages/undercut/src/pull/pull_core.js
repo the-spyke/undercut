@@ -1,6 +1,6 @@
-import { assert, assertPipeline, assertSource } from "../utils/assertions.js";
+import { assert, assertPipeline, assertSource } from "../utils/assert.js";
 import { getIterator } from "../utils/iterable.js";
-import { isFunction, isIterable } from "../utils/lang.js";
+import { isFunction, isIterable } from "../utils/language.js";
 
 import Iterable from "../iterable.js";
 

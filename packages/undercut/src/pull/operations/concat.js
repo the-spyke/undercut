@@ -1,4 +1,4 @@
-import { assertSource } from "../../utils/assertions.js";
+import { assertSource } from "../../utils/assert.js";
 
 export function concatStart(source) {
 	assertSource(source);

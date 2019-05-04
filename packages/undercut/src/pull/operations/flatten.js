@@ -1,5 +1,5 @@
-import { assert } from "../../utils/assertions.js";
-import { isFunction, isIterable } from "../../utils/lang.js";
+import { assert } from "../../utils/assert.js";
+import { isFunction, isIterable } from "../../utils/language.js";
 
 function* spreadRec(canSpread, maxDepth, currentDepth, value) {
 	if (currentDepth > maxDepth) {

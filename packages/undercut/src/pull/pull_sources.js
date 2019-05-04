@@ -1,4 +1,4 @@
-import { assert } from "../utils/assertions.js";
+import { assert } from "../utils/assert.js";
 
 import Iterable from "../iterable.js";
 

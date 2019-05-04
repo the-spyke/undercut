@@ -1,4 +1,4 @@
-import { assert, assertFunctor } from "../../utils/assertions.js";
+import { assert, assertFunctor } from "../../utils/assert.js";
 import { identity } from "../../utils/function.js";
 import { sort } from "./sort.js";
 
