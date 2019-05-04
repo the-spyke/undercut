@@ -1,15 +1,14 @@
-import { targetOf, expectCallbackArgsToBe } from "../../utils/tests.js";
+import { callbackArgsOf, targetOf } from "../../utils/tests.js";
 
 import { filter } from "./filter.js";
 
 test("filter", () => {
 	expect(() => filter()).toThrow();
 
-	expectCallbackArgsToBe(
+	expect(callbackArgsOf(
 		() => true,
-		cb => targetOf(filter(cb), [3, 4]),
-		[3, 0], [4, 1]
-	);
+		cb => targetOf(filter(cb), [3, 4])
+	)).toEqual([[3, 0], [4, 1]]);
 
 	const predicate = x => x > 5;
 

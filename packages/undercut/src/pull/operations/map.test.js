@@ -1,14 +1,13 @@
-import { targetOf, expectCallbackArgsToBe } from "../../utils/tests.js";
+import { callbackArgsOf, targetOf } from "../../utils/tests.js";
 
 import { map } from "./map.js";
 
 test("map", () => {
 	expect(() => map()).toThrow();
-	expectCallbackArgsToBe(
+	expect(callbackArgsOf(
 		() => 1,
-		cb => targetOf(map(cb), [3, 4]),
-		[3, 0], [4, 1]
-	);
+		cb => targetOf(map(cb), [3, 4])
+	)).toEqual([[3, 0], [4, 1]]);
 
 	expect(targetOf(map(() => 3), [])).toEqual([]);
 	expect(targetOf(map(() => 3), [1, 2])).toEqual([3, 3]);

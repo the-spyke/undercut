@@ -1,5 +1,5 @@
 import { identity } from "../../utils/function.js";
-import { targetOf, expectCallbackArgsToBe } from "../../utils/tests.js";
+import { callbackArgsOf, targetOf } from "../../utils/tests.js";
 
 import { unzip, unzipWith } from "./unzip.js";
 import { zip } from "./zip.js";
@@ -46,11 +46,10 @@ test("unzip", () => {
 
 test("unzipWith", () => {
 	expect(() => unzipWith()).toThrow();
-	expectCallbackArgsToBe(
+	expect(callbackArgsOf(
 		() => [6, 7],
-		cb => targetOf(unzipWith(cb), [3, 4]),
-		[3, 0], [4, 1]
-	);
+		cb => targetOf(unzipWith(cb), [3, 4])
+	)).toEqual([[3, 0], [4, 1]]);
 
 	expect(targetOf(
 		unzipWith(identity),

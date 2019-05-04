@@ -1,5 +1,5 @@
 import { identity } from "../../utils/function.js";
-import { targetOf, expectCallbackArgsToEqual } from "../../utils/tests.js";
+import { callbackArgsOf, targetOf } from "../../utils/tests.js";
 
 import { zip, zipWith } from "./zip.js";
 
@@ -57,11 +57,10 @@ test("zip", () => {
 
 test("zipWith", () => {
 	expect(() => zipWith()).toThrow();
-	expectCallbackArgsToEqual(
+	expect(callbackArgsOf(
 		() => 42,
-		cb => targetOf(zipWith(cb, [1, 2]), [3, 4]),
-		[[3, 1], 0], [[4, 2], 1]
-	);
+		cb => targetOf(zipWith(cb, [1, 2]), [3, 4])
+	)).toEqual([[[3, 1], 0], [[4, 2], 1]]);
 
 	expect(targetOf(
 		zipWith(identity, []),

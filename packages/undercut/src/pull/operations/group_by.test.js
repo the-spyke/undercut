@@ -1,15 +1,14 @@
 import { identity } from "../../utils/function.js";
-import { targetOf, expectCallbackArgsToBe } from "../../utils/tests.js";
+import { callbackArgsOf, targetOf } from "../../utils/tests.js";
 
 import { groupBy } from "./group_by.js";
 
 test("groupBy", () => {
 	expect(() => groupBy()).toThrow();
-	expectCallbackArgsToBe(
+	expect(callbackArgsOf(
 		() => 1,
-		cb => targetOf(groupBy(cb), [3, 4]),
-		[3, 0], [4, 1]
-	);
+		cb => targetOf(groupBy(cb), [3, 4])
+	)).toEqual([[3, 0], [4, 1]]);
 	expect(targetOf(groupBy(identity), [])).toEqual([]);
 	expect(targetOf(
 		groupBy(x => Math.trunc(x / 10)),

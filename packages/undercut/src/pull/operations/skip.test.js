@@ -1,4 +1,4 @@
-import { targetOf, expectCallbackArgsToBe } from "../../utils/tests.js";
+import { callbackArgsOf, targetOf } from "../../utils/tests.js";
 
 import { skip, skipWhile } from "./skip.js";
 
@@ -14,11 +14,10 @@ test("skip", () => {
 
 test("skipWhile", () => {
 	expect(() => skipWhile()).toThrow();
-	expectCallbackArgsToBe(
+	expect(callbackArgsOf(
 		() => true,
-		cb => targetOf(skipWhile(cb), [3, 4]),
-		[3, 0], [4, 1]
-	);
+		cb => targetOf(skipWhile(cb), [3, 4])
+	)).toEqual([[3, 0], [4, 1]]);
 
 	const predicate = x => x < 10;
 
