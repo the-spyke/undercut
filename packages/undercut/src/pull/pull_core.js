@@ -47,7 +47,7 @@ export function createPullLine(pipeline, source) {
 }
 
 export function pull(target, pipeline, source) {
-	assert(isFunction(target), "Target is required, must be a function accepting an iterable.");
+	assert(isFunction(target), `"target" is required, must be a function accepting an iterable.`);
 
 	return target(connectPipeline(pipeline, source));
 }

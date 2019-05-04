@@ -5,9 +5,9 @@ import { isFunction } from "./utils/language.js";
  * A wrapper for generators to make them re-iterable.
  */
 export default class Iterable {
-	constructor(createIterator) {
-		assert(isFunction(createIterator), "createIterator is required.");
+	constructor(iteratorFactory) {
+		assert(isFunction(iteratorFactory), `"iteratorFactory" is required, must be a function.`);
 
-		this[Symbol.iterator] = createIterator;
+		this[Symbol.iterator] = iteratorFactory;
 	}
 }

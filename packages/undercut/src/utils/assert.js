@@ -19,7 +19,7 @@ export function assertPipeline(pipeline) {
 }
 
 export function assertSource(source) {
-	assert(isIterable(source), "Source is required, could be any iterable.");
+	assert(isIterable(source), `"source" is required, could be any iterable.`);
 }
 
 export function assertSources(sources) {

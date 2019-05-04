@@ -22,9 +22,9 @@ function* rangeGen(start, end, step) {
  * @returns {Iterable<Number>}
  */
 export function range(start, end, step = 1) {
-	assert(Number.isFinite(start), "Start is required and must be a number.");
-	assert(Number.isFinite(end), "End is required and must be a number.");
-	assert(Number.isFinite(step) && step > 0, "Step is required and must be an absolute non-zero number.");
+	assert(Number.isFinite(start), `"start" is required, must be a number.`);
+	assert(Number.isFinite(end), `"end" is required, must be a number.`);
+	assert(Number.isFinite(step) && step > 0, `"step" must be an absolute non-zero number.`);
 
 	return new Iterable(() => rangeGen(start, end, step));
 }
