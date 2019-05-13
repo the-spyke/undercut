@@ -22,6 +22,14 @@ export function isNil(value) {
 	return value == null;
 }
 
+export function isNegative(value) {
+	return isNumberValue(value) && value < 0
+}
+
+export function isNegativeOrZero(value) {
+	return isNumberValue(value) && value <= 0
+}
+
 export function isNull(value) {
 	return value === null;
 }
@@ -30,8 +38,20 @@ export function isNumber(value) {
 	return typeof value === "number";
 }
 
+export function isNumberValue(value) {
+	return isNumber(value) && !Number.isNaN(value);
+}
+
 export function isObject(value) {
 	return typeof value === "object";
+}
+
+export function isPositive(value) {
+	return isNumberValue(value) && value > 0
+}
+
+export function isPositiveOrZero(value) {
+	return isNumberValue(value) && value >= 0
 }
 
 export function isString(value) {

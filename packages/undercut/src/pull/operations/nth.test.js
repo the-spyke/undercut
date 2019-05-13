@@ -4,6 +4,7 @@ import { nth } from "./nth.js";
 
 test("nth", () => {
 	expect(() => nth()).toThrow();
+	expect(() => nth(-1)).toThrow();
 
 	expect(targetOf(nth(0), [])).toEqual([]);
 	expect(targetOf(nth(100), [])).toEqual([]);

@@ -1,7 +1,10 @@
-import { assertCount, assertFunctor } from "../../utils/assert.js";
+import { assert, assertFunctor } from "../../utils/assert.js";
+import { isPositiveOrZero } from "../../utils/language.js";
 
 export function take(count) {
-	assertCount(count);
+	assert(isPositiveOrZero(count), `"count" is required, must be a number >= 0.`);
+
+	count = Math.trunc(count);
 
 	return takeWhile((_, i) => i < count);
 }

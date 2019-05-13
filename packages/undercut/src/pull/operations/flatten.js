@@ -1,11 +1,7 @@
 import { assert } from "../../utils/assert.js";
-import { isIterable } from "../../utils/language.js";
+import { isIterable, isPositiveOrZero } from "../../utils/language.js";
 
 function* spreadRec(canSpread, maxDepth, currentDepth, value) {
-	if (currentDepth > maxDepth) {
-		return;
-	}
-
 	if (currentDepth < maxDepth && canSpread(value)) {
 		for (const item of value) {
 			yield* spreadRec(canSpread, maxDepth, currentDepth + 1, item);
@@ -16,7 +12,7 @@ function* spreadRec(canSpread, maxDepth, currentDepth, value) {
 }
 
 function flattenCore(canSpread, depth) {
-	assert(Number.isSafeInteger(depth) && depth >= 0, `"depth" is required, must be an integer >= 0.`);
+	assert(isPositiveOrZero(depth), `"depth" is required, must be a number >= 0.`);
 
 	depth = Math.trunc(depth);
 

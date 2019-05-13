@@ -10,10 +10,6 @@ export function assertFunctor(functor, name) {
 	assert(isFunction(functor), `"${name}" is required, must be a function.`);
 }
 
-export function assertCount(count) {
-	assert(Number.isSafeInteger(count) && count >= 0, `"count" is required, must be an integer >= 0.`);
-}
-
 export function assertPipeline(pipeline) {
 	assert(isIterable(pipeline), `"pipeline" is required, must be an array or another iterable of operations.`);
 }

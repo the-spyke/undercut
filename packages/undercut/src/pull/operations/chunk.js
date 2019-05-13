@@ -1,7 +1,10 @@
 import { assert } from "../../utils/assert.js";
+import { isPositive } from "../../utils/language.js";
 
 export function chunk(size) {
-	assert(Number.isSafeInteger(size) && size > 0, `"size" is required, must an be integer > 0.`);
+	assert(isPositive(size) && size >= 1, `"size" is required, must be a number >= 1.`);
+
+	size = Math.trunc(size);
 
 	return function* (iterable) {
 		let chunk = [];
