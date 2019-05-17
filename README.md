@@ -17,7 +17,6 @@ Goals:
 - Raw code in the npm package (compile in place)
 - Pure ES Modules with Node 12 compliance
 - Tree shaking friendly
-- Typings and documentation
 - Good test coverage
 
 ## Installation
