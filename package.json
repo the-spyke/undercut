@@ -5,14 +5,13 @@
   "private": true,
   "author": "Anton Alexandrenok",
   "license": "MIT",
-  "scripts": {
-  },
+  "scripts": {},
   "devDependencies": {
-    "@babel/core": "^7.4.3",
+    "@babel/core": "^7.4.5",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.4.1"
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jest": "^22.6.4"
   },
   "workspaces": [
     "packages/*"
