@@ -1,4 +1,3 @@
-/* globals console */
 /* eslint-disable no-console */
 
 import Benchmark from "benchmark";
