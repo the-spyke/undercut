@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2019-07-15
+
+Dependencies were updated to resolve GitHub security alerts.
+
 ### Added
 
 - `toConsumer()` pull target. Sends items to a consumer function.
