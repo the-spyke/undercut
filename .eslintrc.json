@@ -24,6 +24,5 @@
         "jest"
     ],
     "rules": {
-        "no-console": "off"
     }
 }
