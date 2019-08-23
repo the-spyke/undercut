@@ -21,3 +21,8 @@ export function assertSource(source) {
 export function assertSources(sources) {
 	sources.forEach(source => assert(isIterable(source), `Every "source" in this operation must be an iterable.`));
 }
+
+export function assertTarget(target) {
+	// TODO:
+	throw new Error();
+}
