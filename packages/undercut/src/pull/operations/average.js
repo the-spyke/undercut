@@ -8,10 +8,6 @@ export function average() {
 			count += 1;
 		}
 
-		if (count > 0) {
-			yield sum / count;
-		} else {
-			yield 0;
-		}
+		yield count && sum / count;
 	};
 }

@@ -1,4 +1,4 @@
-import { lineTargetOf, targetOf, testOperation } from "../utils/tests.js";
+import { targetOf, mockOperationPull } from "../utils/tests.js";
 
 import { flatten } from "./operations/flatten.js";
 import { map } from "./operations/map.js";
@@ -26,14 +26,14 @@ test("createPullLine", () => {
 	expect(() => createPullLine(1, [])).toThrow();
 	expect(() => createPullLine(1, 2)).toThrow();
 
-	expect(lineTargetOf(createPullLine([], []))).toEqual([]);
-	expect(lineTargetOf(createPullLine([], [2, 3]))).toEqual([2, 3]);
+	expect([...createPullLine([], [])]).toEqual([]);
+	expect([...createPullLine([], [2, 3])]).toEqual([2, 3]);
 
 	const pullLine = createPullLine([
 		map(x => x * 2)
 	], [0, 1, 2]);
 
-	expect(lineTargetOf(pullLine)).toEqual([0, 2, 4]);
+	expect([...pullLine]).toEqual([0, 2, 4]);
 	expect([...pullLine, 7, ...pullLine]).toEqual([0, 2, 4, 7, 0, 2, 4]);
 });
 
@@ -47,10 +47,10 @@ test("composeOperations", () => {
 	expect(targetOf(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
 
 	const pipeline = [
-		testOperation(),
-		testOperation(),
+		mockOperationPull(),
+		mockOperationPull(),
 		interleave([2, 4]),
-		testOperation()
+		mockOperationPull()
 	];
 
 	expect(pull(Array.from, pipeline, [1, 3])).toEqual([1, 2, 3, 4]);

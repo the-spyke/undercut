@@ -1,4 +1,11 @@
-import { delay, unwrap } from "./promise.js";
+import { unwrap } from "./promise.js";
+import { initializeObserver } from "./observer.js";
+
+export function coroutine(generator) {
+	return function (...args) {
+		return initializeObserver(generator(...args));
+	};
+}
 
 const ADDED = "ADDED";
 const RUNNING = "RUNNING";
@@ -7,12 +14,12 @@ const AWAITING = "AWAITING";
 const FINISHED = "FINISHED";
 const FAILED = "FAILED";
 
-class GenRuntime {
+export class Coruntime {
 	constructor() {
 		this.cycle = -1;
 		this.id = 0;
 		this.queue = [];
-		this.token = null;
+		this.timeoutToken = null;
 		this.states = new Map();
 	}
 
@@ -36,9 +43,9 @@ class GenRuntime {
 		console.log(`--- Run #${this.cycle} of ${this.queue.length} steps`);
 		console.log([...this.states.values()].map(s => `${s.id} --> ${s.history[s.history.length - 1]}`).join("\n"));
 
-		if (this.token) {
-			clearTimeout(this.token);
-			this.token = null;
+		if (this.timeoutToken) {
+			clearTimeout(this.timeoutToken);
+			this.timeoutToken = null;
 		}
 
 		const nextQueue = [];
@@ -106,48 +113,7 @@ class GenRuntime {
 		console.log(`--- End of run #${this.cycle}`);
 
 		if (this.queue.length) {
-			this.token = setTimeout(() => this.run());
+			this.timeoutToken = setTimeout(() => this.run());
 		}
 	}
 }
-
-function* genAsync(a, b) {
-	const result = [];
-
-	while (a < b) {
-		const x = yield delay().then(() => a);
-		result.push(x);
-		a++;
-	}
-
-	return result;
-}
-
-function* genSync(a, b) {
-	const result = [];
-
-	while (a < b) {
-		yield;
-		result.push(a);
-		a++;
-	}
-
-	return result;
-}
-
-console.log(`start`);
-
-const runtime = new GenRuntime();
-
-Promise.all([
-	runtime.add(genSync(3, 7)),
-	runtime.add(genAsync(0, 1)),
-	runtime.add(genSync(7, 19)),
-	runtime.add(genAsync(1, 4)),
-]).then(r => {
-	console.log(`end`);
-	console.log(r);
-	console.log(runtime.states.values());
-});
-
-runtime.run();

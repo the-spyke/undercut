@@ -1,53 +1,69 @@
-import { assert, assertPipeline, assertSource } from "../utils/assert.js";
-import { getIterator } from "../utils/iterable.js";
-import { isFunction, isIterable } from "../utils/language.js";
+import { assertFunctor } from "../utils/assert.js";
+import { initializeObserver, tryCloseObserver } from "../utils/observer.js";
 
-import Iterable from "../iterable.js";
+export const SKIP = Symbol(`Skip current item in observer chain`);
 
-const operationErrorMessage = "An operation must be a function taking an iterable as an argument and returning another iterable.";
+export function createPushOperation(operation, finalizer) {
+	assertFunctor(operation, "operation");
+	assertFunctor(finalizer, "finalizer");
 
-function connectPipeline(pipeline, target) {
-	assertPipeline(pipeline);
-	assertSource(target);
+	return function* (observer) {
+		let error = undefined;
+		let index = 0;
 
-	let iterable = target;
+		try {
+			while (true) {
+				const result = operation(yield, index);
 
-	for (const operation of pipeline) {
-		assert(isFunction(operation), operationErrorMessage);
+				if (result !== SKIP) {
+					observer.next(result);
+				}
 
-		iterable = operation(iterable);
+				index++;
+			}
+		} catch (e) {
+			error = e;
+			observer.throw(e);
+		} finally {
+			if (finalizer) {
+				const result = finalizer(error, index);
 
-		assert(isIterable(iterable), operationErrorMessage);
-	}
+				if (error === undefined && result !== SKIP) {
+					observer.next(result);
+				}
+			}
 
-	return iterable;
-}
-
-export function composeOperations(pipeline) {
-	return function (iterable) {
-		return connectPipeline(pipeline, iterable);
+			tryCloseObserver(observer);
+		}
 	};
 }
 
-export function createPullLine(pipeline, source) {
-	assertPipeline(pipeline);
-	assertSource(source);
 
-	function iteratorFactory() {
-		const iterator = connectPipeline(pipeline, source);
-
-		if (!isFunction(iterator.next)) {
-			return getIterator(source);
-		}
-
-		return iterator;
-	}
-
-	return new Iterable(iteratorFactory);
+export function createPushLine(pipeline, target) {
+	return [...pipeline].reverse().reduce((observer, operation) => initializeObserver(operation(observer)), target);
 }
 
-export function push(target, pipeline, source) {
-	assert(isFunction(target), `"target" is required, must be a function accepting an iterable.`);
+export function average_push_example() {
+	let sum = 0;
 
-	return target(connectPipeline(pipeline, source));
+	return createPushOperation(
+		item => {
+			sum += item;
+
+			return SKIP;
+		},
+		(e, count) => e ? SKIP : count && sum / count
+	);
+}
+export function reduce_push_example(reducer, initial) {
+	let acc = initial;
+
+	return createPushOperation(
+		(item, index) => {
+			acc = reducer(acc, item, index);
+
+			return SKIP;
+		},
+		e => e ? SKIP : acc
+	);
 }
