@@ -7,16 +7,10 @@ function testFilter(testOperation, filter) {
 	expect(() => filter()).toThrow();
 
 	testOperation(filter, {
-		args: [x => x > 5],
-		source: [6, 7],
-		target: [6, 7],
-		callbackArgs: [[6, 0], [7, 1]]
-	});
-	testOperation(filter, {
-		args: [x => x > 5],
-		source: [],
-		target: [],
-		callbackArgs: []
+		args: [x => x > 2],
+		source: [3, 4],
+		target: [3, 4],
+		callbackArgs: [[3, 0], [4, 1]]
 	});
 	testOperation(filter, {
 		args: [x => x > 5],

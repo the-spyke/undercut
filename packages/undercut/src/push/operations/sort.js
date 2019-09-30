@@ -1,5 +1,6 @@
 import { assertFunctor } from "../../utils/assert.js";
 import { numbers, strings } from "../../utils/compare.js";
+import { tryCloseObserver } from "../../utils/observer.js";
 import { reverseComparator } from "../../utils/sorting.js";
 
 export function sort(comparator, isReverse = false) {
@@ -7,10 +8,27 @@ export function sort(comparator, isReverse = false) {
 
 	const actualComparator = isReverse ? reverseComparator(comparator) : comparator;
 
-	return function* (iterable) {
-		const items = [...iterable];
+	return function* (observer) {
+		const items = [];
 
-		yield* items.sort(actualComparator);
+		let success = true;
+
+		try {
+			while (true) {
+				items.push(yield);
+			}
+		} catch (e) {
+			success = false;
+			observer.throw(e);
+		} finally {
+			if (success) {
+				for (const item of items.sort(actualComparator)) {
+					observer.next(item);
+				}
+			}
+
+			tryCloseObserver(observer);
+		}
 	};
 }
 
