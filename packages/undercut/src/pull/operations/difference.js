@@ -49,9 +49,7 @@ export function symmetricDifferenceBy(selector, ...sources) {
 			scanToMap(keyInfos, selector, source);
 		}
 
-		for (const key of keyInfos.keys()) {
-			const { count, item } = keyInfos.get(key);
-
+		for (const { count, item } of keyInfos.values()) {
 			if (count % 2 > 0) {
 				yield item;
 			}

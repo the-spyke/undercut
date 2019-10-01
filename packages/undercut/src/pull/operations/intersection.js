@@ -13,7 +13,7 @@ export function intersectionBy(selector, ...sources) {
 	assertFunctor(selector, "selector");
 
 	return function* (iterable) {
-		if (!sources.length) {
+		if (sources.length === 0) {
 			return;
 		}
 

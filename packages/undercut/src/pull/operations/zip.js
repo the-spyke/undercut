@@ -16,18 +16,18 @@ function zipCore(itemFactory, sources) {
 	assertSources(sources);
 
 	return function* (iterable) {
-		const iters = [];
+		const iterators = [];
 
 		try {
-			iters.push(getIterator(iterable));
-			sources.forEach(source => iters.push(getIterator(source)));
+			iterators.push(getIterator(iterable));
+			sources.forEach(source => iterators.push(getIterator(source)));
 
 			let index = 0;
 
 			while (true) {
 				let done = true;
 
-				const values = iters.map(iter => {
+				const values = iterators.map(iter => {
 					const item = iter.next();
 
 					done = done && item.done;
@@ -44,7 +44,7 @@ function zipCore(itemFactory, sources) {
 				index++;
 			}
 		} finally {
-			iters.forEach(tryCloseIterator);
+			iterators.forEach(tryCloseIterator);
 		}
 	};
 }
