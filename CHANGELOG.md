@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `isIterator()`, `isObjectValue()`, `isObserver()` utilities.
 
+### Changed
+
+- **[BREAKING]** `toValue()` targets throw on 0 items.
+
 ## [0.3.0] - 2019-07-15
 
 Dependencies were updated to resolve GitHub security alerts.
