@@ -6,6 +6,20 @@ export function initializeObserver(oberver) {
 	return oberver;
 }
 
+export function makeUnclosable(observer) {
+	return {
+		next(value) {
+			observer.next(value);
+		},
+		return() {
+			// Empty.
+		},
+		throw(e) {
+			throw e;
+		}
+	};
+}
+
 export function tryCloseObserver(observer) {
 	if (isFunction(observer.return)) {
 		observer.return();

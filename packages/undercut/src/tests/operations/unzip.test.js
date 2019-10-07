@@ -1,4 +1,4 @@
-import { targetOfPull, targetOfPush, testOperationPull, testOperationPush } from "../../utils/tests.js";
+import { testPull, testPush, testOperationPull, testOperationPush } from "../../utils/tests.js";
 
 import { unzip as unzipPull, unzipWith as unzipWithPull } from "../../pull/operations/unzip.js";
 import { unzip as unzipPush, unzipWith as unzipWithPush } from "../../push/operations/unzip.js";
@@ -69,7 +69,7 @@ describe("unzipWith", () => {
 	test("pull", () => {
 		testUnzipWith(testOperationPull, unzipWithPull);
 
-		expect(() => targetOfPull(
+		expect(() => testPull(
 			unzipWithPull(item => (new Array(item)).fill(item)),
 			[1, 2, 1]
 		)).toThrow(`"itemsExtractor" returns variable length arrays: was 1, now 2`);
@@ -77,7 +77,7 @@ describe("unzipWith", () => {
 	test("push", () => {
 		testUnzipWith(testOperationPush, unzipWithPush);
 
-		expect(() => targetOfPush(
+		expect(() => testPush(
 			unzipWithPush(item => (new Array(item)).fill(item)),
 			[1, 2, 1]
 		)).toThrow(`"itemsExtractor" returns variable length arrays: was 1, now 2`);

@@ -1,69 +1,66 @@
-import { assertFunctor } from "../utils/assert.js";
+import { assert, assertPipeline, assertSource } from "../utils/assert.js";
+import { isObserver, isFunction } from "../utils/language.js";
 import { initializeObserver, tryCloseObserver } from "../utils/observer.js";
 
-export const SKIP = Symbol(`Skip current item in observer chain`);
+import { createPushTarget } from "./push_target.js";
 
-export function createPushOperation(operation, finalizer) {
-	assertFunctor(operation, "operation");
-	assertFunctor(finalizer, "finalizer");
+const operationErrorMessage = `An operation must be a function taking and returning an Observer.`;
 
-	return function* (observer) {
-		let error = undefined;
-		let index = 0;
+function connectPipeline(pipeline, target, initialize = true) {
+	assertPipeline(pipeline);
+	assert(isObserver(target), `"target" is required and must be an Observer.`);
 
-		try {
-			while (true) {
-				const result = operation(yield, index);
+	const operations = Array.isArray(pipeline) ? pipeline : [...pipeline];
 
-				if (result !== SKIP) {
-					observer.next(result);
-				}
+	let observer = target;
 
-				index++;
-			}
-		} catch (e) {
-			error = e;
-			observer.throw(e);
-		} finally {
-			if (finalizer) {
-				const result = finalizer(error, index);
+	for (let index = operations.length - 1; index >= 0; index--) {
+		const operation = operations[index];
 
-				if (error === undefined && result !== SKIP) {
-					observer.next(result);
-				}
-			}
+		assert(isFunction(operation), operationErrorMessage);
 
-			tryCloseObserver(observer);
+		observer = operation(observer);
+
+		assert(isObserver(observer), operationErrorMessage);
+
+		if (index > 0 || initialize) {
+			initializeObserver(observer);
 		}
+	}
+
+	return observer;
+}
+
+export function composeOperations(pipeline) {
+	return function (observer) {
+		return connectPipeline(pipeline, observer, false);
 	};
 }
 
-
 export function createPushLine(pipeline, target) {
-	return [...pipeline].reverse().reduce((observer, operation) => initializeObserver(operation(observer)), target);
+	return connectPipeline(pipeline, target, true);
 }
 
-export function average_push_example() {
-	let sum = 0;
+export function push(target, pipeline, source) {
+	assertSource(source);
 
-	return createPushOperation(
-		item => {
-			sum += item;
+	const pushLine = createPushLine(pipeline, target);
 
-			return SKIP;
-		},
-		(e, count) => e ? SKIP : count && sum / count
-	);
+	try {
+		for (const item of source) {
+			pushLine.next(item);
+		}
+	} finally {
+		tryCloseObserver(pushLine);
+	}
+
+	return target;
 }
-export function reduce_push_example(reducer, initial) {
-	let acc = initial;
 
-	return createPushOperation(
-		(item, index) => {
-			acc = reducer(acc, item, index);
+export function pushItems(pipeline, source) {
+	const target = createPushTarget();
 
-			return SKIP;
-		},
-		e => e ? SKIP : acc
-	);
+	push(target, pipeline, source);
+
+	return target.items;
 }

@@ -50,6 +50,22 @@ export function toObject(pullLine) {
 }
 
 /**
+ * @param {Observer} pushLine
+ * @returns {Function}
+ */
+export function toPushLine(pushLine) {
+	return function (iterable) {
+		try {
+			for (const item of iterable) {
+				pushLine.next(item);
+			}
+		} finally {
+			pushLine.return();
+		}
+	};
+}
+
+/**
  * @param {Iterable} pullLine 
  * @returns {Set}
  */

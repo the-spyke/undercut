@@ -1,10 +1,10 @@
 import { assert, assertPipeline, assertSource } from "../utils/assert.js";
 import { getIterator } from "../utils/iterable.js";
-import { isFunction, isIterable } from "../utils/language.js";
+import { isFunction, isIterable, isIterator } from "../utils/language.js";
 
 import Iterable from "../iterable.js";
 
-const operationErrorMessage = "An operation must be a function taking an iterable as an argument and returning another iterable.";
+const operationErrorMessage = "An operation must be a function taking and returning an Iterable.";
 
 function connectPipeline(pipeline, source) {
 	assertPipeline(pipeline);
@@ -34,13 +34,13 @@ export function createPullLine(pipeline, source) {
 	assertSource(source);
 
 	function iteratorFactory() {
-		const iterator = connectPipeline(pipeline, source);
+		const iteratable = connectPipeline(pipeline, source);
 
-		if (!isFunction(iterator.next)) {
-			return getIterator(source);
+		if (isIterator(iteratable)) {
+			return iteratable;
 		}
-
-		return iterator;
+		
+		return getIterator(source);
 	}
 
 	return new Iterable(iteratorFactory);
@@ -50,4 +50,8 @@ export function pull(target, pipeline, source) {
 	assert(isFunction(target), `"target" is required, must be a function accepting an iterable.`);
 
 	return target(connectPipeline(pipeline, source));
+}
+
+export function pullItems(pipeline, source) {
+	return pull(Array.from, pipeline, source);
 }

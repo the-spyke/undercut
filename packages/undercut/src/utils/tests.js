@@ -1,20 +1,13 @@
-export function callbackArgsOf(cb, setup) {
-	const callback = jest.fn(cb);
-
-	setup(callback);
-
-	return callback.mock.calls;
-}
-
-export function targetOf(operation, source) {
+export function testPull(operation, source) {
 	return [...operation(source)];
 }
 
-export function targetOfPull(operation, source) {
-	return [...operation(source)];
-}
-
-export function targetOfPush(operation, source) {
+/**
+ * @param {Generator} operation
+ * @param {Iterable} source
+ * @returns {Array}
+ */
+export function testPush(operation, source) {
 	const result = [];
 	const target = (function* (array) {
 		while (true) array.push(yield);
@@ -32,20 +25,6 @@ export function targetOfPush(operation, source) {
 	}
 
 	return result;
-}
-
-export function mockOperationPull(callback) {
-	return function* (iterable) {
-		let index = 0;
-
-		for (const item of iterable) {
-			callback && callback(item, index);
-
-			yield item;
-
-			index++;
-		}
-	};
 }
 
 // function getOperationArgs(operationArgs, callbackArgs, callbackPosition = 0) {
@@ -101,8 +80,8 @@ function testOperation(executor, operation, { args, source, target, callbackPosi
 	}
 }
 
-export const testOperationPull = testOperation.bind(undefined, targetOfPull);
-export const testOperationPush = testOperation.bind(undefined, targetOfPush);
+export const testOperationPull = testOperation.bind(undefined, testPull);
+export const testOperationPush = testOperation.bind(undefined, testPush);
 
 // function testOperationBatch(executor, operation, batch) {
 // 	let index = 0;
