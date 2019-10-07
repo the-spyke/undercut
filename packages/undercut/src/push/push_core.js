@@ -2,7 +2,7 @@ import { assert, assertPipeline, assertSource } from "../utils/assert.js";
 import { isObserver, isFunction } from "../utils/language.js";
 import { initializeObserver, tryCloseObserver } from "../utils/observer.js";
 
-import { createPushTarget } from "./push_target.js";
+import { createPushTarget } from "./push_targets.js";
 
 const operationErrorMessage = `An operation must be a function taking and returning an Observer.`;
 

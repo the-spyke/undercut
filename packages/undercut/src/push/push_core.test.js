@@ -4,7 +4,7 @@ import { flatten } from "./operations/flatten.js";
 import { map } from "./operations/map.js";
 import { zip } from "./operations/zip.js";
 
-import { createPushTarget } from "./push_target.js";
+import { createPushTarget } from "./push_targets.js";
 
 import {
 	composeOperations,
