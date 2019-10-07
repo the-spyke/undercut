@@ -78,15 +78,17 @@ export function toSet(pullLine) {
  * @returns {any}
  */
 export function toValue(pullLine) {
-	let value = undefined;
-	let isFirstValue = true;
+	let firstValue = undefined;
+	let count = 0;
 
 	for (const item of pullLine) {
-		assert(isFirstValue, `"toValue()" may be applied only to a sequence of one item.`);
+		assert(count === 0, `"toValue()" may be applied only to a sequence of one item, but got at least 2.`);
 
-		value = item;
-		isFirstValue = false;
+		firstValue = item;
+		count++;
 	}
 
-	return value;
+	assert(count === 1, `"toValue()" may be applied only to a sequence of one item, but got none.`);
+
+	return firstValue;
 }

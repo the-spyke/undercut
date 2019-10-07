@@ -19,14 +19,6 @@ export function createPushTarget() {
 }
 
 /**
- * @param {Array} array
- * @returns {Observer}
- */
-export function toArray(array) {
-	return toConsumer(item => array.push(item));
-}
-
-/**
  * @param {Function} consumer
  * @param {Function} [finalizer]
  * @returns {Observer}
@@ -51,14 +43,6 @@ export function* toConsumer(consumer, finalizer) {
 }
 
 /**
- * @param {Map} map
- * @returns {Observer}
- */
-export function toMap(map) {
-	return toConsumer(([key, value]) => map.set(key, value));
-}
-
-/**
  * @returns {Observer}
  */
 export function toNull() {
@@ -76,39 +60,24 @@ export function toNull() {
 }
 
 /**
- * @param {Object} object
- * @returns {Observer}
- */
-export function toObject(object) {
-	return toConsumer(([key, value]) => object[key] = value);
-}
-
-/**
- * @param {Set} set
- * @returns {Observer}
- */
-export function toSet(set) {
-	return toConsumer(key => set.add(key));
-}
-
-/**
  * @param {Function} setter
  * @returns {Observer}
  */
 export function* toValue(setter) {
 	let firstValue = undefined;
-	let success = true;
+	let count = 0;
 
 	try {
 		firstValue = yield;
+		count++;
 		yield;
+		count++;
 
-		assert(false, `"toValue()" may be applied only to a sequence of one item.`);
-	} catch (e) {
-		success = false;
-		throw e;
+		assert(count === 1, `"toValue()" may be applied only to a sequence of one item, but got at least 2.`);
 	} finally {
-		if (success) {
+		assert(count === 0, `"toValue()" may be applied only to a sequence of one item, but got none.`);
+
+		if (count === 1) {
 			setter(firstValue);
 		}
 	}
