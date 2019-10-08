@@ -1,12 +1,6 @@
 import { assertFunctor } from "./assert.js";
 import { identity } from "./function.js";
 
-export function reverseComparator(comparator) {
-	return function (a, b) {
-		return -1 * comparator(a, b);
-	}
-}
-
 export function orderingFactory(specs) {
 	return function (a, b) {
 		for (const [comparator, selector, order] of specs) {

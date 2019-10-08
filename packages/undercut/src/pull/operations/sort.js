@@ -1,11 +1,10 @@
 import { assertFunctor } from "../../utils/assert.js";
-import { numbers, strings } from "../../utils/compare.js";
-import { reverseComparator } from "../../utils/sorting.js";
+import { numbers, reverse, strings } from "../../utils/compare.js";
 
 export function sort(comparator, isReverse = false) {
 	assertFunctor(comparator, "comparator");
 
-	const actualComparator = isReverse ? reverseComparator(comparator) : comparator;
+	const actualComparator = isReverse ? reverse(comparator) : comparator;
 
 	return function* (iterable) {
 		const items = [...iterable];

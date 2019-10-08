@@ -69,7 +69,7 @@ function getValues(iterators) {
 		const iterator = iterators[index];
 
 		if (iterator) {
-			const { done, value } = iterator.next();
+			const { value, done } = iterator.next();
 
 			if (done) {
 				tryCloseIterator(iterator);

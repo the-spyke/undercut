@@ -22,25 +22,6 @@ test("composeOperations", () => {
 	}
 
 	expect(testPush(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
-
-	function* fakeOperation(observer) {
-		try {
-			while (true) {
-				observer.next(yield);
-			}
-		} finally {
-			observer.return();
-		}
-	}
-
-	const pipeline = [
-		fakeOperation,
-		fakeOperation,
-		interleave([2, 4]),
-		fakeOperation
-	];
-
-	expect(pushItems(pipeline, [1, 3])).toEqual([1, 2, 3, 4]);
 });
 
 test("createPushLine", () => {
@@ -79,10 +60,9 @@ test("createPushLine", () => {
 	[0, 1, 2].forEach(x => pushLine.next(x));
 	[7].forEach(x => pushLine.next(x));
 	[0, 1, 2].forEach(x => pushLine.next(x));
+	pushLine.return();
 
 	expect(target.items).toEqual([0, 2, 4, 14, 0, 2, 4]);
-
-	pushLine.return();
 });
 
 test("push", () => {

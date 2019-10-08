@@ -4,8 +4,9 @@ import {
 	toMap,
 	toNull,
 	toObject,
+	toPushLine,
 	toSet,
-	toValue
+	toValue,
 } from "./pull_targets.js";
 
 test("toArray", () => {
@@ -62,6 +63,26 @@ test("toObject", () => {
 		})()
 	)).toEqual({ "a": 2, "b": 3, "c": 5 });
 });
+
+test("toPushLine", () => {
+	expect(() => toPushLine()).toThrow();
+	expect(() => toPushLine(1)).toThrow();
+
+	const pushLine = {
+		items: [],
+		next(value) { this.items.push(value); },
+		return() { },
+		throw(e) { throw e; },
+	};
+
+	expect(toPushLine(pushLine)).toEqual(expect.any(Function));
+	expect(toPushLine(pushLine)([])).toBe(pushLine);
+
+	toPushLine(pushLine)([1, 5, 3]);
+
+	expect(pushLine.items).toEqual([1, 5, 3]);
+});
+
 
 test("toSet", () => {
 	expect(toSet([])).toEqual(new Set());

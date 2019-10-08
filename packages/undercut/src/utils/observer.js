@@ -1,4 +1,5 @@
-import { isFunction } from "./language.js";
+import { assert } from "./assert.js";
+import { isFunction, isObserver } from "./language.js";
 
 export function initializeObserver(oberver) {
 	oberver.next();
@@ -7,6 +8,8 @@ export function initializeObserver(oberver) {
 }
 
 export function makeUnclosable(observer) {
+	assert(isObserver(observer), `"observer" is required and must be an Observer.`);
+
 	return {
 		next(value) {
 			observer.next(value);

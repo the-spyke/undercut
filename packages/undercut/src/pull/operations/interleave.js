@@ -14,7 +14,7 @@ export function interleave(...sources) {
 
 				for (let index = 0; index < iterators.length; index++) {
 					const iterator = iterators[index];
-					const { done, value } = iterator.next();
+					const { value, done } = iterator.next();
 
 					if (done) {
 						tryCloseIterator(iterator);

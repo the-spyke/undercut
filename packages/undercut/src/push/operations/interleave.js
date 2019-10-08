@@ -6,7 +6,7 @@ export function interleave(...sources) {
 	return function* (observer) {
 		const iterators = [];
 		const readIterator = iterator => {
-			const { done, value } = iterator.next();
+			const { value, done } = iterator.next();
 
 			if (done) {
 				tryCloseIterator(iterator);

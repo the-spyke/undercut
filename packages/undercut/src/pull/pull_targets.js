@@ -1,4 +1,6 @@
 import { assert } from "../utils/assert.js";
+import { isObserver } from "../utils/language.js";
+import { tryCloseObserver } from "../utils/observer.js";
 
 /**
  * @param {Iterable} pullLine 
@@ -54,14 +56,18 @@ export function toObject(pullLine) {
  * @returns {Function}
  */
 export function toPushLine(pushLine) {
+	assert(isObserver(pushLine), `"pushLine" is required and must be an Observable.`);
+
 	return function (iterable) {
 		try {
 			for (const item of iterable) {
 				pushLine.next(item);
 			}
 		} finally {
-			pushLine.return();
+			tryCloseObserver(pushLine);
 		}
+
+		return pushLine;
 	};
 }
 

@@ -2,8 +2,9 @@ import { tryCloseObserver } from "../../utils/observer.js";
 
 export function reverse() {
 	return function* (observer) {
+		const items = [];
+
 		let success = true;
-		let items = [];
 
 		try {
 			while (true) {

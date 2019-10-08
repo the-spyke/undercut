@@ -9,10 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `isIterator()`, `isObjectValue()`, `isObserver()` utilities.
+- New array utility `filterInPlace()`.
+- New language utilities: `isIterator()`, `isObjectValue()`, `isObserver()`.
+- New observer utilities: `initializeObserver()`, `makeUnclosable()`, `tryCloseObserver()`.
+- New promise utilities: `delay()` and `unwrap()`.
 
 ### Changed
 
+- **[BREAKING]** `reverseComparator()` helper has been moved to the `compare` namespace as `reverse()` function.
 - **[BREAKING]** `toValue()` targets throw on 0 items.
 
 ## [0.3.0] - 2019-07-15
