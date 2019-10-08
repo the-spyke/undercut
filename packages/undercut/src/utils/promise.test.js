@@ -8,7 +8,7 @@ test("delay", () => {
 
 	const timeStart = Date.now();
 
-	return expect(delay(1234).then(() => Date.now() - timeStart)).resolves.toBeGreaterThanOrEqual(1234);
+	return expect(delay(67).then(() => Date.now() - timeStart)).resolves.toBeGreaterThanOrEqual(67);
 });
 
 describe("unwrap", () => {
