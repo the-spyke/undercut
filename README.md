@@ -25,7 +25,7 @@ npm install --save undercut
 yarn add undercut
 ```
 
-`Undercut` provides raw Stage 4 ECMAScript code in the package, **don't forget** to include its `node_modules` directories into [Babel](https://babeljs.io/) config or another compiler of your choise.
+`Undercut` provides raw Stage 4 ECMAScript code in the package, **don't forget** to include its `node_modules` directories into [Babel](https://babeljs.io/) config or another compiler of your choice.
 
 ## Usage
 
