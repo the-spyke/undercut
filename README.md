@@ -5,19 +5,16 @@
 [![npm downloads](https://img.shields.io/npm/dm/undercut.svg)](https://www.npmjs.com/package/undercut)
 [![License](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
 
-JavaScript data processing pipelines and utilities.
+JavaScript data processing pipelines and utilities. Use native Iterators/Generators/Observers like it's 2015 already.
 
-Goals:
-
+- Based on existing JS protocols and language features
 - Balanced API: not too imperative, not too functional
+- Easy operation extensibility and composability
+- Pure ES Modules with Node 12 loader compliance
+- Raw code in packages (compile in place)
 - Lazy evaluation when possible
-- Use existing JS protocols and language features
-- Easy extensibility
-- Replace `Lodash.chain()`
-- Raw code in the npm package (compile in place)
-- Pure ES Modules with Node 12 compliance
-- Tree shaking friendly
-- Good test coverage
+- Tree shaking friendliness
+- 90%+ test coverage
 
 ## Installation
 
@@ -27,7 +24,7 @@ npm install --save undercut
 yarn add undercut
 ```
 
-`Undercut` provides raw latest ES code in the package, **don't forget** to include its directory into [Babel](https://babeljs.io/) config or another compiler you use.
+`Undercut` provides raw Stage 4 ECMAScript code in the package, **don't forget** to include its `node_modules` directories into [Babel](https://babeljs.io/) config or another compiler of your choise.
 
 ## Usage
 
@@ -157,13 +154,11 @@ Push lines and async iteration aren't implemented yet.
 
 ## TODO
 
-- Work out entry point exports
-- Performance tests/comparison
+- Performance tests
 - Documentation
 - TypeScript type definitions
 - CI
-- Push pipelines
-- Async iteration
+- Async pipelines
 - Code coverage
 - Node precompiled packages
 - Browser precompiled package
