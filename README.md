@@ -15,6 +15,7 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 - Lazy evaluation when possible
 - Tree shaking friendliness
 - 90%+ test coverage
+- SemVer
 
 ## Installation
 
