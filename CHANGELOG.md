@@ -7,14 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+This release adds Push Lines and makes API more consistent in general.
+
 ### Added
 
-- PushLines
-- New Array utility `filterInPlace()`.
-- New Iterable utility `makeReiterable()`.
-- New language utilities: `isIterator()`, `isObjectValue()`, `isObserver()`.
-- New Observer utilities: `closeObserver()`, `initializeObserver()`, `makeUnclosable()`.
-- New Promise utilities: `delay()` and `unwrap()`.
+- Push Lines
+- Array utility `filterInPlace()`.
+- Iterable utility `makeReiterable()`.
+- Language utilities: `isIterator()`, `isObjectValue()`, `isObserver()`.
+- Observer utilities: `closeObserver()`, `initializeObserver()`, `makeUnclosable()`.
+- Promise utilities: `delay()` and `unwrap()`.
 - `toPushLine()` pull target.
 
 ### Changed
