@@ -47,15 +47,6 @@ export function isIterator(value) {
 }
 
 /**
- * Checks if the `value` is `null` or `undefined`.
- * @param {any} value
- * @returns {boolean}
- */
-export function isNil(value) {
-	return value == null;
-}
-
-/**
  * @param {any} value
  * @returns {boolean}
  */
@@ -77,6 +68,15 @@ export function isNegativeOrZero(value) {
  */
 export function isNull(value) {
 	return value === null;
+}
+
+/**
+ * Checks if the `value` is `null` or `undefined`.
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isNullish(value) {
+	return value == null;
 }
 
 /**

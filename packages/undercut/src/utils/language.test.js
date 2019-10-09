@@ -1,6 +1,6 @@
 import {
 	isBoolean, isDefined, isFalsy, isFunction, isIterable,
-	isIterator, isNegative, isNegativeOrZero, isNil, isNull,
+	isIterator, isNegative, isNegativeOrZero, isNull, isNullish,
 	isNumber, isNumberValue, isObject, isObjectValue, isObserver,
 	isPositive, isPositiveOrZero, isString, isSymbol, isTruthy, isUndefined
 } from "./language.js";
@@ -37,13 +37,14 @@ test("isNegativeOrZero", () => {
 	expect(isNegativeOrZero(0)).toBe(true);
 });
 
-test("isNil", () => {
-	expect(isNil(null)).toBe(true);
-});
-
 test("isNull", () => {
 	expect(isNull(null)).toBe(true);
 });
+
+test("isNullish", () => {
+	expect(isNullish(null)).toBe(true);
+});
+
 test("isNumber", () => {
 	expect(isNumber(2)).toBe(true);
 });

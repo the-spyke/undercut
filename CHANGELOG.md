@@ -9,18 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- PushLines
 - New Array utility `filterInPlace()`.
 - New Iterable utility `makeReiterable()`.
 - New language utilities: `isIterator()`, `isObjectValue()`, `isObserver()`.
 - New Observer utilities: `closeObserver()`, `initializeObserver()`, `makeUnclosable()`.
 - New Promise utilities: `delay()` and `unwrap()`.
+- `toPushLine()` pull target.
 
 ### Changed
 
-- **[BREAKING]** `reverseComparator()` helper was moved to the `compare` namespace as `reverse()` function.
-- **[BREAKING]** `toValue()` targets throw on 0 items.
-- **[BREAKING]** `tryCloseIterator()` helper was replaced by `closeIterator()`.
-- **[BREAKING]** Removed Iterable helpers from `utils` entry.
+- **[BREAKING]** `toValue()` pull target now throws on 0 items (you've expected a value, but got none).
+- **[BREAKING]** Moved `reverseComparator()` utility to the `compare` namespace as `reverse()` function.
+- **[BREAKING]** Removed Iterable utilities from `utils` entry.
+- **[BREAKING]** Renamed `isNil()` utility to `isNullish()` (better consistency with ES naming like "Nullish Coalescing Operator").
+- **[BREAKING]** Replaced `tryCloseIterator()` helper with `closeIterator()`.
+- Optimized some operations.
 
 ## [0.3.0] - 2019-07-15
 
