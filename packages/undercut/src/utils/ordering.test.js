@@ -1,7 +1,7 @@
 import * as compare from "./compare.js";
 import { identity } from "./function.js";
 
-import { asc, desc } from "./sorting.js";
+import { asc, desc } from "./ordering.js";
 
 test("asc", () => {
 	const selector = x => x;

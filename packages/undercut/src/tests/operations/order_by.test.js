@@ -1,5 +1,5 @@
 import * as compare from "../../utils/compare.js";
-import { asc, desc } from "../../utils/sorting.js";
+import { asc, desc } from "../../utils/ordering.js";
 import { testOperationPull, testOperationPush } from "../../utils/tests.js";
 
 import { orderBy as orderByPull } from "../../pull/operations/order_by.js";

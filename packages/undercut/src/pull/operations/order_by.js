@@ -1,5 +1,5 @@
 import { assert } from "../../utils/assert.js";
-import { orderingFactory } from "../../utils/sorting.js";
+import { orderingFactory } from "../../utils/ordering.js";
 
 import { sort } from "./sort.js";
 
