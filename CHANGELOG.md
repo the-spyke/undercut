@@ -9,17 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- New array utility `filterInPlace()`.
-- New iterable utility `makeReiterable()`.
+- New Array utility `filterInPlace()`.
+- New Iterable utility `makeReiterable()`.
 - New language utilities: `isIterator()`, `isObjectValue()`, `isObserver()`.
-- New observer utilities: `closeObserver()`, `initializeObserver()`, `makeUnclosable()`.
-- New promise utilities: `delay()` and `unwrap()`.
+- New Observer utilities: `closeObserver()`, `initializeObserver()`, `makeUnclosable()`.
+- New Promise utilities: `delay()` and `unwrap()`.
 
 ### Changed
 
-- **[BREAKING]** `reverseComparator()` helper has been moved to the `compare` namespace as `reverse()` function.
+- **[BREAKING]** `reverseComparator()` helper was moved to the `compare` namespace as `reverse()` function.
 - **[BREAKING]** `toValue()` targets throw on 0 items.
-- **[BREAKING]** `tryCloseIterator()` helper was replaced with `closeIterator()`.
+- **[BREAKING]** `tryCloseIterator()` helper was replaced by `closeIterator()`.
+- **[BREAKING]** Removed Iterable helpers from `utils` entry.
 
 ## [0.3.0] - 2019-07-15
 
