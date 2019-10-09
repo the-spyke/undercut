@@ -1,5 +1,5 @@
 import { assertSource } from "../../utils/assert.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function concatStart(source) {
 	assertSource(source);
@@ -32,7 +32,7 @@ export function concatStart(source) {
 				}
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }
@@ -57,7 +57,7 @@ export function concatEnd(source) {
 				}
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

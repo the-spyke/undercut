@@ -1,6 +1,6 @@
 import { assert, assertPipeline, assertSource } from "../utils/assert.js";
 import { isObserver, isFunction } from "../utils/language.js";
-import { initializeObserver, tryCloseObserver } from "../utils/observer.js";
+import { closeObserver, initializeObserver } from "../utils/observer.js";
 
 import { createPushTarget } from "./push_targets.js";
 
@@ -51,7 +51,7 @@ export function push(target, pipeline, source) {
 			pushLine.next(item);
 		}
 	} finally {
-		tryCloseObserver(pushLine);
+		closeObserver(pushLine);
 	}
 
 	return target;

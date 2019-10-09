@@ -1,4 +1,4 @@
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function includes(value) {
 	return function* (observer) {
@@ -17,7 +17,7 @@ export function includes(value) {
 				observer.next(hasValue);
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

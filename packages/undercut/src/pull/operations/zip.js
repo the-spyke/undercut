@@ -1,6 +1,6 @@
 import { assert, assertSources } from "../../utils/assert.js";
 import { identity } from "../../utils/function.js";
-import { getIterator, tryCloseIterator } from "../../utils/iterable.js";
+import { closeIterator, getIterator } from "../../utils/iterable.js";
 import { isFunction } from "../../utils/language.js";
 
 export function zip(...sources) {
@@ -44,7 +44,7 @@ function zipCore(itemFactory, sources) {
 				index++;
 			}
 		} finally {
-			iterators.forEach(tryCloseIterator);
+			iterators.forEach(closeIterator);
 		}
 	};
 }

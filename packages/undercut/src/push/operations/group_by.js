@@ -1,5 +1,5 @@
 import { assertFunctor } from "../../utils/assert.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function groupBy(keySelector) {
 	assertFunctor(keySelector, "keySelector");
@@ -37,7 +37,7 @@ export function groupBy(keySelector) {
 				}
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

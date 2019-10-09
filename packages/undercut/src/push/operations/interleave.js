@@ -1,6 +1,6 @@
 import { filterInPlace } from "../../utils/array.js";
-import { getIterator, tryCloseIterator } from "../../utils/iterable.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeIterator, getIterator } from "../../utils/iterable.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function interleave(...sources) {
 	return function* (observer) {
@@ -9,7 +9,7 @@ export function interleave(...sources) {
 			const { value, done } = iterator.next();
 
 			if (done) {
-				tryCloseIterator(iterator);
+				closeIterator(iterator);
 			} else {
 				observer.next(value);
 			}
@@ -38,8 +38,8 @@ export function interleave(...sources) {
 				}
 			}
 
-			iterators.forEach(tryCloseIterator);
-			tryCloseObserver(observer);
+			iterators.forEach(closeIterator);
+			closeObserver(observer);
 		}
 	};
 }

@@ -1,4 +1,4 @@
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function average() {
 	return function* (observer) {
@@ -19,7 +19,7 @@ export function average() {
 				observer.next(count && sum / count);
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

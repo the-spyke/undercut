@@ -1,4 +1,4 @@
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function max() {
 	return function* (observer) {
@@ -21,7 +21,7 @@ export function max() {
 				observer.next(max);
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

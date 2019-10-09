@@ -1,5 +1,5 @@
 import { assertFunctor } from "../../utils/assert.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function remove(predicate) {
 	assertFunctor(predicate, "predicate");
@@ -18,7 +18,7 @@ export function remove(predicate) {
 				index++;
 			}
 		} finally {
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

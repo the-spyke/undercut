@@ -1,7 +1,7 @@
 import {
 	initializeObserver,
 	makeUnclosable,
-	tryCloseObserver,
+	closeObserver,
 } from "./observer.js";
 
 test("initializeObserver", () => {
@@ -42,11 +42,11 @@ test("makeUnclosable", () => {
 
 	expect(observer.next.mock.calls).toEqual([[123]]);
 	expect(observer.return.mock.calls).toEqual([]);
-	
+
 	unclosable.return();
-	
+
 	expect(observer.return.mock.calls).toEqual([]);
-	
+
 	unclosable.next(54);
 
 	expect(observer.next.mock.calls).toEqual([[123], [54]]);
@@ -58,16 +58,15 @@ test("makeUnclosable", () => {
 	expect(observer.next.mock.calls).toEqual([[123], [54], [28]]);
 });
 
-test("tryCloseObserver", () => {
-	expect(() => tryCloseObserver()).toThrow();
-	expect(() => tryCloseObserver({})).not.toThrow();
+test("closeObserver", () => {
+	expect(() => closeObserver()).toThrow();
+	expect(() => closeObserver({})).not.toThrow();
 
 	const observer = {
 		return: jest.fn(),
 	};
 
-	expect(tryCloseObserver(observer)).toBe(true);
-	expect(observer.return.mock.calls).toEqual([[]]);
+	closeObserver(observer);
 
-	expect(tryCloseObserver({})).toBe(false);
+	expect(observer.return.mock.calls).toEqual([[]]);
 });

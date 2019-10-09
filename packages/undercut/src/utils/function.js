@@ -9,7 +9,7 @@ export function identity(value) {
 /**
  * Applies boolean negation to the predicate's return value.
  * @param {Function} predicate
- * @return {Function}
+ * @returns {Function}
  */
 export function negate(predicate) {
 	return function (...args) {
@@ -20,7 +20,7 @@ export function negate(predicate) {
 /**
  * Multiplies the predicate's return value by `-1`.
  * @param {Function} predicate
- * @return {Function}
+ * @returns {Function}
  */
 export function negateSign(operation) {
 	return function (...args) {

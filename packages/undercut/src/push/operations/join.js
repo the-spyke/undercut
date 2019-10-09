@@ -1,4 +1,4 @@
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function join(separator = ",") {
 	separator = String(separator);
@@ -26,7 +26,7 @@ export function join(separator = ",") {
 				observer.next(result || "");
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

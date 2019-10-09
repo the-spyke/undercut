@@ -1,4 +1,4 @@
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function reverse() {
 	return function* (observer) {
@@ -20,7 +20,7 @@ export function reverse() {
 				}
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

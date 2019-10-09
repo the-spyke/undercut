@@ -1,6 +1,12 @@
 import { assert } from "./assert.js";
 import { isFunction, isObserver } from "./language.js";
 
+export function closeObserver(observer) {
+	if (isFunction(observer.return)) {
+		observer.return();
+	}
+}
+
 export function initializeObserver(oberver) {
 	oberver.next();
 
@@ -21,14 +27,4 @@ export function makeUnclosable(observer) {
 			throw e;
 		}
 	};
-}
-
-export function tryCloseObserver(observer) {
-	if (isFunction(observer.return)) {
-		observer.return();
-
-		return true;
-	}
-
-	return false;
 }

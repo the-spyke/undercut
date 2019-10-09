@@ -1,5 +1,5 @@
 import { assertFunctor } from "../../utils/assert.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function every(predicate) {
 	assertFunctor(predicate, "predicate");
@@ -23,7 +23,7 @@ export function every(predicate) {
 				observer.next(result);
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

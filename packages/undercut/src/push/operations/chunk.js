@@ -1,6 +1,6 @@
 import { assert } from "../../utils/assert.js";
 import { isPositive } from "../../utils/language.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function chunk(size) {
 	assert(isPositive(size) && size >= 1, `"size" is required, must be a number >= 1.`);
@@ -28,7 +28,7 @@ export function chunk(size) {
 				observer.next(chunk);
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

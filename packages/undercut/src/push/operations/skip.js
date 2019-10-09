@@ -1,6 +1,6 @@
 import { assert, assertFunctor } from "../../utils/assert.js";
 import { isPositiveOrZero } from "../../utils/language.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function skip(count) {
 	assert(isPositiveOrZero(count), `"count" is required, must be a number >= 0.`);
@@ -33,7 +33,7 @@ export function skipWhile(predicate) {
 				observer.next(item);
 			}
 		} finally {
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

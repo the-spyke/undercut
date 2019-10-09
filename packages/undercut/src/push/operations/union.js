@@ -2,7 +2,7 @@
 
 import { assertFunctor } from "../../utils/assert.js";
 import { identity } from "../../utils/function.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 /**
  * Multisets are not supported.
@@ -36,7 +36,7 @@ export function unionBy(selector, ...sources) {
 				}
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

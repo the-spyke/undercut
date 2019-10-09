@@ -1,6 +1,6 @@
 import { assert } from "../../utils/assert.js";
 import { isFunction } from "../../utils/language.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function forEach(action) {
 	assert(isFunction(action), `"action" is required, must be a function.`);
@@ -18,7 +18,7 @@ export function forEach(action) {
 				index++;
 			}
 		} finally {
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

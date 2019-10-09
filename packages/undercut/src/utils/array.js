@@ -1,3 +1,9 @@
+/**
+ * Like `Array.prototype.filter()`, but works in place by mutating the array.
+ * @param {Array} array
+ * @param {Function} predicate
+ * @returns {void}
+ */
 export function filterInPlace(array, predicate) {
 	let holeStart = 0;
 	let holeLength = 0;

@@ -1,6 +1,6 @@
 import { assertFunctor } from "../../utils/assert.js";
 import { identity } from "../../utils/function.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 /**
  * Multisets are not supported.
@@ -34,7 +34,7 @@ export function differenceBy(selector, ...sources) {
 				}
 			}
 		} finally {
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }
@@ -77,7 +77,7 @@ export function symmetricDifferenceBy(selector, ...sources) {
 				}
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

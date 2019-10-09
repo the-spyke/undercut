@@ -1,4 +1,4 @@
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function first() {
 	return function* (observer) {
@@ -7,7 +7,7 @@ export function first() {
 		} catch (e) {
 			observer.throw(e);
 		} finally {
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

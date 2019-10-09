@@ -1,6 +1,6 @@
 import { assertFunctor } from "../../utils/assert.js";
 import { numbers, reverse, strings } from "../../utils/compare.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function sort(comparator, isReverse = false) {
 	assertFunctor(comparator, "comparator");
@@ -26,7 +26,7 @@ export function sort(comparator, isReverse = false) {
 				}
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

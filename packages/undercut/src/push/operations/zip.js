@@ -1,8 +1,8 @@
 import { assert, assertSources } from "../../utils/assert.js";
 import { identity } from "../../utils/function.js";
-import { getIterator, tryCloseIterator } from "../../utils/iterable.js";
+import { closeIterator, getIterator } from "../../utils/iterable.js";
 import { isFunction } from "../../utils/language.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function zip(...sources) {
 	return zipCore(identity, sources);
@@ -54,8 +54,8 @@ function zipCore(itemFactory, sources) {
 				}
 			}
 
-			iterators.filter(Boolean).forEach(tryCloseIterator);
-			tryCloseObserver(observer);
+			iterators.filter(Boolean).forEach(closeIterator);
+			closeObserver(observer);
 		}
 	};
 }
@@ -72,7 +72,7 @@ function getValues(iterators) {
 			const { value, done } = iterator.next();
 
 			if (done) {
-				tryCloseIterator(iterator);
+				closeIterator(iterator);
 				iterators[index] = null;
 				values[index + 1] = undefined;
 			} else {

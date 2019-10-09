@@ -1,6 +1,6 @@
 import { assert } from "../../utils/assert.js";
 import { isFunction } from "../../utils/language.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function map(mapper) {
 	assert(isFunction(mapper), `"mapper" is required, must be a function.`);
@@ -16,7 +16,7 @@ export function map(mapper) {
 		} catch (e) {
 			observer.throw(e);
 		} finally {
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

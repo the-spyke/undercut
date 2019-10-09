@@ -1,4 +1,4 @@
-import { getIterator, tryCloseIterator } from "../../utils/iterable.js";
+import { closeIterator, getIterator } from "../../utils/iterable.js";
 
 export function interleave(...sources) {
 	return function* (iterable) {
@@ -17,7 +17,7 @@ export function interleave(...sources) {
 					const { value, done } = iterator.next();
 
 					if (done) {
-						tryCloseIterator(iterator);
+						closeIterator(iterator);
 
 						holeLength++;
 					} else {
@@ -31,7 +31,7 @@ export function interleave(...sources) {
 				iterators.length -= holeLength;
 			}
 		} finally {
-			iterators.forEach(tryCloseIterator);
+			iterators.forEach(closeIterator);
 		}
 	};
 }

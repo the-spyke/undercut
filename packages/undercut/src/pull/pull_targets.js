@@ -1,6 +1,6 @@
 import { assert } from "../utils/assert.js";
 import { isObserver } from "../utils/language.js";
-import { tryCloseObserver } from "../utils/observer.js";
+import { closeObserver } from "../utils/observer.js";
 
 /**
  * @param {Iterable} pullLine 
@@ -64,7 +64,7 @@ export function toPushLine(pushLine) {
 				pushLine.next(item);
 			}
 		} finally {
-			tryCloseObserver(pushLine);
+			closeObserver(pushLine);
 		}
 
 		return pushLine;

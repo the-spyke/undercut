@@ -1,5 +1,5 @@
 import { assertFunctor } from "../../utils/assert.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function reduce(reducer, initial) {
 	assertFunctor(reducer, "predicate");
@@ -23,7 +23,7 @@ export function reduce(reducer, initial) {
 				observer.next(acc);
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }

@@ -1,7 +1,7 @@
 import { assert } from "../../utils/assert.js";
 import { identity } from "../../utils/function.js";
 import { isFunction } from "../../utils/language.js";
-import { tryCloseObserver } from "../../utils/observer.js";
+import { closeObserver } from "../../utils/observer.js";
 
 export function unzip() {
 	return unzipWith(identity);
@@ -42,7 +42,7 @@ export function unzipWith(itemsExtractor) {
 				}
 			}
 
-			tryCloseObserver(observer);
+			closeObserver(observer);
 		}
 	};
 }
