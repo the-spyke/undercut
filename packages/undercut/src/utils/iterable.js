@@ -1,3 +1,4 @@
+import { assertFunctor } from "./assert.js";
 import { isFunction } from "./language.js";
 
 /**
@@ -6,6 +7,20 @@ import { isFunction } from "./language.js";
  */
 export function getIterator(iterable) {
 	return iterable[Symbol.iterator]();
+}
+
+/**
+ * A helper for generators to make them reiterable.
+ * @param {Function} getIterator
+ * @returns {Iterable}
+ */
+export function makeReiterable(getIterator) {
+	assertFunctor(getIterator, `getIterator`);
+
+	return {
+		[Symbol.iterator]: getIterator,
+		isReiterable: true,
+	};
 }
 
 /**

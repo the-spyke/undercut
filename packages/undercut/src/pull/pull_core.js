@@ -1,8 +1,6 @@
 import { assert, assertPipeline, assertSource } from "../utils/assert.js";
-import { getIterator } from "../utils/iterable.js";
+import { getIterator, makeReiterable } from "../utils/iterable.js";
 import { isFunction, isIterable, isIterator } from "../utils/language.js";
-
-import Iterable from "../iterable.js";
 
 const operationErrorMessage = "An operation must be a function taking and returning an Iterable.";
 
@@ -43,7 +41,7 @@ export function createPullLine(pipeline, source) {
 		return getIterator(source);
 	}
 
-	return new Iterable(iteratorFactory);
+	return makeReiterable(iteratorFactory);
 }
 
 export function pull(target, pipeline, source) {
