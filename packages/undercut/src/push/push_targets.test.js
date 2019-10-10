@@ -10,17 +10,17 @@ test("createPushTarget", () => {
 		next: expect.any(Function),
 		throw: expect.any(Function),
 		return: expect.any(Function),
-		items: expect.any(Array),
+		// values: expect.any(Array),
 	}));
 
 	const target = createPushTarget();
 
-	expect(target.items).toEqual([]);
+	expect(target.values).toEqual([]);
 
 	target.next(4);
 	target.next(2);
 
-	expect(target.items).toEqual([4, 2]);
+	expect(target.values).toEqual([4, 2]);
 });
 
 test("toConsumer", () => {

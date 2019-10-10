@@ -5,15 +5,11 @@ import { initializeObserver } from "../utils/observer.js";
 export function createPushTarget() {
 	return {
 		next(value) {
-			this.items.push(value);
+			this.values.push(value);
 		},
-		return() {
-			// Empty.
-		},
-		throw(e) {
-			throw e;
-		},
-		items: [],
+		return() { /* Empty. */ },
+		throw(e) { throw e; },
+		values: [],
 	};
 }
 
@@ -53,15 +49,9 @@ export function toConsumer(consumer, finalizer) {
  */
 export function toNull() {
 	return {
-		next(value) {
-			void value;
-		},
-		return() {
-			// Empty.
-		},
-		throw(e) {
-			throw e;
-		}
+		next() { /* Empty. */ },
+		return() { /* Empty. */ },
+		throw(e) { throw e; }
 	};
 }
 

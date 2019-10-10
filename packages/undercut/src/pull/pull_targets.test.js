@@ -69,10 +69,10 @@ test("toPushLine", () => {
 	expect(() => toPushLine(1)).toThrow();
 
 	const pushLine = {
-		items: [],
-		next(value) { this.items.push(value); },
+		next(value) { this.values.push(value); },
 		return() { },
 		throw(e) { throw e; },
+		values: [],
 	};
 
 	expect(toPushLine(pushLine)).toEqual(expect.any(Function));
@@ -80,7 +80,7 @@ test("toPushLine", () => {
 
 	toPushLine(pushLine)([1, 5, 3]);
 
-	expect(pushLine.items).toEqual([1, 5, 3]);
+	expect(pushLine.values).toEqual([1, 5, 3]);
 });
 
 

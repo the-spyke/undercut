@@ -35,7 +35,7 @@ test("pushLine", () => {
 			pushline.return();
 		}
 
-		return target.items;
+		return target.values;
 	}
 
 	expect(() => pushLine()).toThrow();
@@ -54,7 +54,7 @@ test("pushLine", () => {
 
 	[0, 1, 2].forEach(x => pushLine1.next(x));
 
-	expect(target.items).toEqual([0, 2, 4]);
+	expect(target.values).toEqual([0, 2, 4]);
 
 	pushLine1.return();
 
@@ -68,7 +68,7 @@ test("pushLine", () => {
 	[0, 1, 2].forEach(x => pushLine1.next(x));
 	pushLine1.return();
 
-	expect(target.items).toEqual([0, 2, 4, 14, 0, 2, 4]);
+	expect(target.values).toEqual([0, 2, 4, 14, 0, 2, 4]);
 });
 
 test("push", () => {
@@ -85,16 +85,16 @@ test("push", () => {
 	expect(push(target, [], [])).toBe(target);
 
 	target = createPushTarget();
-	expect(push(target, [], []).items).toEqual([]);
+	expect(push(target, [], []).values).toEqual([]);
 
 	target = createPushTarget();
-	expect(push(target, [], [6, 7]).items).toEqual([6, 7]);
+	expect(push(target, [], [6, 7]).values).toEqual([6, 7]);
 
 	target = createPushTarget();
-	expect(push(target, [map(x => x + 1)], []).items).toEqual([]);
+	expect(push(target, [map(x => x + 1)], []).values).toEqual([]);
 
 	target = createPushTarget();
-	expect(push(target, [map(x => x * 0)], [3, 4]).items).toEqual([0, 0]);
+	expect(push(target, [map(x => x * 0)], [3, 4]).values).toEqual([0, 0]);
 });
 
 test("pushItems", () => {

@@ -62,5 +62,5 @@ export function pushItems(pipeline, source) {
 
 	push(target, pipeline, source);
 
-	return target.items;
+	return target.values;
 }
