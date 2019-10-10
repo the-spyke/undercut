@@ -3,11 +3,11 @@ import { isObserver } from "../utils/language.js";
 import { closeObserver } from "../utils/observer.js";
 
 /**
- * @param {Iterable} pullLine 
+ * @param {Iterable} iterable
  * @returns {Array}
  */
-export function toArray(pullLine) {
-	return Array.from(pullLine);
+export function toArray(iterable) {
+	return Array.from(iterable);
 }
 
 /**
@@ -26,29 +26,29 @@ export function toConsumer(consumer) {
 }
 
 /**
- * @param {Iterable} pullLine 
+ * @param {Iterable} iterable
  * @returns {Map}
  */
-export function toMap(pullLine) {
-	return new Map(pullLine);
+export function toMap(iterable) {
+	return new Map(iterable);
 }
 
 /**
- * @param {Iterable} pullLine 
+ * @param {Iterable} iterable
  * @returns {void}
  */
-export function toNull(pullLine) {
-	for (const item of pullLine) {
+export function toNull(iterable) {
+	for (const item of iterable) {
 		void item;
 	}
 }
 
 /**
- * @param {Iterable} pullLine 
+ * @param {Iterable} iterable
  * @returns {Object}
  */
-export function toObject(pullLine) {
-	return Object.fromEntries(pullLine);
+export function toObject(iterable) {
+	return Object.fromEntries(iterable);
 }
 
 /**
@@ -72,22 +72,22 @@ export function toPushLine(pushLine) {
 }
 
 /**
- * @param {Iterable} pullLine 
+ * @param {Iterable} iterable
  * @returns {Set}
  */
-export function toSet(pullLine) {
-	return new Set(pullLine);
+export function toSet(iterable) {
+	return new Set(iterable);
 }
 
 /**
- * @param {Iterable} pullLine 
+ * @param {Iterable} iterable
  * @returns {any}
  */
-export function toValue(pullLine) {
+export function toValue(iterable) {
 	let firstValue = undefined;
 	let count = 0;
 
-	for (const item of pullLine) {
+	for (const item of iterable) {
 		assert(count === 0, `"toValue()" may be applied only to a sequence of one item, but got at least 2.`);
 
 		firstValue = item;
