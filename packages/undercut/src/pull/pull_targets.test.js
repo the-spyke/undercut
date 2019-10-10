@@ -68,19 +68,19 @@ test("toPushLine", () => {
 	expect(() => toPushLine()).toThrow();
 	expect(() => toPushLine(1)).toThrow();
 
-	const pushLine = {
+	const pushLine1 = {
 		next(value) { this.values.push(value); },
 		return() { },
 		throw(e) { throw e; },
 		values: [],
 	};
 
-	expect(toPushLine(pushLine)).toEqual(expect.any(Function));
-	expect(toPushLine(pushLine)([])).toBe(pushLine);
+	expect(toPushLine(pushLine1)).toEqual(expect.any(Function));
+	expect(toPushLine(pushLine1)([])).toBe(pushLine1);
 
-	toPushLine(pushLine)([1, 5, 3]);
+	toPushLine(pushLine1)([1, 5, 3]);
 
-	expect(pushLine.values).toEqual([1, 5, 3]);
+	expect(pushLine1.values).toEqual([1, 5, 3]);
 });
 
 

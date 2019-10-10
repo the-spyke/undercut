@@ -52,22 +52,22 @@ export function toObject(iterable) {
 }
 
 /**
- * @param {Observer} pushLine
+ * @param {Observer} observer
  * @returns {Function}
  */
-export function toPushLine(pushLine) {
-	assert(isObserver(pushLine), `"pushLine" is required and must be an Observable.`);
+export function toPushLine(observer) {
+	assert(isObserver(observer), `"observer" is required and must be an Observable.`);
 
 	return function (iterable) {
 		try {
 			for (const item of iterable) {
-				pushLine.next(item);
+				observer.next(item);
 			}
 		} finally {
-			closeObserver(pushLine);
+			closeObserver(observer);
 		}
 
-		return pushLine;
+		return observer;
 	};
 }
 

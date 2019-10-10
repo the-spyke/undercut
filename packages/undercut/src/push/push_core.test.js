@@ -27,12 +27,12 @@ test("composeOperations", () => {
 test("pushLine", () => {
 	function testPushLine(pushLineFactory, source) {
 		const target = toArray();
-		const pushline = pushLineFactory(target);
+		const observer = pushLineFactory(target);
 
 		try {
-			source.forEach(item => pushline.next(item));
+			source.forEach(item => observer.next(item));
 		} finally {
-			pushline.return();
+			observer.return();
 		}
 
 		return target.values;

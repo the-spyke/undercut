@@ -15,13 +15,13 @@ export function testPush(operation, source) {
 
 	target.next();
 
-	const pushline = operation(target);
+	const observer = operation(target);
 
 	try {
-		pushline.next();
-		source.forEach(item => pushline.next(item));
+		observer.next();
+		source.forEach(item => observer.next(item));
 	} finally {
-		pushline.return();
+		observer.return();
 	}
 
 	return result;
