@@ -37,21 +37,21 @@ export function composeOperations(pipeline) {
 	};
 }
 
-export function createPushLine(pipeline, target) {
+export function pushLine(pipeline, target) {
 	return connectPipeline(pipeline, target, true);
 }
 
 export function push(target, pipeline, source) {
 	assertSource(source);
 
-	const pushLine = createPushLine(pipeline, target);
+	const observer = pushLine(pipeline, target);
 
 	try {
 		for (const item of source) {
-			pushLine.next(item);
+			observer.next(item);
 		}
 	} finally {
-		closeObserver(pushLine);
+		closeObserver(observer);
 	}
 
 	return target;

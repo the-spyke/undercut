@@ -27,7 +27,7 @@ export function composeOperations(pipeline) {
 	};
 }
 
-export function createPullLine(pipeline, source) {
+export function pullLine(pipeline, source) {
 	assertPipeline(pipeline);
 	assertSource(source);
 

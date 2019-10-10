@@ -6,9 +6,9 @@ import { zip } from "./operations/zip.js";
 
 import {
 	composeOperations,
-	createPullLine,
 	pull,
-	pullItems
+	pullItems,
+	pullLine,
 } from "./pull_core.js";
 
 test("composeOperations", () => {
@@ -35,26 +35,26 @@ test("composeOperations", () => {
 
 	expect(pull(Array.from, pipeline, [1, 3])).toEqual([1, 2, 3, 4]);
 
-	const pullLine = createPullLine(pipeline, [1, 3]);
+	const pullLine1 = pullLine(pipeline, [1, 3]);
 
-	expect([...pullLine, 7, ...pullLine]).toEqual([1, 2, 3, 4, 7, 1, 2, 3, 4]);
+	expect([...pullLine1, 7, ...pullLine1]).toEqual([1, 2, 3, 4, 7, 1, 2, 3, 4]);
 });
 
-test("createPullLine", () => {
-	expect(() => createPullLine()).toThrow();
-	expect(() => createPullLine([])).toThrow();
-	expect(() => createPullLine(1, [])).toThrow();
-	expect(() => createPullLine(1, 2)).toThrow();
+test("pullLine", () => {
+	expect(() => pullLine()).toThrow();
+	expect(() => pullLine([])).toThrow();
+	expect(() => pullLine(1, [])).toThrow();
+	expect(() => pullLine(1, 2)).toThrow();
 
-	expect([...createPullLine([], [])]).toEqual([]);
-	expect([...createPullLine([], [2, 3])]).toEqual([2, 3]);
+	expect([...pullLine([], [])]).toEqual([]);
+	expect([...pullLine([], [2, 3])]).toEqual([2, 3]);
 
-	const pullLine = createPullLine([
+	const pullLine1 = pullLine([
 		map(x => x * 2)
 	], [0, 1, 2]);
 
-	expect([...pullLine]).toEqual([0, 2, 4]);
-	expect([...pullLine, 7, ...pullLine]).toEqual([0, 2, 4, 7, 0, 2, 4]);
+	expect([...pullLine1]).toEqual([0, 2, 4]);
+	expect([...pullLine1, 7, ...pullLine1]).toEqual([0, 2, 4, 7, 0, 2, 4]);
 });
 
 test("pull", () => {

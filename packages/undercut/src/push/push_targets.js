@@ -14,9 +14,6 @@ export function createPushTarget() {
 			throw e;
 		},
 		items: [],
-		clear() {
-			this.items = [];
-		}
 	};
 }
 

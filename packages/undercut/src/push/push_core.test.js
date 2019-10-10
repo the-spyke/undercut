@@ -8,9 +8,9 @@ import { createPushTarget } from "./push_targets.js";
 
 import {
 	composeOperations,
-	createPushLine,
 	push,
 	pushItems,
+	pushLine,
 } from "./push_core.js";
 
 test("composeOperations", () => {
@@ -24,7 +24,7 @@ test("composeOperations", () => {
 	expect(testPush(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
 });
 
-test("createPushLine", () => {
+test("pushLine", () => {
 	function testPushLine(pushLineFactory, source) {
 		const target = createPushTarget();
 		const pushline = pushLineFactory(target);
@@ -38,29 +38,35 @@ test("createPushLine", () => {
 		return target.items;
 	}
 
-	expect(() => createPushLine()).toThrow();
-	expect(() => createPushLine([])).toThrow();
-	expect(() => createPushLine(1, [])).toThrow();
-	expect(() => createPushLine([], 1)).toThrow();
-	expect(() => createPushLine(1, 2)).toThrow();
+	expect(() => pushLine()).toThrow();
+	expect(() => pushLine([])).toThrow();
+	expect(() => pushLine(1, [])).toThrow();
+	expect(() => pushLine([], 1)).toThrow();
+	expect(() => pushLine(1, 2)).toThrow();
 
-	expect(testPushLine(t => createPushLine([], t), [])).toEqual([]);
-	expect(testPushLine(t => createPushLine([], t), [2, 3])).toEqual([2, 3]);
+	expect(testPushLine(t => pushLine([], t), [])).toEqual([]);
+	expect(testPushLine(t => pushLine([], t), [2, 3])).toEqual([2, 3]);
 
-	const target = createPushTarget();
-	const pushLine = createPushLine([
+	let target = createPushTarget();
+	let pushLine1 = pushLine([
 		map(x => x * 2)
 	], target);
 
-	[0, 1, 2].forEach(x => pushLine.next(x));
+	[0, 1, 2].forEach(x => pushLine1.next(x));
 
 	expect(target.items).toEqual([0, 2, 4]);
 
-	target.clear();
-	[0, 1, 2].forEach(x => pushLine.next(x));
-	[7].forEach(x => pushLine.next(x));
-	[0, 1, 2].forEach(x => pushLine.next(x));
-	pushLine.return();
+	pushLine1.return();
+
+	target = createPushTarget();
+	pushLine1 = pushLine([
+		map(x => x * 2)
+	], target);
+
+	[0, 1, 2].forEach(x => pushLine1.next(x));
+	[7].forEach(x => pushLine1.next(x));
+	[0, 1, 2].forEach(x => pushLine1.next(x));
+	pushLine1.return();
 
 	expect(target.items).toEqual([0, 2, 4, 14, 0, 2, 4]);
 });

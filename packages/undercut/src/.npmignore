@@ -7,4 +7,5 @@
 utils/perf.js
 utils/tests.js
 
+operation_lists.js
 test.node.js

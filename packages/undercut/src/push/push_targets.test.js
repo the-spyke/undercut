@@ -11,7 +11,6 @@ test("createPushTarget", () => {
 		throw: expect.any(Function),
 		return: expect.any(Function),
 		items: expect.any(Array),
-		clear: expect.any(Function),
 	}));
 
 	const target = createPushTarget();
@@ -22,10 +21,6 @@ test("createPushTarget", () => {
 	target.next(2);
 
 	expect(target.items).toEqual([4, 2]);
-
-	target.clear();
-
-	expect(target.items).toEqual([]);
 });
 
 test("toConsumer", () => {

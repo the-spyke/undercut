@@ -14,7 +14,7 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 - Raw code in packages (compile in place)
 - Lazy evaluation when possible
 - Tree shaking friendliness
-- 90%+ test coverage
+- 90% test coverage
 - SemVer
 
 ## Installation
@@ -25,40 +25,48 @@ npm install --save undercut
 yarn add undercut
 ```
 
-`Undercut` provides raw Stage 4 ECMAScript code in the package, **don't forget** to include its `node_modules` directories into [Babel](https://babeljs.io/) config or another compiler of your choice.
+`undercut` provides raw Stage 4 ECMAScript code in the package, **don't forget** to include its `node_modules` directories into [Babel](https://babeljs.io/) config or another compiler of your choice.
 
 ## Usage
 
 ```js
 import { pull, filter, map, skip, toArray } from "undercut";
 
-const data = [1, 2, 3, 4, 5, 6, 7];
+const source = [1, 2, 3, 4, 5, 6, 7];
 
 const result = pull(toArray, [
     skip(2),
     filter(x => x % 3 === 0),
     map(x => x * 2) // Will be executed only 3 times.
-], data);
+], source);
 
 console.log(result); // [8, 10, 14]
 ```
 
 ### Concepts
 
-`Undercut` helps constructing pipelines for data processing. Instead of creating new concepts `undercut` leverages existing JavaScript protocols and features like [Iterable & Iterator protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) and [Generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
+`undercut` helps constructing pipelines for data processing. Instead of creating new concepts `undercut` leverages existing JavaScript protocols and features like [Iterable & Iterator protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) and [Generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
 
-`Pipelines` are just ordered sequences of operations on data `source` items.
+`Pipelines` are ordered sequences of operations just like a conveyor on a factory. You want to process a bunch of `source` items and put the result items somewhere (`target`).
 
 ```text
 source ----> [ op_0 | op_1 | ... | op_N ] ----> target
                        pipeline
 ```
 
-Depending on the fact whether the data is or isn't yet available there are two different pipeline types: `pull` and `push`.
+Depending on the fact whether the `source` items are or aren't yet available you will have two different approaches: `pull` and `push`.
 
-In `pull` pipelines the data `source` items are available at the moment of execution, so everything is synchronous and based on iteration. The `source` and the `pipeline` are combined into an `iterable` (called a `pull line`) which then is passed to the `target` function. The `target` drives the entire execution by iterating the provided `pull line`, i.e. pulling all items from the `source` through the `pipeline`.
+If `source` items are available at the moment of execution, we can combine a `source` and a `pipeline` into an `iterable` (aka `pull line`). This `iterable` may be passed around and used by any native ES construct like `for-of` loop to read the result. Basically, you manually pulling items through a `pull line` by iteration. For convenience `undercut` provides a bunch of `target` helpers for one-line extracting the result into common structures like arrays/objects/maps/etc.
 
-`Push` pipelines are useful when data `source` items are unavailable or can't be calculated synchronously. In this case you want to define what to do when an item appears and where to put the result by creating a `push line`. Later at some moment in time you will `push` items into the `push line` or using it as an `observer`.
+```text
+source + pipeline = Iterable (pull line, pull items from it)
+```
+
+If `source` items are unavailable at the moment of execution, we can combine a `pipeline` and a `target` into an `observer` (aka `push line`). This way you can push items into `observer` when they are ready (for example in a button click handler) getting the result in the `target`.
+
+```text
+pipeline + target = Observer (push line, push items into it)
+```
 
 ### Pull
 
@@ -67,47 +75,48 @@ Terms in releation to `pull lines`:
 - `operation` -- a function taking an `iterable` and returning another `iterable`.
 - `pipeline` -- an ordered sequence of `operations`. May be an `array` or any `iterable`.
 - `source` -- an `iterable` which items will be processed. Many native objects are iterable out of the box: arrays, maps, sets, strings.
-- `target` -- a function for extracting the result of a pipeline execution. Takes an `iterable` and returns some value. Many native functions behave this way: `Array.from()`, `new Map()`, `Object.fromEntries()`, etc. Targets provided by the `undercut` are just wrappers around those native functions/constructors. Feel free to use the originals.
+- `target` -- a function for extracting the result of pipeline execution. Takes an `iterable` and returns some value. Many native functions behave this way: `Array.from()`, `new Map()`, `Object.fromEntries()`, etc. Targets provided by the `undercut` are just wrappers around those native functions/constructors. Feel free to use the originals.
 
-The interaction is based mostly on calling `createPullLine()` and `pull()` functions:
+The interaction is based mostly on calling `pullLine()` and `pull()` functions:
 
-- `createPullLine(pipeline, target) => Iterable`
+- `pullLine(pipeline, target) => Iterable`
 
   Creating a `pull line` directly is useful when you want to pass it somewhere or being able to re-evaluate the result several times in a row.
+
 - `pull(target, pipeline, source) => any`
 
-  A convenience function that calls `createPillLine()` and `target()` for you. You saw an example [earlier](#usage).
+  A convenience function that calls `pullLine()` and `target()` for you. You saw an example [earlier](#usage).
 
-*There're more than 40 operations for pull lines in `0.1.0`. You may look for more examples in unit tests while the documentation is under construction. There is also a document with [Undercut to Lodash mappings](https://docs.google.com/spreadsheets/d/1SdEfGV-pxTXi9Ur3Lw7IjDo2VVkz_EExUHmPrxRu_do).*
-
-#### Creating a pull line and reusing it later
+#### Creating a pull line and using/reusing it later
 
 ```js
-import { createPullLine, append, compact, skip, toArray } from "undercut";
+import { pullLine, append, compact, skip, toArray } from "undercut";
 
-const data = [0, 1, 2, 3];
+const source = [0, 1, 2, 3];
 
-const pullLine = createPullLine([
+const myItems = pullLine([
     append(4, 5),
     compact(),
     skip(2)
-], data); // No evaluation happens at this step.
+], source); // No evaluation happens at this step.
 
-const result1 = toArray(pullLine); // [3, 4, 5]
+const result1 = toArray(myItems); // [3, 4, 5]
 
-data.push(7);
+source.push(7);
 
-const result2 = toArray(pullLine); // [3, 7, 4, 5]
+const result2 = toArray(myItems); // [3, 7, 4, 5]
 ```
 
 #### Using different targets or calling them directly
 
 ```js
-pull(Array.from, pipeline, data);
+pull(toArray, pipeline, source);
 // or
-Array.from(createPullLine(pipeline, data));
+pull(Array.from, pipeline, source);
 // or
-toArray(createPullLine(pipeline, data));
+Array.from(pullLine(pipeline, source));
+// or
+toArray(pullLine(pipeline, source));
 ```
 
 #### Creating your own operation
@@ -123,9 +132,9 @@ function pow(exponent) {
     };
 }
 
-const data = [1, 2, 3];
+const source = [1, 2, 3];
 
-const result = pull(toArray, [pow(2)], data); // [1, 4, 9]
+const result = pull(toArray, [pow(2)], source); // [1, 4, 9]
 ```
 
 #### Composing several existing operations into a new one
@@ -142,27 +151,16 @@ function interleave(...sources) {
     return composeOperations(pipeline);
 }
 
-const data = [1, 3, 5];
+const source = [1, 3, 5];
 
 const result = pull(toArray, [
     interleave([2, 4, 6])
-], data); // [1, 2, 3, 4, 5, 6]
+], source); // [1, 2, 3, 4, 5, 6]
 ```
 
 ### Push
 
 Push lines and async iteration aren't implemented yet.
-
-## TODO
-
-- Performance tests
-- Documentation
-- TypeScript type definitions
-- CI
-- Async pipelines
-- Code coverage
-- Node precompiled packages
-- Browser precompiled package
 
 ## License
 
