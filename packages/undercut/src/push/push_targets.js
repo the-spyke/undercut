@@ -2,7 +2,7 @@ import { assert, assertFunctor } from "../utils/assert.js";
 import { isUndefined, isFunction } from "../utils/language.js";
 import { initializeObserver } from "../utils/observer.js";
 
-export function createPushTarget() {
+export function toArray() {
 	return {
 		next(value) {
 			this.values.push(value);

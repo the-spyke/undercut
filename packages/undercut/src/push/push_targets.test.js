@@ -1,19 +1,19 @@
 import {
-	createPushTarget,
+	toArray,
 	toConsumer,
 	toNull,
 	toValue,
 } from "./push_targets.js";
 
-test("createPushTarget", () => {
-	expect(createPushTarget()).toEqual(expect.objectContaining({
+test("toArray", () => {
+	expect(toArray()).toEqual(expect.objectContaining({
 		next: expect.any(Function),
 		throw: expect.any(Function),
 		return: expect.any(Function),
 		// values: expect.any(Array),
 	}));
 
-	const target = createPushTarget();
+	const target = toArray();
 
 	expect(target.values).toEqual([]);
 

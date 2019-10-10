@@ -4,7 +4,7 @@ import { flatten } from "./operations/flatten.js";
 import { map } from "./operations/map.js";
 import { zip } from "./operations/zip.js";
 
-import { createPushTarget } from "./push_targets.js";
+import { toArray } from "./push_targets.js";
 
 import {
 	composeOperations,
@@ -26,7 +26,7 @@ test("composeOperations", () => {
 
 test("pushLine", () => {
 	function testPushLine(pushLineFactory, source) {
-		const target = createPushTarget();
+		const target = toArray();
 		const pushline = pushLineFactory(target);
 
 		try {
@@ -47,7 +47,7 @@ test("pushLine", () => {
 	expect(testPushLine(t => pushLine([], t), [])).toEqual([]);
 	expect(testPushLine(t => pushLine([], t), [2, 3])).toEqual([2, 3]);
 
-	let target = createPushTarget();
+	let target = toArray();
 	let pushLine1 = pushLine([
 		map(x => x * 2)
 	], target);
@@ -58,7 +58,7 @@ test("pushLine", () => {
 
 	pushLine1.return();
 
-	target = createPushTarget();
+	target = toArray();
 	pushLine1 = pushLine([
 		map(x => x * 2)
 	], target);
@@ -73,27 +73,27 @@ test("pushLine", () => {
 
 test("push", () => {
 	expect(() => push()).toThrow();
-	expect(() => push(createPushTarget())).toThrow();
-	expect(() => push(createPushTarget(), [])).toThrow();
+	expect(() => push(toArray())).toThrow();
+	expect(() => push(toArray(), [])).toThrow();
 	expect(() => push(1, [], [])).toThrow();
-	expect(() => push(createPushTarget(), 2, [])).toThrow();
-	expect(() => push(createPushTarget(), [], 3)).toThrow();
+	expect(() => push(toArray(), 2, [])).toThrow();
+	expect(() => push(toArray(), [], 3)).toThrow();
 
 	let target;
 
-	target = createPushTarget();
+	target = toArray();
 	expect(push(target, [], [])).toBe(target);
 
-	target = createPushTarget();
+	target = toArray();
 	expect(push(target, [], []).values).toEqual([]);
 
-	target = createPushTarget();
+	target = toArray();
 	expect(push(target, [], [6, 7]).values).toEqual([6, 7]);
 
-	target = createPushTarget();
+	target = toArray();
 	expect(push(target, [map(x => x + 1)], []).values).toEqual([]);
 
-	target = createPushTarget();
+	target = toArray();
 	expect(push(target, [map(x => x * 0)], [3, 4]).values).toEqual([0, 0]);
 });
 

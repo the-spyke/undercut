@@ -2,7 +2,7 @@ import { assert, assertPipeline, assertSource } from "../utils/assert.js";
 import { isObserver, isFunction } from "../utils/language.js";
 import { closeObserver, initializeObserver } from "../utils/observer.js";
 
-import { createPushTarget } from "./push_targets.js";
+import { toArray } from "./push_targets.js";
 
 const operationErrorMessage = `An operation must be a function taking and returning an Observer.`;
 
@@ -58,7 +58,7 @@ export function push(target, pipeline, source) {
 }
 
 export function pushItems(pipeline, source) {
-	const target = createPushTarget();
+	const target = toArray();
 
 	push(target, pipeline, source);
 
