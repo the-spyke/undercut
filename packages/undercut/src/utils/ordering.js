@@ -3,11 +3,11 @@ import { identity } from "./function.js";
 
 export function orderingFactory(specs) {
 	return function (a, b) {
-		for (const [comparator, selector, order] of specs) {
+		for (const [comparator, selector, direction] of specs) {
 			const x = selector(a);
 			const y = selector(b);
 
-			const result = order * comparator(x, y);
+			const result = direction * comparator(x, y);
 
 			if (result !== 0) {
 				return result;
