@@ -1,17 +1,16 @@
 # ✂ undercut ✂
 
-JavaScript data processing pipelines and utilities.
+JavaScript data processing pipelines and utilities. Use native Iterators/Generators/Observers like it's 2015 already.
 
-Goals:
-
-- Simple API: not too imperative, not too functional
+- Based on existing JS protocols and language features
+- Balanced API: not too imperative, not too functional
+- Easy operation extensibility and composability
+- Pure ES Modules with Node 12 loader compliance
+- Raw code in packages (compile in place)
 - Lazy evaluation when possible
-- Use existing protocols and existing JS ecosystem
-- Easy extensibility
-- Raw code in the npm package (compile in place)
-- Pure ES Modules, Node 12 compliance
-- Tree shaking friendly
-- Typings
+- Tree shaking friendliness
+- 90% test coverage
+- SemVer
 
 ## Installation
 
@@ -21,7 +20,7 @@ npm install --save undercut
 yarn add undercut
 ```
 
-`Undercut` provides raw latest ES code in the package, **don't forget** to include its directory into [Babel](https://babeljs.io/) config or another compiler you use.
+`undercut` provides raw Stage 4 ECMAScript code in the package, **don't forget** to include its `node_modules` directories into [Babel](https://babeljs.io/) config or another compiler of your choice.
 
 ## Usage
 
@@ -30,13 +29,13 @@ Please check [GitHub](https://github.com/the-spyke/undercut) for more detailed r
 ```js
 import { pull, filter, map, skip, toArray } from "undercut";
 
-const data = [1, 2, 3, 4, 5, 6, 7];
+const source = [1, 2, 3, 4, 5, 6, 7];
 
 const result = pull(toArray, [
     skip(2),
     filter(x => x % 3 === 0),
-    map(x => x * 2) // will be executed only 3 times
-], data);
+    map(x => x * 2) // Will be executed only 3 times.
+], source);
 
 console.log(result); // [8, 10, 14]
 ```

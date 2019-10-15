@@ -7,11 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-This release adds Push Lines and makes API more consistent in general.
+## [0.4.0] - 2019-10-15
+
+This release adds `Push Lines` and makes API more consistent in general.
 
 ### Added
 
-- Push Lines
+- Push Lines!
 - Array utility `filterInPlace`.
 - Iterable utility `makeReiterable`.
 - Language utilities: `isIterator`, `isObjectValue`, `isObserver`.
@@ -21,7 +23,7 @@ This release adds Push Lines and makes API more consistent in general.
 
 ### Changed
 
-- **[BREAKING]** `toValue` pull target now throws on 0 items (you've expected a value, but got none).
+- **[BREAKING]** `toValue` pull target now throws on 0 items (you've expected a value, but got an empty sequence).
 - **[BREAKING]** Removed Iterable utilities from `utils` entry.
 - **[BREAKING]** Renamed back `createPullLine` into just `pullLine`.
 - **[BREAKING]** Renamed `isNil` utility to `isNullish` (better consistency with ES naming like "Nullish Coalescing Operator").

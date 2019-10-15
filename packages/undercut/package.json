@@ -1,6 +1,6 @@
 {
   "name": "undercut",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "JavaScript data processing pipelines and utilities",
   "author": "Anton Alexandrenok",
   "license": "MIT",
