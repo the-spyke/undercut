@@ -5,7 +5,7 @@ import {
 	toArray, toObject, toValue
 } from "./pull.js";
 
-test("simple scenarios", () => {
+test("simple pull scenarios", () => {
 	const data1 = [1, 2, 3, 4, 5, 6, 7];
 	const pipeline1 = [
 		map(x => x + 3),
