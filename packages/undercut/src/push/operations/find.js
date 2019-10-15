@@ -19,6 +19,8 @@ function findCore(predicate, isIndex) {
 
 				index++;
 			}
+		} catch (e) {
+			observer.throw(e);
 		} finally {
 			closeObserver(observer);
 		}

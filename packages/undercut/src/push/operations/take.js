@@ -28,6 +28,8 @@ export function takeWhile(predicate) {
 
 				index++;
 			}
+		} catch (e) {
+			observer.throw(e);
 		} finally {
 			closeObserver(observer);
 		}

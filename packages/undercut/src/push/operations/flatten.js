@@ -22,6 +22,8 @@ function flattenCore(canSpread, depth) {
 			while (true) {
 				spreadRec(observer, canSpread, depth, 0, yield);
 			}
+		} catch (e) {
+			observer.throw(e);
 		} finally {
 			closeObserver(observer);
 		}

@@ -17,6 +17,8 @@ export function remove(predicate) {
 
 				index++;
 			}
+		} catch (e) {
+			observer.throw(e);
 		} finally {
 			closeObserver(observer);
 		}

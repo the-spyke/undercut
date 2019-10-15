@@ -17,6 +17,8 @@ export function forEach(action) {
 
 				index++;
 			}
+		} catch (e) {
+			observer.throw(e);
 		} finally {
 			closeObserver(observer);
 		}

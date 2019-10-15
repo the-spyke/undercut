@@ -18,6 +18,8 @@ export function nth(n) {
 			} while (index !== n);
 
 			observer.next(item);
+		} catch (e) {
+			observer.throw(e);
 		} finally {
 			closeObserver(observer);
 		}

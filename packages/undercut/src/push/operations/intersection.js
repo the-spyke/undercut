@@ -39,6 +39,8 @@ export function intersectionBy(selector, ...sources) {
 					observer.next(item);
 				}
 			}
+		} catch (e) {
+			observer.throw(e);
 		} finally {
 			closeObserver(observer);
 		}

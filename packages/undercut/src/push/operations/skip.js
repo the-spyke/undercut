@@ -32,6 +32,8 @@ export function skipWhile(predicate) {
 
 				observer.next(item);
 			}
+		} catch (e) {
+			observer.throw(e);
 		} finally {
 			closeObserver(observer);
 		}

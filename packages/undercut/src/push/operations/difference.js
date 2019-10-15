@@ -33,6 +33,8 @@ export function differenceBy(selector, ...sources) {
 					observer.next(item);
 				}
 			}
+		} catch (e) {
+			observer.throw(e);
 		} finally {
 			closeObserver(observer);
 		}
