@@ -17,6 +17,13 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 - 90% test coverage
 - SemVer
 
+## Quicklinks
+
+- [Concepts](#concepts)
+- [Pull](#pull)
+- [Push](#push)
+- [Operations](#operations)
+
 ## Installation
 
 ```sh
