@@ -1,10 +1,16 @@
 import { testOperationPull, testOperationPush } from "../../utils/tests.js";
+import { desc } from "../../utils/ordering.js";
 
 import { sort as sortPull, sortNumbers as sortNumbersPull, sortStrings as sortStringsPull } from "../../pull/operations/sort.js";
 import { sort as sortPush, sortNumbers as sortNumbersPush, sortStrings as sortStringsPush } from "../../push/operations/sort.js";
 
 function testSort(testOperation, sort) {
 	expect(() => testOperation(sort, { source: [], target: [] })).toThrow();
+	expect(() => testOperation(sort, {
+		args: [(a, b) => a - b, () => {}],
+		source: [4, 1, 2],
+		target: [1, 2, 4]
+	})).toThrow();
 
 	testOperation(sort, {
 		args: [(a, b) => a - b],
@@ -36,7 +42,7 @@ function testSortNumbers(testOperation, sortNumbers) {
 		target: [-3, 1, 2]
 	});
 	testOperation(sortNumbers, {
-		args: [true],
+		args: [desc],
 		source: [2, 1, -3],
 		target: [2, 1, -3]
 	});
@@ -65,7 +71,7 @@ function testSortStrings(testOperation, sortStrings) {
 		target: ["1", "10", "5", "51"]
 	});
 	testOperation(sortStrings, {
-		args: [true],
+		args: [desc],
 		source: ["z", "a", "c"],
 		target: ["z", "c", "a"]
 	});

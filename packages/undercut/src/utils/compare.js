@@ -1,13 +1,3 @@
-import { assertFunctor } from "./assert.js"
-
-export function reverse(comparator) {
-	assertFunctor(comparator, `comparator`);
-
-	return function (a, b) {
-		return -1 * comparator(a, b);
-	}
-}
-
 /**
  * A comparator for string values.
  * @param {string} a

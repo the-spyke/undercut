@@ -423,9 +423,9 @@ console.log(result); // [1, 4, 9]
 - `skip(count)` -- removes the first `count` items from the sequence.
 - `skipWhile(predicate)` -- removes the first items from the sequence for which the `predicate` consequently have returned `true`.
 - `some()` -- reduces the sequence into a boolean by calculating if the `predicate` returns `true` at least for one item.
-- `sort(comparator, isReverse = false)` -- sorts the items in the sequence using the `comparator`.
-- `sortNumbers(isReverse = false)` -- sorts the items as numbers in the sequence.
-- `sortStrings(isReverse = false)` -- sorts the items as strings in the sequence.
+- `sort(comparator, order = asc)` -- sorts the items in the sequence using the `comparator`.
+- `sortNumbers(order = asc)` -- sorts the items as numbers in the sequence.
+- `sortStrings(order = asc)` -- sorts the items as strings in the sequence.
 - `sum()` -- reduces the sequence into a number by summing all items.
 - `symmetricDifference(...sources)` -- reduces the sequence by applying [Symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference) with sources' items matching by their identity.
 - `symmetricDifferenceBy(selector, ...sources)` -- reduces the sequence by applying [Symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference) with sources' items matching by the `selected` value.
