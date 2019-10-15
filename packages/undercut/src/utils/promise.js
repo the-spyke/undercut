@@ -5,7 +5,8 @@ export function delay(time) {
 export function unwrap() {
 	let resolve;
 	let reject;
-	let promise = new Promise((res, rej) => {
+
+	const promise = new Promise((res, rej) => {
 		resolve = res;
 		reject = rej;
 	});

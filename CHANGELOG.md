@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+This release adds Push Lines and makes API more consistent in general.
+
+### Added
+
+- Push Lines
+- Array utility `filterInPlace`.
+- Iterable utility `makeReiterable`.
+- Language utilities: `isIterator`, `isObjectValue`, `isObserver`.
+- Observer utilities: `closeObserver`, `initializeObserver`, `makeUnclosable`.
+- Promise utilities: `delay` and `unwrap`.
+- `toPushLine` pull target.
+
+### Changed
+
+- **[BREAKING]** `toValue` pull target now throws on 0 items (you've expected a value, but got none).
+- **[BREAKING]** Removed Iterable utilities from `utils` entry.
+- **[BREAKING]** Renamed back `createPullLine` into just `pullLine`.
+- **[BREAKING]** Renamed `isNil` utility to `isNullish` (better consistency with ES naming like "Nullish Coalescing Operator").
+- **[BREAKING]** Replaced `isReverse` parameter of the `sort` operation with `order` parameter accepting `asc/desc` functions.
+- **[BREAKING]** Replaced `tryCloseIterator` helper with `closeIterator`.
+- Optimized `interleave` operation.
+
+### Removed
+
+- **[BREAKING]** Removed `reverseComparator` utility.
+
 ## [0.3.0] - 2019-07-15
 
 Dependencies were updated to resolve GitHub security alerts.

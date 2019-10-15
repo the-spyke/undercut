@@ -39,12 +39,11 @@ export function isIterable(value) {
 }
 
 /**
- * Checks if the `value` is `null` or `undefined`.
  * @param {any} value
  * @returns {boolean}
  */
-export function isNil(value) {
-	return value == null;
+export function isIterator(value) {
+	return isObjectValue(value) && isFunction(value.next);
 }
 
 /**
@@ -72,6 +71,15 @@ export function isNull(value) {
 }
 
 /**
+ * Checks if the `value` is `null` or `undefined`.
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isNullish(value) {
+	return value == null;
+}
+
+/**
  * @param {any} value
  * @returns {boolean}
  */
@@ -94,6 +102,23 @@ export function isNumberValue(value) {
  */
 export function isObject(value) {
 	return typeof value === "object";
+}
+
+/**
+ * Checks if the `value` is an object, but not `null`.
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isObjectValue(value) {
+	return value != null && isObject(value);
+}
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isObserver(value) {
+	return isObjectValue(value) && isFunction(value.next) && isFunction(value.return) && isFunction(value.throw);
 }
 
 /**

@@ -1,4 +1,16 @@
+import { assertFunctor } from "./assert.js";
 import { isFunction } from "./language.js";
+
+/**
+ * Closes the iterator if it has the `return()` method.
+ * @param {Iterator} iterator
+ * @returns {void}
+ */
+export function closeIterator(iterator) {
+	if (isFunction(iterator.return)) {
+		iterator.return();
+	}
+}
 
 /**
  * @param {Iterable} iterable
@@ -9,16 +21,15 @@ export function getIterator(iterable) {
 }
 
 /**
- * Closes the iterator if it has the `return()` method and returns `true` in this case.
- * @param {Iterator} iterator
- * @returns {boolean}
+ * A helper for generators to make them reiterable.
+ * @param {Function} getIterator
+ * @returns {Iterable}
  */
-export function tryCloseIterator(iterator) {
-	if (isFunction(iterator.return)) {
-		iterator.return();
+export function makeReiterable(getIterator) {
+	assertFunctor(getIterator, `getIterator`);
 
-		return true;
-	}
-
-	return false;
+	return {
+		[Symbol.iterator]: getIterator,
+		isReiterable: true,
+	};
 }

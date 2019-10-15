@@ -1,36 +1,37 @@
-import { getIterator, tryCloseIterator } from "../../utils/iterable.js";
+import { closeIterator, getIterator } from "../../utils/iterable.js";
 
 export function interleave(...sources) {
 	return function* (iterable) {
-		let iters = [];
+		const iterators = [];
 
 		try {
-			let itersToRemove = new Set();
-			let iterFilter = iter => !itersToRemove.has(iter);
+			iterators.push(getIterator(iterable));
+			sources.forEach(source => iterators.push(getIterator(source)));
 
-			iters.push(getIterator(iterable));
-			sources.forEach(source => iters.push(getIterator(source)));
+			while (iterators.length > 0) {
+				let holeStart = 0;
+				let holeLength = 0;
 
-			while (iters.length) {
-				for (let i = 0; i < iters.length; i++) {
-					const iter = iters[i];
-					const result = iter.next();
+				for (let index = 0; index < iterators.length; index++) {
+					const iterator = iterators[index];
+					const { value, done } = iterator.next();
 
-					if (result.done) {
-						tryCloseIterator(iter);
-						itersToRemove.add(iter);
+					if (done) {
+						closeIterator(iterator);
+
+						holeLength++;
 					} else {
-						yield result.value;
+						yield value;
+
+						iterators[holeStart] = iterator; // eslint-disable-line require-atomic-updates
+						holeStart++;
 					}
 				}
 
-				if (itersToRemove.size > 0) {
-					iters = iters.filter(iterFilter);
-					itersToRemove.clear();
-				}
+				iterators.length -= holeLength;
 			}
 		} finally {
-			iters.forEach(tryCloseIterator);
+			iterators.forEach(closeIterator);
 		}
 	};
 }

@@ -11,7 +11,7 @@ export function assertFunctor(functor, name) {
 }
 
 export function assertPipeline(pipeline) {
-	assert(isIterable(pipeline), `"pipeline" is required, must be an array or another iterable of operations.`);
+	assert(isIterable(pipeline), `"pipeline" is required, must be an iterable of operations.`);
 }
 
 export function assertSource(source) {

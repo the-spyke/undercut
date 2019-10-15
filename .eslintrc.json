@@ -24,5 +24,6 @@
         "jest"
     ],
     "rules": {
+        "prefer-const": "error"
     }
 }

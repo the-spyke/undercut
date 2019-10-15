@@ -1,11 +1,11 @@
 import {
-	pull, createPullLine,
+	pull, pullLine,
 	range,
 	filter, map, min, skip, sum, take,
 	toArray, toObject, toValue
 } from "./pull.js";
 
-test("simple scenarios", () => {
+test("simple pull scenarios", () => {
 	const data1 = [1, 2, 3, 4, 5, 6, 7];
 	const pipeline1 = [
 		map(x => x + 3),
@@ -28,10 +28,10 @@ test("simple scenarios", () => {
 	).toEqual([23.5]);
 
 	expect(
-		toArray(createPullLine(pipeline1, data1))
+		toArray(pullLine(pipeline1, data1))
 	).toEqual([2, 3, 5, 6, 7]);
 
-	const pullLine1 = createPullLine(pipeline1, data1);
+	const pullLine1 = pullLine(pipeline1, data1);
 
 	expect(
 		pull(toValue, [
@@ -57,7 +57,7 @@ test("simple scenarios", () => {
 	).toEqual({ c: 12, e: 15 });
 
 	const data2 = [1, 2, 3];
-	const pullLine2 = createPullLine(pipeline1, data2);
+	const pullLine2 = pullLine(pipeline1, data2);
 
 	data2.push(5, 6);
 
