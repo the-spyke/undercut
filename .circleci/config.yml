@@ -30,8 +30,11 @@ jobs:
       - run:
           command: npm pack
           working_directory: packages/undercut
+      - run: 
+          command: echo "export PACKAGE_FILE_NAME=$(ls undercut-*.tgz)" >> $BASH_ENV
+          working_directory: packages/undercut
       - store_artifacts:
-          path: packages/undercut/undercut-*.tgz
+          path: packages/undercut/$PACKAGE_FILE_NAME
 
   lint:
     docker: *docker
