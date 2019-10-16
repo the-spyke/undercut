@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 aliases:
   - &docker
@@ -27,10 +27,11 @@ jobs:
       - checkout
       - *restore_yarn_cache
       - *yarn_install
-      - run: cd packages/undercut
-      - run: npm pack
+      - run:
+          command: npm pack
+          working_directory: packages/undercut
       - store_artifacts:
-          path: undercut-*.tgz
+          path: packages/undercut/undercut-*.tgz
 
   lint:
     docker: *docker
@@ -39,8 +40,9 @@ jobs:
       - checkout
       - *restore_yarn_cache
       - *yarn_install
-      - run: cd packages/undercut
-      - run: yarn lint
+      - run:
+          command: yarn lint
+          working_directory: packages/undercut
 
   setup:
     docker: *docker
@@ -71,8 +73,9 @@ jobs:
       - checkout
       - *restore_yarn_cache
       - *yarn_install
-      - run: cd packages/undercut
-      - run: yarn test
+      - run:
+          command: yarn test
+          working_directory: packages/undercut
 
 workflows:
   version: 2
