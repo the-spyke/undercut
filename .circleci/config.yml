@@ -1,0 +1,91 @@
+version: 2
+
+aliases:
+  - &docker
+    - image: node:12-buster-slim
+
+  - &restore_yarn_cache
+    restore_cache:
+      name: Restore Yarn cache
+      keys:
+        - v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - v1-yarn-{{ .Branch }}-
+        - v1-yarn-
+
+  - &yarn_install
+    run:
+      name: Install Node modules
+      command: yarn --frozen-lockfile
+
+jobs:
+  build:
+    docker: *docker
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - *restore_yarn_cache
+      - *yarn_install
+      - run: cd packages/undercut
+      - run: npm pack
+      - store_artifacts:
+          path: undercut-*.tgz
+
+  lint:
+    docker: *docker
+
+    steps:
+      - checkout
+      - *restore_yarn_cache
+      - *yarn_install
+      - run: cd packages/undercut
+      - run: yarn lint
+
+  setup:
+    docker: *docker
+
+    steps:
+      - checkout
+      - run:
+          name: Node.js version
+          command: node --version
+      - run:
+          name: npm version
+          command: npm --version
+      - run:
+          name: Yarn version
+          command: yarn --version
+      - *restore_yarn_cache
+      - *yarn_install
+      - save_cache:
+          name: Save Yarn cache
+          key: v1-yarn--{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+  test:
+    docker: *docker
+
+    steps:
+      - checkout
+      - *restore_yarn_cache
+      - *yarn_install
+      - run: cd packages/undercut
+      - run: yarn test
+
+workflows:
+  version: 2
+
+  continuous_integration:
+    jobs:
+      - setup
+      - lint:
+          requires:
+            - setup
+      - test:
+          requires:
+            - setup
+      - build:
+          requires:
+            - test
