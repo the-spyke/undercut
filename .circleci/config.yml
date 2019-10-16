@@ -11,6 +11,13 @@ aliases:
         - v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
         - v1-yarn-{{ .Branch }}-
         - v1-yarn-
+  
+  - &save_yarn_cache
+    save_cache:
+          name: Save Yarn cache
+          key: v1-yarn--{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
 
   - &yarn_install
     run:
@@ -18,81 +25,35 @@ aliases:
       command: yarn --frozen-lockfile
 
 jobs:
-  build:
+  build_lint_test:
     docker: *docker
-
-    working_directory: ~/repo
 
     steps:
       - checkout
+
+      - run:
+          name: Node.js version
+          command: |
+            node --version
+            npm --version
+            yarn --version
       - *restore_yarn_cache
       - *yarn_install
+      - *save_yarn_cache
+
+      - run:
+          command: yarn lint
+          working_directory: packages/undercut
+      - run:
+          command: yarn test
+          working_directory: packages/undercut
       - run:
           command: npm pack
           working_directory: packages/undercut
-      - run: 
+      - run:
+          name: Copy artifacts
           command: |
             mkdir -p artifacts
             cp packages/undercut/undercut-*.tgz artifacts/
       - store_artifacts:
           path: artifacts/
-
-  lint:
-    docker: *docker
-
-    steps:
-      - checkout
-      - *restore_yarn_cache
-      - *yarn_install
-      - run:
-          command: yarn lint
-          working_directory: packages/undercut
-
-  setup:
-    docker: *docker
-
-    steps:
-      - checkout
-      - run:
-          name: Node.js version
-          command: node --version
-      - run:
-          name: npm version
-          command: npm --version
-      - run:
-          name: Yarn version
-          command: yarn --version
-      - *restore_yarn_cache
-      - *yarn_install
-      - save_cache:
-          name: Save Yarn cache
-          key: v1-yarn--{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-
-  test:
-    docker: *docker
-
-    steps:
-      - checkout
-      - *restore_yarn_cache
-      - *yarn_install
-      - run:
-          command: yarn test
-          working_directory: packages/undercut
-
-workflows:
-  version: 2
-
-  continuous_integration:
-    jobs:
-      - setup
-      - lint:
-          requires:
-            - setup
-      - test:
-          requires:
-            - setup
-      - build:
-          requires:
-            - test
