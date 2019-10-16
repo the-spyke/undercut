@@ -25,7 +25,7 @@ aliases:
       command: yarn --frozen-lockfile
 
 jobs:
-  build_lint_test:
+  build:
     docker: *docker
 
     steps:
