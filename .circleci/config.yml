@@ -49,8 +49,8 @@ jobs:
             ARTIFACTS="$(pwd)/artifacts"
             echo "export ARTIFACTS=\"${ARTIFACTS}\"" >> $BASH_ENV
             mkdir -p $ARTIFACTS
-            ls -alF ~/.cache/yarn
             yarn cache dir
+            ls -alF ~/.cache/yarn
 
       - run:
           name: ESLint
