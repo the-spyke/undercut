@@ -48,8 +48,10 @@ jobs:
 
       - run:
           name: ESLint
-          command: yarn lint --format="junit" --output-file=~/artifacts/test_results/eslint/eslint.xml
-          working_directory: packages/undercut
+          command: |
+            cd packages/undercut
+            yarn lint --format="junit" --output-file="~/artifacts/test_results/eslint/eslint.xml"
+          # working_directory: packages/undercut
       - run:
           name: Jest
           command: |
