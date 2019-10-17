@@ -42,11 +42,13 @@ jobs:
       - *save_yarn_cache
 
       - run:
-          command: yarn lint
+          command: yarn lint --format junit --output-file eslint.xml
           working_directory: packages/undercut
       - run:
-          command: yarn test --coverage
+          command: yarn test --ci --runInBand --coverage --reporters="default" --reporters="jest-junit"
           working_directory: packages/undercut
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: jest.xml
       - run:
           command: npm pack
           working_directory: packages/undercut
@@ -56,10 +58,19 @@ jobs:
           command: |
             mkdir -p artifacts
             cp packages/undercut/undercut-*.tgz artifacts/
+            cp packages/undercut/coverage/clover.xml artifacts/coverage.xml
+
+            mkdir -p artifacts/test-results/eslint
+            cp packages/undercut/eslint.xml artifacts/test-results/eslint/
+            mkdir -p artifacts/test-results/jest
+            cp packages/undercut/jest.xml artifacts/test-results/jest/
+
       - store_artifacts:
           path: artifacts/
+      - store_test_results:
+          path: artifacts/test-results/
       - codecov/upload:
-          file: packages/undercut/coverage/clover.xml
+          file: artifacts/coverage.xml
 
 orbs:
   codecov: codecov/codecov@1.0.5
