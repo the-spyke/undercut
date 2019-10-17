@@ -11,14 +11,14 @@ aliases:
     restore_cache:
       name: Restore Yarn cache
       keys:
-        - yarn-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-        - yarn-v1-{{ .Branch }}
-        - yarn-v1-master
+        - yarn-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - yarn-v2-{{ .Branch }}
+        - yarn-v2-master
   
   - &save_yarn_cache
     save_cache:
       name: Save Yarn cache
-      key: yarn-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      key: yarn-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - ~/.cache/yarn
         - /usr/local/share/.cache/yarn
