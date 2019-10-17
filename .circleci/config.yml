@@ -46,7 +46,7 @@ jobs:
       - run:
           name: Setup
           command: |
-            ARTIFACTS="${CIRCLE_WORKING_DIRECTORY}/artifacts"
+            ARTIFACTS="$(pwd)/artifacts"
             echo "variable = $ARTIFACTS"
             echo "export ARTIFACTS=\"${ARTIFACTS}\"" >> $BASH_ENV
             mkdir -p $ARTIFACTS
