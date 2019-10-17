@@ -48,7 +48,7 @@ jobs:
 
       - run:
           name: ESLint
-          command: yarn lint --format="junit" --output-file ~/artifacts/test_results/eslint/eslint.xml
+          command: yarn lint --format="junit" --output-file=~/artifacts/test_results/eslint/eslint.xml
           working_directory: packages/undercut
       - run:
           name: Jest
@@ -64,7 +64,6 @@ jobs:
           command: |
             npm pack
             cp -v undercut-*.tgz ~/artifacts/
-            ls -alF ~/artifacts
           working_directory: packages/undercut
 
       - store_artifacts:
