@@ -1,10 +1,12 @@
 # ✂ undercut ✂
 
-[![Join the chat at https://gitter.im/undercutjs/community](https://badges.gitter.im/undercutjs/community.svg)](https://gitter.im/undercutjs/community)
-[![CircleCI](https://circleci.com/gh/the-spyke/undercut/tree/master.svg?style=svg)](https://circleci.com/gh/the-spyke/undercut/tree/master)
 [![npm version](https://img.shields.io/npm/v/undercut.svg)](https://www.npmjs.com/package/undercut)
 [![npm downloads](https://img.shields.io/npm/dm/undercut.svg)](https://www.npmjs.com/package/undercut)
 [![License](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
+[![Join the chat at https://gitter.im/undercutjs/community](https://badges.gitter.im/undercutjs/community.svg)](https://gitter.im/undercutjs/community)
+
+[![CircleCI](https://circleci.com/gh/the-spyke/undercut.svg?style=shield)](https://circleci.com/gh/the-spyke/undercut)
+[![codecov](https://codecov.io/gh/the-spyke/undercut/branch/master/graph/badge.svg)](https://codecov.io/gh/the-spyke/undercut)
 
 JavaScript data processing pipelines and utilities. Use native Iterators/Generators/Observers like it's 2015 already.
 
