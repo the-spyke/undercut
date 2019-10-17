@@ -43,12 +43,12 @@ jobs:
       - run:
           name: Create artifacts directory
           command: |
-            mkdir -p ~/artifacts/test-results/eslint/
-            mkdir -p ~/artifacts/test-results/jest/
+            mkdir -p ~/artifacts/test_results/eslint
+            mkdir -p ~/artifacts/test_results/jest
 
       - run:
           name: ESLint
-          command: yarn lint --format="junit" --output-file="~/artifacts/test-results/eslint/eslint.xml"
+          command: yarn lint --format="junit" --output-file ~/artifacts/test_results/eslint/eslint.xml
           working_directory: packages/undercut
       - run:
           name: Jest
@@ -57,19 +57,20 @@ jobs:
             cp -v coverage/clover.xml ~/artifacts/coverage.xml
           working_directory: packages/undercut
           environment:
-            JEST_JUNIT_OUTPUT_DIR: ~/artifacts/test-results/jest/
+            JEST_JUNIT_OUTPUT_DIR: ~/artifacts/test_results/jest/
             JEST_JUNIT_OUTPUT_NAME: jest.xml
       - run:
           name: Package
           command: |
             npm pack
             cp -v undercut-*.tgz ~/artifacts/
+            ls -alF ~/artifacts
           working_directory: packages/undercut
 
       - store_artifacts:
           path: ~/artifacts/
       - store_test_results:
-          path: ~/artifacts/test-results/
+          path: ~/artifacts/test_results/
       - codecov/upload:
           file: ~/artifacts/coverage.xml
 
