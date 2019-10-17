@@ -30,8 +30,6 @@ aliases:
 jobs:
   build:
     docker: *docker
-    environment:
-      ARTIFACTS: $CIRCLE_WORKING_DIRECTORY/artifacts
 
     steps:
       - checkout
@@ -46,8 +44,9 @@ jobs:
       - *yarn_install
       - *save_yarn_cache
       - run:
-          name: Create artifacts directory
+          name: Setup
           command: |
+            echo "export ARTIFACTS=\"${CIRCLE_WORKING_DIRECTORY}/artifacts}\"" >> $BASH_ENV
             mkdir -p $ARTIFACTS
             ls -alF
 
