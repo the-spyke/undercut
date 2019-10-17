@@ -42,7 +42,9 @@ jobs:
       - *save_yarn_cache
       - run:
           name: Create artifacts directory
-          command: mkdir ~/artifacts
+          command: |
+            mkdir -p ~/artifacts/test_results/eslint/
+            mkdir -p ~/artifacts/test_results/jest/
 
       - run:
           name: ESLint
