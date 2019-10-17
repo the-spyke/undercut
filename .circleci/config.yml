@@ -50,6 +50,7 @@ jobs:
       - run:
           command: npm pack
           working_directory: packages/undercut
+
       - run:
           name: Copy artifacts
           command: |
