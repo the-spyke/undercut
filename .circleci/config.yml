@@ -46,7 +46,8 @@ jobs:
       - run:
           name: Setup
           command: |
-            echo "export ARTIFACTS=\"${CIRCLE_WORKING_DIRECTORY}/artifacts}\"" >> $BASH_ENV
+            ARTIFACTS="${CIRCLE_WORKING_DIRECTORY}/artifacts"
+            echo "export ARTIFACTS=\"${ARTIFACTS}\"" >> $BASH_ENV
             mkdir -p $ARTIFACTS
             ls -alF
 
