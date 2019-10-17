@@ -59,7 +59,7 @@ jobs:
       - store_artifacts:
           path: artifacts/
       - codecov/upload:
-          file: packages/undercut/coverage/
+          file: packages/undercut/coverage/clover.xml
 
 orbs:
   codecov: codecov/codecov@1.0.5
