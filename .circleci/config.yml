@@ -45,11 +45,12 @@ jobs:
           command: yarn lint
           working_directory: packages/undercut
       - run:
-          command: yarn test
+          command: yarn test --coverage
           working_directory: packages/undercut
       - run:
           command: npm pack
           working_directory: packages/undercut
+
       - run:
           name: Copy artifacts
           command: |
@@ -57,3 +58,8 @@ jobs:
             cp packages/undercut/undercut-*.tgz artifacts/
       - store_artifacts:
           path: artifacts/
+      - codecov/upload:
+          file: packages/undercut/coverage/clover.xml
+
+orbs:
+  codecov: codecov/codecov@1.0.5
