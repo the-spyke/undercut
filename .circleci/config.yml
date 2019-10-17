@@ -11,14 +11,14 @@ aliases:
     restore_cache:
       name: Restore Yarn cache
       keys:
-        - v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
-        - v1-yarn-{{ .Branch }}-
-        - v1-yarn-
+        - yarn-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - yarn-v1-{{ .Branch }}
+        - yarn-v1-master
   
   - &save_yarn_cache
     save_cache:
       name: Save Yarn cache
-      key: v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      key: yarn-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - ~/.cache/yarn
 
@@ -47,10 +47,10 @@ jobs:
           name: Setup
           command: |
             ARTIFACTS="$(pwd)/artifacts"
-            echo "variable = $ARTIFACTS"
             echo "export ARTIFACTS=\"${ARTIFACTS}\"" >> $BASH_ENV
             mkdir -p $ARTIFACTS
-            ls -alF
+            ls -alF ~/.cache/yarn
+            yarn cache dir
 
       - run:
           name: ESLint
@@ -74,11 +74,11 @@ jobs:
           command: |
             cd packages/undercut
             npm pack
-            cp -v undercut-*.tgz $ARTIFACTS
+            cp -v undercut-*.tgz $ARTIFACTS/
 
       - store_artifacts:
-          path: artifacts/
+          path: artifacts
       - store_test_results:
-          path: artifacts/test_results/
+          path: artifacts/test_results
       - codecov/upload:
           file: artifacts/coverage.xml
