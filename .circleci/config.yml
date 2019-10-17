@@ -48,7 +48,7 @@ jobs:
           command: yarn test --ci --runInBand --coverage --reporters="default" --reporters="jest-junit"
           working_directory: packages/undercut
           environment:
-            JEST_JUNIT_OUTPUT_DIR: jest.xml
+            JEST_JUNIT_OUTPUT_NAME: jest.xml
       - run:
           command: npm pack
           working_directory: packages/undercut
