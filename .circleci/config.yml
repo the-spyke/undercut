@@ -21,6 +21,7 @@ aliases:
       key: yarn-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - ~/.cache/yarn
+        - /usr/local/share/.cache/yarn
 
   - &yarn_install
     run:
@@ -49,8 +50,6 @@ jobs:
             ARTIFACTS="$(pwd)/artifacts"
             echo "export ARTIFACTS=\"${ARTIFACTS}\"" >> $BASH_ENV
             mkdir -p $ARTIFACTS
-            yarn cache dir
-            ls -alF ~/.cache/yarn
 
       - run:
           name: ESLint
