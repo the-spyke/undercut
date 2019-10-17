@@ -47,7 +47,9 @@ jobs:
       - *save_yarn_cache
       - run:
           name: Create artifacts directory
-          command: mkdir $ARTIFACTS
+          command: |
+            mkdir -p $ARTIFACTS
+            ls -alF
 
       - run:
           name: ESLint
