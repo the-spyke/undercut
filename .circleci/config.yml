@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@1.0.5
+
 aliases:
   - &docker
     - image: node:12-buster-slim
@@ -27,6 +30,8 @@ aliases:
 jobs:
   build:
     docker: *docker
+    environment:
+      ARTIFACTS: $CIRCLE_WORKING_DIRECTORY/artifacts
 
     steps:
       - checkout
@@ -42,38 +47,35 @@ jobs:
       - *save_yarn_cache
       - run:
           name: Create artifacts directory
-          command: |
-            mkdir -p ~/artifacts/test_results/eslint
-            mkdir -p ~/artifacts/test_results/jest
+          command: mkdir $ARTIFACTS
 
       - run:
           name: ESLint
           command: |
             cd packages/undercut
-            yarn lint --format="junit" --output-file="~/artifacts/test_results/eslint/eslint.xml"
-          # working_directory: packages/undercut
+            yarn lint --format="junit" --output-file="eslint.xml"
+            mkdir -p $ARTIFACTS/test_results/eslint
+            cp -v eslint.xml $ARTIFACTS/test_results/eslint/
       - run:
           name: Jest
           command: |
+            cd packages/undercut
             yarn test --ci --coverage --reporters="default" --reporters="jest-junit" --runInBand
-            cp -v coverage/clover.xml ~/artifacts/coverage.xml
-          working_directory: packages/undercut
+            cp -v coverage/clover.xml $ARTIFACTS/coverage.xml
+            mkdir -p $ARTIFACTS/test_results/jest
+            cp -v jest.xml $ARTIFACTS/test_results/jest/
           environment:
-            JEST_JUNIT_OUTPUT_DIR: ~/artifacts/test_results/jest/
             JEST_JUNIT_OUTPUT_NAME: jest.xml
       - run:
           name: Package
           command: |
+            cd packages/undercut
             npm pack
-            cp -v undercut-*.tgz ~/artifacts/
-          working_directory: packages/undercut
+            cp -v undercut-*.tgz $ARTIFACTS
 
       - store_artifacts:
-          path: ~/artifacts/
+          path: artifacts/
       - store_test_results:
-          path: ~/artifacts/test_results/
+          path: artifacts/test_results/
       - codecov/upload:
-          file: ~/artifacts/coverage.xml
-
-orbs:
-  codecov: codecov/codecov@1.0.5
+          file: artifacts/coverage.xml
