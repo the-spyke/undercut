@@ -72,6 +72,15 @@ jobs:
             cd packages/undercut
             npm pack
             cp -v undercut-*.tgz $ARTIFACTS/
+      - run:
+          name: Package installation
+          command: |
+            mkdir -p ~/installation_test
+            cp -rv packages/undercut/tests/package/* ~/installation_test/
+            cd ~/installation_test
+            yarn install
+            yarn add $ARTIFACTS/undercut-*.tgz
+            yarn test
 
       - store_artifacts:
           path: artifacts

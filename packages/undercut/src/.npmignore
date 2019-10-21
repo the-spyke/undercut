@@ -1,4 +1,5 @@
 **/perf/
+**/tests/
 **/.npmignore
 **/*.perf.js
 **/*.test.*.js
