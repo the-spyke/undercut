@@ -26,13 +26,11 @@ aliases:
       name: Install Node modules
       command: yarn --frozen-lockfile
 
-jobs:
-  build:
-    docker: *docker
-
+commands:
+  initialize:
+    description: Initialize a JS project and create artifacts directory
     steps:
       - checkout
-
       - run:
           name: Node.js version
           command: |
@@ -43,11 +41,18 @@ jobs:
       - *yarn_install
       - *save_yarn_cache
       - run:
-          name: Setup
+          name: Setup artifacts directory
           command: |
             ARTIFACTS="$(pwd)/artifacts"
             echo "export ARTIFACTS=\"${ARTIFACTS}\"" >> $BASH_ENV
             mkdir -p $ARTIFACTS
+
+jobs:
+  build:
+    docker: *docker
+
+    steps:
+      - initialize
 
       - run:
           name: ESLint
