@@ -5,26 +5,7 @@ orbs:
 
 aliases:
   - &docker
-    - image: node:12-buster-slim
-
-  - &restore_yarn_cache
-    restore_cache:
-      name: Restore Yarn cache
-      keys:
-        - yarn-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
-
-  - &save_yarn_cache
-    save_cache:
-      name: Save Yarn cache
-      key: yarn-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      paths:
-        - ~/.cache/yarn
-        - /usr/local/share/.cache/yarn
-
-  - &yarn_install
-    run:
-      name: Install Node modules
-      command: yarn --frozen-lockfile
+      - image: node:12-buster-slim
 
 commands:
   initialize:
@@ -37,9 +18,19 @@ commands:
             node --version
             npm --version
             yarn --version
-      - *restore_yarn_cache
-      - *yarn_install
-      - *save_yarn_cache
+      - restore_cache:
+          name: Restore Yarn cache
+          keys:
+            - yarn-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Node modules
+          command: yarn --frozen-lockfile
+      - save_cache:
+          name: Save Yarn cache
+          key: yarn-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - /usr/local/share/.cache/yarn
       - run:
           name: Setup artifacts directory
           command: |
