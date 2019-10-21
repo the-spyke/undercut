@@ -1,0 +1,6 @@
+comment:
+  require_changes: true # Only post the comment if coverage changes.
+
+parsers:
+  javascript:
+    enable_partials: yes # Enable partial line coverage highlighting.

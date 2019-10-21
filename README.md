@@ -1,11 +1,11 @@
 # ✂ undercut ✂
 
-[![npm version](https://img.shields.io/npm/v/undercut.svg)](https://www.npmjs.com/package/undercut)
-[![npm downloads](https://img.shields.io/npm/dm/undercut.svg)](https://www.npmjs.com/package/undercut)
-[![License](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
-[![Join the chat at https://gitter.im/undercutjs/community](https://badges.gitter.im/undercutjs/community.svg)](https://gitter.im/undercutjs/community)
+[![version](https://img.shields.io/npm/v/undercut.svg)](https://www.npmjs.com/package/undercut)
+[![downloads](https://img.shields.io/npm/dm/undercut.svg)](https://www.npmjs.com/package/undercut)
+[![license](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
+[![chat](https://badges.gitter.im/undercutjs/community.svg)](https://gitter.im/undercutjs/community)
 
-[![CircleCI](https://circleci.com/gh/the-spyke/undercut.svg?style=shield)](https://circleci.com/gh/the-spyke/undercut)
+[![circleci](https://circleci.com/gh/the-spyke/undercut.svg?style=shield)](https://circleci.com/gh/the-spyke/undercut)
 [![codecov](https://codecov.io/gh/the-spyke/undercut/branch/master/graph/badge.svg)](https://codecov.io/gh/the-spyke/undercut)
 
 JavaScript data processing pipelines and utilities. Use native Iterators/Generators/Observers like it's 2015 already.
@@ -82,7 +82,7 @@ Push line -- push items into an Observer:
 pipeline + target = Observer
 ```
 
-Both pipeline types have independant implementations: one based on iterables and another one based on observers. The main package entry point exports `pull` pipelines as the most commonly used type and some basic ES utils. If you need `push` pipelines, import them manually from `undercut/src/push.js`. There is also `undercut/src/pull.js` entry point if you what to import just `pull lines` without utils.
+Both pipeline types have independent implementations: one based on iterables and another one based on observers. The main package entry point exports `pull` pipelines as the most commonly used type and some basic ES utils. If you need `push` pipelines, import them manually from `undercut/src/push.js`. There is also `undercut/src/pull.js` entry point if you what to import just `pull lines` without utils.
 
 ## Pull
 
@@ -254,7 +254,7 @@ interface Observer {
 }
 ```
 
-`Push` is used less often than `pull` and has an independant implementation. Push lines aren't re-usable and you **must** close the iterator when you're done with it by calling `.return()` method. Closing the observer also signals `end-of-sequence`. Many operation wait till they gather all items, so they may continue. The `.throw()` method allows to cancel execution at any time.
+`Push` is used less often than `pull` and has an independent implementation. Push lines aren't re-usable and you **must** close the iterator when you're done with it by calling `.return()` method. Closing the observer also signals `end-of-sequence`. Many operation wait till they gather all items, so they may continue. The `.throw()` method allows to cancel execution at any time.
 
 To use push lines you need to import from `undercut/src/push.js` entry point.
 

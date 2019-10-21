@@ -1,65 +1,86 @@
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@1.0.5
+
 aliases:
   - &docker
-    - image: node:12-buster-slim
+      - image: node:12-buster-slim
 
-  - &restore_yarn_cache
-    restore_cache:
-      name: Restore Yarn cache
-      keys:
-        - v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
-        - v1-yarn-{{ .Branch }}-
-        - v1-yarn-
-  
-  - &save_yarn_cache
-    save_cache:
-          name: Save Yarn cache
-          key: v1-yarn--{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-
-  - &yarn_install
-    run:
-      name: Install Node modules
-      command: yarn --frozen-lockfile
-
-jobs:
-  build:
-    docker: *docker
-
+commands:
+  initialize:
+    description: Initialize a JS project and create artifacts directory
     steps:
       - checkout
-
       - run:
           name: Node.js version
           command: |
             node --version
             npm --version
             yarn --version
-      - *restore_yarn_cache
-      - *yarn_install
-      - *save_yarn_cache
-
+      - restore_cache:
+          name: Restore Yarn cache
+          keys:
+            - yarn-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
-          command: yarn lint
-          working_directory: packages/undercut
+          name: Install Node modules
+          command: yarn --frozen-lockfile
+      - save_cache:
+          name: Save Yarn cache
+          key: yarn-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - /usr/local/share/.cache/yarn
       - run:
-          command: yarn test --coverage
-          working_directory: packages/undercut
-      - run:
-          command: npm pack
-          working_directory: packages/undercut
-
-      - run:
-          name: Copy artifacts
+          name: Setup artifacts directory
           command: |
-            mkdir -p artifacts
-            cp packages/undercut/undercut-*.tgz artifacts/
-      - store_artifacts:
-          path: artifacts/
-      - codecov/upload:
-          file: packages/undercut/coverage/clover.xml
+            ARTIFACTS="$(pwd)/artifacts"
+            echo "export ARTIFACTS=\"${ARTIFACTS}\"" >> $BASH_ENV
+            mkdir -p $ARTIFACTS
 
-orbs:
-  codecov: codecov/codecov@1.0.5
+jobs:
+  build:
+    docker: *docker
+
+    steps:
+      - initialize
+
+      - run:
+          name: ESLint
+          command: |
+            cd packages/undercut
+            yarn lint --format="junit" --output-file="eslint.xml"
+            mkdir -p $ARTIFACTS/test_results/eslint
+            cp -v eslint.xml $ARTIFACTS/test_results/eslint/
+      - run:
+          name: Jest
+          command: |
+            cd packages/undercut
+            yarn test --ci --coverage --reporters="default" --reporters="jest-junit" --runInBand
+            cp -v coverage/clover.xml $ARTIFACTS/coverage.xml
+            mkdir -p $ARTIFACTS/test_results/jest
+            cp -v jest.xml $ARTIFACTS/test_results/jest/
+          environment:
+            JEST_JUNIT_OUTPUT_NAME: jest.xml
+      - run:
+          name: Package
+          command: |
+            cd packages/undercut
+            npm pack
+            cp -v undercut-*.tgz $ARTIFACTS/
+      - run:
+          name: Package installation
+          command: |
+            mkdir -p ~/installation_test
+            cp -rv packages/undercut/src/tests/package/* ~/installation_test/
+            cd ~/installation_test
+            yarn install
+            yarn add $ARTIFACTS/undercut-*.tgz
+            yarn test
+
+      - store_artifacts:
+          path: artifacts
+      - store_test_results:
+          path: artifacts/test_results
+      - codecov/upload:
+          file: artifacts/coverage.xml
