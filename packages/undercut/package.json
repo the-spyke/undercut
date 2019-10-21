@@ -10,7 +10,7 @@
   "sideEffects": false,
   "scripts": {
     "babel": "babel",
-    "lint": "eslint 'src/**'",
+    "lint": "eslint 'src/**/*.js'",
     "nodem": "node --experimental-modules",
     "nodeb": "babel-node",
     "test": "jest"
