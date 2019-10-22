@@ -11,7 +11,7 @@ import {
 	pullLine,
 } from "./pull_core.js";
 
-test("composeOperations", () => {
+test(`composeOperations`, () => {
 	function interleave(...sources) {
 		const pipeline = [zip(...sources), flatten()];
 
@@ -40,7 +40,7 @@ test("composeOperations", () => {
 	expect([...pullLine1, 7, ...pullLine1]).toEqual([1, 2, 3, 4, 7, 1, 2, 3, 4]);
 });
 
-test("pullLine", () => {
+test(`pullLine`, () => {
 	expect(() => pullLine()).toThrow();
 	expect(() => pullLine([])).toThrow();
 	expect(() => pullLine(1, [])).toThrow();
@@ -57,7 +57,7 @@ test("pullLine", () => {
 	expect([...pullLine1, 7, ...pullLine1]).toEqual([0, 2, 4, 7, 0, 2, 4]);
 });
 
-test("pull", () => {
+test(`pull`, () => {
 	expect(() => pull()).toThrow();
 	expect(() => pull(Array.from)).toThrow();
 	expect(() => pull(Array.from, [])).toThrow();
@@ -71,7 +71,7 @@ test("pull", () => {
 	expect(pull(Array.from, [map(x => x * 0)], [3, 4])).toEqual([0, 0]);
 });
 
-test("pullItems", () => {
+test(`pullItems`, () => {
 	expect(() => pullItems()).toThrow();
 	expect(() => pullItems([])).toThrow();
 	expect(() => pullItems(2, [])).toThrow();

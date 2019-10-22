@@ -11,7 +11,7 @@ export function toArray(iterable) {
 }
 
 /**
- * @param {Function} consumer 
+ * @param {Function} consumer
  * @returns {Function}
  */
 export function toConsumer(consumer) {
@@ -38,8 +38,8 @@ export function toMap(iterable) {
  * @returns {void}
  */
 export function toNull(iterable) {
-	for (const item of iterable) {
-		void item;
+	for (const item of iterable) { // eslint-disable-line no-unused-vars
+		// Do nothing.
 	}
 }
 

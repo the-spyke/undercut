@@ -30,7 +30,7 @@ function testMax(testOperation, max) {
 	});
 }
 
-describe("max", () => {
-	test("pull", () => testMax(testOperationPull, maxPull));
-	test("push", () => testMax(testOperationPush, maxPush));
+describe(`max`, () => {
+	test(`pull`, () => testMax(testOperationPull, maxPull));
+	test(`push`, () => testMax(testOperationPush, maxPush));
 });

@@ -28,15 +28,15 @@ function testUnion(testOperation, union) {
 		target: [2, 1, 5, 7]
 	});
 	testOperation(union, {
-		args: [["a", 1, false]],
-		source: [false, "a", 2, undefined],
-		target: [false, "a", 2, undefined, 1]
+		args: [[`a`, 1, false]],
+		source: [false, `a`, 2, undefined],
+		target: [false, `a`, 2, undefined, 1]
 	});
 
 	const users = [
-		{ name: "a" },
-		{ name: "b" },
-		{ name: "c" }
+		{ name: `a` },
+		{ name: `b` },
+		{ name: `c` }
 	];
 
 	testOperation(union, {
@@ -46,9 +46,9 @@ function testUnion(testOperation, union) {
 	});
 }
 
-describe("union", () => {
-	test("pull", () => testUnion(testOperationPull, unionPull));
-	test("push", () => testUnion(testOperationPush, unionPush));
+describe(`union`, () => {
+	test(`pull`, () => testUnion(testOperationPull, unionPull));
+	test(`push`, () => testUnion(testOperationPush, unionPush));
 });
 
 function testUnionBy(testOperation, unionBy) {
@@ -67,7 +67,7 @@ function testUnionBy(testOperation, unionBy) {
 	});
 }
 
-describe("unionBy", () => {
-	test("pull", () => testUnionBy(testOperationPull, unionByPull));
-	test("push", () => testUnionBy(testOperationPush, unionByPush));
+describe(`unionBy`, () => {
+	test(`pull`, () => testUnionBy(testOperationPull, unionByPull));
+	test(`push`, () => testUnionBy(testOperationPush, unionByPush));
 });

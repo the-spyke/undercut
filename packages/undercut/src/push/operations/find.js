@@ -2,7 +2,7 @@ import { assertFunctor } from "../../utils/assert.js";
 import { closeObserver } from "../../utils/observer.js";
 
 function findCore(predicate, isIndex) {
-	assertFunctor(predicate, "predicate");
+	assertFunctor(predicate, `predicate`);
 
 	return function* (observer) {
 		try {

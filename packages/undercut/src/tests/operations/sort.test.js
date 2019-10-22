@@ -1,3 +1,4 @@
+import { noop } from "../../utils/function.js";
 import { testOperationPull, testOperationPush } from "../../utils/tests.js";
 import { desc } from "../../utils/ordering.js";
 
@@ -7,7 +8,7 @@ import { sort as sortPush, sortNumbers as sortNumbersPush, sortStrings as sortSt
 function testSort(testOperation, sort) {
 	expect(() => testOperation(sort, { source: [], target: [] })).toThrow();
 	expect(() => testOperation(sort, {
-		args: [(a, b) => a - b, () => {}],
+		args: [(a, b) => a - b, noop],
 		source: [4, 1, 2],
 		target: [1, 2, 4]
 	})).toThrow();
@@ -19,9 +20,9 @@ function testSort(testOperation, sort) {
 	});
 }
 
-describe("sort", () => {
-	test("pull", () => testSort(testOperationPull, sortPull));
-	test("push", () => testSort(testOperationPush, sortPush));
+describe(`sort`, () => {
+	test(`pull`, () => testSort(testOperationPull, sortPull));
+	test(`push`, () => testSort(testOperationPush, sortPush));
 });
 
 function testSortNumbers(testOperation, sortNumbers) {
@@ -48,9 +49,9 @@ function testSortNumbers(testOperation, sortNumbers) {
 	});
 }
 
-describe("sortNumbers", () => {
-	test("pull", () => testSortNumbers(testOperationPull, sortNumbersPull));
-	test("push", () => testSortNumbers(testOperationPush, sortNumbersPush));
+describe(`sortNumbers`, () => {
+	test(`pull`, () => testSortNumbers(testOperationPull, sortNumbersPull));
+	test(`push`, () => testSortNumbers(testOperationPush, sortNumbersPush));
 });
 
 function testSortStrings(testOperation, sortStrings) {
@@ -59,25 +60,25 @@ function testSortStrings(testOperation, sortStrings) {
 		target: []
 	});
 	testOperation(sortStrings, {
-		source: [""],
-		target: [""]
+		source: [``],
+		target: [``]
 	});
 	testOperation(sortStrings, {
-		source: ["z", "a", "c"],
-		target: ["a", "c", "z"]
+		source: [`z`, `a`, `c`],
+		target: [`a`, `c`, `z`]
 	});
 	testOperation(sortStrings, {
-		source: ["51", "5", "10", "1"],
-		target: ["1", "10", "5", "51"]
+		source: [`51`, `5`, `10`, `1`],
+		target: [`1`, `10`, `5`, `51`]
 	});
 	testOperation(sortStrings, {
 		args: [desc],
-		source: ["z", "a", "c"],
-		target: ["z", "c", "a"]
+		source: [`z`, `a`, `c`],
+		target: [`z`, `c`, `a`]
 	});
 }
 
-describe("sortStrings", () => {
-	test("pull", () => testSortStrings(testOperationPull, sortStringsPull));
-	test("push", () => testSortStrings(testOperationPush, sortStringsPush));
+describe(`sortStrings`, () => {
+	test(`pull`, () => testSortStrings(testOperationPull, sortStringsPull));
+	test(`push`, () => testSortStrings(testOperationPush, sortStringsPush));
 });

@@ -11,7 +11,7 @@ export const intersection = intersectionBy.bind(undefined, identity);
  * Multisets are not supported.
  */
 export function intersectionBy(selector, ...sources) {
-	assertFunctor(selector, "selector");
+	assertFunctor(selector, `selector`);
 
 	return function* (observer) {
 		try {

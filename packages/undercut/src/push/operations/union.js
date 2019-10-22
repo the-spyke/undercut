@@ -1,5 +1,3 @@
-
-
 import { assertFunctor } from "../../utils/assert.js";
 import { identity } from "../../utils/function.js";
 import { closeObserver } from "../../utils/observer.js";
@@ -13,7 +11,7 @@ export const union = unionBy.bind(undefined, identity);
  * Multisets are not supported.
  */
 export function unionBy(selector, ...sources) {
-	assertFunctor(selector, "selector");
+	assertFunctor(selector, `selector`);
 
 	return function* (observer) {
 		const keys = new Set();

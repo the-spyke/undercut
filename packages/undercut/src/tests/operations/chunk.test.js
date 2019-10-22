@@ -46,7 +46,7 @@ function testChunk(testOperation, chunk) {
 	});
 }
 
-describe("chunk", () => {
-	test("pull", () => testChunk(testOperationPull, chunkPull));
-	test("push", () => testChunk(testOperationPush, chunkPush));
+describe(`chunk`, () => {
+	test(`pull`, () => testChunk(testOperationPull, chunkPull));
+	test(`push`, () => testChunk(testOperationPush, chunkPush));
 });

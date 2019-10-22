@@ -34,7 +34,7 @@ function testSome(testOperation, some) {
 	});
 }
 
-describe("some", () => {
-	test("pull", () => testSome(testOperationPull, somePull));
-	test("push", () => testSome(testOperationPush, somePush));
+describe(`some`, () => {
+	test(`pull`, () => testSome(testOperationPull, somePull));
+	test(`push`, () => testSome(testOperationPush, somePush));
 });

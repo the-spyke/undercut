@@ -22,7 +22,7 @@ function testCount(testOperation, count) {
 	});
 }
 
-describe("count", () => {
-	test("pull", () => testCount(testOperationPull, countPull));
-	test("push", () => testCount(testOperationPush, countPush));
+describe(`count`, () => {
+	test(`pull`, () => testCount(testOperationPull, countPull));
+	test(`push`, () => testCount(testOperationPush, countPush));
 });

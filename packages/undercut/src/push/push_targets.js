@@ -7,8 +7,12 @@ export function toArray() {
 		next(value) {
 			this.values.push(value);
 		},
-		return() { /* Empty. */ },
-		throw(e) { throw e; },
+		return() {
+			// Empty.
+		},
+		throw(e) {
+			throw e;
+		},
 		values: [],
 	};
 }
@@ -49,9 +53,15 @@ export function toConsumer(consumer, finalizer) {
  */
 export function toNull() {
 	return {
-		next() { /* Empty. */ },
-		return() { /* Empty. */ },
-		throw(e) { throw e; }
+		next() {
+			// Empty.
+		},
+		return() {
+			// Empty.
+		},
+		throw(e) {
+			throw e;
+		}
 	};
 }
 

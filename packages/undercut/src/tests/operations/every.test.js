@@ -39,7 +39,7 @@ function testEvery(testOperation, every) {
 	});
 }
 
-describe("every", () => {
-	test("pull", () => testEvery(testOperationPull, everyPull));
-	test("push", () => testEvery(testOperationPush, everyPush));
+describe(`every`, () => {
+	test(`pull`, () => testEvery(testOperationPull, everyPull));
+	test(`push`, () => testEvery(testOperationPush, everyPush));
 });

@@ -11,7 +11,7 @@ export function take(count) {
 }
 
 export function takeWhile(predicate) {
-	assertFunctor(predicate, "predicate");
+	assertFunctor(predicate, `predicate`);
 
 	return function* (observer) {
 		try {

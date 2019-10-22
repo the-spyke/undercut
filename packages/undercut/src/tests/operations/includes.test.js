@@ -24,7 +24,7 @@ function testIncludes(testOperation, includes) {
 	});
 }
 
-describe("includes", () => {
-	test("pull", () => testIncludes(testOperationPull, includesPull));
-	test("push", () => testIncludes(testOperationPush, includesPush));
+describe(`includes`, () => {
+	test(`pull`, () => testIncludes(testOperationPull, includesPull));
+	test(`push`, () => testIncludes(testOperationPush, includesPush));
 });

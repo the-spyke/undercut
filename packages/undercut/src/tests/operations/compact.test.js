@@ -17,12 +17,12 @@ function testCompact(testOperation, compact) {
 		target: []
 	});
 	testOperation(compact, {
-		source: [0, 1, false, 4, null, undefined, -1, "test", true, [], {}, ""],
-		target: [1, 4, -1, "test", true, [], {}]
+		source: [0, 1, false, 4, null, undefined, -1, `test`, true, [], {}, ``],
+		target: [1, 4, -1, `test`, true, [], {}]
 	});
 }
 
-describe("compact", () => {
-	test("pull", () => testCompact(testOperationPull, compactPull));
-	test("push", () => testCompact(testOperationPush, compactPush));
+describe(`compact`, () => {
+	test(`pull`, () => testCompact(testOperationPull, compactPull));
+	test(`push`, () => testCompact(testOperationPush, compactPush));
 });

@@ -28,15 +28,15 @@ export function orderingFactory(specs) {
 }
 
 export function asc(comparator, selector = identity) {
-	assertFunctor(comparator, "comparator");
-	assertFunctor(selector, "selector");
+	assertFunctor(comparator, `comparator`);
+	assertFunctor(selector, `selector`);
 
 	return [comparator, selector, 1];
 }
 
 export function desc(comparator, selector = identity) {
-	assertFunctor(comparator, "comparator");
-	assertFunctor(selector, "selector");
+	assertFunctor(comparator, `comparator`);
+	assertFunctor(selector, `selector`);
 
 	return [comparator, selector, -1];
 }

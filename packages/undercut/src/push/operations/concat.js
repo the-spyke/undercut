@@ -12,11 +12,11 @@ export function concatStart(source) {
 			const firstItem = yield;
 
 			hasItems = true;
-			
+
 			for (const item of source) {
 				observer.next(item);
 			}
-			
+
 			observer.next(firstItem);
 
 			while (true) {

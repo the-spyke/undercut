@@ -13,7 +13,7 @@ import {
 	pushLine,
 } from "./push_core.js";
 
-test("composeOperations", () => {
+test(`composeOperations`, () => {
 	function interleave(...sources) {
 		return composeOperations([
 			zip(...sources),
@@ -24,7 +24,7 @@ test("composeOperations", () => {
 	expect(testPush(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
 });
 
-test("pushLine", () => {
+test(`pushLine`, () => {
 	function testPushLine(pushLineFactory, source) {
 		const target = toArray();
 		const observer = pushLineFactory(target);
@@ -71,7 +71,7 @@ test("pushLine", () => {
 	expect(target.values).toEqual([0, 2, 4, 14, 0, 2, 4]);
 });
 
-test("push", () => {
+test(`push`, () => {
 	expect(() => push()).toThrow();
 	expect(() => push(toArray())).toThrow();
 	expect(() => push(toArray(), [])).toThrow();
@@ -97,7 +97,7 @@ test("push", () => {
 	expect(push(target, [map(x => x * 0)], [3, 4]).values).toEqual([0, 0]);
 });
 
-test("pushItems", () => {
+test(`pushItems`, () => {
 	expect(() => pushItems()).toThrow();
 	expect(() => pushItems([])).toThrow();
 	expect(() => pushItems(2, [])).toThrow();

@@ -44,9 +44,9 @@ function testTake(testOperation, take) {
 	});
 }
 
-describe("take", () => {
-	test("pull", () => testTake(testOperationPull, takePull));
-	test("push", () => testTake(testOperationPush, takePush));
+describe(`take`, () => {
+	test(`pull`, () => testTake(testOperationPull, takePull));
+	test(`push`, () => testTake(testOperationPush, takePush));
 });
 
 function testTakeWhile(testOperation, takeWhile) {
@@ -91,7 +91,7 @@ function testTakeWhile(testOperation, takeWhile) {
 	});
 }
 
-describe("takeWhile", () => {
-	test("pull", () => testTakeWhile(testOperationPull, takeWhilePull));
-	test("push", () => testTakeWhile(testOperationPush, takeWhilePush));
+describe(`takeWhile`, () => {
+	test(`pull`, () => testTakeWhile(testOperationPull, takeWhilePull));
+	test(`push`, () => testTakeWhile(testOperationPush, takeWhilePush));
 });

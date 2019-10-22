@@ -21,14 +21,14 @@ function testUnique(testOperation, unique) {
 		target: [1, 2]
 	});
 	testOperation(unique, {
-		source: ["a", 1, "a"],
-		target: ["a", 1]
+		source: [`a`, 1, `a`],
+		target: [`a`, 1]
 	});
 
 	const users = [
-		{ name: "a" },
-		{ name: "b" },
-		{ name: "c" }
+		{ name: `a` },
+		{ name: `b` },
+		{ name: `c` }
 	];
 
 	testOperation(unique, {
@@ -37,9 +37,9 @@ function testUnique(testOperation, unique) {
 	});
 }
 
-describe("unique", () => {
-	test("pull", () => testUnique(testOperationPull, uniquePull));
-	test("push", () => testUnique(testOperationPush, uniquePush));
+describe(`unique`, () => {
+	test(`pull`, () => testUnique(testOperationPull, uniquePull));
+	test(`push`, () => testUnique(testOperationPush, uniquePush));
 });
 
 function testUniqueBy(testOperation, uniqueBy) {
@@ -58,7 +58,7 @@ function testUniqueBy(testOperation, uniqueBy) {
 	});
 }
 
-describe("uniqueBy", () => {
-	test("pull", () => testUniqueBy(testOperationPull, uniqueByPull));
-	test("push", () => testUniqueBy(testOperationPush, uniqueByPush));
+describe(`uniqueBy`, () => {
+	test(`pull`, () => testUniqueBy(testOperationPull, uniqueByPull));
+	test(`push`, () => testUniqueBy(testOperationPush, uniqueByPush));
 });

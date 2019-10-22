@@ -57,9 +57,9 @@ function testFlatten(testOperation, flatten) {
 	});
 }
 
-describe("flatten", () => {
-	test("pull", () => testFlatten(testOperationPull, flattenPull));
-	test("push", () => testFlatten(testOperationPush, flattenPush));
+describe(`flatten`, () => {
+	test(`pull`, () => testFlatten(testOperationPull, flattenPull));
+	test(`push`, () => testFlatten(testOperationPush, flattenPush));
 });
 
 function testFlattenIterables(testOperation, flattenIterables) {
@@ -74,8 +74,8 @@ function testFlattenIterables(testOperation, flattenIterables) {
 		target: [undefined]
 	});
 	testOperation(flattenIterables, {
-		source: ["test", 1, ["test"]],
-		target: ["t", "e", "s", "t", 1, "test"]
+		source: [`test`, 1, [`test`]],
+		target: [`t`, `e`, `s`, `t`, 1, `test`]
 	});
 	testOperation(flattenIterables, {
 		args: [5],
@@ -84,7 +84,7 @@ function testFlattenIterables(testOperation, flattenIterables) {
 	});
 }
 
-describe("flattenIterables", () => {
-	test("pull", () => testFlattenIterables(testOperationPull, flattenIterablesPull));
-	test("push", () => testFlattenIterables(testOperationPush, flattenIterablesPush));
+describe(`flattenIterables`, () => {
+	test(`pull`, () => testFlattenIterables(testOperationPull, flattenIterablesPull));
+	test(`push`, () => testFlattenIterables(testOperationPush, flattenIterablesPush));
 });

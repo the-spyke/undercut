@@ -4,7 +4,7 @@ import {
 	toArray,
 } from "./push.js";
 
-test("simple push scenarios", () => {
+test(`simple push scenarios`, () => {
 	const data1 = [1, 2, 3, 4, 5, 6, 7];
 	const pipeline1 = [
 		map(x => x + 3),

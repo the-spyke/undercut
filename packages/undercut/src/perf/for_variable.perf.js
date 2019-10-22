@@ -14,8 +14,7 @@ function fn2(a, b) {
 	return 4 + a + b;
 }
 
-
-runPerfSuite("for-variable", {
+runPerfSuite(`for-variable`, {
 	"0-params-0-args": () => {
 		for (let i = 0; i < n; i++) {
 			fn0();

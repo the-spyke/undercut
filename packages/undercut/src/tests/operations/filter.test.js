@@ -35,7 +35,7 @@ function testFilter(testOperation, filter) {
 	});
 }
 
-describe("filter", () => {
-	test("pull", () => testFilter(testOperationPull, filterPull));
-	test("push", () => testFilter(testOperationPush, filterPush));
+describe(`filter`, () => {
+	test(`pull`, () => testFilter(testOperationPull, filterPull));
+	test(`push`, () => testFilter(testOperationPush, filterPush));
 });

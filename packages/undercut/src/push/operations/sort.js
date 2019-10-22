@@ -4,7 +4,7 @@ import { closeObserver } from "../../utils/observer.js";
 import { asc, desc } from "../../utils/ordering.js";
 
 export function sort(comparator, order = asc) {
-	assertFunctor(comparator, "comparator");
+	assertFunctor(comparator, `comparator`);
 	assert(order === asc || order === desc, `"order" must be the asc or the desc function.`);
 
 	return function* (observer) {

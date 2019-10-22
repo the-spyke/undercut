@@ -33,15 +33,15 @@ function testIntersection(testOperation, intersection) {
 		target: [2]
 	});
 	testOperation(intersection, {
-		args: [["a", 1, false]],
-		source: [false, "a", 2, undefined],
-		target: [false, "a"]
+		args: [[`a`, 1, false]],
+		source: [false, `a`, 2, undefined],
+		target: [false, `a`]
 	});
 }
 
-describe("intersection", () => {
-	test("pull", () => testIntersection(testOperationPull, intersectionPull));
-	test("push", () => testIntersection(testOperationPush, intersectionPush));
+describe(`intersection`, () => {
+	test(`pull`, () => testIntersection(testOperationPull, intersectionPull));
+	test(`push`, () => testIntersection(testOperationPush, intersectionPush));
 });
 
 function testIntersectionBy(testOperation, intersectionBy) {
@@ -60,7 +60,7 @@ function testIntersectionBy(testOperation, intersectionBy) {
 	});
 }
 
-describe("intersectionBy", () => {
-	test("pull", () => testIntersectionBy(testOperationPull, intersectionByPull));
-	test("push", () => testIntersectionBy(testOperationPush, intersectionByPush));
+describe(`intersectionBy`, () => {
+	test(`pull`, () => testIntersectionBy(testOperationPull, intersectionByPull));
+	test(`push`, () => testIntersectionBy(testOperationPush, intersectionByPush));
 });

@@ -22,7 +22,7 @@ function testFirst(testOperation, first) {
 	});
 }
 
-describe("first", () => {
-	test("pull", () => testFirst(testOperationPull, firstPull));
-	test("push", () => testFirst(testOperationPush, firstPush));
+describe(`first`, () => {
+	test(`pull`, () => testFirst(testOperationPull, firstPull));
+	test(`push`, () => testFirst(testOperationPush, firstPush));
 });

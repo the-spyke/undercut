@@ -22,7 +22,7 @@ function testSum(testOperation, sum) {
 	});
 }
 
-describe("sum", () => {
-	test("pull", () => testSum(testOperationPull, sumPull));
-	test("push", () => testSum(testOperationPush, sumPush));
+describe(`sum`, () => {
+	test(`pull`, () => testSum(testOperationPull, sumPull));
+	test(`push`, () => testSum(testOperationPush, sumPush));
 });

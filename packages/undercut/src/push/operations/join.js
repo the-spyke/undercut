@@ -1,6 +1,6 @@
 import { closeObserver } from "../../utils/observer.js";
 
-export function join(separator = ",") {
+export function join(separator = `,`) {
 	separator = String(separator);
 
 	return function* (observer) {
@@ -10,7 +10,7 @@ export function join(separator = ",") {
 		try {
 			while (true) {
 				const item = yield;
-				const value = item != null ? String(item) : "";
+				const value = item != null ? String(item) : ``;
 
 				if (result !== null) {
 					result += `${separator}${value}`;
@@ -23,7 +23,7 @@ export function join(separator = ",") {
 			observer.throw(e);
 		} finally {
 			if (success) {
-				observer.next(result || "");
+				observer.next(result || ``);
 			}
 
 			closeObserver(observer);

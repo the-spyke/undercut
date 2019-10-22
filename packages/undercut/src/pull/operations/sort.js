@@ -3,12 +3,12 @@ import { numbers, strings } from "../../utils/compare.js";
 import { asc, desc } from "../../utils/ordering.js";
 
 export function sort(comparator, order = asc) {
-	assertFunctor(comparator, "comparator");
+	assertFunctor(comparator, `comparator`);
 	assert(order === asc || order === desc, `"order" must be the asc or the desc function.`);
 
 	return function* (iterable) {
 		const items = [...iterable].sort(comparator);
-		
+
 		if (order === asc) {
 			yield* items;
 		} else {

@@ -1,3 +1,5 @@
+import { noop } from "../utils/function.js";
+
 import {
 	isBoolean, isDefined, isFalsy, isFunction, isIterable,
 	isIterator, isNegative, isNegativeOrZero, isNull, isNullish,
@@ -5,86 +7,88 @@ import {
 	isPositive, isPositiveOrZero, isString, isSymbol, isTruthy, isUndefined
 } from "./language.js";
 
-test("isBoolean", () => {
+test(`isBoolean`, () => {
 	expect(isBoolean(false)).toBe(true);
 });
 
-test("isDefined", () => {
+test(`isDefined`, () => {
 	expect(isDefined([])).toBe(true);
 });
 
-test("isFalsy", () => {
-	expect(isFalsy("")).toBe(true);
+test(`isFalsy`, () => {
+	expect(isFalsy(``)).toBe(true);
 });
 
-test("isFunction", () => {
-	expect(isFunction(() => { })).toBe(true);
+test(`isFunction`, () => {
+	expect(isFunction(noop)).toBe(true);
 });
 
-test("isIterable", () => {
+test(`isIterable`, () => {
 	expect(isIterable([])).toBe(true);
 });
 
-test("isIterator", () => {
+test(`isIterator`, () => {
 	expect(isIterator([].values())).toBe(true);
 });
 
-test("isNegative", () => {
+test(`isNegative`, () => {
 	expect(isNegative(-123)).toBe(true);
 });
 
-test("isNegativeOrZero", () => {
+test(`isNegativeOrZero`, () => {
 	expect(isNegativeOrZero(0)).toBe(true);
 });
 
-test("isNull", () => {
+test(`isNull`, () => {
 	expect(isNull(null)).toBe(true);
 });
 
-test("isNullish", () => {
+test(`isNullish`, () => {
 	expect(isNullish(null)).toBe(true);
 });
 
-test("isNumber", () => {
+test(`isNumber`, () => {
 	expect(isNumber(2)).toBe(true);
 });
 
-test("isNumberValue", () => {
+test(`isNumberValue`, () => {
 	expect(isNumberValue(Infinity)).toBe(true);
 });
 
-test("isObject", () => {
+test(`isObject`, () => {
 	expect(isObject({})).toBe(true);
 });
 
-test("isObjectValue", () => {
+test(`isObjectValue`, () => {
 	expect(isObjectValue({})).toBe(true);
 });
 
-test("isObserver", () => {
-	expect(isObserver((function* () { yield; })())).toBe(true);
+test(`isObserver`, () => {
+	expect(isObserver((function* () {
+		yield;
+	})())).toBe(true);
 });
 
-test("isPositive", () => {
+test(`isPositive`, () => {
 	expect(isPositive(5)).toBe(true);
 });
 
-test("isPositiveOrZero", () => {
+test(`isPositiveOrZero`, () => {
 	expect(isPositiveOrZero(0)).toBe(true);
 });
 
-test("isString", () => {
-	expect(isString("")).toBe(true);
+test(`isString`, () => {
+	expect(isString(``)).toBe(true);
 });
 
-test("isSymbol", () => {
+test(`isSymbol`, () => {
 	expect(isSymbol(Symbol())).toBe(true);
 });
 
-test("isTruthy", () => {
-	expect(isTruthy("false")).toBe(true);
+test(`isTruthy`, () => {
+	expect(isTruthy(`false`)).toBe(true);
 });
 
-test("isUndefined", () => {
+test(`isUndefined`, () => {
 	expect(isUndefined(undefined)).toBe(true);
 });

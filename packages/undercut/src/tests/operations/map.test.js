@@ -24,7 +24,7 @@ function testMap(testOperation, map) {
 	});
 }
 
-describe("map", () => {
-	test("pull", () => testMap(testOperationPull, mapPull));
-	test("push", () => testMap(testOperationPush, mapPush));
+describe(`map`, () => {
+	test(`pull`, () => testMap(testOperationPull, mapPull));
+	test(`push`, () => testMap(testOperationPush, mapPush));
 });

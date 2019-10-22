@@ -2,7 +2,7 @@ import { assertFunctor } from "../../utils/assert.js";
 import { closeObserver } from "../../utils/observer.js";
 
 export function every(predicate) {
-	assertFunctor(predicate, "predicate");
+	assertFunctor(predicate, `predicate`);
 
 	return function* (observer) {
 		let success = true;

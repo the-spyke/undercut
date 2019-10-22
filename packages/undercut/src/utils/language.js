@@ -3,7 +3,7 @@
  * @returns {boolean}
  */
 export function isBoolean(value) {
-	return typeof value === "boolean";
+	return typeof value === `boolean`;
 }
 
 /**
@@ -11,7 +11,7 @@ export function isBoolean(value) {
  * @returns {boolean}
  */
 export function isDefined(value) {
-	return typeof value !== "undefined";
+	return typeof value !== `undefined`;
 }
 
 /**
@@ -27,7 +27,7 @@ export function isFalsy(value) {
  * @returns {boolean}
  */
 export function isFunction(value) {
-	return typeof value === "function";
+	return typeof value === `function`;
 }
 
 /**
@@ -51,7 +51,7 @@ export function isIterator(value) {
  * @returns {boolean}
  */
 export function isNegative(value) {
-	return isNumberValue(value) && value < 0
+	return isNumberValue(value) && value < 0;
 }
 
 /**
@@ -59,7 +59,7 @@ export function isNegative(value) {
  * @returns {boolean}
  */
 export function isNegativeOrZero(value) {
-	return isNumberValue(value) && value <= 0
+	return isNumberValue(value) && value <= 0;
 }
 
 /**
@@ -84,7 +84,7 @@ export function isNullish(value) {
  * @returns {boolean}
  */
 export function isNumber(value) {
-	return typeof value === "number";
+	return typeof value === `number`;
 }
 
 /**
@@ -101,7 +101,7 @@ export function isNumberValue(value) {
  * @returns {boolean}
  */
 export function isObject(value) {
-	return typeof value === "object";
+	return typeof value === `object`;
 }
 
 /**
@@ -126,7 +126,7 @@ export function isObserver(value) {
  * @returns {boolean}
  */
 export function isPositive(value) {
-	return isNumberValue(value) && value > 0
+	return isNumberValue(value) && value > 0;
 }
 
 /**
@@ -134,7 +134,7 @@ export function isPositive(value) {
  * @returns {boolean}
  */
 export function isPositiveOrZero(value) {
-	return isNumberValue(value) && value >= 0
+	return isNumberValue(value) && value >= 0;
 }
 
 /**
@@ -142,7 +142,7 @@ export function isPositiveOrZero(value) {
  * @returns {boolean}
  */
 export function isString(value) {
-	return typeof value === "string";
+	return typeof value === `string`;
 }
 
 /**
@@ -150,7 +150,7 @@ export function isString(value) {
  * @returns {boolean}
  */
 export function isSymbol(value) {
-	return typeof value === "symbol";
+	return typeof value === `symbol`;
 }
 
 /**
@@ -166,5 +166,5 @@ export function isTruthy(value) {
  * @returns {boolean}
  */
 export function isUndefined(value) {
-	return typeof value === "undefined";
+	return typeof value === `undefined`;
 }

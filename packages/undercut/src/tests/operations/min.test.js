@@ -30,7 +30,7 @@ function testMin(testOperation, min) {
 	});
 }
 
-describe("min", () => {
-	test("pull", () => testMin(testOperationPull, minPull));
-	test("push", () => testMin(testOperationPush, minPush));
+describe(`min`, () => {
+	test(`pull`, () => testMin(testOperationPull, minPull));
+	test(`push`, () => testMin(testOperationPush, minPush));
 });

@@ -10,7 +10,7 @@ export const union = unionBy.bind(undefined, identity);
  * Multisets are not supported.
  */
 export function unionBy(selector, ...sources) {
-	assertFunctor(selector, "selector");
+	assertFunctor(selector, `selector`);
 
 	return function* (iterable) {
 		const keys = new Set();

@@ -9,7 +9,7 @@ import {
 	toValue,
 } from "./pull_targets.js";
 
-test("toArray", () => {
+test(`toArray`, () => {
 	expect(toArray([])).toEqual([]);
 	expect(toArray([1, 2, 3])).toEqual([1, 2, 3]);
 	expect(toArray(
@@ -21,13 +21,14 @@ test("toArray", () => {
 	)).toEqual([false, 0, null]);
 });
 
-test("toConsumer", () => {
+test(`toConsumer`, () => {
 	const consumer = jest.fn();
+
 	expect(toConsumer(consumer)([1, 2])).toBe(undefined);
 	expect(consumer.mock.calls).toEqual([[1, 0], [2, 1]]);
 });
 
-test("toMap", () => {
+test(`toMap`, () => {
 	expect(toMap([])).toEqual(new Map());
 	expect(toMap(
 		(function* gen() {
@@ -39,9 +40,11 @@ test("toMap", () => {
 	)).toEqual(new Map([[1, 2], [null, 3], [4, 5]]));
 });
 
-test("toNull", () => {
+test(`toNull`, () => {
 	expect(toNull([1, 2])).toBe(undefined);
-	let isFinished = false
+
+	let isFinished = false;
+
 	expect(toNull(
 		(function* gen() {
 			yield [1, 2];
@@ -53,25 +56,29 @@ test("toNull", () => {
 	expect(isFinished).toBe(true);
 });
 
-test("toObject", () => {
+test(`toObject`, () => {
 	expect(toObject([])).toEqual({});
 	expect(toObject(
 		(function* gen() {
-			yield ["a", 2];
-			yield ["b", 3];
-			yield ["c", 5];
+			yield [`a`, 2];
+			yield [`b`, 3];
+			yield [`c`, 5];
 		})()
 	)).toEqual({ "a": 2, "b": 3, "c": 5 });
 });
 
-test("toPushLine", () => {
+test(`toPushLine`, () => {
 	expect(() => toPushLine()).toThrow();
 	expect(() => toPushLine(1)).toThrow();
 
 	const pushLine1 = {
-		next(value) { this.values.push(value); },
-		return() { },
-		throw(e) { throw e; },
+		next(value) {
+			this.values.push(value);
+		},
+		return() { /* Empty. */ },
+		throw: e => {
+			throw e;
+		},
 		values: [],
 	};
 
@@ -83,8 +90,7 @@ test("toPushLine", () => {
 	expect(pushLine1.values).toEqual([1, 5, 3]);
 });
 
-
-test("toSet", () => {
+test(`toSet`, () => {
 	expect(toSet([])).toEqual(new Set());
 	expect(toSet(
 		(function* gen() {
@@ -96,7 +102,7 @@ test("toSet", () => {
 	)).toEqual(new Set([1, null, 4]));
 });
 
-test("toValue", () => {
+test(`toValue`, () => {
 	expect(() => toValue([])).toThrow();
 	expect(toValue(
 		(function* gen() {

@@ -29,14 +29,14 @@ function testUnzip(testOperation, unzip) {
 		target: [[1, 4], [2, 5], [3, 6]]
 	});
 	testOperation(unzip, {
-		source: [[1,2,3], [4,5,6]],
+		source: [[1, 2, 3], [4, 5, 6]],
 		target: [[1, 4], [2, 5], [3, 6]]
 	});
 }
 
-describe("unzip", () => {
-	test("pull", () => testUnzip(testOperationPull, unzipPull));
-	test("push", () => testUnzip(testOperationPush, unzipPush));
+describe(`unzip`, () => {
+	test(`pull`, () => testUnzip(testOperationPull, unzipPull));
+	test(`push`, () => testUnzip(testOperationPush, unzipPush));
 });
 
 function testUnzipWith(testOperation, unzipWith) {
@@ -59,26 +59,26 @@ function testUnzipWith(testOperation, unzipWith) {
 		target: [[1], [1]]
 	});
 	testOperation(unzipWith, {
-		args: [item => item.split(",").map(Number)],
-		source: ["1,2,3", "4,5,6"],
+		args: [item => item.split(`,`).map(Number)],
+		source: [`1,2,3`, `4,5,6`],
 		target: [[1, 4], [2, 5], [3, 6]]
 	});
 }
 
-describe("unzipWith", () => {
-	test("pull", () => {
+describe(`unzipWith`, () => {
+	test(`pull`, () => {
 		testUnzipWith(testOperationPull, unzipWithPull);
 
 		expect(() => testPull(
-			unzipWithPull(item => (new Array(item)).fill(item)),
+			unzipWithPull(item => new Array(item).fill(item)),
 			[1, 2, 1]
 		)).toThrow(`"itemsExtractor" returns variable length arrays: was 1, now 2`);
 	});
-	test("push", () => {
+	test(`push`, () => {
 		testUnzipWith(testOperationPush, unzipWithPush);
 
 		expect(() => testPush(
-			unzipWithPush(item => (new Array(item)).fill(item)),
+			unzipWithPush(item => new Array(item).fill(item)),
 			[1, 2, 1]
 		)).toThrow(`"itemsExtractor" returns variable length arrays: was 1, now 2`);
 	});

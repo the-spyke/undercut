@@ -10,7 +10,7 @@ export function skip(count) {
 }
 
 export function skipWhile(predicate) {
-	assertFunctor(predicate, "predicate");
+	assertFunctor(predicate, `predicate`);
 
 	return function* (iterable) {
 		let doSkip = true;

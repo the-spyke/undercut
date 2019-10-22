@@ -3,7 +3,7 @@ import {
 	unwrap,
 } from "./promise.js";
 
-test("delay", () => {
+test(`delay`, () => {
 	expect(delay()).toEqual(expect.any(Promise));
 
 	const timeStart = Date.now();
@@ -11,8 +11,8 @@ test("delay", () => {
 	return expect(delay(21).then(() => Date.now() - timeStart)).resolves.toBeGreaterThanOrEqual(20);
 });
 
-describe("unwrap", () => {
-	test("should return a promise and its resolve/reject handlers", () => {
+describe(`unwrap`, () => {
+	test(`should return a promise and its resolve/reject handlers`, () => {
 		expect(unwrap()).toEqual(expect.objectContaining({
 			promise: expect.any(Promise),
 			resolve: expect.any(Function),
@@ -20,7 +20,7 @@ describe("unwrap", () => {
 		}));
 	});
 
-	test("should resolve promise on executing the resolve handler", () => {
+	test(`should resolve promise on executing the resolve handler`, () => {
 		const promiseInfo = unwrap();
 
 		promiseInfo.resolve(234);
@@ -28,7 +28,7 @@ describe("unwrap", () => {
 		return expect(promiseInfo.promise).resolves.toBe(234);
 	});
 
-	test("should reject promise on executing the reject handler", () => {
+	test(`should reject promise on executing the reject handler`, () => {
 		const promiseInfo = unwrap();
 
 		promiseInfo.reject(123);

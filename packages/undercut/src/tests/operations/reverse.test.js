@@ -17,12 +17,12 @@ function testReverse(testOperation, reverse) {
 		target: [5, 2]
 	});
 	testOperation(reverse, {
-		source: [undefined, 1, -7, "test", 0, null],
-		target: [null, 0, "test", -7, 1, undefined]
+		source: [undefined, 1, -7, `test`, 0, null],
+		target: [null, 0, `test`, -7, 1, undefined]
 	});
 }
 
-describe("reverse", () => {
-	test("pull", () => testReverse(testOperationPull, reversePull));
-	test("push", () => testReverse(testOperationPush, reversePush));
+describe(`reverse`, () => {
+	test(`pull`, () => testReverse(testOperationPull, reversePull));
+	test(`push`, () => testReverse(testOperationPush, reversePush));
 });

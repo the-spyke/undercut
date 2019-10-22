@@ -44,9 +44,9 @@ function testSkip(testOperation, skip) {
 	});
 }
 
-describe("skip", () => {
-	test("pull", () => testSkip(testOperationPull, skipPull));
-	test("push", () => testSkip(testOperationPush, skipPush));
+describe(`skip`, () => {
+	test(`pull`, () => testSkip(testOperationPull, skipPull));
+	test(`push`, () => testSkip(testOperationPush, skipPush));
 });
 
 function testSkipWhile(testOperation, skipWhile) {
@@ -90,7 +90,7 @@ function testSkipWhile(testOperation, skipWhile) {
 	});
 }
 
-describe("skipWhile", () => {
-	test("pull", () => testSkipWhile(testOperationPull, skipWhilePull));
-	test("push", () => testSkipWhile(testOperationPush, skipWhilePush));
+describe(`skipWhile`, () => {
+	test(`pull`, () => testSkipWhile(testOperationPull, skipWhilePull));
+	test(`push`, () => testSkipWhile(testOperationPush, skipWhilePush));
 });

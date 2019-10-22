@@ -26,7 +26,7 @@ function testAverage(testOperation, average) {
 	});
 }
 
-describe("average", () => {
-	test("pull", () => testAverage(testOperationPull, averagePull));
-	test("push", () => testAverage(testOperationPush, averagePush));
+describe(`average`, () => {
+	test(`pull`, () => testAverage(testOperationPull, averagePull));
+	test(`push`, () => testAverage(testOperationPush, averagePush));
 });

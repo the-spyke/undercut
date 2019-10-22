@@ -7,14 +7,14 @@ function isUndefinedEqual(value) {
 }
 
 function isUndefinedType(value) {
-	return typeof value === "undefined";
+	return typeof value === `undefined`;
 }
 
 function isDefined(value) {
-	return typeof value !== "undefined";
+	return typeof value !== `undefined`;
 }
 
-runPerfSuite("min : check for undefined", {
+runPerfSuite(`min : check for undefined`, {
 	"equality": () => {
 		return isUndefinedEqual(x) === false;
 	},
@@ -38,7 +38,7 @@ function isTruthyBoolean(value) {
 	return Boolean(value);
 }
 
-runPerfSuite("min : check is truthy", {
+runPerfSuite(`min : check is truthy`, {
 	"negation": () => {
 		return isTruthyNegation(x) === true;
 	},

@@ -34,7 +34,7 @@ function testNth(testOperation, nth) {
 	});
 }
 
-describe("nth", () => {
-	test("pull", () => testNth(testOperationPull, nthPull));
-	test("push", () => testNth(testOperationPush, nthPush));
+describe(`nth`, () => {
+	test(`pull`, () => testNth(testOperationPull, nthPull));
+	test(`push`, () => testNth(testOperationPush, nthPush));
 });

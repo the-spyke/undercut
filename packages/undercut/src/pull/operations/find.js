@@ -1,7 +1,7 @@
 import { assertFunctor } from "../../utils/assert.js";
 
 function findCore(predicate, isIndex) {
-	assertFunctor(predicate, "predicate");
+	assertFunctor(predicate, `predicate`);
 
 	return function* (iterable) {
 		let index = 0;

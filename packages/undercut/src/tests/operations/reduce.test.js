@@ -1,4 +1,3 @@
-
 import { testOperationPull, testOperationPush } from "../../utils/tests.js";
 
 import { reduce as reducePull } from "../../pull/operations/reduce.js";
@@ -30,7 +29,7 @@ function testReduce(testOperation, reduce) {
 	});
 }
 
-describe("reduce", () => {
-	test("pull", () => testReduce(testOperationPull, reducePull));
-	test("push", () => testReduce(testOperationPush, reducePush));
+describe(`reduce`, () => {
+	test(`pull`, () => testReduce(testOperationPull, reducePull));
+	test(`push`, () => testReduce(testOperationPush, reducePush));
 });

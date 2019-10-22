@@ -31,7 +31,7 @@ function testInterleave(testOperation, interleave) {
 	});
 }
 
-describe("interleave", () => {
-	test("pull", () => testInterleave(testOperationPull, interleavePull));
-	test("push", () => testInterleave(testOperationPush, interleavePush));
+describe(`interleave`, () => {
+	test(`pull`, () => testInterleave(testOperationPull, interleavePull));
+	test(`push`, () => testInterleave(testOperationPush, interleavePush));
 });

@@ -3,7 +3,7 @@ import { identity } from "./function.js";
 
 import { asc, desc } from "./ordering.js";
 
-test("asc", () => {
+test(`asc`, () => {
 	const selector = x => x;
 
 	expect(() => asc()).toThrow();
@@ -11,7 +11,7 @@ test("asc", () => {
 	expect(asc(compare.numbers, selector)).toEqual([compare.numbers, selector, 1]);
 });
 
-test("desc", () => {
+test(`desc`, () => {
 	const selector = x => x;
 
 	expect(() => desc()).toThrow();

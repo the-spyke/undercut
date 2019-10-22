@@ -1,7 +1,7 @@
 import { assertFunctor } from "../../utils/assert.js";
 
 export function filter(predicate) {
-	assertFunctor(predicate, "predicate");
+	assertFunctor(predicate, `predicate`);
 
 	return function* (iterable) {
 		let index = 0;

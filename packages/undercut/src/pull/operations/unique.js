@@ -14,7 +14,7 @@ export function unique() {
  * Multisets are not supported.
  */
 export function uniqueBy(selector) {
-	assertFunctor(selector, "selector");
+	assertFunctor(selector, `selector`);
 
 	return unionBy(selector);
 }

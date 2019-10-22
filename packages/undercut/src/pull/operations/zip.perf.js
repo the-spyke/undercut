@@ -37,7 +37,7 @@ function manual4(x, y, z, z2) {
 	return [x, y, z, z2];
 }
 
-runPerfSuite("zip-reducer-argumemts", {
+runPerfSuite(`zip-reducer-argumemts`, {
 	"fixed-x2": () => {
 		return testPull(zip1(manual2, b), a);
 	},

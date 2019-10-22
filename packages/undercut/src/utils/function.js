@@ -14,7 +14,7 @@ export function identity(value) {
 export function negate(predicate) {
 	return function (...args) {
 		return !predicate(...args);
-	}
+	};
 }
 
 /**
@@ -25,10 +25,12 @@ export function negate(predicate) {
 export function negateSign(operation) {
 	return function (...args) {
 		return -1 * operation(...args);
-	}
+	};
 }
 
 /**
  * @returns {void}
  */
-export function noop() { }
+export function noop() {
+	// Empty.
+}

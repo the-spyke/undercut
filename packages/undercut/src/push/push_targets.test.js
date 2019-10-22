@@ -1,3 +1,5 @@
+import { noop } from "../utils/function.js";
+
 import {
 	toArray,
 	toConsumer,
@@ -5,12 +7,11 @@ import {
 	toValue,
 } from "./push_targets.js";
 
-test("toArray", () => {
+test(`toArray`, () => {
 	expect(toArray()).toEqual(expect.objectContaining({
 		next: expect.any(Function),
 		throw: expect.any(Function),
 		return: expect.any(Function),
-		// values: expect.any(Array),
 	}));
 
 	const target = toArray();
@@ -23,10 +24,10 @@ test("toArray", () => {
 	expect(target.values).toEqual([4, 2]);
 });
 
-test("toConsumer", () => {
+test(`toConsumer`, () => {
 	expect(() => toConsumer()).toThrow();
 	expect(() => toConsumer(123)).toThrow();
-	expect(() => toConsumer(() => { }, 123)).toThrow();
+	expect(() => toConsumer(noop, 123)).toThrow();
 
 	let consumer = jest.fn();
 	let target = toConsumer(consumer);
@@ -87,7 +88,7 @@ test("toConsumer", () => {
 	expect(finalizer.mock.calls).toEqual([[error, 1]]);
 });
 
-test("toNull", () => {
+test(`toNull`, () => {
 	expect(toNull()).toEqual(expect.objectContaining({
 		next: expect.any(Function),
 		throw: expect.any(Function),
@@ -95,7 +96,7 @@ test("toNull", () => {
 	}));
 });
 
-test("toValue", () => {
+test(`toValue`, () => {
 	expect(() => toValue()).toThrow();
 	expect(() => toValue(123)).toThrow();
 

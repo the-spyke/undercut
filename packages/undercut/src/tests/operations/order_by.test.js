@@ -25,11 +25,11 @@ function testOrderBy(testOperation, orderBy) {
 	});
 
 	const users = [
-		{ id: 0, name: "Tom", posts: 32 },
-		{ id: 1, name: "John", posts: 12 },
-		{ id: 2, name: "Sam", posts: 1 },
-		{ id: 3, name: "John", posts: 5 },
-		{ id: 4, name: "Admin", posts: 1 },
+		{ id: 0, name: `Tom`, posts: 32 },
+		{ id: 1, name: `John`, posts: 12 },
+		{ id: 2, name: `Sam`, posts: 1 },
+		{ id: 3, name: `John`, posts: 5 },
+		{ id: 4, name: `Admin`, posts: 1 },
 	];
 
 	testOperation(orderBy, {
@@ -118,7 +118,7 @@ function testOrderBy(testOperation, orderBy) {
 	});
 }
 
-describe("orderBy", () => {
-	test("pull", () => testOrderBy(testOperationPull, orderByPull));
-	test("push", () => testOrderBy(testOperationPush, orderByPush));
+describe(`orderBy`, () => {
+	test(`pull`, () => testOrderBy(testOperationPull, orderByPull));
+	test(`push`, () => testOrderBy(testOperationPush, orderByPush));
 });

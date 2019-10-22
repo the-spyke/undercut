@@ -8,7 +8,7 @@ function testFind(testOperation, find) {
 
 	testOperation(find, {
 		args: [() => false],
-		source: [3,4],
+		source: [3, 4],
 		target: [],
 		callbackArgs: [[3, 0], [4, 1]]
 	});
@@ -36,21 +36,21 @@ function testFind(testOperation, find) {
 
 	const users = [
 		{},
-		{ name: "a" },
-		{ name: "b" },
-		{ name: "c" }
+		{ name: `a` },
+		{ name: `b` },
+		{ name: `c` }
 	];
 
 	testOperation(find, {
-		args: [u => u.name === "b"],
+		args: [u => u.name === `b`],
 		source: users,
 		target: [users[2]]
 	});
 }
 
-describe("find", () => {
-	test("pull", () => testFind(testOperationPull, findPull));
-	test("push", () => testFind(testOperationPush, findPush));
+describe(`find`, () => {
+	test(`pull`, () => testFind(testOperationPull, findPull));
+	test(`push`, () => testFind(testOperationPush, findPush));
 });
 
 function testFindIndex(testOperation, findIndex) {
@@ -58,7 +58,7 @@ function testFindIndex(testOperation, findIndex) {
 
 	testOperation(findIndex, {
 		args: [() => false],
-		source: [3,4],
+		source: [3, 4],
 		target: [],
 		callbackArgs: [[3, 0], [4, 1]]
 	});
@@ -75,7 +75,7 @@ function testFindIndex(testOperation, findIndex) {
 	});
 	testOperation(findIndex, {
 		args: [x => x === 2],
-		source: [2,5],
+		source: [2, 5],
 		target: [0]
 	});
 	testOperation(findIndex, {
@@ -96,19 +96,19 @@ function testFindIndex(testOperation, findIndex) {
 
 	const users = [
 		{},
-		{ name: "a" },
-		{ name: "b" },
-		{ name: "c" }
+		{ name: `a` },
+		{ name: `b` },
+		{ name: `c` }
 	];
 
 	testOperation(findIndex, {
-		args: [u => u.name === "b"],
+		args: [u => u.name === `b`],
 		source: users,
 		target: [2]
 	});
 }
 
-describe("findIndex", () => {
-	test("pull", () => testFindIndex(testOperationPull, findIndexPull));
-	test("push", () => testFindIndex(testOperationPush, findIndexPush));
+describe(`findIndex`, () => {
+	test(`pull`, () => testFindIndex(testOperationPull, findIndexPull));
+	test(`push`, () => testFindIndex(testOperationPush, findIndexPush));
 });

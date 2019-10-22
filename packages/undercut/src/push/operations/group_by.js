@@ -2,7 +2,7 @@ import { assertFunctor } from "../../utils/assert.js";
 import { closeObserver } from "../../utils/observer.js";
 
 export function groupBy(keySelector) {
-	assertFunctor(keySelector, "keySelector");
+	assertFunctor(keySelector, `keySelector`);
 
 	return function* (observer) {
 		const groups = new Map();
@@ -33,7 +33,7 @@ export function groupBy(keySelector) {
 		} finally {
 			if (success) {
 				for (const group of groups) {
-					observer.next(group)
+					observer.next(group);
 				}
 			}
 

@@ -4,7 +4,7 @@ import {
 	closeObserver,
 } from "./observer.js";
 
-test("initializeObserver", () => {
+test(`initializeObserver`, () => {
 	const observer = {
 		next: jest.fn()
 	};
@@ -13,7 +13,7 @@ test("initializeObserver", () => {
 	expect(observer.next.mock.calls).toEqual([[]]);
 });
 
-test("makeUnclosable", () => {
+test(`makeUnclosable`, () => {
 	expect(() => makeUnclosable()).toThrow();
 	expect(() => makeUnclosable(1)).toThrow();
 	expect(() => makeUnclosable({})).toThrow();
@@ -58,7 +58,7 @@ test("makeUnclosable", () => {
 	expect(observer.next.mock.calls).toEqual([[123], [54], [28]]);
 });
 
-test("closeObserver", () => {
+test(`closeObserver`, () => {
 	expect(() => closeObserver()).toThrow();
 	expect(() => closeObserver({})).not.toThrow();
 

@@ -28,9 +28,9 @@ function testConcatStart(testOperation, concatStart) {
 	});
 }
 
-describe("concatStart", () => {
-	test("pull", () => testConcatStart(testOperationPull, concatStartPull));
-	test("push", () => testConcatStart(testOperationPush, concatStartPush));
+describe(`concatStart`, () => {
+	test(`pull`, () => testConcatStart(testOperationPull, concatStartPull));
+	test(`push`, () => testConcatStart(testOperationPush, concatStartPush));
 });
 
 function testConcatEnd(testOperation, concatEnd) {
@@ -58,7 +58,7 @@ function testConcatEnd(testOperation, concatEnd) {
 	});
 }
 
-describe("concatEnd", () => {
-	test("pull", () => testConcatEnd(testOperationPull, concatEndPull));
-	test("push", () => testConcatEnd(testOperationPush, concatEndPush));
+describe(`concatEnd`, () => {
+	test(`pull`, () => testConcatEnd(testOperationPull, concatEndPull));
+	test(`push`, () => testConcatEnd(testOperationPush, concatEndPush));
 });

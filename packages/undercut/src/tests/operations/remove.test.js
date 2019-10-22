@@ -34,7 +34,7 @@ function testRemove(testOperation, remove) {
 	});
 }
 
-describe("remove", () => {
-	test("pull", () => testRemove(testOperationPull, removePull));
-	test("push", () => testRemove(testOperationPush, removePush));
+describe(`remove`, () => {
+	test(`pull`, () => testRemove(testOperationPull, removePull));
+	test(`push`, () => testRemove(testOperationPush, removePush));
 });

@@ -2,7 +2,7 @@ import { assertFunctor } from "../../utils/assert.js";
 import { closeObserver } from "../../utils/observer.js";
 
 export function reduce(reducer, initial) {
-	assertFunctor(reducer, "predicate");
+	assertFunctor(reducer, `predicate`);
 
 	return function* (observer) {
 		let success = true;

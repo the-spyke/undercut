@@ -34,7 +34,7 @@ function testAppend(testOperation, append) {
 	});
 }
 
-describe("append", () => {
-	test("pull", () => testAppend(testOperationPull, appendPull));
-	test("push", () => testAppend(testOperationPush, appendPush));
+describe(`append`, () => {
+	test(`pull`, () => testAppend(testOperationPull, appendPull));
+	test(`push`, () => testAppend(testOperationPush, appendPush));
 });

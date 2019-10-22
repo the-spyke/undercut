@@ -1,6 +1,6 @@
 import { range } from "./pull_sources.js";
 
-test("range", () => {
+test(`range`, () => {
 	expect(() => range()).toThrow();
 	expect(() => range(1)).toThrow();
 	expect(() => range(undefined, 2)).toThrow();

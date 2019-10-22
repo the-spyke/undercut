@@ -34,7 +34,7 @@ function testPrepend(testOperation, prepend) {
 	});
 }
 
-describe("prepend", () => {
-	test("pull", () => testPrepend(testOperationPull, prependPull));
-	test("push", () => testPrepend(testOperationPush, prependPush));
+describe(`prepend`, () => {
+	test(`pull`, () => testPrepend(testOperationPull, prependPull));
+	test(`push`, () => testPrepend(testOperationPush, prependPush));
 });

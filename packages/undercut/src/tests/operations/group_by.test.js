@@ -28,11 +28,11 @@ function testGroupBy(testOperation, groupBy) {
 	});
 
 	const users = [
-		{ groupId: 1, name: "Tom" },
-		{ groupId: 3, name: "John" },
-		{ groupId: 2, name: "Sam" },
-		{ groupId: 1, name: "Ann" },
-		{ groupId: 2, name: "Dan" },
+		{ groupId: 1, name: `Tom` },
+		{ groupId: 3, name: `John` },
+		{ groupId: 2, name: `Sam` },
+		{ groupId: 1, name: `Ann` },
+		{ groupId: 2, name: `Dan` },
 	];
 
 	testOperation(groupBy, {
@@ -46,7 +46,7 @@ function testGroupBy(testOperation, groupBy) {
 	});
 }
 
-describe("groupBy", () => {
-	test("pull", () => testGroupBy(testOperationPull, groupByPull));
-	test("push", () => testGroupBy(testOperationPush, groupByPush));
+describe(`groupBy`, () => {
+	test(`pull`, () => testGroupBy(testOperationPull, groupByPull));
+	test(`push`, () => testGroupBy(testOperationPush, groupByPush));
 });

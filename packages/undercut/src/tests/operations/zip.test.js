@@ -55,9 +55,9 @@ function testZip(testOperation, zip) {
 	});
 }
 
-describe("zip", () => {
-	test("pull", () => testZip(testOperationPull, zipPull));
-	test("push", () => testZip(testOperationPush, zipPush));
+describe(`zip`, () => {
+	test(`pull`, () => testZip(testOperationPull, zipPull));
+	test(`push`, () => testZip(testOperationPush, zipPush));
 });
 
 function testZipWith(testOperation, zipWith) {
@@ -87,11 +87,11 @@ function testZipWith(testOperation, zipWith) {
 	testOperation(zipWith, {
 		args: [values => values.join(), [3, 4], [5, 6]],
 		source: [1, 2],
-		target: ["1,3,5", "2,4,6"]
+		target: [`1,3,5`, `2,4,6`]
 	});
 }
 
-describe("zipWith", () => {
-	test("pull", () => testZipWith(testOperationPull, zipWithPull));
-	test("push", () => testZipWith(testOperationPush, zipWithPush));
+describe(`zipWith`, () => {
+	test(`pull`, () => testZipWith(testOperationPull, zipWithPull));
+	test(`push`, () => testZipWith(testOperationPush, zipWithPush));
 });

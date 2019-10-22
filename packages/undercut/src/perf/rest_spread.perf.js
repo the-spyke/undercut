@@ -10,7 +10,7 @@ function manual4(x, y, z, z2) {
 	return [x, y, z, z2];
 }
 
-runPerfSuite("rest-spread", {
+runPerfSuite(`rest-spread`, {
 	"base": () => {
 		return manual4(x[0], x[1], x[2], x[3]);
 	},

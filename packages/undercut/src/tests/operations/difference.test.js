@@ -43,15 +43,15 @@ function testDifference(testOperation, difference) {
 		target: [2, 2]
 	});
 	testOperation(difference, {
-		args: [["b", 1], ["c", true, 2], [undefined]],
-		source: [false, "a"],
-		target: [false, "a"]
+		args: [[`b`, 1], [`c`, true, 2], [undefined]],
+		source: [false, `a`],
+		target: [false, `a`]
 	});
 }
 
-describe("difference", () => {
-	test("pull", () => testDifference(testOperationPull, differencePull));
-	test("push", () => testDifference(testOperationPush, differencePush));
+describe(`difference`, () => {
+	test(`pull`, () => testDifference(testOperationPull, differencePull));
+	test(`push`, () => testDifference(testOperationPush, differencePush));
 });
 
 function testDifferenceBy(testOperation, differenceBy) {
@@ -75,9 +75,9 @@ function testDifferenceBy(testOperation, differenceBy) {
 	});
 }
 
-describe("differenceBy", () => {
-	test("pull", () => testDifferenceBy(testOperationPull, differenceByPull));
-	test("push", () => testDifferenceBy(testOperationPush, differenceByPush));
+describe(`differenceBy`, () => {
+	test(`pull`, () => testDifferenceBy(testOperationPull, differenceByPull));
+	test(`push`, () => testDifferenceBy(testOperationPush, differenceByPush));
 });
 
 function testSymmetricDifference(testOperation, symmetricDifference) {
@@ -111,9 +111,9 @@ function testSymmetricDifference(testOperation, symmetricDifference) {
 	});
 }
 
-describe("symmetricDifference", () => {
-	test("pull", () => testSymmetricDifference(testOperationPull, symmetricDifferencePull));
-	test("push", () => testSymmetricDifference(testOperationPush, symmetricDifferencePush));
+describe(`symmetricDifference`, () => {
+	test(`pull`, () => testSymmetricDifference(testOperationPull, symmetricDifferencePull));
+	test(`push`, () => testSymmetricDifference(testOperationPush, symmetricDifferencePush));
 });
 
 function testSymmetricDifferenceBy(testOperation, symmetricDifferenceBy) {
@@ -132,7 +132,7 @@ function testSymmetricDifferenceBy(testOperation, symmetricDifferenceBy) {
 	});
 }
 
-describe("symmetricDifferenceBy", () => {
-	test("pull", () => testSymmetricDifferenceBy(testOperationPull, symmetricDifferenceByPull));
-	test("push", () => testSymmetricDifferenceBy(testOperationPush, symmetricDifferenceByPush));
+describe(`symmetricDifferenceBy`, () => {
+	test(`pull`, () => testSymmetricDifferenceBy(testOperationPull, symmetricDifferenceByPull));
+	test(`push`, () => testSymmetricDifferenceBy(testOperationPush, symmetricDifferenceByPush));
 });

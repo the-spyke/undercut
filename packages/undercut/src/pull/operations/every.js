@@ -1,7 +1,7 @@
 import { assertFunctor } from "../../utils/assert.js";
 
 export function every(predicate) {
-	assertFunctor(predicate, "predicate");
+	assertFunctor(predicate, `predicate`);
 
 	return function* (iterable) {
 		let index = 0;

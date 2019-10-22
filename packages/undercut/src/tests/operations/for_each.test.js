@@ -20,7 +20,7 @@ function testForEach(testOperation, forEach) {
 	});
 }
 
-describe("forEach", () => {
-	test("pull", () => testForEach(testOperationPull, forEachPull));
-	test("push", () => testForEach(testOperationPush, forEachPush));
+describe(`forEach`, () => {
+	test(`pull`, () => testForEach(testOperationPull, forEachPull));
+	test(`push`, () => testForEach(testOperationPush, forEachPush));
 });

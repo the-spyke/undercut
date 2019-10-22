@@ -10,7 +10,7 @@ export const difference = differenceBy.bind(undefined, identity);
  * Multisets are not supported.
  */
 export function differenceBy(selector, ...sources) {
-	assertFunctor(selector, "selector");
+	assertFunctor(selector, `selector`);
 
 	return function* (iterable) {
 		const keys = new Set();
@@ -38,7 +38,7 @@ export const symmetricDifference = symmetricDifferenceBy.bind(undefined, identit
  * Multisets are not supported.
  */
 export function symmetricDifferenceBy(selector, ...sources) {
-	assertFunctor(selector, "selector");
+	assertFunctor(selector, `selector`);
 
 	return function* (iterable) {
 		const keyInfos = new Map();
