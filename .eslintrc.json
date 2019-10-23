@@ -92,7 +92,6 @@
         "no-alert": "error",
         "no-array-constructor": "error",
         "no-console": "error",
-        "no-duplicate-imports": "error",
         "no-else-return": "error",
         "no-empty-function": "error",
         "no-eval": "error",
