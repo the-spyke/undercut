@@ -71,9 +71,8 @@ jobs:
       - run:
           name: Package installation
           command: |
-            mkdir -p ~/installation_test
-            cp -rv packages/undercut/src/tests/package/* ~/installation_test/
-            cd ~/installation_test
+            cp -rv packages/undercut-package-test/ ~
+            cd ~/undercut-package-test
             yarn install
             yarn add $ARTIFACTS/undercut-*.tgz
             yarn test

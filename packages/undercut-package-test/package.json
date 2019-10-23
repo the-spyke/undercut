@@ -7,6 +7,9 @@
   "license": "MIT",
   "type": "module",
   "main": "index.js",
+  "engines": {
+    "node": ">=12.13.0"
+  },
   "scripts": {
     "test": "node --experimental-modules index.js"
   }
