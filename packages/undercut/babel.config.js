@@ -2,15 +2,15 @@
 
 const presets = [
 	[
-		"@babel/preset-env",
+		`@babel/preset-env`,
 		{
 			corejs: 3,
 			// Jest doesn't support ES Modules on Node because of custom `require()` hooks.
-			modules: "commonjs",
+			modules: `commonjs`,
 			targets: {
-				node: "current"
+				node: `current`
 			},
-			useBuiltIns: "usage"
+			useBuiltIns: `usage`
 		}
 	]
 ];
