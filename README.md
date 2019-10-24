@@ -39,6 +39,8 @@ yarn add undercut
 
 ## Usage
 
+[![Edit undercut-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/wonderful-sutherland-9g1nh?fontsize=14&module=%2Fsrc%2Findex.js)
+
 ```js
 import { pull, filter, map, skip, toArray } from "undercut";
 
