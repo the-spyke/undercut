@@ -30,12 +30,20 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 ## Installation
 
 ```sh
-npm install --save undercut
+npm install undercut
 # or
 yarn add undercut
 ```
 
-`undercut` provides raw Stage 4 ECMAScript code in the package, **don't forget** to include its `node_modules` directories into [Babel](https://babeljs.io/) config or another compiler of your choice.
+### Prerequisites
+
+Make sure that you're using latest `babel@7` and `core-js@3` and `node_modules/undercut` isn't excluded from compilation in Babel/Webpack/etc configuration.
+
+More and more applications `compile` their code these days, so `undercut` carries `raw stable ES Next` code in its npm package to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. This appraoch allows for cleaner and more precise code in the repo for us, and more optimal code in the browser/node for you.
+
+### Upgrading undercut
+
+If you're upgrading `undercut` to a newer version, upgrade `@babel/preset-env` and `core-js` packages to the latest version too.
 
 ## Usage
 
