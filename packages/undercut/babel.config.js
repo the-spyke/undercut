@@ -10,7 +10,7 @@ const presets = [
 			targets: {
 				node: `current`
 			},
-			useBuiltIns: `usage`
+			useBuiltIns: `entry`
 		}
 	]
 ];
