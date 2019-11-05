@@ -78,13 +78,7 @@ test(`toConsumer`, () => {
 	const error = new Error(`test`);
 
 	expect(finalizer.mock.calls).toEqual([]);
-
-	try {
-		target.throw(error);
-	} catch (e) {
-		expect(e).toBe(error);
-	}
-
+	expect(() => target.throw(error)).toThrow(error);
 	expect(finalizer.mock.calls).toEqual([[error, 1]]);
 });
 

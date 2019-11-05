@@ -10,21 +10,21 @@
   "sideEffects": false,
   "scripts": {
     "babel": "babel",
-    "lint": "eslint 'src/**/*.js' '*.js'",
+    "lint": "eslint 'src/**/*.js' '*.cjs'",
     "nodem": "node --experimental-modules",
     "nodeb": "babel-node",
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
-    "@babel/node": "^7.6.3",
-    "@babel/preset-env": "^7.6.3",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.0",
+    "@babel/node": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
     "babel-jest": "^24.9.0",
     "benchmark": "^2.1.4",
-    "core-js": "^3.3.2",
+    "core-js": "^3.3.6",
     "jest": "^24.9.0",
-    "jest-junit": "^8.0.0"
+    "jest-junit": "^9.0.0"
   },
   "repository": {
     "type": "git",

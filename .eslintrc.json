@@ -80,6 +80,7 @@
                 "SwitchCase": 1
             }
         ],
+        "jest/expect-expect": "off",
         "key-spacing": [
             "error",
             {
