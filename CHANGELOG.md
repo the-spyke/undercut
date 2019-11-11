@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **[BREAKING]** `pull`/`push`/`utils` entries where moved out of the `src` directory. So, import `undercut/push.js` instead of `undercut/src/push.js`. All entry points in the package `root` are public API, but files in the `src` are private and may change their exports, import them at your own risk.
+
 ## [0.4.0] - 2019-10-15
 
 This release adds `Push Lines` and makes API more consistent in general.
