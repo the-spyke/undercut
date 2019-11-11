@@ -5,12 +5,12 @@
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "index.js",
+  "module": "index.js",
   "sideEffects": false,
   "scripts": {
     "babel": "babel",
-    "lint": "eslint 'src/**/*.js' '*.cjs'",
+    "lint": "eslint 'src/**/*.js' '*.js' '*.cjs'",
     "nodem": "node --experimental-modules",
     "nodeb": "babel-node",
     "test": "jest"
@@ -36,8 +36,12 @@
   },
   "files": [
     "src/",
+    "index.js",
     "LICENSE",
-    "README.md"
+    "pull.js",
+    "push.js",
+    "README.md",
+    "utils.js"
   ],
   "keywords": [
     "array",

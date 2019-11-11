@@ -1,6 +1,6 @@
+**/__perf__/
 **/__snapshots__/
-**/perf/
-**/tests/
+**/__tests__/
 **/.npmignore
 **/*.perf.js
 **/*.test.*.js
@@ -8,6 +8,3 @@
 
 utils/perf.js
 utils/tests.js
-
-operation_lists.js
-test.node.js

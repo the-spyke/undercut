@@ -92,7 +92,7 @@ Push line -- push items into an Observer:
 pipeline + target = Observer
 ```
 
-Both pipeline types have independent implementations: one based on iterables and another one based on observers. The main package entry point exports `pull` pipelines as the most commonly used type and some basic ES utils. If you need `push` pipelines, import them manually from `undercut/src/push.js`. There is also `undercut/src/pull.js` entry point if you what to import just `pull lines` without utils.
+Both pipeline types have independent implementations: one based on iterables and another one based on observers. The main package entry point exports `pull` pipelines as the most commonly used type and some basic ES utils. If you need `push` pipelines, import them manually from `undercut/push.js`. There is also `undercut/pull.js` entry point if you what to import just `pull lines` without utils.
 
 ## Pull
 
@@ -115,7 +115,7 @@ interface IteratorResult {
 
 `Pull` is the most used type of pipelines. Pull lines are re-usable if the source is re-iterable.
 
-To use pull lines you need to import from the default `undercut` entry point or alternative `undercut/src/push.js`.
+To use pull lines you need to import from the default `undercut` entry point or alternative `undercut/push.js`.
 
 Terms in releation to `pull lines`:
 
@@ -266,7 +266,7 @@ interface Observer {
 
 `Push` is used less often than `pull` and has an independent implementation. Push lines aren't re-usable and you **must** close the iterator when you're done with it by calling `.return()` method. Closing the observer also signals `end-of-sequence`. Many operation wait till they gather all items, so they may continue. The `.throw()` method allows to cancel execution at any time.
 
-To use push lines you need to import from `undercut/src/push.js` entry point.
+To use push lines you need to import from `undercut/push.js` entry point.
 
 Terms in releation to `push lines`:
 
@@ -283,7 +283,7 @@ Terms in releation to `push lines`:
 Composes several existing operations into a new one.
 
 ```js
-import { composeOperations, push, flatten, zip, toArray } from "undercut/src/push.js";
+import { composeOperations, push, flatten, zip, toArray } from "undercut/push.js";
 
 function interleave(...sources) {
     const pipeline = [
@@ -306,7 +306,7 @@ console.log(result); // [1, 2, 3, 4, 5, 6]
 Executes the pipeline by pushing items from the source to the target and returns target back.
 
 ```js
-import { push, filter, map, skip, toArray } from "undercut/src/push.js";
+import { push, filter, map, skip, toArray } from "undercut/push.js";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 
@@ -325,7 +325,7 @@ console.log(target.values); // [8, 10, 14]
 Same as `push`, but target is set to `toArray` and `values` are returned.
 
 ```js
-import { pushItems, filter, map, skip, toArray } from "undercut/src/push.js";
+import { pushItems, filter, map, skip, toArray } from "undercut/push.js";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 
@@ -343,7 +343,7 @@ console.log(result); // [8, 10, 14]
 Creates an `observer` (`push line`) which accepts items. Usually, you will push an item in an event handler like button click, etc.
 
 ```js
-import { pushLine, append, compact, skip, toArray } from "undercut/src/push.js";
+import { pushLine, append, compact, skip, toArray } from "undercut/push.js";
 
 const target = toArray();
 
@@ -365,7 +365,7 @@ console.log(target.values); // [3, 4, 5]
 `undercut` is built on top of existing JavaScript protocols and features like generators:
 
 ```js
-import { closeObserver } from "undercut/src/push.js";
+import { closeObserver } from "undercut/push.js";
 
 function pow(exponent) { // #1. Start with an operation factory.
     return function* (observer) { // #2. Return the operation itself.

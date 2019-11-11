@@ -83,3 +83,9 @@ jobs:
           path: artifacts/test_results
       - codecov/upload:
           file: artifacts/coverage.xml
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build
