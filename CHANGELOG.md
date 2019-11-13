@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `src/utils/tests.js` isn't excluded from the package anymore, and you may use it to test your custom operations.
+
 ### Changed
 
 - **[BREAKING]** `pull`/`push`/`utils` entries where moved out of the `src` directory. So, import `undercut/push.js` instead of `undercut/src/push.js`. All entry points in the package `root` are public API, but files in the `src` are private and may change their exports, import them at your own risk.

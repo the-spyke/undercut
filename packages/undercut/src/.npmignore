@@ -3,8 +3,7 @@
 **/__tests__/
 **/.npmignore
 **/*.perf.js
-**/*.test.*.js
 **/*.test.js
+**/*.test.*.js
 
 utils/perf.js
-utils/tests.js
