@@ -11,17 +11,8 @@ pids
 *.seed
 *.pid.lock
 
-# Coverage directory used by tools like istanbul
-coverage/
-
-# Compiled binary addons (https://nodejs.org/api/addons.html)
-build/Release
-
 # Dependency directories
 node_modules/
-
-# TypeScript v1 declaration files
-typings/
 
 # Output of 'npm pack'
 *.tgz
@@ -34,3 +25,7 @@ typings/
 
 # IDEs
 .vscode/
+
+# Build outputs
+dist/
+coverage/
