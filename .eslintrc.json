@@ -1,7 +1,6 @@
 {
     "env": {
         "es6": true,
-        "jest": true,
         "shared-node-browser": true
     },
     "extends": [
@@ -14,6 +13,17 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
+    "overrides": [
+        {
+            "env": {
+                "jest": true
+            },
+            "files": [
+                "**/*.test.*.js",
+                "**/*.test.js"
+            ]
+        }
+    ],
     "parser": "babel-eslint",
     "parserOptions": {
         "ecmaVersion": 2019,
