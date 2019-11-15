@@ -3,7 +3,7 @@ import {
 	range,
 	filter, map, min, skip, sum, take,
 	toArray, toObject, toValue
-} from "./../../pull.js";
+} from "../../pull.js";
 
 test(`simple pull scenarios`, () => {
 	const data1 = [1, 2, 3, 4, 5, 6, 7];

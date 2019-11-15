@@ -2,7 +2,7 @@ import {
 	push,
 	filter, map, skip, sum, take,
 	toArray,
-} from "./../../push.js";
+} from "../../push.js";
 
 test(`simple push scenarios`, () => {
 	const data1 = [1, 2, 3, 4, 5, 6, 7];
