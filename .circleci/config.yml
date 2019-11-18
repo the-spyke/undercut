@@ -97,11 +97,16 @@ commands:
           steps:
             - lint:
                 path: << parameters.path >>
+      - run:
+          name: Build
+          command: |
+            cd << parameters.path >>
+            yarn build
       - test:
           path: << parameters.path >>
           coverage: << parameters.coverage >>
       - run:
-          name: Package
+          name: Dist
           command: |
             cd << parameters.path >>
             yarn dist
