@@ -21,4 +21,4 @@ cp -v src/.npmignore $BUILD/src
 cp -v LICENSE $BUILD
 
 cd $CWD
-cp -vr src jest.config.json package.json README.md $BUILD
+cp -vr src package.json README.md $BUILD
