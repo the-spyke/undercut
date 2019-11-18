@@ -18,7 +18,14 @@ yarn add undercut@npm:undercut-node-10-cjs
 
 ### Prerequisites
 
-You may need to import stable `core-js@3` at the beginning of you app.
+You need to import `core-js@3` somewhere at the very beginning of you app. Like so:
+
+```js
+// index.js
+require("core-js/es");
+// ...
+const undercut = require("undercut-node-10-cjs");
+```
 
 ## Usage
 
