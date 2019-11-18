@@ -14,7 +14,7 @@
     "clean": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
     "prepack": "test -e index.js",
-    "test": "cd build && jest --ci --config jest.config.json"
+    "test": "jest build --ci --config jest.config.json"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
