@@ -9,16 +9,15 @@
   "module": "index.js",
   "sideEffects": false,
   "scripts": {
-    "babel": "babel",
-    "lint": "eslint 'src/**/*.js' '*.js' '*.cjs'",
-    "nodem": "node --experimental-modules",
-    "nodeb": "babel-node",
-    "test": "jest"
+    "build": "babel '*.js' 'src' --out-dir dist",
+    "clean": "rm -rf build dist",
+    "lint": "eslint --format='unix' 'src/**/*.js' '*.js' '*.cjs'",
+    "node": "node --experimental-modules",
+    "test": "jest src --config jest.config.json"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.0",
-    "@babel/node": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
     "babel-jest": "^24.9.0",
     "benchmark": "^2.1.4",
