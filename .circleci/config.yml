@@ -1,13 +1,51 @@
 version: 2.1
 
+executors:
+  node_current:
+    docker:
+      - image: node:13-buster-slim
+
 orbs:
   codecov: codecov/codecov@1.0.5
 
-aliases:
-  - &docker
-      - image: node:12-buster-slim
-
 commands:
+  lint:
+    description: Run ESLint.
+    parameters:
+      path:
+        type: string
+    steps:
+      - run:
+          name: ESLint
+          command: |
+            cd << parameters.path >>
+            yarn lint --format="junit" --output-file="eslint.xml"
+            mkdir -p $ARTIFACTS/test_results/eslint
+            cp -v eslint.xml $ARTIFACTS/test_results/eslint/
+  test:
+    description: Run Jest.
+    parameters:
+      path:
+        type: string
+      coverage:
+        type: boolean
+        default: false
+    steps:
+      - run:
+          name: Jest
+          command: |
+            cd << parameters.path >>
+            yarn test --ci <<# parameters.coverage >>--coverage<</ parameters.coverage >> --reporters="default" --reporters="jest-junit" --runInBand
+            <<# parameters.coverage >>cp -v coverage/clover.xml $ARTIFACTS/coverage.xml<</ parameters.coverage >>
+            mkdir -p $ARTIFACTS/test_results/jest
+            cp -v jest.xml $ARTIFACTS/test_results/jest/
+          environment:
+            JEST_JUNIT_OUTPUT_NAME: jest.xml
+      - when:
+          condition: << parameters.coverage >>
+          steps:
+            - codecov/upload:
+                file: artifacts/coverage.xml
   initialize:
     description: Initialize a JS project and create artifacts directory
     steps:
@@ -37,52 +75,53 @@ commands:
             ARTIFACTS="$(pwd)/artifacts"
             echo "export ARTIFACTS=\"${ARTIFACTS}\"" >> $BASH_ENV
             mkdir -p $ARTIFACTS
-
-jobs:
-  build:
-    docker: *docker
-
+  finilize:
+    description: Finilize a JS project build and upload its artifacts.
     steps:
-      - initialize
-
-      - run:
-          name: ESLint
-          command: |
-            cd packages/undercut
-            yarn lint --format="junit" --output-file="eslint.xml"
-            mkdir -p $ARTIFACTS/test_results/eslint
-            cp -v eslint.xml $ARTIFACTS/test_results/eslint/
-      - run:
-          name: Jest
-          command: |
-            cd packages/undercut
-            yarn test --ci --coverage --reporters="default" --reporters="jest-junit" --runInBand
-            cp -v coverage/clover.xml $ARTIFACTS/coverage.xml
-            mkdir -p $ARTIFACTS/test_results/jest
-            cp -v jest.xml $ARTIFACTS/test_results/jest/
-          environment:
-            JEST_JUNIT_OUTPUT_NAME: jest.xml
-      - run:
-          name: Package
-          command: |
-            cd packages/undercut
-            npm pack
-            cp -v undercut-*.tgz $ARTIFACTS/
-      - run:
-          name: Package installation
-          command: |
-            cp -rv packages/undercut-package-test/ ~
-            cd ~/undercut-package-test
-            yarn install
-            yarn add $ARTIFACTS/undercut-*.tgz
-            yarn test
-
       - store_artifacts:
           path: artifacts
       - store_test_results:
           path: artifacts/test_results
-      - codecov/upload:
-          file: artifacts/coverage.xml
+  build:
+    description: Build a JS project, run tests, compose a package, and do all other stuff.
+    parameters:
+      path:
+        type: string
+      coverage:
+        type: boolean
+        default: false
+    steps:
+      - initialize
+      - when:
+          condition: << parameters.coverage >>
+          steps:
+            - lint:
+                path: << parameters.path >>
+      - test:
+          path: << parameters.path >>
+          coverage: << parameters.coverage >>
+      - run:
+          name: Package
+          command: |
+            cd << parameters.path >>
+            yarn dist
+            cp -v undercut-*.tgz $ARTIFACTS
+      - run:
+          name: Package installation
+          command: |
+            mkdir -p ~/undercut-package-test
+            cd ~/undercut-package-test
+            npm init -y
+            npm i $ARTIFACTS/undercut-*.tgz
+      - finilize
+
+jobs:
+  build:
+    executor: node_current
+    steps:
+      - build:
+          path: packages/undercut
+          coverage: true
 
 workflows:
   version: 2
