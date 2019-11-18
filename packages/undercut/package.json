@@ -9,8 +9,9 @@
   "module": "index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "babel '*.js' 'src' --out-dir dist",
+    "build": "babel '*.js' 'src' --out-dir build",
     "clean": "rm -rf build dist",
+    "dist": "npm pack",
     "lint": "eslint --format='unix' 'src/**/*.js' '*.js' '*.cjs'",
     "node": "node --experimental-modules",
     "test": "jest src --config jest.config.json"
