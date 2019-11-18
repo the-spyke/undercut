@@ -4,6 +4,9 @@ executors:
   node_current:
     docker:
       - image: node:13-buster-slim
+  node_10:
+    docker:
+      - image: node:10-buster-slim
 
 orbs:
   codecov: codecov/codecov@1.0.5
@@ -110,12 +113,12 @@ commands:
           command: |
             cd << parameters.path >>
             yarn dist
-            cp -v undercut-*.tgz $ARTIFACTS
+            cp -v dist/undercut-*.tgz $ARTIFACTS
       - run:
           name: Package installation
           command: |
-            mkdir -p ~/undercut-package-test
-            cd ~/undercut-package-test
+            mkdir -p ~/package-installation-test
+            cd ~/package-installation-test
             npm init -y
             npm i $ARTIFACTS/undercut-*.tgz
       - finilize
@@ -127,9 +130,18 @@ jobs:
       - build:
           path: packages/undercut
           coverage: true
+  build_node_10:
+    executor: node_10
+    steps:
+      - build:
+          path: packages/undercut-node-10-cjs
+          coverage: false
 
 workflows:
   version: 2
   workflow:
     jobs:
       - build
+      - build_node_10
+          requires:
+            - build

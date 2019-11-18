@@ -1,0 +1,60 @@
+{
+  "name": "undercut-node-10-cjs",
+  "version": "0.4.0",
+  "description": "JavaScript data processing pipelines and utilities",
+  "author": "Anton Alexandrenok",
+  "license": "MIT",
+  "main": "index.js",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=10.13"
+  },
+  "scripts": {
+    "build": ". scripts/build.sh",
+    "clean": "rm -rf build dist",
+    "dist": ". scripts/dist.sh",
+    "prepack": "test -e index.js",
+    "test": "cd build && jest --ci --config jest.config.json"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "jest": "^24.9.0",
+    "jest-junit": "^9.0.0",
+    "semver": "^6.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/the-spyke/undercut.git",
+    "directory": "packages/undercut-node-10-cjs"
+  },
+  "bugs": {
+    "url": "https://github.com/the-spyke/undercut/issues"
+  },
+  "files": [
+    "src/",
+    "index.js",
+    "LICENSE",
+    "pull.js",
+    "push.js",
+    "README.md",
+    "utils.js"
+  ],
+  "keywords": [
+    "array",
+    "data",
+    "es6",
+    "iterable",
+    "iteration",
+    "iterator",
+    "itertools",
+    "lazy",
+    "linq",
+    "lodash",
+    "modules",
+    "pipeline",
+    "underscore",
+    "util"
+  ]
+}
