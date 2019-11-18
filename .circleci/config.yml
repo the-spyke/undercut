@@ -142,6 +142,6 @@ workflows:
   workflow:
     jobs:
       - build
-      - build_node_10
+      - build_node_10:
           requires:
             - build
