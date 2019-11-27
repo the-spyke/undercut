@@ -1,19 +1,19 @@
-# ✂ undercut-node-10 ✂
+# ✂ undercut-web-2019 ✂
 
-An official prebuilt CommonJS version of the [undercut](https://www.npmjs.com/package/undercut) package for Node.js 10. An easy way to try the `undercut` when your project isn't built or doesn't have Babel yet.
+An official prebuilt CJS version of the [undercut](https://www.npmjs.com/package/undercut) package for Node.js 10. An easy way to try the `undercut` when your project isn't built or doesn't have Babel yet.
 
 ## Installation
 
 ```sh
-npm install undercut-node-10
+npm install undercut-web-2019
 # or
-yarn add undercut-node-10
+yarn add undercut-web-2019
 ```
 
 You may also try [Yarn aliases](https://yarnpkg.com/en/docs/cli/add#toc-yarn-add-alias) for convenience:
 
 ```sh
-yarn add undercut@npm:undercut-node-10
+yarn add undercut@npm:undercut-web-2019
 ```
 
 ### Prerequisites
@@ -24,12 +24,12 @@ You need to import `core-js@3` somewhere at the very beginning of you app. Like 
 // index.js
 require("core-js/es");
 // ...
-const undercut = require("undercut-node-10");
+const undercut = require("undercut-web-2019");
 ```
 
 ## Usage
 
-Same as for the `undercut`, but imports should be from the `undercut-node-10` if you aren't using Yarn aliases.
+Same as for the `undercut`, but imports should be from the `undercut-web-2019` if you aren't using Yarn aliases.
 
 Please check [GitHub repo](https://github.com/the-spyke/undercut) for more detailed documentation and examples.
 

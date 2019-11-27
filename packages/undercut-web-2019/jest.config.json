@@ -2,7 +2,7 @@
 	"setupFiles": [
 		"./src/__tests__/jest.setup.js"
 	],
-	"testEnvironment": "node",
+	"testEnvironment": "jsdom",
 	"testMatch": [
 		"**/*.test.js",
 		"**/*.test.*.js"
