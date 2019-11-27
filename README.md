@@ -13,12 +13,10 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 - Based on existing JS protocols and language features
 - Balanced API: not too imperative, not too functional
 - Easy operation extensibility and composability
-- Pure ES Modules with Node 12 loader compliance
-- Raw code in packages (compile in place)
+- Pure ES Modules with Node 13 loader compliance
+- Raw code in the package + precompiled versions
 - Lazy evaluation when possible
 - Tree shaking friendliness
-- Good test coverage
-- SemVer
 
 ## Quicklinks
 
@@ -26,6 +24,17 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 - [Pull](#pull)
 - [Push](#push)
 - [Operations](#operations)
+
+### Prerequisites
+
+`undercut` comes in several flavors.
+
+`undercut` is the main and intended way to consume it. This package carries `raw stable ES Next` code. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. Make sure that you're using latest `babel@7` and `core-js@3` and `node_modules/undercut` isn't excluded from compilation.
+
+And several convenience packages for old projects or quick experiments. They do not require any sort of compilaton:
+
+- `undercut-node-10` -- a precompiled CommonJS version for Node.js 10 LTS. Requires stable polyfills from `core-js@3`.
+- `undercut-web-2019` -- a precompiled version for Web browsers not older than 2019-01-01. Creates the `undercut` variable in the `window`, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
 
 ## Installation
 
@@ -35,15 +44,15 @@ npm install undercut
 yarn add undercut
 ```
 
-### Prerequisites
+For convenience packages it is also *convenient* to use [Yarn aliases](https://yarnpkg.com/en/docs/cli/add#toc-yarn-add-alias):
 
-Make sure that you're using latest `babel@7` and `core-js@3` and `node_modules/undercut` isn't excluded from compilation in Babel/Webpack/etc configuration.
-
-More and more applications `compile` their code these days, so `undercut` carries `raw stable ES Next` code in its npm package to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. This appraoch allows for cleaner and more precise code in the repo for us, and more optimal code in the browser/node for you.
+```sh
+yarn add undercut@npm:undercut-node-10
+```
 
 ### Upgrading undercut
 
-If you're upgrading `undercut` to a newer version, upgrade `@babel/preset-env` and `core-js` packages to the latest version too.
+If you're upgrading `undercut` to a newer version, upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
 
 ## Usage
 
