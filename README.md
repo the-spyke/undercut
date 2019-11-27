@@ -2,8 +2,8 @@
 
 [![version](https://img.shields.io/npm/v/undercut.svg)](https://www.npmjs.com/package/undercut)
 [![downloads](https://img.shields.io/npm/dm/undercut.svg)](https://www.npmjs.com/package/undercut)
-[![license](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
 [![chat](https://badges.gitter.im/undercutjs/community.svg)](https://gitter.im/undercutjs/community)
+[![license](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
 
 [![circleci](https://circleci.com/gh/the-spyke/undercut.svg?style=shield)](https://circleci.com/gh/the-spyke/undercut)
 [![codecov](https://codecov.io/gh/the-spyke/undercut/branch/master/graph/badge.svg)](https://codecov.io/gh/the-spyke/undercut)
@@ -17,7 +17,7 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 - Raw code in packages (compile in place)
 - Lazy evaluation when possible
 - Tree shaking friendliness
-- 90% test coverage
+- Good test coverage
 - SemVer
 
 ## Quicklinks
