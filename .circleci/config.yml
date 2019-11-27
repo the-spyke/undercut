@@ -134,10 +134,10 @@ jobs:
     executor: node_10
     steps:
       - build:
-          path: packages/undercut-node-10-cjs
+          path: packages/undercut-node-10
           coverage: false
   build_web_2019:
-    executor: node_10
+    executor: node_current
     steps:
       - build:
           path: packages/undercut-web-2019
