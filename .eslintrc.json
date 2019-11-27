@@ -160,10 +160,7 @@
 			"error",
 			"never"
 		],
-		"operator-linebreak": [
-			"error",
-			"after"
-		],
+		"operator-linebreak": "error",
 		"padded-blocks": [
 			"error",
 			"never"
