@@ -13,7 +13,7 @@ export function initializeObserver(oberver) {
 	return oberver;
 }
 
-export function makeUnclosable(observer) {
+export function makeObserverUnclosable(observer) {
 	assert(isObserver(observer), `"observer" is required and must be an Observer.`);
 
 	return {
