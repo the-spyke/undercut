@@ -136,6 +136,12 @@ jobs:
       - build:
           path: packages/undercut-node-10-cjs
           coverage: false
+  build_web_2019:
+    executor: node_10
+    steps:
+      - build:
+          path: packages/undercut-web-2019
+          coverage: false
 
 workflows:
   version: 2
@@ -143,5 +149,8 @@ workflows:
     jobs:
       - build
       - build_node_10:
+          requires:
+            - build
+      - build_web_2019:
           requires:
             - build
