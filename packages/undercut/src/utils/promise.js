@@ -1,8 +1,12 @@
-export function delay(time) {
+export function delay(promise, time) {
+	return promise.then(v => wait(time).then(() => v));
+}
+
+export function wait(time) {
 	return new Promise(res => setTimeout(res, time));
 }
 
-export function unwrap() {
+export function unwrapPromise() {
 	let resolve;
 	let reject;
 

@@ -172,6 +172,7 @@ Array [
   "negate",
   "negateSign",
   "noop",
-  "unwrap",
+  "unwrapPromise",
+  "wait",
 ]
 `;
