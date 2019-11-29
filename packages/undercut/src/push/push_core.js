@@ -31,9 +31,9 @@ function connectPipeline(pipeline, target, initialize = true) {
 	return observer;
 }
 
-export function composeOperations(pipeline) {
+export function composeOperations(operations) {
 	return function (observer) {
-		return connectPipeline(pipeline, observer, false);
+		return connectPipeline(operations, observer, false);
 	};
 }
 

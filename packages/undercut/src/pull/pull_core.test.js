@@ -13,9 +13,7 @@ import {
 
 test(`composeOperations`, () => {
 	function interleave(...sources) {
-		const pipeline = [zip(...sources), flatten()];
-
-		return composeOperations(pipeline);
+		return composeOperations([zip(...sources), flatten()]);
 	}
 
 	expect(testPull(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
