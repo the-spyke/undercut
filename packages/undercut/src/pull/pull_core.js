@@ -21,9 +21,9 @@ function connectPipeline(pipeline, source) {
 	return iterable;
 }
 
-export function composeOperations(pipeline) {
+export function composeOperations(operations) {
 	return function (iterable) {
-		return connectPipeline(pipeline, iterable);
+		return connectPipeline(operations, iterable);
 	};
 }
 
