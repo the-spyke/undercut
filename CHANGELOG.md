@@ -20,7 +20,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **[BREAKING]** renamed `delay` into `wait`.
 - **[BREAKING]** renamed `unwrap` into `unwrapPromise`.
 
-
 ## [0.4.0] - 2019-10-15
 
 This release adds `Push Lines` and makes API more consistent in general.
