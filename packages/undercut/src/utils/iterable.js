@@ -1,16 +1,9 @@
 import { assertFunctor } from "./assert.js";
-import { isFunction } from "./language.js";
 
-/**
- * Closes the iterator if it has the `return()` method.
- * @param {Iterator} iterator
- * @returns {void}
- */
-export function closeIterator(iterator) {
-	if (isFunction(iterator.return)) {
-		iterator.return();
-	}
-}
+export {
+	close as closeIterator,
+	useClosable as useIterator,
+} from "./generator.js";
 
 /**
  * @param {Iterable} iterable

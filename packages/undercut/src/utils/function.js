@@ -34,3 +34,11 @@ export function negateSign(operation) {
 export function noop() {
 	// Empty.
 }
+
+/**
+ * @param {any} error
+ * @returns {void}
+ */
+export function rethrow(error) {
+	throw error;
+}

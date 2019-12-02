@@ -24,6 +24,7 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 - [Pull](#pull)
 - [Push](#push)
 - [Operations](#operations)
+- [Utilities](#utilities)
 
 ## Installation
 
@@ -253,7 +254,7 @@ const pipeline = [
     pow(2)
 ];
 
-const result = pull(toArray, pipeline, source);
+const result = pullItems(pipeline, source);
 
 console.log(result); // [1, 4, 9]
 ```
@@ -414,8 +415,7 @@ function pow(exponent) { // #1
         } catch (e) { // #8
             observer.throw(e); // #9
         } finally { // #10
-            // #11 (optional)
-            observer.return(); // #12
+            observer.return(); // #11
         }
     };
 }
@@ -427,20 +427,23 @@ const result = pushItems([pow(2)], source);
 console.log(result); // [1, 4, 9]
 ```
 
-1. Start with an operation factory. It captures arguments (if there is any) and may provide some additional logic/state to the operation.
-2. Operation function itself. It's super convenient to use Generators for building an operation, but it may be a regular function too. During pipeline execution it will be called with an observer you need to pass items to.
-3. `try-catch-finally` block should cover all possible scenarios like cancellation and `end-of-sequence`.
-4. An observer waits for new items until `.return()` was called and `yield` exits the function.
+1. Start with an operation factory. It captures arguments (if there is any) and may provide some additional functionality (but do not store any mutable state here, because operation must be reusable).
+2. Operation function itself. It's super convenient to use Generators for building an operation, but it may be a regular function too. During pipeline execution it will be called with an observer representing the next stage of the pipeline.
+3. `try-catch-finally` block should cover 2 possible exiting scenarios: cancellation and `end-of-sequence` signal.
+4. Observers wait for new items indefinitely. The loop ends only because of `yield`.
 5. Get an item by `yielding`.
-6. Do your job.
-7. When you need to pass something down the pipleline, do this by calling `observer.next()`.
-8. `yield` will throw on calling `.throw()` method. This means a cancellation of the execution. Usually, you want to set some flag and check it later in `finally`.
-9. Propagate the error down the pipeline by calling `observer.throw()`.
-10. You will get here in case of both `end-of-sequence` and cancellation.
-11. (optional) If you have some work to do after you've seen all items, you can do it here (even pass items). It is also a good place to clean up your resources.
-12. Close the observer.
+6. Do your computation.
+7. When you need to pass something down the pipleline, do this by passing it to `observer.next()` call.
+8. `yield` will throw on calling the `.throw()` method. This means a cancellation of the execution.
+9. You need to signal remaining observers in the chain, so they could clean up the resources too. This is done by passing the error to the `observer.throw()` call.
+10. You will get here in case of both cancellation and `end-of-sequence` signal.
+11. It is a good place to clean up your resources. You must also signal remaining observers in the chain by calling `observer.return()`.
+
+In case more advanced operations like grouping, where you need to look at all available items first before you can proceed, you can do this in `finally`. Make yourself a flag to skip computation in case of catching a cancellation, and pass items before closing the observer ([see the groupBy operation](packages/undercut/src/push/operations/group_by.js))
 
 ## Operations
+
+Operation exist in both `pull` and `push` versions:
 
 - `append(...items)` -- adds its arguments to the end of the sequence.
 - `average()` -- reduces the sequence into a number by calculating the average of it.
@@ -494,6 +497,50 @@ console.log(result); // [1, 4, 9]
 - `unzipWith(itemsExtractor)` -- reverse to the `zip` producing a sequence of sources by getting their items from the `extractor`.
 - `zip(...sources)` -- transforms the sequence into a new one by combining by one item from it and the sources into an array.
 - `zipWith(itemFactory, ...sources)` -- transforms the sequence into a new one by combining by one item from it and the source into a value returned by the `itemFactory`.
+
+## Utilities
+
+Some utilities are exported in `pull` and `push` entries, but they identical to those in the `utils` entry, where you get to whole package:
+
+- `asc(comparator, selector = identity) => OrderingSpec` -- used itself as a value for specifying ascending sorting direction, of as a factory function for creating OrderingSpec for `groupBy` operation.
+- `closeIterator(iterator) => void` -- closes the `iterator` if it has a `return` method.
+- `closeObserver(observer) => void` -- closes the `observer` if it has a `return` method.
+- `compare` -- a set of predefined comparators for sorting.
+- `delay(promise, time) => Promise` -- returns a new Promise that waits `time` more miliseconds after the `promise` and fulfills with its result.
+- `desc(comparator, selector = identity) => OrderingSpec` -- used itself as a value for specifying descending sorting direction, of as a factory function for creating OrderingSpec for `groupBy` operation.
+- `getIterator(iterable) => Iterator` -- calls the `Symbol.iterator` method of the `iterable` for you.
+- `identity(value) => value` -- returns the same `value` the was provided as the first argument.
+- `initializeObserver(observer) => observer` -- returns the same observer after calling the `next` method on it once.
+- `isBoolean(value) => boolean` -- returns `true` if the `value` is of the boolean type, `false` otherwise.
+- `isDefined(value) => boolean` -- returns `true` if the `value` is exactly not `undefined`, `false` otherwise.
+- `isFalsy(value) => boolean` -- returns `true` if the `value` converted to Boolean is `false`, `false` otherwise.
+- `isFunction(value) => boolean` -- returns `true` if the `value` is a function, `false` otherwise.
+- `isIterable(value) => boolean` -- returns `true` if the `value` is an object having `Symbol.iterator` method, `false` otherwise.
+- `isIterator(value) => boolean` -- returns `true` if the `value` is an object having `next` method, `false` otherwise.
+- `isNegative(value) => boolean` -- returns `true` if the `value` is a Number less than zero, `false` otherwise.
+- `isNegativeOrZero(value) => boolean` -- returns `true` if the `value` is a Number less or equal to zero, `false` otherwise.
+- `isNull(value) => boolean` -- returns `true` if the `value` is exactly `null`, `false` otherwise.
+- `isNullish(value) => boolean` -- returns `true` if the `value` is exactly `null` or `undefined`, `false` otherwise.
+- `isNumber(value) => boolean` -- returns `true` if the `value` is of the Number type, `false` otherwise. `NaN` is a Number in JavaScript.
+- `isNumberValue(value) => boolean` -- same as `isNumber`, but returns `false` for `NaN`.
+- `isObject(value) => boolean` -- returns `true` if the `value` is an Object, `false` otherwise. `null` is an Object is JavaScript.
+- `isObjectValue(value) => boolean` -- same as `isObject`, but returns `false` for `null`.
+- `isObserver(value) => boolean` -- returns `true` if the `value` is an object with the `next` method, `false` otherwise.
+- `isPositive(value) => boolean` -- returns `true` if the `value` is a Number greater that zero, `false` otherwise.
+- `isPositiveOrZero(value) => boolean` -- returns `true` if the `value` is a Number equal or greater than zero, `false` otherwise.
+- `isString(value) => boolean` -- returns `true` if the `value` is of the String type, `false` otherwise.
+- `isSymbol(value) => boolean` -- returns `true` if the `value` is of the Symbol type, `false` otherwise.
+- `isTruthy(value) => boolean` -- returns `true` if the `value` converted to Boolean is `true`, `false` otherwise.
+- `isUndefined(value) => boolean` -- returns `true` if the `value` is exactly `undefined`, `false` otherwise.
+- `makeReiterable(function) => Iterable` -- makes an `Iterable` from a provided function. It could be a generator or a factory, but must return a new iterator every time.
+- `negate(value) => boolean` -- performs the `!` operation with provided value.
+- `negateSign(value) => number` -- inverts the sign of the numeric value.
+- `noop() => void` -- an empty function.
+- `rethrow(error) => void` -- immidietly throws provided `error`.
+- `unwrapPromise() => object` -- creates a new Promise and returnss it together with its `resolve`/`reject` functions.
+- `useIterator(iterator, usage) => UsageReturnValue` -- a helper for closing iterators for you. `usage` is a function provided the iterator from the first argument. The `iterator` will be closed right after `usage` function exits. Use it for convenience instead of manual `try/finally` blocks.
+- `useObserver(observer, usage) => UsageReturnValue` -- same as `useIterator`, but for observers.
+- `wait(time) => Promise` -- returns a Promise fulfilling after `time` miliseconds.
 
 ## License
 
