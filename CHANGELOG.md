@@ -10,14 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `src/utils/tests.js` is included into the package, you may use it to test your custom operations.
-- `delay` utility to delay a Promise.
+- New `delay` and `rethrow` utilities.
 
 ### Changed
 
-- **[BREAKING]** `pull`/`push`/`utils` entries where moved out of the `src` directory. So, import `undercut/push.js` instead of `undercut/src/push.js`. All entry points in the package `root` are public API, but files in the `src` are private and may change their exports, import them at your own risk.
-- **[BREAKING]** `undercut` entry point is now identical to `pull.js`, to use utils you manually need to import `undercut/utils.js`.
-- **[BREAKING]** renamed `makeUnclosable` into `makeObserverUnclosable`.
-- **[BREAKING]** renamed `delay` into `wait`.
+- **[BREAKING]** `pull`/`push`/`utils` entries where moved out of the `src` directory. So, import `undercut/push.js` instead of `undercut/src/push.js`. All entry points in the package `root` are public API and subject of SemVer, but files in the `src` are not.
+- **[BREAKING]** `undercut`'s main entry point is now `pull.js`, to use utils you manually need to import `undercut/utils.js`.
+- **[BREAKING]** renamed `makeUnclosable` into `asUnclosable`.
+- **[BREAKING]** renamed the old `delay` into `wait`.
 - **[BREAKING]** renamed `unwrap` into `unwrapPromise`.
 
 ## [0.4.0] - 2019-10-15
