@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **[BREAKING]** `pull`/`push`/`utils` entries where moved out of the `src` directory. So, import `undercut/push.js` instead of `undercut/src/push.js`. All entry points in the package `root` are public API and subject of SemVer, but files in the `src` are not.
+- **[BREAKING]** `pull`/`push`/`utils` entries where moved out of the `src` directory. So, import `undercut/push.js` instead of `undercut/src/push.js`. All entry points in the package `root` are public API and comform SemVer, but files in the `src` are not.
 - **[BREAKING]** `undercut`'s main entry point is now `pull.js`, to use utils you manually need to import `undercut/utils.js`.
 - **[BREAKING]** renamed `makeUnclosable` into `asUnclosable`.
 - **[BREAKING]** renamed the old `delay` into `wait`.
