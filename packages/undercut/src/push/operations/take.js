@@ -1,6 +1,6 @@
 import { assert, assertFunctor } from "../../utils/assert.js";
+import { abort, asObserver, close } from "../../utils/coroutine.js";
 import { isPositiveOrZero } from "../../utils/language.js";
-import { closeObserver } from "../../utils/observer.js";
 
 export function take(count) {
 	assert(isPositiveOrZero(count), `"count" is required, must be a number >= 0.`);
@@ -13,7 +13,7 @@ export function take(count) {
 export function takeWhile(predicate) {
 	assertFunctor(predicate, `predicate`);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
 		try {
 			let index = 0;
 
@@ -28,10 +28,10 @@ export function takeWhile(predicate) {
 
 				index++;
 			}
-		} catch (e) {
-			observer.throw(e);
+		} catch (error) {
+			abort(observer, error);
 		} finally {
-			closeObserver(observer);
+			close(observer);
 		}
-	};
+	});
 }

@@ -1,6 +1,6 @@
 import { assertFunctor } from "../../utils/assert.js";
 import { identity } from "../../utils/function.js";
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 
 /**
  * Multisets are not supported.
@@ -13,30 +13,28 @@ export const union = unionBy.bind(undefined, identity);
 export function unionBy(selector, ...sources) {
 	assertFunctor(selector, `selector`);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
 		const keys = new Set();
-
-		let success = true;
 
 		try {
 			while (true) {
 				addPassItem(keys, observer, selector, yield);
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success) {
-				for (const source of sources) {
-					for (const item of source) {
-						addPassItem(keys, observer, selector, item);
+			close(cohort, () => {
+				if (cohort.isFine) {
+					for (const source of sources) {
+						for (const item of source) {
+							addPassItem(keys, observer, selector, item);
+						}
 					}
 				}
-			}
-
-			closeObserver(observer);
+			});
 		}
-	};
+	});
 }
 
 function addPassItem(keys, observer, selector, item) {

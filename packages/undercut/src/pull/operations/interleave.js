@@ -1,12 +1,14 @@
-import { closeIterator, getIterator } from "../../utils/iterable.js";
+import { close, Cohort } from "../../utils/coroutine.js";
+import { getIterator } from "../../utils/iterable.js";
 
 export function interleave(...sources) {
 	return function* (iterable) {
-		const iterators = [];
+		const cohort = Cohort.from(getIterator(iterable));
 
 		try {
-			iterators.push(getIterator(iterable));
-			sources.forEach(source => iterators.push(getIterator(source)));
+			sources.forEach(source => cohort.next(getIterator(source)));
+
+			const iterators = cohort.coroutines.slice();
 
 			while (iterators.length > 0) {
 				let holeStart = 0;
@@ -17,13 +19,13 @@ export function interleave(...sources) {
 					const { value, done } = iterator.next();
 
 					if (done) {
-						closeIterator(iterator);
+						close(iterator);
 
 						holeLength++;
 					} else {
 						yield value;
 
-						iterators[holeStart] = iterator; // eslint-disable-line require-atomic-updates
+						iterators[holeStart] = iterator;
 						holeStart++;
 					}
 				}
@@ -31,7 +33,7 @@ export function interleave(...sources) {
 				iterators.length -= holeLength;
 			}
 		} finally {
-			iterators.forEach(closeIterator);
+			close(cohort);
 		}
 	};
 }

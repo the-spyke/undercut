@@ -1,11 +1,12 @@
 import { assertFunctor } from "../../utils/assert.js";
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 
 export function some(predicate) {
 	assertFunctor(predicate, `predicate`);
 
-	return function* (observer) {
-		let success = true;
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
+
 		let result = false;
 
 		try {
@@ -15,15 +16,14 @@ export function some(predicate) {
 				result = predicate(yield, index);
 				index++;
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success) {
-				observer.next(result);
-			}
-
-			closeObserver(observer);
+			close(cohort, () => {
+				if (cohort.isFine) {
+					observer.next(result);
+				}
+			});
 		}
-	};
+	});
 }

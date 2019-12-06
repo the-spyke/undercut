@@ -1,8 +1,9 @@
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 
 export function max() {
-	return function* (observer) {
-		let success = true;
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
+
 		let max = null;
 
 		try {
@@ -13,15 +14,14 @@ export function max() {
 					max = item;
 				}
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success && max !== null) {
-				observer.next(max);
-			}
-
-			closeObserver(observer);
+			close(cohort, () => {
+				if (cohort.isFine && max !== null) {
+					observer.next(max);
+				}
+			});
 		}
-	};
+	});
 }

@@ -1,6 +1,7 @@
 import { assert, assertFunctor } from "../utils/assert.js";
+import { asObserver } from "../utils/coroutine.js";
+import { rethrow } from "../utils/function.js";
 import { isUndefined, isFunction } from "../utils/language.js";
-import { initializeObserver } from "../utils/observer.js";
 
 export function toArray() {
 	return {
@@ -10,14 +11,12 @@ export function toArray() {
 		return() {
 			// Empty.
 		},
-		throw(e) {
-			throw e;
-		},
+		throw: rethrow,
 		values: [],
 	};
 }
 
-function* consumerTarget(consumer, finalizer) {
+const consumerTarget = asObserver(function* (consumer, finalizer) {
 	assertFunctor(consumer, `consumer`);
 	assert(isUndefined(finalizer) || isFunction(finalizer), `"finalizer" is optional, could be a function.`);
 
@@ -37,7 +36,7 @@ function* consumerTarget(consumer, finalizer) {
 			finalizer(error, index);
 		}
 	}
-}
+});
 
 /**
  * @param {Function} consumer
@@ -45,7 +44,7 @@ function* consumerTarget(consumer, finalizer) {
  * @returns {Observer}
  */
 export function toConsumer(consumer, finalizer) {
-	return initializeObserver(consumerTarget(consumer, finalizer));
+	return consumerTarget(consumer, finalizer);
 }
 
 /**
@@ -65,7 +64,7 @@ export function toNull() {
 	};
 }
 
-function* valueTarget(setter) {
+const valueTarget = asObserver(function* (setter) {
 	assertFunctor(setter, `setter`);
 
 	let firstValue = undefined;
@@ -85,12 +84,12 @@ function* valueTarget(setter) {
 			setter(firstValue);
 		}
 	}
-}
+});
 
 /**
  * @param {Function} setter
  * @returns {Observer}
  */
 export function toValue(setter) {
-	return initializeObserver(valueTarget(setter));
+	return valueTarget(setter);
 }

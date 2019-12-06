@@ -1,9 +1,22 @@
 /**
+ * A re-export of `Array.isArray` for consistency.
+ */
+export const isArray = Array.isArray;
+
+/**
  * @param {any} value
  * @returns {boolean}
  */
 export function isBoolean(value) {
 	return typeof value === `boolean`;
+}
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isCoroutine(value) {
+	return isObjectValue(value) && isFunction(value.next);
 }
 
 /**
@@ -35,16 +48,10 @@ export function isFunction(value) {
  * @returns {boolean}
  */
 export function isIterable(value) {
-	return value != null && isFunction(value[Symbol.iterator]);
+	return !isNullish(value) && isFunction(value[Symbol.iterator]);
 }
 
-/**
- * @param {any} value
- * @returns {boolean}
- */
-export function isIterator(value) {
-	return isObjectValue(value) && isFunction(value.next);
-}
+export { isCoroutine as isIterator };
 
 /**
  * @param {any} value
@@ -110,16 +117,10 @@ export function isObject(value) {
  * @returns {boolean}
  */
 export function isObjectValue(value) {
-	return value != null && isObject(value);
+	return isObject(value) && value !== null;
 }
 
-/**
- * @param {any} value
- * @returns {boolean}
- */
-export function isObserver(value) {
-	return isObjectValue(value) && isFunction(value.next) && isFunction(value.return) && isFunction(value.throw);
-}
+export { isCoroutine as isObserver };
 
 /**
  * @param {any} value

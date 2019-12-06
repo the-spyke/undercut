@@ -62,6 +62,7 @@ describe(`zip`, () => {
 
 function testZipWith(testOperation, zipWith) {
 	expect(() => zipWith()).toThrow();
+
 	testOperation(zipWith, {
 		args: [() => 42, [1, 2]],
 		source: [3, 4],

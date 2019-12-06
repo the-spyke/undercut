@@ -1,10 +1,10 @@
 import { assertFunctor } from "../../utils/assert.js";
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close } from "../../utils/coroutine.js";
 
 function findCore(predicate, isIndex) {
 	assertFunctor(predicate, `predicate`);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
 		try {
 			let index = 0;
 
@@ -19,12 +19,12 @@ function findCore(predicate, isIndex) {
 
 				index++;
 			}
-		} catch (e) {
-			observer.throw(e);
+		} catch (error) {
+			abort(observer, error);
 		} finally {
-			closeObserver(observer);
+			close(observer);
 		}
-	};
+	});
 }
 
 export function find(predicate) {

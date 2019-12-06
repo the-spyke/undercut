@@ -1,8 +1,9 @@
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 
 export function last() {
-	return function* (observer) {
-		let success = true;
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
+
 		let hasItems = false;
 		let item = undefined;
 
@@ -11,15 +12,14 @@ export function last() {
 				item = yield;
 				hasItems = true;
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success && hasItems) {
-				observer.next(item);
-			}
-
-			closeObserver(observer);
+			close(cohort, () => {
+				if (cohort.isFine && hasItems) {
+					observer.next(item);
+				}
+			});
 		}
-	};
+	});
 }

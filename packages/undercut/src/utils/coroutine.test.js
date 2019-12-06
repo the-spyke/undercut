@@ -1,14 +1,11 @@
 import {
 	close,
 	asUnclosable,
-	useClosable,
-} from "./generator.js";
+} from "./coroutine.js";
 
-test(`makeUnclosable`, () => {
+test(`asUnclosable`, () => {
 	let observer = {
 		next: jest.fn(),
-		return: jest.fn(),
-		throw: jest.fn(),
 	};
 
 	expect(asUnclosable(observer)).toEqual(expect.objectContaining({
@@ -47,35 +44,26 @@ test(`makeUnclosable`, () => {
 
 test(`close`, () => {
 	expect(() => close()).toThrow();
-	expect(() => close({})).not.toThrow();
 
-	const observer = {
+	const coroutine = {
 		return: jest.fn(),
 	};
 
-	close(observer);
+	close(coroutine);
 
-	expect(observer.return.mock.calls).toEqual([[]]);
-});
+	expect(coroutine.return.mock.calls).toEqual([[]]);
 
-test(`useClosable`, () => {
-	const closable = {
-		next: jest.fn(),
-		return: jest.fn(),
-	};
+	coroutine.return.mockClear();
 
-	expect(closable.next.mock.calls).toEqual([]);
-	expect(closable.return.mock.calls).toEqual([]);
+	expect(coroutine.return.mock.calls).toEqual([]);
 
-	useClosable(closable, c => {
-		expect(c).toBe(closable);
+	expect(close(coroutine, c => {
+		expect(c).toBe(coroutine);
 
-		c.next(123);
+		expect(coroutine.return.mock.calls).toEqual([]);
 
-		expect(closable.next.mock.calls).toEqual([[123]]);
-		expect(closable.return.mock.calls).toEqual([]);
-	});
+		return 777;
+	})).toBe(777);
 
-	expect(closable.next.mock.calls).toEqual([[123]]);
-	expect(closable.return.mock.calls).toEqual([[]]);
+	expect(coroutine.return.mock.calls).toEqual([[]]);
 });

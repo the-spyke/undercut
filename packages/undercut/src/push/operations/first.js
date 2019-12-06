@@ -1,13 +1,13 @@
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close } from "../../utils/coroutine.js";
 
 export function first() {
-	return function* (observer) {
+	return asObserver(function* (observer) {
 		try {
 			observer.next(yield);
-		} catch (e) {
-			observer.throw(e);
+		} catch (error) {
+			abort(observer, error);
 		} finally {
-			closeObserver(observer);
+			close(observer);
 		}
-	};
+	});
 }

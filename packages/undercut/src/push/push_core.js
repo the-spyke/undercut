@@ -1,12 +1,12 @@
 import { assert, assertPipeline, assertSource } from "../utils/assert.js";
+import { abort, close } from "../utils/coroutine.js";
 import { isObserver, isFunction } from "../utils/language.js";
-import { closeObserver, initializeObserver } from "../utils/observer.js";
 
 import { toArray } from "./push_targets.js";
 
 const operationErrorMessage = `An operation must be a function taking and returning an Observer.`;
 
-function connectPipeline(pipeline, target, initialize = true) {
+function connectPipeline(pipeline, target) {
 	assertPipeline(pipeline);
 	assert(isObserver(target), `"target" is required and must be an Observer.`);
 
@@ -22,10 +22,6 @@ function connectPipeline(pipeline, target, initialize = true) {
 		observer = operation(observer);
 
 		assert(isObserver(observer), operationErrorMessage);
-
-		if (index > 0 || initialize) {
-			initializeObserver(observer);
-		}
 	}
 
 	return observer;
@@ -33,12 +29,12 @@ function connectPipeline(pipeline, target, initialize = true) {
 
 export function composeOperations(operations) {
 	return function (observer) {
-		return connectPipeline(operations, observer, false);
+		return connectPipeline(operations, observer);
 	};
 }
 
 export function pushLine(pipeline, target) {
-	return connectPipeline(pipeline, target, true);
+	return connectPipeline(pipeline, target);
 }
 
 export function push(target, pipeline, source) {
@@ -50,8 +46,10 @@ export function push(target, pipeline, source) {
 		for (const item of source) {
 			observer.next(item);
 		}
+	} catch (error) {
+		abort(observer, error);
 	} finally {
-		closeObserver(observer);
+		close(observer);
 	}
 
 	return target;

@@ -1,5 +1,5 @@
 import { assert } from "../utils/assert.js";
-import { makeReiterable } from "../utils/iterable.js";
+import { createIterable } from "../utils/iterable.js";
 
 function* rangeGen(start, end, step) {
 	if (start < end) {
@@ -25,5 +25,5 @@ export function range(start, end, step = 1) {
 	assert(Number.isFinite(end), `"end" is required, must be a number.`);
 	assert(Number.isFinite(step) && step > 0, `"step" must be an absolute non-zero number.`);
 
-	return makeReiterable(() => rangeGen(start, end, step));
+	return createIterable(() => rangeGen(start, end, step));
 }

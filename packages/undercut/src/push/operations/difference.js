@@ -1,6 +1,6 @@
 import { assertFunctor } from "../../utils/assert.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 import { identity } from "../../utils/function.js";
-import { closeObserver } from "../../utils/observer.js";
 
 /**
  * Multisets are not supported.
@@ -13,7 +13,7 @@ export const difference = differenceBy.bind(undefined, identity);
 export function differenceBy(selector, ...sources) {
 	assertFunctor(selector, `selector`);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
 		try {
 			let keys = null;
 
@@ -33,12 +33,12 @@ export function differenceBy(selector, ...sources) {
 					observer.next(item);
 				}
 			}
-		} catch (e) {
-			observer.throw(e);
+		} catch (error) {
+			abort(observer, error);
 		} finally {
-			closeObserver(observer);
+			close(observer);
 		}
-	};
+	});
 }
 
 /**
@@ -52,36 +52,34 @@ export const symmetricDifference = symmetricDifferenceBy.bind(undefined, identit
 export function symmetricDifferenceBy(selector, ...sources) {
 	assertFunctor(selector, `selector`);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
 		const keyInfos = new Map();
-
-		let success = true;
 
 		try {
 			while (true) {
 				updateKeyInfos(keyInfos, selector, yield);
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success) {
-				for (const source of sources) {
-					for (const item of source) {
-						updateKeyInfos(keyInfos, selector, item);
+			close(cohort, () => {
+				if (cohort.isFine) {
+					for (const source of sources) {
+						for (const item of source) {
+							updateKeyInfos(keyInfos, selector, item);
+						}
+					}
+
+					for (const { count, item } of keyInfos.values()) {
+						if (count % 2 > 0) {
+							observer.next(item);
+						}
 					}
 				}
-
-				for (const { count, item } of keyInfos.values()) {
-					if (count % 2 > 0) {
-						observer.next(item);
-					}
-				}
-			}
-
-			closeObserver(observer);
+			});
 		}
-	};
+	});
 }
 
 function scanToSet(keys, selector, source) {

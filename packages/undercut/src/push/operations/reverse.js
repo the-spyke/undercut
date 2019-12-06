@@ -1,26 +1,24 @@
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 
 export function reverse() {
-	return function* (observer) {
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
 		const items = [];
-
-		let success = true;
 
 		try {
 			while (true) {
 				items.push(yield);
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success) {
-				for (let i = items.length - 1; i >= 0; i--) {
-					observer.next(items[i]);
+			close(cohort, () => {
+				if (cohort.isFine) {
+					for (let i = items.length - 1; i >= 0; i--) {
+						observer.next(items[i]);
+					}
 				}
-			}
-
-			closeObserver(observer);
+			});
 		}
-	};
+	});
 }

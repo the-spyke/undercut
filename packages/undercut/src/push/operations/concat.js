@@ -1,11 +1,12 @@
 import { assertSource } from "../../utils/assert.js";
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 
 export function concatStart(source) {
 	assertSource(source);
 
-	return function* (observer) {
-		let success = true;
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
+
 		let hasItems = false;
 
 		try {
@@ -22,42 +23,40 @@ export function concatStart(source) {
 			while (true) {
 				observer.next(yield);
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success && !hasItems) {
-				for (const item of source) {
-					observer.next(item);
+			close(cohort, () => {
+				if (cohort.isFine && !hasItems) {
+					for (const item of source) {
+						observer.next(item);
+					}
 				}
-			}
-
-			closeObserver(observer);
+			});
 		}
-	};
+	});
 }
 
 export function concatEnd(source) {
 	assertSource(source);
 
-	return function* (observer) {
-		let success = true;
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
 
 		try {
 			while (true) {
 				observer.next(yield);
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success) {
-				for (const item of source) {
-					observer.next(item);
+			close(cohort, () => {
+				if (cohort.isFine) {
+					for (const item of source) {
+						observer.next(item);
+					}
 				}
-			}
-
-			closeObserver(observer);
+			});
 		}
-	};
+	});
 }

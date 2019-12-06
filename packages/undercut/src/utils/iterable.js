@@ -1,10 +1,5 @@
 import { assertFunctor } from "./assert.js";
 
-export {
-	close as closeIterator,
-	useClosable as useIterator,
-} from "./generator.js";
-
 /**
  * @param {Iterable} iterable
  * @returns {Iterator}
@@ -18,11 +13,10 @@ export function getIterator(iterable) {
  * @param {Function} getIterator
  * @returns {Iterable}
  */
-export function makeReiterable(getIterator) {
+export function createIterable(getIterator) {
 	assertFunctor(getIterator, `getIterator`);
 
 	return {
-		[Symbol.iterator]: getIterator,
-		isReiterable: true,
+		[Symbol.iterator]: getIterator
 	};
 }

@@ -1,6 +1,6 @@
 import { assertFunctor } from "../../utils/assert.js";
+import { abort, asObserver, close } from "../../utils/coroutine.js";
 import { identity } from "../../utils/function.js";
-import { closeObserver } from "../../utils/observer.js";
 
 /**
  * Multisets are not supported.
@@ -13,9 +13,9 @@ export const intersection = intersectionBy.bind(undefined, identity);
 export function intersectionBy(selector, ...sources) {
 	assertFunctor(selector, `selector`);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
 		try {
-			if (sources.length === 0) {
+			if (!sources.length) {
 				return;
 			}
 
@@ -39,12 +39,12 @@ export function intersectionBy(selector, ...sources) {
 					observer.next(item);
 				}
 			}
-		} catch (e) {
-			observer.throw(e);
+		} catch (error) {
+			abort(observer, error);
 		} finally {
-			closeObserver(observer);
+			close(observer);
 		}
-	};
+	});
 }
 
 function countKeys(sources, selector) {

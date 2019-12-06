@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Coroutine utilities.
 - `src/utils/tests.js` is included into the package, you may use it to test your custom operations.
 - New `delay` and `rethrow` utilities.
 
@@ -16,9 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **[BREAKING]** `pull`/`push`/`utils` entries where moved out of the `src` directory. So, import `undercut/push.js` instead of `undercut/src/push.js`. All entry points in the package `root` are public API and comform SemVer, but files in the `src` are not.
 - **[BREAKING]** `undercut`'s main entry point is now `pull.js`, to use utils you manually need to import `undercut/utils.js`.
+- **[BREAKING]** renamed `makeReiterable` into `createIterable`.
 - **[BREAKING]** renamed `makeUnclosable` into `asUnclosable`.
 - **[BREAKING]** renamed the old `delay` into `wait`.
 - **[BREAKING]** renamed `unwrap` into `unwrapPromise`.
+
+### Removed
+
+- **[BREAKING]** Removed `closeIterator`, `closeObserver`, `initializeObserver` utilities.
 
 ## [0.4.0] - 2019-10-15
 
