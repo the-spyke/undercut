@@ -77,8 +77,12 @@ export class Cohort {
 		this.isClosed = false;
 	}
 
-	get isFine() {
+	get hasErrors() {
 		return !this.errors.length;
+	}
+
+	get isFine() {
+		return !this.isClosed && !this.errors.length;
 	}
 
 	get length() {
