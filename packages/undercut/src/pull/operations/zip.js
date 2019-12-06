@@ -1,6 +1,7 @@
 import { assert, assertSources } from "../../utils/assert.js";
+import { close, Cohort } from "../../utils/coroutine.js";
 import { identity } from "../../utils/function.js";
-import { closeIterator, getIterator } from "../../utils/iterable.js";
+import { getIterator } from "../../utils/iterable.js";
 import { isFunction } from "../../utils/language.js";
 
 export function zip(...sources) {
@@ -16,18 +17,17 @@ function zipCore(itemFactory, sources) {
 	assertSources(sources);
 
 	return function* (iterable) {
-		const iterators = [];
+		const cohort = Cohort.from(getIterator(iterable));
 
 		try {
-			iterators.push(getIterator(iterable));
-			sources.forEach(source => iterators.push(getIterator(source)));
+			sources.forEach(source => cohort.next(getIterator(source)));
 
 			let index = 0;
 
 			while (true) {
 				let done = true;
 
-				const values = iterators.map(iter => {
+				const values = cohort.coroutines.map(iter => {
 					const item = iter.next();
 
 					done = done && item.done;
@@ -44,7 +44,7 @@ function zipCore(itemFactory, sources) {
 				index++;
 			}
 		} finally {
-			iterators.forEach(closeIterator);
+			close(cohort);
 		}
 	};
 }

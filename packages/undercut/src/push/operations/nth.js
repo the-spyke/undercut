@@ -1,13 +1,13 @@
 import { assert } from "../../utils/assert.js";
+import { abort, asObserver, close } from "../../utils/coroutine.js";
 import { isPositiveOrZero } from "../../utils/language.js";
-import { closeObserver } from "../../utils/observer.js";
 
 export function nth(n) {
 	assert(isPositiveOrZero(n), `"n" is required, must be a number >= 0.`);
 
 	n = Math.trunc(n);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
 		try {
 			let index = -1;
 			let item;
@@ -18,10 +18,10 @@ export function nth(n) {
 			} while (index !== n);
 
 			observer.next(item);
-		} catch (e) {
-			observer.throw(e);
+		} catch (error) {
+			abort(observer, error);
 		} finally {
-			closeObserver(observer);
+			close(observer);
 		}
-	};
+	});
 }

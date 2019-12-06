@@ -9,17 +9,12 @@ export function testPull(operation, source) {
  */
 export function testPush(operation, source) {
 	const result = [];
-	const target = (function* (array) {
-		while (true) array.push(yield);
-	})(result);
-
-	target.next();
-
-	const observer = operation(target);
+	const observer = operation(getArrayObserver(result));
 
 	try {
-		observer.next();
 		source.forEach(item => observer.next(item));
+	} catch (error) {
+		observer.throw(error);
 	} finally {
 		observer.return();
 	}
@@ -27,27 +22,27 @@ export function testPush(operation, source) {
 	return result;
 }
 
-function getOperationSpy(operation, operationArgs = null, callbackArgs = null, callbackPosition = 0) {
-	if (!Array.isArray(operationArgs)) {
-		return { op: operation() };
+function getOperationSpy(operationFactory, factoryArgs = null, callbackArgs = null, callbackPosition = 0) {
+	if (!Array.isArray(factoryArgs)) {
+		return { operation: operationFactory() };
 	}
 
 	if (!Array.isArray(callbackArgs)) {
-		return { op: operation(...operationArgs) };
+		return { operation: operationFactory(...factoryArgs) };
 	}
 
-	const args = [...operationArgs];
+	const args = [...factoryArgs];
 	const spy = jest.fn(args[callbackPosition]);
 
 	args[callbackPosition] = spy;
 
-	return { op: operation(...args), spy };
+	return { operation: operationFactory(...args), spy };
 }
 
-function testOperation(executor, operation, { args, source, target, callbackPosition, callbackArgs }) {
-	const { op, spy } = getOperationSpy(operation, args, callbackArgs, callbackPosition);
+function testOperation(executor, operationFactory, { args, source, target, callbackPosition, callbackArgs }) {
+	const { operation, spy } = getOperationSpy(operationFactory, args, callbackArgs, callbackPosition);
 
-	expect(executor(op, source)).toEqual(target);
+	expect(executor(operation, source)).toEqual(target);
 
 	if (spy) {
 		expect(spy.mock.calls).toEqual(callbackArgs);
@@ -56,3 +51,17 @@ function testOperation(executor, operation, { args, source, target, callbackPosi
 
 export const testOperationPull = testOperation.bind(undefined, testPull);
 export const testOperationPush = testOperation.bind(undefined, testPush);
+
+function getArrayObserver(array) {
+	return {
+		next(value) {
+			array.push(value);
+		},
+		return() {
+			// Empty.
+		},
+		throw(error) {
+			throw error;
+		},
+	};
+}

@@ -1,3 +1,4 @@
+import { identity } from "../utils/function.js";
 import { testPull } from "../utils/tests.js";
 
 import { flatten } from "./operations/flatten.js";
@@ -18,12 +19,7 @@ test(`composeOperations`, () => {
 
 	expect(testPull(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
 
-	function* fakeOperation(iterable) {
-		for (const item of iterable) {
-			yield item;
-		}
-	}
-
+	const fakeOperation = identity;
 	const pipeline = [
 		fakeOperation,
 		fakeOperation,

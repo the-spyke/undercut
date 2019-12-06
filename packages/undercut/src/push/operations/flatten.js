@@ -1,6 +1,6 @@
 import { assert } from "../../utils/assert.js";
+import { abort, asObserver, close } from "../../utils/coroutine.js";
 import { isIterable, isPositiveOrZero } from "../../utils/language.js";
-import { closeObserver } from "../../utils/observer.js";
 
 function spreadRec(observer, canSpread, maxDepth, currentDepth, value) {
 	if (currentDepth < maxDepth && canSpread(value)) {
@@ -17,17 +17,17 @@ function flattenCore(canSpread, depth) {
 
 	depth = Math.trunc(depth);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
 		try {
 			while (true) {
 				spreadRec(observer, canSpread, depth, 0, yield);
 			}
-		} catch (e) {
-			observer.throw(e);
+		} catch (error) {
+			abort(observer, error);
 		} finally {
-			closeObserver(observer);
+			close(observer);
 		}
-	};
+	});
 }
 
 export function flatten(depth = 1) {

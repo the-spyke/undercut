@@ -1,7 +1,7 @@
 import { assert } from "../../utils/assert.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 import { identity } from "../../utils/function.js";
 import { isFunction } from "../../utils/language.js";
-import { closeObserver } from "../../utils/observer.js";
 
 export function unzip() {
 	return unzipWith(identity);
@@ -10,10 +10,9 @@ export function unzip() {
 export function unzipWith(itemsExtractor) {
 	assert(isFunction(itemsExtractor), `"itemsExtractor" is required, must be a function.`);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
 		const results = [];
-
-		let success = true;
 
 		try {
 			let index = 0;
@@ -32,17 +31,16 @@ export function unzipWith(itemsExtractor) {
 
 				index++;
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success) {
-				for (const result of results) {
-					observer.next(result);
+			close(cohort, () => {
+				if (cohort.isFine) {
+					for (const result of results) {
+						observer.next(result);
+					}
 				}
-			}
-
-			closeObserver(observer);
+			});
 		}
-	};
+	});
 }

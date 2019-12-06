@@ -1,8 +1,9 @@
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 
 export function min() {
-	return function* (observer) {
-		let success = true;
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
+
 		let min = null;
 
 		try {
@@ -13,15 +14,14 @@ export function min() {
 					min = item;
 				}
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success && min !== null) {
-				observer.next(min);
-			}
-
-			closeObserver(observer);
+			close(cohort, () => {
+				if (cohort.isFine && min !== null) {
+					observer.next(min);
+				}
+			});
 		}
-	};
+	});
 }

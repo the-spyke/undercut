@@ -1,10 +1,11 @@
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 
 export function join(separator = `,`) {
 	separator = String(separator);
 
-	return function* (observer) {
-		let success = true;
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
+
 		let result = null;
 
 		try {
@@ -18,15 +19,14 @@ export function join(separator = `,`) {
 					result = value;
 				}
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success) {
-				observer.next(result || ``);
-			}
-
-			closeObserver(observer);
+			close(cohort, () => {
+				if (cohort.isFine) {
+					observer.next(result || ``);
+				}
+			});
 		}
-	};
+	});
 }

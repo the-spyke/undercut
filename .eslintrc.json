@@ -222,6 +222,7 @@
 			"backtick"
 		],
 		"radix": "error",
+		"require-atomic-updates": "off", // Too many false positives.
 		"rest-spread-spacing": "error",
 		"semi": [
 			"error",

@@ -1,11 +1,11 @@
 import { assert } from "../../utils/assert.js";
+import { abort, asObserver, close } from "../../utils/coroutine.js";
 import { isFunction } from "../../utils/language.js";
-import { closeObserver } from "../../utils/observer.js";
 
 export function map(mapper) {
 	assert(isFunction(mapper), `"mapper" is required, must be a function.`);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
 		try {
 			let index = 0;
 
@@ -13,10 +13,10 @@ export function map(mapper) {
 				observer.next(mapper(yield, index));
 				index++;
 			}
-		} catch (e) {
-			observer.throw(e);
+		} catch (error) {
+			abort(observer, error);
 		} finally {
-			closeObserver(observer);
+			close(observer);
 		}
-	};
+	});
 }

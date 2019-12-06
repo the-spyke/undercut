@@ -1,13 +1,12 @@
 import { assertFunctor } from "../../utils/assert.js";
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 
 export function groupBy(keySelector) {
 	assertFunctor(keySelector, `keySelector`);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
 		const groups = new Map();
-
-		let success = true;
 
 		try {
 			let index = 0;
@@ -27,17 +26,16 @@ export function groupBy(keySelector) {
 
 				index++;
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success) {
-				for (const group of groups) {
-					observer.next(group);
+			close(cohort, () => {
+				if (cohort.isFine) {
+					for (const group of groups) {
+						observer.next(group);
+					}
 				}
-			}
-
-			closeObserver(observer);
+			});
 		}
-	};
+	});
 }

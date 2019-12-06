@@ -1,3 +1,7 @@
+export function getDoneItem(value) {
+	return { value, done: true };
+}
+
 /**
  * @param {any} [value]
  * @returns {any}

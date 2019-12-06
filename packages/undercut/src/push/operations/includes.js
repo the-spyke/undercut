@@ -1,23 +1,23 @@
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 
 export function includes(value) {
-	return function* (observer) {
-		let success = true;
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
+
 		let hasValue = false;
 
 		try {
 			while (!hasValue) {
 				hasValue = (yield) === value;
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success) {
-				observer.next(hasValue);
-			}
-
-			closeObserver(observer);
+			close(cohort, () => {
+				if (cohort.isFine) {
+					observer.next(hasValue);
+				}
+			});
 		}
-	};
+	});
 }

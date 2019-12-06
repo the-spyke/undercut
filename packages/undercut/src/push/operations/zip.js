@@ -1,8 +1,8 @@
 import { assert, assertSources } from "../../utils/assert.js";
+import { abort, asObserver, close, Cohort } from "../../utils/coroutine.js";
 import { identity } from "../../utils/function.js";
-import { closeIterator, getIterator } from "../../utils/iterable.js";
+import { getIterator } from "../../utils/iterable.js";
 import { isFunction } from "../../utils/language.js";
-import { closeObserver } from "../../utils/observer.js";
 
 export function zip(...sources) {
 	return zipCore(identity, sources);
@@ -16,15 +16,19 @@ function zipCore(itemFactory, sources) {
 	assert(isFunction(itemFactory), `"itemFactory" is required, must be a function.`);
 	assertSources(sources);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
+		const cohort = Cohort.from(observer);
 		const iterators = [];
 
-		let success = false;
 		let index = 0;
 
 		try {
-			sources.forEach(source => iterators.push(getIterator(source)));
-			success = true;
+			for (const source of sources) {
+				const iterator = getIterator(source);
+
+				cohort.next(iterator);
+				iterators.push(iterator);
+			}
 
 			while (true) {
 				const item = yield;
@@ -36,28 +40,26 @@ function zipCore(itemFactory, sources) {
 
 				index++;
 			}
-		} catch (e) {
-			success = false;
-			observer.throw(e);
+		} catch (error) {
+			abort(cohort, error);
 		} finally {
-			if (success) {
-				while (true) { // eslint-disable-line no-constant-condition
-					const values = getValues(iterators);
+			close(cohort, () => {
+				if (cohort.isFine) {
+					while (true) { // eslint-disable-line no-constant-condition
+						const values = getValues(iterators);
 
-					if (values[0]) {
-						break;
-					} else {
-						observer.next(itemFactory(values, index));
+						if (values[0]) {
+							break;
+						} else {
+							observer.next(itemFactory(values, index));
+						}
+
+						index++;
 					}
-
-					index++;
 				}
-			}
-
-			iterators.filter(Boolean).forEach(closeIterator);
-			closeObserver(observer);
+			});
 		}
-	};
+	});
 }
 
 function getValues(iterators) {
@@ -72,7 +74,8 @@ function getValues(iterators) {
 			const { value, done } = iterator.next();
 
 			if (done) {
-				closeIterator(iterator);
+				close(iterator);
+
 				iterators[index] = null;
 				values[index + 1] = undefined;
 			} else {

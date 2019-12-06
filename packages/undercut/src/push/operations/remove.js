@@ -1,10 +1,10 @@
 import { assertFunctor } from "../../utils/assert.js";
-import { closeObserver } from "../../utils/observer.js";
+import { abort, asObserver, close } from "../../utils/coroutine.js";
 
 export function remove(predicate) {
 	assertFunctor(predicate, `predicate`);
 
-	return function* (observer) {
+	return asObserver(function* (observer) {
 		try {
 			let index = 0;
 
@@ -17,10 +17,10 @@ export function remove(predicate) {
 
 				index++;
 			}
-		} catch (e) {
-			observer.throw(e);
+		} catch (error) {
+			abort(observer, error);
 		} finally {
-			closeObserver(observer);
+			close(observer);
 		}
-	};
+	});
 }

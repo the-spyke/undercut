@@ -1,4 +1,4 @@
-import { isFunction, isIterable } from "./language.js";
+import { isFunction, isIterable, isIterator } from "./language.js";
 
 export function assert(condition, message) {
 	if (!condition) {
@@ -15,7 +15,7 @@ export function assertPipeline(pipeline) {
 }
 
 export function assertSource(source) {
-	assert(isIterable(source), `"source" is required, could be any iterable.`);
+	assert(isIterable(source) && !isIterator(source), `"source" is required and must be an Iterable, but not an Iterator. It is assumed that a source is re-iterable.`);
 }
 
 export function assertSources(sources) {
