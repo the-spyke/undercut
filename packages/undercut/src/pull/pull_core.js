@@ -23,7 +23,7 @@ function connectPipeline(pipeline, source) {
 
 export function composeOperations(operations) {
 	return function (iterable) {
-		return connectPipeline(operations, iterable);
+		return connectPipeline(isFunction(operations) ? operations() : operations, iterable);
 	};
 }
 

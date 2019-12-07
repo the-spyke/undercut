@@ -29,7 +29,7 @@ function connectPipeline(pipeline, target) {
 
 export function composeOperations(operations) {
 	return function (observer) {
-		return connectPipeline(operations, observer);
+		return connectPipeline(isFunction(operations) ? operations() : operations, observer);
 	};
 }
 

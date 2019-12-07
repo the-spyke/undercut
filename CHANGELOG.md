@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Coroutine utilities.
 - `src/utils/tests.js` is included into the package, you may use it to test your custom operations.
 - New `delay` and `rethrow` utilities.
+- An ability of `composeOperations` to take a function instead of an array. This function must have no parameters and return an array of operations. This allows dynamic composition and having some shared state in a closure.
 
 ### Changed
 
