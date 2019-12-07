@@ -22,6 +22,15 @@ test(`composeOperations`, () => {
 	}
 
 	expect(testPush(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
+
+	function interleaveDynamic(...sources) {
+		return composeOperations(() => [
+			zip(...sources),
+			flatten()
+		]);
+	}
+
+	expect(testPush(interleaveDynamic([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
 });
 
 test(`pushLine`, () => {
