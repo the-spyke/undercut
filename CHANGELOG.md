@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added `collect` operation. Much like `reduce`, but for filling items into a mutable `collection`.
 - Coroutine utilities.
 - `src/utils/tests.js` is included into the package, you may use it to test your custom operations.
 - New `delay` and `rethrow` utilities.
