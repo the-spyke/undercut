@@ -1,0 +1,10 @@
+{
+  "name": "@undercut/config",
+  "version": "0.4.0",
+  "description": "Undercut build configs",
+  "author": "Anton Alexandrenok",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "sideEffects": false
+}
