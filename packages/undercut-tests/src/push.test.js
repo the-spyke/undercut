@@ -2,7 +2,7 @@ import {
 	push,
 	filter, map, skip, sum, take,
 	toArray,
-} from "./index.js";
+} from "@undercut/push";
 
 test(`simple push scenarios`, () => {
 	const data1 = [1, 2, 3, 4, 5, 6, 7];
