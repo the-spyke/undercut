@@ -5,7 +5,9 @@
   "private": true,
   "author": "Anton Alexandrenok",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "clean": ". scripts/clean.sh"
+  },
   "devDependencies": {
     "@babel/core": "^7.7.4",
     "babel-eslint": "^10.0.3",
