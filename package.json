@@ -1,10 +1,10 @@
 {
   "name": "undercut-monorepo",
   "version": "1.0.0",
-  "description": "JavaScript data processing pipelines and utilities",
-  "private": true,
+  "description": "A monorepo containing all undercut packages",
   "author": "Anton Alexandrenok",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "clean": ". scripts/clean.sh"
   },
