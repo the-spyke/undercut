@@ -1,0 +1,16 @@
+{
+	"setupFiles": [
+		"./src/__tests__/jest.setup.js"
+	],
+	"testEnvironment": "node",
+	"testMatch": [
+		"**/*.test.js",
+		"**/*.test.*.js"
+	],
+	"testPathIgnorePatterns": [
+		"/build/",
+		"/coverage/",
+		"/dist/",
+		"/node_modules/"
+	]
+}

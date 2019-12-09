@@ -1,7 +1,7 @@
 {
   "name": "@undercut/cli",
   "version": "0.1.0",
-  "description": "CLI for the undercut library. Process data with undercut and JS in a terminal.",
+  "description": "Undercut CLI: process data with undercut and JS in a terminal",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "core-js": "^3.4.2",
-    "undercut": "^0.4.0",
     "yargs": "^15.0.2"
   },
   "devDependencies": {
@@ -30,8 +29,7 @@
     "@babel/preset-env": "^7.7.4",
     "core-js": "^3.4.2",
     "jest": "^24.9.0",
-    "jest-junit": "^9.0.0",
-    "semver": "^6.3.0"
+    "jest-junit": "^9.0.0"
   },
   "repository": {
     "type": "git",

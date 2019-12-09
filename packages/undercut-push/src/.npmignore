@@ -1,0 +1,7 @@
+**/__perf__/
+**/__snapshots__/
+**/__tests__/
+**/.npmignore
+**/*.perf.js
+**/*.test.*.js
+**/*.test.js

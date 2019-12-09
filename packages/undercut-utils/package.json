@@ -1,23 +1,24 @@
 {
-  "name": "undercut",
+  "name": "@undercut/utils",
   "version": "0.4.0",
-  "description": "JavaScript data processing pipelines and utilities",
+  "description": "Utilities part of the undercut library",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
-  "main": "pull.js",
+  "main": "index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "echo 'Empty build step'",
+    "build": ". scripts/build.sh",
     "clean": "rm -rf build dist",
-    "dist": "rm -rf dist && mkdir dist && cd dist && npm pack ../",
-    "lint": "eslint --format='unix' 'src/**/*.js' '*.js' '*.cjs'",
-    "test": "jest --config jest.config.json"
+    "dist": ". scripts/dist.sh",
+    "prepack": "test -e pull.js",
+    "test": "jest --ci --config jest.config.json --rootDir build"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "babel-jest": "^24.9.0",
+    "benchmark": "^2.1.4",
     "core-js": "^3.4.2",
     "jest": "^24.9.0",
     "jest-junit": "^9.0.0"
@@ -25,31 +26,27 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/the-spyke/undercut.git",
-    "directory": "packages/undercut"
+    "directory": "packages/undercut-utils"
   },
   "bugs": {
     "url": "https://github.com/the-spyke/undercut/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
+    "src/",
+    "index.js",
     "LICENSE",
-    "pull.js",
-    "push.js",
-    "README.md",
-    "utils.js"
+    "README.md"
   ],
   "keywords": [
     "array",
-    "data",
-    "es6",
     "iterable",
     "iteration",
     "iterator",
     "itertools",
-    "lazy",
-    "linq",
     "lodash",
-    "modules",
-    "pipeline",
     "undercut",
     "underscore",
     "util"
