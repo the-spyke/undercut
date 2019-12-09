@@ -1,6 +1,6 @@
-import * as pullExports from "../../pull.js";
-import * as pushExports from "../../push.js";
-import * as utilsExports from "../../utils.js";
+import * as pullExports from "@undercut/pull";
+import * as pushExports from "@undercut/push";
+import * as utilsExports from "@undercut/utils";
 
 describe(`exports`, () => {
 	test(`pull`, () => {
