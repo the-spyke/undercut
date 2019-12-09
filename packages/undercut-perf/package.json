@@ -1,0 +1,25 @@
+{
+  "name": "@undercut/perf",
+  "version": "1.0.0",
+  "description": "Undercut performance tests",
+  "author": "Anton Alexandrenok",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": ". scripts/build.sh",
+    "clean": "rm -rf build dist",
+    "dist": ". scripts/dist.sh",
+    "prepack": "test -e pull.js",
+    "test": "jest --ci --config jest.config.json --rootDir build"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-jest": "^24.9.0",
+    "benchmark": "^2.1.4",
+    "core-js": "^3.4.2",
+    "jest": "^24.9.0",
+    "jest-junit": "^9.0.0"
+  }
+}
