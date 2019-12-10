@@ -1,8 +1,8 @@
-import { identity } from "@undercut/utils/src/function.js";
-import { runPerfSuite } from "@undercut/utils/src/perf.js";
+import { zipWith as zipArray } from "@undercut/pull";
 import { testPull } from "@undercut/testing";
+import { identity } from "@undercut/utils";
 
-import { zipWith as zipArray } from "./zip.js";
+import { runPerfSuite } from "../perf.js";
 
 const a = [1, 2, 3, 4, 5];
 const b = [6, 7, 8, 9, 0];

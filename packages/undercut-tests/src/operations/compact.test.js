@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { compact as compactPull } from "../../pull/operations/compact.js";
-import { compact as compactPush } from "../../push/operations/compact.js";
+import { compact as compactPull } from "@undercut/pull/src/operations/compact.js";
+import { compact as compactPush } from "@undercut/push/src/operations/compact.js";
 
 function testCompact(testOperation, compact) {
 	testOperation(compact, {

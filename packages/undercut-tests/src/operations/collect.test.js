@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { collect as collectPull } from "../../pull/operations/collect.js";
-import { collect as collectPush } from "../../push/operations/collect.js";
+import { collect as collectPull } from "@undercut/pull/src/operations/collect.js";
+import { collect as collectPush } from "@undercut/push/src/operations/collect.js";
 
 function testCollect(testOperation, collect) {
 	expect(() => collect()).toThrow();

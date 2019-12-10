@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { chunk as chunkPull } from "../../pull/operations/chunk.js";
-import { chunk as chunkPush } from "../../push/operations/chunk.js";
+import { chunk as chunkPull } from "@undercut/pull/src/operations/chunk.js";
+import { chunk as chunkPush } from "@undercut/push/src/operations/chunk.js";
 
 function testChunk(testOperation, chunk) {
 	expect(() => chunk()).toThrow();

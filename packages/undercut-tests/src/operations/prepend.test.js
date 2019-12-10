@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { prepend as prependPull } from "../../pull/operations/prepend.js";
-import { prepend as prependPush } from "../../push/operations/prepend.js";
+import { prepend as prependPull } from "@undercut/pull/src/operations/prepend.js";
+import { prepend as prependPush } from "@undercut/push/src/operations/prepend.js";
 
 function testPrepend(testOperation, prepend) {
 	testOperation(prepend, {

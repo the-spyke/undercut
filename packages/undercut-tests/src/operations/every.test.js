@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { every as everyPull } from "../../pull/operations/every.js";
-import { every as everyPush } from "../../push/operations/every.js";
+import { every as everyPull } from "@undercut/pull/src/operations/every.js";
+import { every as everyPush } from "@undercut/push/src/operations/every.js";
 
 function testEvery(testOperation, every) {
 	expect(() => every()).toThrow();

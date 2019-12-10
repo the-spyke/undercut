@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { average as averagePull } from "../../pull/operations/average.js";
-import { average as averagePush } from "../../push/operations/average.js";
+import { average as averagePull } from "@undercut/pull/src/operations/average.js";
+import { average as averagePush } from "@undercut/push/src/operations/average.js";
 
 function testAverage(testOperation, average) {
 	testOperation(average, {

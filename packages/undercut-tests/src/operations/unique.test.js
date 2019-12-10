@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { unique as uniquePull, uniqueBy as uniqueByPull } from "../../pull/operations/unique.js";
-import { unique as uniquePush, uniqueBy as uniqueByPush } from "../../push/operations/unique.js";
+import { unique as uniquePull, uniqueBy as uniqueByPull } from "@undercut/pull/src/operations/unique.js";
+import { unique as uniquePush, uniqueBy as uniqueByPush } from "@undercut/push/src/operations/unique.js";
 
 function testUnique(testOperation, unique) {
 	testOperation(unique, {

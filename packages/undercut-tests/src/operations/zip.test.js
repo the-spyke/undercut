@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { zip as zipPull, zipWith as zipWithPull } from "../../pull/operations/zip.js";
-import { zip as zipPush, zipWith as zipWithPush } from "../../push/operations/zip.js";
+import { zip as zipPull, zipWith as zipWithPull } from "@undercut/pull/src/operations/zip.js";
+import { zip as zipPush, zipWith as zipWithPush } from "@undercut/push/src/operations/zip.js";
 
 function testZip(testOperation, zip) {
 	testOperation(zip, {

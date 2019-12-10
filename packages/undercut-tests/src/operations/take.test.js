@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { take as takePull, takeWhile as takeWhilePull } from "../../pull/operations/take.js";
-import { take as takePush, takeWhile as takeWhilePush } from "../../push/operations/take.js";
+import { take as takePull, takeWhile as takeWhilePull } from "@undercut/pull/src/operations/take.js";
+import { take as takePush, takeWhile as takeWhilePush } from "@undercut/push/src/operations/take.js";
 
 function testTake(testOperation, take) {
 	expect(() => take()).toThrow();

@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { some as somePull } from "../../pull/operations/some.js";
-import { some as somePush } from "../../push/operations/some.js";
+import { some as somePull } from "@undercut/pull/src/operations/some.js";
+import { some as somePush } from "@undercut/push/src/operations/some.js";
 
 function testSome(testOperation, some) {
 	expect(() => some()).toThrow();

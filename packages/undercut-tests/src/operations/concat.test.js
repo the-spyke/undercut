@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { concatStart as concatStartPull, concatEnd as concatEndPull } from "../../pull/operations/concat.js";
-import { concatStart as concatStartPush, concatEnd as concatEndPush } from "../../push/operations/concat.js";
+import { concatStart as concatStartPull, concatEnd as concatEndPull } from "@undercut/pull/src/operations/concat.js";
+import { concatStart as concatStartPush, concatEnd as concatEndPush } from "@undercut/push/src/operations/concat.js";
 
 function testConcatStart(testOperation, concatStart) {
 	expect(() => concatStart()).toThrow();

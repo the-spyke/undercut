@@ -1,6 +1,6 @@
 {
 	"setupFiles": [
-		"./src/__tests__/jest.setup.js"
+		"@undercut/config/jest/jest.setup.node.js"
 	],
 	"testEnvironment": "node",
 	"testMatch": [

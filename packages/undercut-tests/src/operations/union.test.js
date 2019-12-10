@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { union as unionPull, unionBy as unionByPull } from "../../pull/operations/union.js";
-import { union as unionPush, unionBy as unionByPush } from "../../push/operations/union.js";
+import { union as unionPull, unionBy as unionByPull } from "@undercut/pull/src/operations/union.js";
+import { union as unionPush, unionBy as unionByPush } from "@undercut/push/src/operations/union.js";
 
 function testUnion(testOperation, union) {
 	testOperation(union, {

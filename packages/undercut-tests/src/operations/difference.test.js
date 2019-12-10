@@ -5,13 +5,13 @@ import {
 	differenceBy as differenceByPull,
 	symmetricDifference as symmetricDifferencePull,
 	symmetricDifferenceBy as symmetricDifferenceByPull,
-} from "../../pull/operations/difference.js";
+} from "@undercut/pull/src/operations/difference.js";
 import {
 	difference as differencePush,
 	differenceBy as differenceByPush,
 	symmetricDifference as symmetricDifferencePush,
 	symmetricDifferenceBy as symmetricDifferenceByPush,
-} from "../../push/operations/difference.js";
+} from "@undercut/push/src/operations/difference.js";
 
 function testDifference(testOperation, difference) {
 	testOperation(difference, {

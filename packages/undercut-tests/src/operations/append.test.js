@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { append as appendPull } from "../../pull/operations/append.js";
-import { append as appendPush } from "../../push/operations/append.js";
+import { append as appendPull } from "@undercut/pull/src/operations/append.js";
+import { append as appendPush } from "@undercut/push/src/operations/append.js";
 
 function testAppend(testOperation, append) {
 	testOperation(append, {

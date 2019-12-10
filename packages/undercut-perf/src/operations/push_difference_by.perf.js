@@ -1,7 +1,5 @@
-import { abort, asObserver, close } from "@undercut/utils/src/coroutine.js";
-import { identity } from "@undercut/utils/src/function.js";
-
 import { composeOperations, pushItems, pushLine } from "@undercut/push";
+import { abort, asObserver, close, identity } from "@undercut/utils";
 
 import { runPerfSuite } from "../perf.js";
 

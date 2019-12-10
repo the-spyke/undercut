@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { forEach as forEachPull } from "../../pull/operations/for_each.js";
-import { forEach as forEachPush } from "../../push/operations/for_each.js";
+import { forEach as forEachPull } from "@undercut/pull/src/operations/for_each.js";
+import { forEach as forEachPush } from "@undercut/push/src/operations/for_each.js";
 
 function testForEach(testOperation, forEach) {
 	expect(() => forEach()).toThrow();
