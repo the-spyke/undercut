@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { join as joinPull } from "../../pull/operations/join.js";
-import { join as joinPush } from "../../push/operations/join.js";
+import { join as joinPull } from "@undercut/pull/src/operations/join.js";
+import { join as joinPush } from "@undercut/push/src/operations/join.js";
 
 function testJoin(testOperation, join) {
 	testOperation(join, {

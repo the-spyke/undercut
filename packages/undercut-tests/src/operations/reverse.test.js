@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { reverse as reversePull } from "../../pull/operations/reverse.js";
-import { reverse as reversePush } from "../../push/operations/reverse.js";
+import { reverse as reversePull } from "@undercut/pull/src/operations/reverse.js";
+import { reverse as reversePush } from "@undercut/push/src/operations/reverse.js";
 
 function testReverse(testOperation, reverse) {
 	testOperation(reverse, {

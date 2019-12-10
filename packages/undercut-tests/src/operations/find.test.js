@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { find as findPull, findIndex as findIndexPull } from "../../pull/operations/find.js";
-import { find as findPush, findIndex as findIndexPush } from "../../push/operations/find.js";
+import { find as findPull, findIndex as findIndexPull } from "@undercut/pull/src/operations/find.js";
+import { find as findPush, findIndex as findIndexPush } from "@undercut/push/src/operations/find.js";
 
 function testFind(testOperation, find) {
 	expect(() => find()).toThrow();

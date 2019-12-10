@@ -2,8 +2,8 @@ import * as compare from "@undercut/utils/src/compare.js";
 import { asc, desc } from "@undercut/utils/src/ordering.js";
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { orderBy as orderByPull } from "../../pull/operations/order_by.js";
-import { orderBy as orderByPush } from "../../push/operations/order_by.js";
+import { orderBy as orderByPull } from "@undercut/pull/src/operations/order_by.js";
+import { orderBy as orderByPush } from "@undercut/push/src/operations/order_by.js";
 
 function testOrderBy(testOperation, orderBy) {
 	expect(() => orderBy()).toThrow();

@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { first as firstPull } from "../../pull/operations/first.js";
-import { first as firstPush } from "../../push/operations/first.js";
+import { first as firstPull } from "@undercut/pull/src/operations/first.js";
+import { first as firstPush } from "@undercut/push/src/operations/first.js";
 
 function testFirst(testOperation, first) {
 	testOperation(first, {

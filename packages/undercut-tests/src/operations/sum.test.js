@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { sum as sumPull } from "../../pull/operations/sum.js";
-import { sum as sumPush } from "../../push/operations/sum.js";
+import { sum as sumPull } from "@undercut/pull/src/operations/sum.js";
+import { sum as sumPush } from "@undercut/push/src/operations/sum.js";
 
 function testSum(testOperation, sum) {
 	testOperation(sum, {

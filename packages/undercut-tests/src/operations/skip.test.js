@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { skip as skipPull, skipWhile as skipWhilePull } from "../../pull/operations/skip.js";
-import { skip as skipPush, skipWhile as skipWhilePush } from "../../push/operations/skip.js";
+import { skip as skipPull, skipWhile as skipWhilePull } from "@undercut/pull/src/operations/skip.js";
+import { skip as skipPush, skipWhile as skipWhilePush } from "@undercut/push/src/operations/skip.js";
 
 function testSkip(testOperation, skip) {
 	expect(() => skip()).toThrow();

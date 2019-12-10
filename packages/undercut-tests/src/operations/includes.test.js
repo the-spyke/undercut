@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { includes as includesPull } from "../../pull/operations/includes.js";
-import { includes as includesPush } from "../../push/operations/includes.js";
+import { includes as includesPull } from "@undercut/pull/src/operations/includes.js";
+import { includes as includesPush } from "@undercut/push/src/operations/includes.js";
 
 function testIncludes(testOperation, includes) {
 	testOperation(includes, {

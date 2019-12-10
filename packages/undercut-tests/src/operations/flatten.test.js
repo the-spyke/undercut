@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { flatten as flattenPull, flattenIterables as flattenIterablesPull } from "../../pull/operations/flatten.js";
-import { flatten as flattenPush, flattenIterables as flattenIterablesPush } from "../../push/operations/flatten.js";
+import { flatten as flattenPull, flattenIterables as flattenIterablesPull } from "@undercut/pull/src/operations/flatten.js";
+import { flatten as flattenPush, flattenIterables as flattenIterablesPush } from "@undercut/push/src/operations/flatten.js";
 
 function testFlatten(testOperation, flatten) {
 	expect(() => flatten(-1)).toThrow();

@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { map as mapPull } from "../../pull/operations/map.js";
-import { map as mapPush } from "../../push/operations/map.js";
+import { map as mapPull } from "@undercut/pull/src/operations/map.js";
+import { map as mapPush } from "@undercut/push/src/operations/map.js";
 
 function testMap(testOperation, map) {
 	expect(() => map()).toThrow();

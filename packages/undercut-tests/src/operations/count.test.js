@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { count as countPull } from "../../pull/operations/count.js";
-import { count as countPush } from "../../push/operations/count.js";
+import { count as countPull } from "@undercut/pull/src/operations/count.js";
+import { count as countPush } from "@undercut/push/src/operations/count.js";
 
 function testCount(testOperation, count) {
 	testOperation(count, {

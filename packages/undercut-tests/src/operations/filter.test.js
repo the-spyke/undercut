@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { filter as filterPull } from "../../pull/operations/filter.js";
-import { filter as filterPush } from "../../push/operations/filter.js";
+import { filter as filterPull } from "@undercut/pull/src/operations/filter.js";
+import { filter as filterPush } from "@undercut/push/src/operations/filter.js";
 
 function testFilter(testOperation, filter) {
 	expect(() => filter()).toThrow();

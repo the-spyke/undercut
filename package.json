@@ -6,7 +6,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "clean": ". scripts/clean.sh"
+    "clean": ". scripts/clean.sh",
+    "lint": ". scripts/lint.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",

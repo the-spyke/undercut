@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { reduce as reducePull } from "../../pull/operations/reduce.js";
-import { reduce as reducePush } from "../../push/operations/reduce.js";
+import { reduce as reducePull } from "@undercut/pull/src/operations/reduce.js";
+import { reduce as reducePush } from "@undercut/push/src/operations/reduce.js";
 
 function testReduce(testOperation, reduce) {
 	expect(() => reduce()).toThrow();

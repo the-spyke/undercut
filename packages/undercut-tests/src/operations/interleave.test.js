@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { interleave as interleavePull } from "../../pull/operations/interleave.js";
-import { interleave as interleavePush } from "../../push/operations/interleave.js";
+import { interleave as interleavePull } from "@undercut/pull/src/operations/interleave.js";
+import { interleave as interleavePush } from "@undercut/push/src/operations/interleave.js";
 
 function testInterleave(testOperation, interleave) {
 	testOperation(interleave, {

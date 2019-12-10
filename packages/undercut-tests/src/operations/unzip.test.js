@@ -1,7 +1,7 @@
 import { testPull, testPush, testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { unzip as unzipPull, unzipWith as unzipWithPull } from "../../pull/operations/unzip.js";
-import { unzip as unzipPush, unzipWith as unzipWithPush } from "../../push/operations/unzip.js";
+import { unzip as unzipPull, unzipWith as unzipWithPull } from "@undercut/pull/src/operations/unzip.js";
+import { unzip as unzipPush, unzipWith as unzipWithPush } from "@undercut/push/src/operations/unzip.js";
 
 function testUnzip(testOperation, unzip) {
 	testOperation(unzip, {

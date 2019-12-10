@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { remove as removePull } from "../../pull/operations/remove.js";
-import { remove as removePush } from "../../push/operations/remove.js";
+import { remove as removePull } from "@undercut/pull/src/operations/remove.js";
+import { remove as removePush } from "@undercut/push/src/operations/remove.js";
 
 function testRemove(testOperation, remove) {
 	expect(() => remove()).toThrow();

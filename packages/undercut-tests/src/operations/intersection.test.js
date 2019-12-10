@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { intersection as intersectionPull, intersectionBy as intersectionByPull } from "../../pull/operations/intersection.js";
-import { intersection as intersectionPush, intersectionBy as intersectionByPush } from "../../push/operations/intersection.js";
+import { intersection as intersectionPull, intersectionBy as intersectionByPull } from "@undercut/pull/src/operations/intersection.js";
+import { intersection as intersectionPush, intersectionBy as intersectionByPush } from "@undercut/push/src/operations/intersection.js";
 
 function testIntersection(testOperation, intersection) {
 	testOperation(intersection, {

@@ -1,10 +1,12 @@
+import {
+	composeOperations, pushItems,
+	groupBy as groupBy1,
+	flattenIterables,
+	reduce
+} from "@undercut/push";
 import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { runPerfSuite } from "@undercut/utils/src/perf.js";
 
-import { composeOperations, pushItems } from "../push/push_core.js";
-import { groupBy as groupBy1 } from "../push/operations/group_by.js";
-import { flattenIterables } from "../push/operations/flatten.js";
-import { reduce } from "../push/operations/reduce.js";
+import { runPerfSuite } from "../perf.js";
 
 function groupBy2(keySelector) {
 	assertFunctor(keySelector, `keySelector`);

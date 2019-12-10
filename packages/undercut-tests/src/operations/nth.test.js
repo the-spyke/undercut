@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { nth as nthPull } from "../../pull/operations/nth.js";
-import { nth as nthPush } from "../../push/operations/nth.js";
+import { nth as nthPull } from "@undercut/pull/src/operations/nth.js";
+import { nth as nthPush } from "@undercut/push/src/operations/nth.js";
 
 function testNth(testOperation, nth) {
 	expect(() => nth()).toThrow();

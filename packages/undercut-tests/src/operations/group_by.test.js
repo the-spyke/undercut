@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { groupBy as groupByPull } from "../../pull/operations/group_by.js";
-import { groupBy as groupByPush } from "../../push/operations/group_by.js";
+import { groupBy as groupByPull } from "@undercut/pull/src/operations/group_by.js";
+import { groupBy as groupByPush } from "@undercut/push/src/operations/group_by.js";
 
 function testGroupBy(testOperation, groupBy) {
 	expect(() => groupBy()).toThrow();

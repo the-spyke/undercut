@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { min as minPull } from "../../pull/operations/min.js";
-import { min as minPush } from "../../push/operations/min.js";
+import { min as minPull } from "@undercut/pull/src/operations/min.js";
+import { min as minPush } from "@undercut/push/src/operations/min.js";
 
 function testMin(testOperation, min) {
 	testOperation(min, {

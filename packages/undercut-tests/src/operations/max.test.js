@@ -1,7 +1,7 @@
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
-import { max as maxPull } from "../../pull/operations/max.js";
-import { max as maxPush } from "../../push/operations/max.js";
+import { max as maxPull } from "@undercut/pull/src/operations/max.js";
+import { max as maxPush } from "@undercut/push/src/operations/max.js";
 
 function testMax(testOperation, max) {
 	testOperation(max, {
