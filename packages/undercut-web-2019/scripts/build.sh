@@ -20,9 +20,8 @@ babel src --out-dir $OUTPUT/src
 
 cd $UC_DIR
 find src -name '*.js.snap' -exec cp -v --parents '{}' $OUTPUT \;
-cp -v LICENSE $BUILD
 
 cd $CWD
-cp -vr package.json README.md $BUILD
+cp -vr LICENSE package.json README.md $BUILD
 
 webpack

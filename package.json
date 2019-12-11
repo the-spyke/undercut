@@ -7,7 +7,8 @@
   "private": true,
   "scripts": {
     "clean": ". scripts/clean.sh",
-    "lint": ". scripts/lint.sh"
+    "lint": ". scripts/lint.sh",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",

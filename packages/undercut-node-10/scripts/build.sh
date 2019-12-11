@@ -19,7 +19,6 @@ babel src --out-dir $BUILD/src
 cd $UC_DIR
 find src -name '*.js.snap' -exec cp -v --parents '{}' $BUILD \;
 cp -v src/.npmignore $BUILD/src
-cp -v LICENSE $BUILD
 
 cd $CWD
-cp -vr package.json README.md $BUILD
+cp -vr LICENSE package.json README.md $BUILD

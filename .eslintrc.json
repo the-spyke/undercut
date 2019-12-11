@@ -22,6 +22,14 @@
 				"**/*.test.*.js",
 				"**/*.test.js"
 			]
+		},
+		{
+			"env": {
+				"node": true
+			},
+			"files": [
+				"**/*.@(c|m)js"
+			]
 		}
 	],
 	"parser": "babel-eslint",

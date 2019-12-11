@@ -7,11 +7,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": ". scripts/build.sh",
+    "build": "echo 'Empty build step'",
     "clean": "rm -rf build dist",
-    "dist": ". scripts/dist.sh",
-    "prepack": "test -e pull.js",
-    "test": "jest --ci --config jest.config.json --rootDir build"
+    "dist": "rm -rf dist && mkdir dist && cd dist && npm pack ../",
+    "lint": "eslint --format='unix' '**/*.?(c|m)js'",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
