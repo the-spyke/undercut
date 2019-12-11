@@ -11,8 +11,8 @@
     "build": "echo 'Empty build step'",
     "clean": "rm -rf build dist",
     "dist": "rm -rf dist && mkdir dist && cd dist && npm pack ../",
-    "lint": "eslint --format='unix' 'src/**/*.js' '*.js' '*.cjs'",
-    "test": "jest --config jest.config.json"
+    "lint": "eslint --format='unix' '**/*.?(c|m)js'",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
