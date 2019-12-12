@@ -1,5 +1,5 @@
 {
-  "name": "undercut-monorepo",
+  "name": "@undercut/monorepo",
   "version": "1.0.0",
   "description": "A monorepo containing all undercut packages",
   "author": "Anton Alexandrenok",
@@ -7,16 +7,21 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "clean": ". scripts/clean.sh",
+    "clear": ". scripts/clear.sh",
     "lint": ". scripts/lint.sh",
     "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.7.1",
+    "babel-jest": "^24.9.0",
+    "core-js": "^3.4.2",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^23.0.4"
+    "eslint-plugin-jest": "^23.0.4",
+    "eslint": "^6.7.1",
+    "jest": "^24.9.0",
+    "jest-junit": "^9.0.0"
   },
   "workspaces": [
     "packages/*"

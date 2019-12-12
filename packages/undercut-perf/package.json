@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "build": ". scripts/build.sh",
-    "clean": "rm -rf build dist",
+    "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
     "prepack": "test -e pull.js",
     "test": "jest --ci --config jest.config.json --rootDir build"

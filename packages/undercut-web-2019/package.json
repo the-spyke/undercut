@@ -9,7 +9,7 @@
   "sideEffects": false,
   "scripts": {
     "build": ". scripts/build.sh",
-    "clean": "rm -rf build dist",
+    "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
     "prepack": "test -e undercut.pull.js",
     "test": "jest --ci --config jest.config.json --rootDir build/output",
