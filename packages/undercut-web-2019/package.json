@@ -31,9 +31,6 @@
     "url": "https://github.com/the-spyke/undercut",
     "directory": "packages/undercut-web-2019"
   },
-  "bugs": {
-    "url": "https://github.com/the-spyke/undercut/issues"
-  },
   "files": [
     "LICENSE",
     "README.md",

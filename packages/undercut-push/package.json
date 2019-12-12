@@ -27,9 +27,6 @@
     "url": "https://github.com/the-spyke/undercut",
     "directory": "packages/undercut-push"
   },
-  "bugs": {
-    "url": "https://github.com/the-spyke/undercut/issues"
-  },
   "publishConfig": {
     "access": "public"
   },
