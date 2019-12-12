@@ -4,7 +4,7 @@
   "description": "A monorepo containing all undercut packages",
   "author": "Anton Alexandrenok",
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
   "private": true,
   "scripts": {
     "clean": ". scripts/clean.sh",
