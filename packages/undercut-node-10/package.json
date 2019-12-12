@@ -1,5 +1,5 @@
 {
-  "name": "undercut-node-10",
+  "name": "@undercut/node-10",
   "version": "0.4.0",
   "description": "JavaScript data processing pipelines and utilities",
   "author": "Anton Alexandrenok",
