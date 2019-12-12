@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "echo 'Empty build step'",
-    "clean": "rm -rf build dist",
+    "clear": "rm -rf build dist",
     "dist": "rm -rf dist && mkdir dist && cd dist && npm pack ../",
     "lint": "eslint --format='unix' '**/*.?(c|m)js'",
     "test": "jest"
