@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = {
 	testMatch: [
 		`**/*.test.*.js`,
@@ -9,4 +11,7 @@ module.exports = {
 		`/dist/`,
 		`/node_modules/`,
 	],
+	transform: {
+		"\\.(c|m)?js$": `@undercut/config/jest/babel_jest_transformer.cjs`
+	},
 };
