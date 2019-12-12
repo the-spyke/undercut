@@ -45,7 +45,6 @@
   "keywords": [
     "array",
     "data",
-    "es6",
     "iterable",
     "iteration",
     "iterator",
@@ -53,8 +52,6 @@
     "lazy",
     "linq",
     "lodash",
-    "modules",
-    "node",
     "pipeline",
     "undercut",
     "underscore",
