@@ -1,13 +1,15 @@
-{
-	"presets": [
+"use strict";
+
+module.exports = {
+	presets: [
 		[
-			"@babel/preset-env",
+			`@babel/preset-env`,
 			{
-				"modules": "commonjs",
-				"targets": {
-					"node": "10"
+				modules: `commonjs`,
+				targets: {
+					node: `10`
 				}
 			}
 		]
 	]
-}
+};
