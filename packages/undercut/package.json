@@ -27,9 +27,6 @@
     "url": "https://github.com/the-spyke/undercut",
     "directory": "packages/undercut"
   },
-  "bugs": {
-    "url": "https://github.com/the-spyke/undercut/issues"
-  },
   "files": [
     "LICENSE",
     "pull.js",
