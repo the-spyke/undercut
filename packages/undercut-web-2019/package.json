@@ -4,6 +4,7 @@
   "description": "JavaScript data processing pipelines and utilities",
   "author": "Anton Alexandrenok",
   "license": "MIT",
+  "type": "commonjs",
   "main": "undercut.pull.js",
   "sideEffects": false,
   "scripts": {
