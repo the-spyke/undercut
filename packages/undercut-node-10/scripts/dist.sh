@@ -3,13 +3,11 @@
 set -e
 
 CWD="$( pwd )"
+PATH="$CWD/node_modules/.bin:$PATH"
 BUILD="$CWD/build"
 DIST="$CWD/dist"
-PATH="$CWD/node_modules/.bin:$PATH"
 
-echo "CWD: $CWD"
-
-test -d $BUILD
+test -f "$BUILD/pull.js"
 
 rm -rf $DIST
 mkdir $DIST

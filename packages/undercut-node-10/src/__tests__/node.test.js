@@ -1,5 +1,5 @@
 import { satisfies } from "semver";
 
-test(`Node.js is version 10.x`, () => {
-	expect(satisfies(process.version, `^10.x`)).toBe(true);
+test(`Node.js version should be at least 10.13`, () => {
+	expect(satisfies(process.version, `^10.13`)).toBe(true);
 });

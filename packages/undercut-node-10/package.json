@@ -1,7 +1,7 @@
 {
   "name": "@undercut/node-10",
   "version": "0.4.0",
-  "description": "JavaScript data processing pipelines and utilities",
+  "description": "Precompiled version of the undercut library for Node.js >= 10.13",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "commonjs",
@@ -14,11 +14,11 @@
     "build": ". scripts/build.sh",
     "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
-    "prepack": "test -e pull.js",
-    "test": "jest --ci --config jest.config.json --rootDir build"
+    "lint": "eslint --format='unix' '**/*.?(c|m)js'",
+    "prepack": "test -f pull.js",
+    "test": "jest --ci"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.4",
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "core-js": "^3.4.2",
@@ -32,12 +32,10 @@
     "directory": "packages/undercut-node-10"
   },
   "files": [
-    "src/",
     "LICENSE",
-    "pull.js",
-    "push.js",
     "README.md",
-    "utils.js"
+    "*.js",
+    "*.js.map"
   ],
   "keywords": [
     "array",
