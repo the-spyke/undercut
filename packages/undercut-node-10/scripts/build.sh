@@ -21,4 +21,4 @@ find src -name '*.js.snap' -exec cp -v --parents '{}' $BUILD \;
 cp -v src/.npmignore $BUILD/src
 
 cd $CWD
-cp -vr LICENSE package.json README.md $BUILD
+cp -v LICENSE package.json README.md $BUILD
