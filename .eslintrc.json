@@ -13,6 +13,13 @@
 		"Atomics": "readonly",
 		"SharedArrayBuffer": "readonly"
 	},
+	"ignorePatterns": [
+		"**/__snapshots__/",
+		"**/build/",
+		"**/coverage/",
+		"**/dist/",
+		"**/node_modules/"
+	],
 	"overrides": [
 		{
 			"env": {
@@ -41,6 +48,7 @@
 		"import",
 		"jest"
 	],
+	"root": true,
 	"rules": {
 		"array-bracket-newline": [
 			"error",

@@ -1,22 +1,21 @@
 {
   "name": "@undercut/web-2019",
   "version": "0.4.0",
-  "description": "JavaScript data processing pipelines and utilities",
+  "description": "Precompiled version of the undercut library for browsers newer than 2019-01-01",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "commonjs",
-  "main": "undercut.pull.js",
+  "main": "pull.js",
   "sideEffects": false,
   "scripts": {
     "build": ". scripts/build.sh",
     "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
-    "prepack": "test -e undercut.pull.js",
-    "test": "jest --ci --config jest.config.json --rootDir build/output",
-    "webpack": "webpack"
+    "lint": "eslint --format='unix' '**/*.?(c|m)js'",
+    "prepack": "test -f pull.js",
+    "test": "jest --ci"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.4",
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "babel-jest": "^24.9.0",
@@ -34,8 +33,8 @@
   "files": [
     "LICENSE",
     "README.md",
-    "undercut.*.js",
-    "undercut.*.js.map"
+    "*.js",
+    "*.js.map"
   ],
   "keywords": [
     "array",
