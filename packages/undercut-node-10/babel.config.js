@@ -7,7 +7,7 @@ module.exports = {
 			{
 				modules: `commonjs`,
 				targets: {
-					node: `10`
+					node: `10.13`
 				}
 			}
 		]

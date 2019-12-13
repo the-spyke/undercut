@@ -16,10 +16,10 @@ module.exports = {
 		utils: `@undercut/utils/index.js`,
 	},
 	mode: PROD,
+	node: false,
 	output: {
 		filename: `[name].js`,
-		library: [`undercut`, `[name]`],
-		libraryTarget: `umd`,
+		libraryTarget: `commonjs2`,
 		path: BUILD_DIR,
 	},
 };
