@@ -1,8 +1,8 @@
 import * as compare from "@undercut/utils/src/compare.js";
 
-export * from "./src/push_core.js";
-export * from "./src/push_operations.js";
-export * from "./src/push_targets.js";
+export * from "./push_core.js";
+export * from "./push_operations.js";
+export * from "./push_targets.js";
 
 export { compare };
 export * from "@undercut/utils/src/coroutine.js";

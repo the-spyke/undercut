@@ -11,9 +11,9 @@ const BUILD_DIR = path.join(__dirname, `build`);
 module.exports = {
 	devtool: `source-map`,
 	entry: {
-		pull: `@undercut/pull/index.js`,
-		push: `@undercut/push/index.js`,
-		utils: `@undercut/utils/index.js`,
+		pull: `@undercut/pull`,
+		push: `@undercut/push`,
+		utils: `@undercut/utils`,
 	},
 	mode: PROD,
 	node: false,
