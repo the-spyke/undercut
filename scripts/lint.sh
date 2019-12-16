@@ -5,4 +5,4 @@ set -e
 CWD="$( pwd )"
 PATH="$CWD/node_modules/.bin:$PATH"
 
-eslint --format="unix" "packages/**/*.?(c|m)js"
+eslint --format="unix" "**/*.?(c|m)js" $@
