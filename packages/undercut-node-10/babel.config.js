@@ -11,5 +11,6 @@ module.exports = {
 				}
 			}
 		]
-	]
+	],
+	sourceMaps: `inline`,
 };
