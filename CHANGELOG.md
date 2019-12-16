@@ -7,18 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+Big release of `undercut` as we shifted away from a single package to a set of independent scoped packages:
+
+- `@undercut/pull`
+- `@undercut/push`
+- `@undercut/utils`
+
+We also added two precompiled packages for browsers and Node:
+
+- `@undercut/node-10`
+- `@undercut/web-2019`
+- `@undercut/cli`
+
 ### Added
 
 - Added `collect` operation. Much like `reduce`, but for filling items into a mutable `collection`.
 - Coroutine utilities.
-- `src/utils/tests.js` is included into the package, you may use it to test your custom operations.
 - New `delay` and `rethrow` utilities.
 - An ability of `composeOperations` to take a function instead of an array. This function must have no parameters and return an array of operations. This allows dynamic composition and having some shared state in a closure.
+- Precompiled packages for browsers and Node.
+- `@undercut/cli` for using in a shell and process strings with JavaScript.
 
 ### Changed
 
-- **[BREAKING]** `pull`/`push`/`utils` entries where moved out of the `src` directory. So, import `undercut/push.js` instead of `undercut/src/push.js`. All entry points in the package `root` are public API and comform SemVer, but files in the `src` are not.
-- **[BREAKING]** `undercut`'s main entry point is now `pull.js`, to use utils you manually need to import `undercut/utils.js`.
+- **[BREAKING]** `undercut` package is deprecated, use scoped versions like `@undercut/pull`.
 - **[BREAKING]** renamed `makeReiterable` into `createIterable`.
 - **[BREAKING]** renamed `makeUnclosable` into `asUnclosable`.
 - **[BREAKING]** renamed the old `delay` into `wait`.

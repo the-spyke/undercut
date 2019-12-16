@@ -4,6 +4,7 @@
   "description": "Undercut testing utilities",
   "author": "Anton Alexandrenok",
   "license": "MIT",
+  "private": true,
   "type": "module",
   "main": "src/index.js",
   "sideEffects": false,
@@ -26,18 +27,5 @@
     "type": "git",
     "url": "https://github.com/the-spyke/undercut",
     "directory": "packages/undercut-testing"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "index.js",
-    "LICENSE",
-    "README.md"
-  ],
-  "keywords": [
-    "test",
-    "testing",
-    "undercut"
-  ]
+  }
 }
