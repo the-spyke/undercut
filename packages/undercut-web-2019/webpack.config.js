@@ -21,5 +21,6 @@ module.exports = {
 		library: [`undercut`, `[name]`],
 		libraryTarget: `umd`,
 		path: BUILD_DIR,
+		umdNamedDefine: true,
 	},
 };
