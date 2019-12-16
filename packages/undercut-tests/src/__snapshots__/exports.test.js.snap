@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`exports pull 1`] = `
+exports[`exports @undercut/pull 1`] = `
 Array [
   "Cohort",
   "abort",
@@ -80,7 +80,7 @@ Array [
 ]
 `;
 
-exports[`exports push 1`] = `
+exports[`exports @undercut/push 1`] = `
 Array [
   "Cohort",
   "abort",
@@ -153,7 +153,16 @@ Array [
 ]
 `;
 
-exports[`exports utils 1`] = `
+exports[`exports @undercut/testing 1`] = `
+Array [
+  "testOperationPull",
+  "testOperationPush",
+  "testPull",
+  "testPush",
+]
+`;
+
+exports[`exports @undercut/utils 1`] = `
 Array [
   "Cohort",
   "abort",
