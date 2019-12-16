@@ -4,8 +4,8 @@
   "description": "Undercut build configs",
   "author": "Anton Alexandrenok",
   "license": "MIT",
+  "private": true,
   "type": "commonjs",
   "main": "index.cjs",
-  "private": true,
   "sideEffects": false
 }
