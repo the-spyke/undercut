@@ -1,7 +1,7 @@
 version: 2.1
 
 executors:
-  node_current:
+  node:
     docker:
       - image: node:13-buster-slim
   node_10:
@@ -17,6 +17,7 @@ commands:
     parameters:
       path:
         type: string
+        default: .
     steps:
       - run:
           name: ESLint
@@ -30,6 +31,7 @@ commands:
     parameters:
       path:
         type: string
+        default: .
       coverage:
         type: boolean
         default: false
@@ -78,8 +80,8 @@ commands:
             ARTIFACTS="$(pwd)/artifacts"
             echo "export ARTIFACTS=\"${ARTIFACTS}\"" >> $BASH_ENV
             mkdir -p $ARTIFACTS
-  finilize:
-    description: Finilize a JS project build and upload its artifacts.
+  finalize:
+    description: Finalize a JS project build and upload its artifacts.
     steps:
       - store_artifacts:
           path: artifacts
@@ -93,64 +95,113 @@ commands:
       coverage:
         type: boolean
         default: false
+      test:
+        type: boolean
+        default: false
     steps:
       - initialize
-      - when:
-          condition: << parameters.coverage >>
-          steps:
-            - lint:
-                path: << parameters.path >>
       - run:
           name: Build
           command: |
             cd << parameters.path >>
             yarn build
-      - test:
-          path: << parameters.path >>
-          coverage: << parameters.coverage >>
+      - when:
+          condition: << parameters.test >>
+          steps:
+            - test:
+                path: << parameters.path >>
+                coverage: << parameters.coverage >>
       - run:
           name: Dist
           command: |
             cd << parameters.path >>
             yarn dist
-            cp -v dist/undercut-*.tgz $ARTIFACTS
-      - run:
-          name: Package installation
-          command: |
-            mkdir -p ~/package-installation-test
-            cd ~/package-installation-test
-            npm init -y
-            npm i $ARTIFACTS/undercut-*.tgz
-      - finilize
+            cp -v dist/* $ARTIFACTS
+      - finalize
 
 jobs:
-  build:
-    executor: node_current
+  build_cli:
+    executor: node
     steps:
       - build:
-          path: packages/undercut
-          coverage: true
+          path: packages/undercut-cli
+
   build_node_10:
     executor: node_10
     steps:
       - build:
           path: packages/undercut-node-10
-          coverage: false
+          test: true
+
+  build_pull:
+    executor: node
+    steps:
+      - build:
+          path: packages/undercut-pull
+
+  build_push:
+    executor: node
+    steps:
+      - build:
+          path: packages/undercut-push
+
+  build_testing:
+    executor: node
+    steps:
+      - build:
+          path: packages/undercut-testing
+
+  build_utils:
+    executor: node
+    steps:
+      - build:
+          path: packages/undercut-utils
+
   build_web_2019:
-    executor: node_current
+    executor: node
     steps:
       - build:
           path: packages/undercut-web-2019
-          coverage: false
+          test: true
+
+  check_all:
+    executor: node
+    steps:
+      - initialize
+      - lint
+      - test:
+          coverage: true
+      - finalize
 
 workflows:
   version: 2
   workflow:
     jobs:
-      - build
+      - check_all
+      - build_pull:
+          requires:
+            - check_all
+      - build_push:
+          requires:
+            - check_all
+      - build_testing:
+          requires:
+            - check_all
+      - build_utils:
+          requires:
+            - check_all
+      - build_cli:
+          requires:
+            - build_pull
+            - build_push
+            - build_utils
       - build_node_10:
           requires:
-            - build
+            - build_pull
+            - build_push
+            - build_utils
       - build_web_2019:
           requires:
-            - build
+            - build_pull
+            - build_push
+            - build_utils
