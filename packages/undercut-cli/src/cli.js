@@ -43,4 +43,4 @@ const argv = yargs
 	.wrap(yargs.terminalWidth())
 	.argv;
 
-runPush(argv.sourse, argv._);
+runPush(argv.source, argv._);
