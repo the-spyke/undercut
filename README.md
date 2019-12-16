@@ -28,26 +28,27 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 
 ## Installation
 
-`Undercut` comes in several flavors. The `undercut` package is the intended way to consume it. This package carries universal `stable ES Next` code. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and runs in Node/Browser/microwave, but likely requires `core-js@3` in your environment. Also, don't forget check thaat `node_modules/undercut` isn't excluded from compilation.
+`Undercut` comes in several flavors. The `@undercut/pull,push,utils` packages are the intended way to consume it. These packages carry universal `stable ES Next` code. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and may be used in Node/Browser/microwave. Also, don't forget check that `/node_modules/@undercut/` isn't excluded from compilation and `core-js@3` polyfill or analogue is in place.
 
-Several precompiled packages are provided for older projects or quick experiments. They do not require any sort of compilaton:
+Several precompiled packages are provided for older projects or quick experiments. They do not require any sort of compilaton, just a polyfill:
 
-- `undercut-node-10` -- a precompiled CommonJS version for Node.js 10 LTS and upwards. Requires stable polyfills from `core-js@3`.
-- `undercut-web-2019` -- a precompiled version for Web browsers not older than 2019-01-01. Creates the `undercut` variable in the `window`, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
+- `@undercut/node-10` -- a precompiled CommonJS version for Node.js 10 LTS and upwards. Requires stable polyfills from `core-js@3`.
+- `@undercut/web-2019` -- a precompiled version for Web browsers not older than 2019-01-01. Creates the `undercut` property in the `window`, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
+- `@undercut/cli` -- a command line interface for processing data with JavaScript and `undercut` in shells. Accepts items from `stdin` and puts results into `stdout`. [Read more in package's readme.](packages/undercut-cli/README.md)
 
 ```sh
-npm install undercut
+npm install @undercut/pull
 # or
-yarn add undercut
+yarn add @undercut/pull
 ```
 
 For precompiled packages it is convenient to use [Yarn aliases](https://yarnpkg.com/en/docs/cli/add#toc-yarn-add-alias):
 
 ```sh
-yarn add undercut@npm:undercut-node-10
+yarn add undercut@npm:@undercut/node-10
 ```
 
-### Upgrading undercut
+### Upgrading `undercut`
 
 If you're upgrading `undercut` to a newer version, upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
 
@@ -56,7 +57,7 @@ If you're upgrading `undercut` to a newer version, upgrade `@babel/preset-env` a
 [![Edit undercut-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/undercut-example-9g1nh?fontsize=14&module=%2Fsrc%2Findex.js)
 
 ```js
-import { pullItems, filter, map, skip } from "undercut";
+import { pullItems, filter, map, skip } from "@undercut/pull";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 
@@ -69,13 +70,13 @@ const result = pullItems([
 console.log(result); // [8, 10, 14]
 ```
 
-There are 3 entry points:
+There are 3 main packages:
 
-- `pull` (default) -- exports for Pull Lines (Iterables).
-- `push` -- exports for Push Lines (Observers).
-- `utils` -- various JavaScript utilities, some of them like `asc`/`desc`/`compare` you will need for data processing too.
+- `@undercut/pull` -- exports Pull Lines (Iterables) + a couple of utils.
+- `@undercut/push` -- exports Push Lines (Observers) + a couple of utils.
+- `@undercut/utils` -- exports all the various JavaScript utilities that `undercut` provides.
 
-These entry points are stable, so any export removal/renaming counts as a breaking change.
+Package entry points are stable, so any export removal/renaming is as a breaking change.
 
 ## Concepts
 
@@ -98,7 +99,7 @@ Pull Line -- pull items from an Iterable
 ( source + pipeline = Iterable )
 ```
 
-If `source` items are **not** available at the moment of execution, we have to process items as they appear. We can do this by *pushing* items into a `Push Line`. It is created by combining a `pipeline` and a `target` into an `Observer`. `Observers` are convenient in use cases like reacting on a button click and me be passed around or used by several sources.
+If `source` items are **not** available at the moment of execution, we have to process items as they appear. We can do this by *pushing* items into a `Push Line`. It is created by combining a `pipeline` and a `target` into an `Observer`. `Observers` are convenient in use cases like reacting on a button click and may be passed around or used by several producers.
 
 ```text
 Push line -- push items into an Observer
@@ -129,13 +130,13 @@ interface IteratorResult {
 
 `Pull` is the most used type of pipelines. A `Pull Line` is re-usable if its source is re-iterable.
 
-To use `Pull Lines` you need to import from the default `undercut` entry point or explicit `undercut/push.js`.
+To use `Pull Lines` you need to import from `@undercut/pull`.
 
 Terms in releation to `Pull Lines`:
 
 - `iterable` -- an object implementing the [Iterable protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol).
-- `operation` -- a function taking an `Iterable` and returning another `Iterable`.
-- `pipeline` -- an ordered sequence of `operations` (an array).
+- `operation` -- a function taking an `Iterable` of source items and returning an `Iterable` of result items.
+- `pipeline` -- an ordered sequence (array) of `operations`.
 - `source` -- an `Iterable` which items will be processed. Many native objects are `Iterable` out of the box: arrays, maps, sets, strings.
 - `target` -- a function for extracting the result out of pipeline. Takes an `Iterable` and returns some value. Many native functions behave this way: `Array.from()`, `new Map()`, `Object.fromEntries()`, etc. `Targets` provided by the `undercut` are mostly wrappers around those native functions/constructors for convenience. Feel free to use the originals.
 
@@ -146,7 +147,7 @@ Terms in releation to `Pull Lines`:
 Composes several existing operations into a new one.
 
 ```js
-import { composeOperations, pull, flatten, zip, toArray } from "undercut";
+import { composeOperations, pull, flatten, zip, toArray } from "@undercut/pull";
 
 function interleave(...sources) {
     const operations = [
@@ -172,7 +173,7 @@ console.log(result); // [1, 2, 3, 4, 5, 6]
 Executes the pipeline by pulling items from the source to the target and returns target's return value.
 
 ```js
-import { pull, filter, map, skip, toArray } from "undercut";
+import { pull, filter, map, skip, toArray } from "@undercut/pull";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 const pipeline = [
@@ -191,7 +192,7 @@ console.log(result); // [8, 10, 14]
 Same as `pull`, but target is implicitly set to `toArray`.
 
 ```js
-import { pullItems, filter, map, skip, toArray } from "undercut";
+import { pullItems, filter, map, skip, toArray } from "@undercut/pull";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 const pipeline = [
@@ -212,7 +213,7 @@ Creates a `Pull Line`.
 Useful when you want to pass it somewhere or being able to re-evaluate the result again in the future.
 
 ```js
-import { pullLine, append, compact, skip, toArray } from "undercut";
+import { pullLine, append, compact, skip, toArray } from "@undercut/pull";
 
 const source = [0, 1, 2, 3];
 const pipeline = [
@@ -293,13 +294,13 @@ interface Observer {
 
 `Push` is used less often than `Pull` and has an independent implementation. `Push Lines` are **not** re-usable and you **must** close the `observer` when you're done with it by calling its `.return()` method. Closing the `observer` also signals `end-of-sequence` (many operations wait till they gather all items, until they could continue). The `.throw()` method allows to cancel execution at any time.
 
-To use `Push Lines` you need to import from `undercut/push.js` entry point.
+To use `Push Lines` you need to import from `@undercut/push` entry point.
 
 Terms in releation to `Push Lines`:
 
 - `observer` -- an object implementing the `Observer protocol`.
-- `operation` -- a function taking an `observer` and returning another one.
-- `pipeline` -- an ordered sequence of `operations` (array).
+- `operation` -- a function taking an `observer` accepting result items and returning an `observer` accepting source items.
+- `pipeline` -- an ordered sequence (array) of `operations`.
 - `source` -- there is no real `source` in `Push Lines`, because someone need to manually put items into the `observer`, but several `push` functions can help you to process `iterables` with `Push Lines`.
 - `target` -- an `observer` that will receive the result.
 
@@ -310,7 +311,7 @@ Terms in releation to `Push Lines`:
 Composes several existing operations into a new one.
 
 ```js
-import { composeOperations, push, flatten, zip, toArray } from "undercut/push.js";
+import { composeOperations, push, flatten, zip, toArray } from "@undercut/push";
 
 function interleave(...sources) {
     const operations = [
@@ -336,7 +337,7 @@ console.log(result); // [1, 2, 3, 4, 5, 6]
 Executes the pipeline by pushing items from an iterable source to the target and returns the target back.
 
 ```js
-import { push, filter, map, skip, toArray } from "undercut/push.js";
+import { push, filter, map, skip, toArray } from "@undercut/push";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 const pipeline = [
@@ -357,7 +358,7 @@ console.log(target.values); // [8, 10, 14]
 Same as `push`, but target is implicitly set to `toArray()` and its `values` property is returned.
 
 ```js
-import { pushItems, filter, map, skip, toArray } from "undercut/push.js";
+import { pushItems, filter, map, skip, toArray } from "@undercut/push";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 const pipeline = [
@@ -378,7 +379,7 @@ Creates a `Push Line`.
 Usually, you will push an item in an event handler like button click, etc.
 
 ```js
-import { pushLine, append, compact, skip, toArray } from "undercut/push.js";
+import { pushLine, append, compact, skip, toArray } from "@undercut/push";
 
 const target = toArray();
 const pipeline = [
@@ -439,7 +440,7 @@ console.log(result); // [1, 4, 9]
 10. You will get here in case of both cancellation and `end-of-sequence` signal.
 11. It is a good place to clean up your resources. You must also signal remaining observers in the chain by calling `observer.return()`.
 
-In case more advanced operations like grouping, where you need to look at all available items first before you can proceed, you can do this in `finally`. Make yourself a flag to skip computation in case of catching a cancellation, and pass items before closing the observer ([see the groupBy operation](packages/undercut/src/push/operations/group_by.js))
+In case more advanced operations like grouping, where you need to look at all available items first before you can proceed, you can do this in `finally`. Make yourself a flag to skip computation in case of catching a cancellation, and pass items before closing the observer ([see the groupBy operation](packages/undercut-push/src/operations/group_by.js))
 
 ## Operations
 
@@ -500,17 +501,16 @@ Operation exist in both `pull` and `push` versions:
 
 ## Utilities
 
-Some utilities are exported in `pull` and `push` entries, but they identical to those in the `utils` entry, where you get to whole package:
+Some utilities related to pull and push operations are exported in `@undercut/pull` and `@undercut/push` packages, but they identical to those in the `@undercut/utils` package, which exports all the list:
 
 - `asc(comparator, selector = identity) => OrderingSpec` -- used itself as a value for specifying ascending sorting direction, of as a factory function for creating OrderingSpec for `groupBy` operation.
-- `closeIterator(iterator) => void` -- closes the `iterator` if it has a `return` method.
-- `closeObserver(observer) => void` -- closes the `observer` if it has a `return` method.
+- `close(coroutine, tryBeforeClosing) => TryBeforeClosingReturnValue` -- closes the `coroutine` after passing it into optional `tryBeforeClosing` function allowing you to do something with it without manually writing `try/finally` block.
 - `compare` -- a set of predefined comparators for sorting.
+- `createIterable(function) => Iterable` -- makes an `Iterable` from a provided function. It could be a generator or a factory, but must return a new iterator every time.
 - `delay(promise, time) => Promise` -- returns a new Promise that waits `time` more miliseconds after the `promise` and fulfills with its result.
 - `desc(comparator, selector = identity) => OrderingSpec` -- used itself as a value for specifying descending sorting direction, of as a factory function for creating OrderingSpec for `groupBy` operation.
 - `getIterator(iterable) => Iterator` -- calls the `Symbol.iterator` method of the `iterable` for you.
 - `identity(value) => value` -- returns the same `value` the was provided as the first argument.
-- `initializeObserver(observer) => observer` -- returns the same observer after calling the `next` method on it once.
 - `isBoolean(value) => boolean` -- returns `true` if the `value` is of the boolean type, `false` otherwise.
 - `isDefined(value) => boolean` -- returns `true` if the `value` is exactly not `undefined`, `false` otherwise.
 - `isFalsy(value) => boolean` -- returns `true` if the `value` converted to Boolean is `false`, `false` otherwise.
@@ -532,14 +532,11 @@ Some utilities are exported in `pull` and `push` entries, but they identical to 
 - `isSymbol(value) => boolean` -- returns `true` if the `value` is of the Symbol type, `false` otherwise.
 - `isTruthy(value) => boolean` -- returns `true` if the `value` converted to Boolean is `true`, `false` otherwise.
 - `isUndefined(value) => boolean` -- returns `true` if the `value` is exactly `undefined`, `false` otherwise.
-- `makeReiterable(function) => Iterable` -- makes an `Iterable` from a provided function. It could be a generator or a factory, but must return a new iterator every time.
 - `negate(value) => boolean` -- performs the `!` operation with provided value.
 - `negateSign(value) => number` -- inverts the sign of the numeric value.
 - `noop() => void` -- an empty function.
 - `rethrow(error) => void` -- immidietly throws provided `error`.
 - `unwrapPromise() => object` -- creates a new Promise and returnss it together with its `resolve`/`reject` functions.
-- `useIterator(iterator, usage) => UsageReturnValue` -- a helper for closing iterators for you. `usage` is a function provided the iterator from the first argument. The `iterator` will be closed right after `usage` function exits. Use it for convenience instead of manual `try/finally` blocks.
-- `useObserver(observer, usage) => UsageReturnValue` -- same as `useIterator`, but for observers.
 - `wait(time) => Promise` -- returns a Promise fulfilling after `time` miliseconds.
 
 ## License
