@@ -7,13 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Big release of `undercut` as we shifted away from a single package to a set of independent scoped packages:
+Big release for `undercut` as we shifted away from a single package to a set of independent scoped packages:
 
 - `@undercut/pull`
 - `@undercut/push`
 - `@undercut/utils`
 
-We also added two precompiled packages for browsers and Node:
+We also added 3 precompiled packages for browsers and Node:
 
 - `@undercut/node-10`
 - `@undercut/web-2019`
