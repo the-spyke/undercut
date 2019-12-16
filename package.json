@@ -23,6 +23,9 @@
     "jest": "^24.9.0",
     "jest-junit": "^9.0.0"
   },
+  "resolutions": {
+    "jest-config": "file:./deps/jest-config-24.9.0.tgz"
+  },
   "workspaces": [
     "packages/*"
   ]
