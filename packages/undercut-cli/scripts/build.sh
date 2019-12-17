@@ -12,4 +12,4 @@ mkdir $BUILD
 cp -v LICENSE README.md $BUILD
 node scripts/fix_package_json.cjs package.json $BUILD/package.json
 
-webpack --config webpack.config.cjs
+babel src/cli.js src/index.js src/polyfills.js --out-dir $BUILD/lib

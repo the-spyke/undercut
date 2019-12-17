@@ -4,8 +4,7 @@
   "description": "Precompiled version of the undercut library for Node.js >= 10.13",
   "author": "Anton Alexandrenok",
   "license": "MIT",
-  "type": "commonjs",
-  "main": "pull.js",
+  "type": "module",
   "sideEffects": false,
   "engines": {
     "node": ">=10.13"
@@ -15,16 +14,25 @@
     "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
     "lint": "eslint --format='unix' '**/*.?(c|m)js'",
-    "prepack": "test -f pull.js",
+    "prepack": "test ! -d scripts",
     "test": "jest --ci"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
     "core-js": "^3.4.2",
     "jest": "^24.9.0",
     "jest-junit": "^9.0.0",
-    "semver": "^6.3.0"
+    "semver": "^6.3.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "exports": {
+    "./pull": "./pull.js",
+    "./push": "./push.js",
+    "./utils": "./utils.js"
   },
   "repository": {
     "type": "git",
@@ -32,10 +40,10 @@
     "directory": "packages/undercut-node-10"
   },
   "files": [
-    "LICENSE",
-    "README.md",
     "*.js",
-    "*.js.map"
+    "*.js.map",
+    "LICENSE",
+    "README.md"
   ],
   "keywords": [
     "array",

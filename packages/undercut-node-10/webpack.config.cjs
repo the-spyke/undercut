@@ -11,15 +11,24 @@ const BUILD_DIR = path.join(__dirname, `build`);
 module.exports = {
 	devtool: `source-map`,
 	entry: {
-		pull: `@undercut/pull`,
-		push: `@undercut/push`,
-		utils: `@undercut/utils`,
+		pull: `./pull.js`,
+		push: `./push.js`,
+		utils: `./utils.js`,
 	},
 	mode: PROD,
-	node: false,
+	module: {
+		rules: [
+			{
+				test: /\.(c|m)?js$/,
+				loader: `babel-loader`,
+			}
+		]
+	},
 	output: {
 		filename: `[name].js`,
+		globalObject: `this`,
 		libraryTarget: `commonjs2`,
 		path: BUILD_DIR,
 	},
+	target: `node`,
 };
