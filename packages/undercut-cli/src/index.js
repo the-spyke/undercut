@@ -3,9 +3,9 @@
 import { EOL } from "os";
 import { createInterface } from "readline";
 
-import * as pull from "@undercut/pull";
-import * as push from "@undercut/push";
-import * as utils from "@undercut/utils";
+import * as pull from "@undercut/node-10/pull";
+import * as push from "@undercut/node-10/push";
+import * as utils from "@undercut/node-10/utils";
 
 export function pushFromStdin(observer) {
 	const rl = createInterface({ input: process.stdin });

@@ -5,7 +5,6 @@
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "commonjs",
-  "main": "pull.js",
   "sideEffects": false,
   "scripts": {
     "build": ". scripts/build.sh",
@@ -19,6 +18,7 @@
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
     "core-js": "^3.4.2",
     "jest": "^24.9.0",
     "jest-junit": "^9.0.0",

@@ -18,6 +18,7 @@ module.exports = {
 	mode: PROD,
 	output: {
 		filename: `[name].js`,
+		globalObject: `this`,
 		library: [`undercut`, `[name]`],
 		libraryTarget: `umd`,
 		path: BUILD_DIR,

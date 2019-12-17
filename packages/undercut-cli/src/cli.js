@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import "core-js/es/index.js";
+import "./polyfills.js";
 
 import yargs from "yargs";
 

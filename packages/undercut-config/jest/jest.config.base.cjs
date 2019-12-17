@@ -1,6 +1,12 @@
 "use strict";
 
 module.exports = {
+	modulePathIgnorePatterns: [
+		`/build/`,
+		`/coverage/`,
+		`/dist/`,
+		`/node_modules/`,
+	],
 	testMatch: [
 		`**/*.test.*.js`,
 		`**/*.test.js`,
