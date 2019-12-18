@@ -41,7 +41,6 @@ commands:
           command: |
             cd << parameters.path >>
             yarn test --ci <<# parameters.coverage >>--coverage<</ parameters.coverage >> --reporters="default" --reporters="jest-junit" --runInBand
-            <<# parameters.coverage >>cp -v coverage/clover.xml $ARTIFACTS/coverage.xml<</ parameters.coverage >>
             mkdir -p $ARTIFACTS/test_results/jest
             cp -v jest.xml $ARTIFACTS/test_results/jest/
           environment:
@@ -49,8 +48,13 @@ commands:
       - when:
           condition: << parameters.coverage >>
           steps:
+            - run:
+                name: Process coverage reports
+                command: |
+                  cp -v coverage/coverage-final.json $ARTIFACTS/coverage.json
+                  tar -czvf $ARTIFACTS/coverage.tar.gz coverage/
             - codecov/upload:
-                file: artifacts/coverage.xml
+                file: artifacts/coverage.json
   initialize:
     description: Initialize a JS project and create artifacts directory
     steps:
