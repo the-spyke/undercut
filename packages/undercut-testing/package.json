@@ -11,7 +11,7 @@
   "scripts": {
     "build": "echo 'Empty build step'",
     "clear": "rm -rf build dist",
-    "dist": "rm -rf dist && mkdir dist && cd dist && npm pack ../",
+    "dist": "echo 'This package doesn't support publishing!' && exit 1",
     "lint": "eslint --format='unix' '**/*.?(c|m)js'",
     "test": "jest"
   },
