@@ -9,6 +9,6 @@ module.exports = {
 	...webConfig,
 	projects: [
 		`.`,
-		...referRootProjects([`undercut-cli`]),
+		...referRootProjects(),
 	]
 };
