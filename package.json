@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "clear": ". scripts/clear.sh",
-    "lint": ". scripts/lint.sh",
+    "lint": "./scripts/lint.sh",
     "test": "jest"
   },
   "devDependencies": {
