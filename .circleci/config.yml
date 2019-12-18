@@ -92,10 +92,10 @@ commands:
     parameters:
       path:
         type: string
-      coverage:
+      test:
         type: boolean
         default: false
-      test:
+      coverage:
         type: boolean
         default: false
     steps:
@@ -121,10 +121,11 @@ commands:
 
 jobs:
   build_cli:
-    executor: node
+    executor: node_10
     steps:
       - build:
           path: packages/undercut-cli
+          test: true
 
   build_node_10:
     executor: node_10
@@ -144,12 +145,6 @@ jobs:
     steps:
       - build:
           path: packages/undercut-push
-
-  build_testing:
-    executor: node
-    steps:
-      - build:
-          path: packages/undercut-testing
 
   build_utils:
     executor: node
@@ -184,22 +179,17 @@ workflows:
       - build_push:
           requires:
             - check_all
-      - build_testing:
-          requires:
-            - check_all
       - build_utils:
           requires:
             - check_all
-      - build_cli:
-          requires:
-            - build_pull
-            - build_push
-            - build_utils
       - build_node_10:
           requires:
             - build_pull
             - build_push
             - build_utils
+      - build_cli:
+          requires:
+            - build_node_10
       - build_web_2019:
           requires:
             - build_pull
