@@ -18,5 +18,4 @@ module.exports = {
 			}
 		]
 	],
-	sourceMaps: `inline`,
 };

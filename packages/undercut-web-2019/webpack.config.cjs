@@ -11,11 +11,19 @@ const BUILD_DIR = path.join(__dirname, `build`);
 module.exports = {
 	devtool: `source-map`,
 	entry: {
-		pull: `@undercut/pull`,
-		push: `@undercut/push`,
-		utils: `@undercut/utils`,
+		pull: `./pull.js`,
+		push: `./push.js`,
+		utils: `./utils.js`,
 	},
 	mode: PROD,
+	module: {
+		rules: [
+			{
+				test: /\.(c|m)?js$/,
+				loader: `babel-loader`,
+			}
+		]
+	},
 	output: {
 		filename: `[name].js`,
 		globalObject: `this`,
@@ -24,4 +32,5 @@ module.exports = {
 		path: BUILD_DIR,
 		umdNamedDefine: true,
 	},
+	target: `web`,
 };

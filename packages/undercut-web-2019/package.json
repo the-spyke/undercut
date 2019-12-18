@@ -4,14 +4,14 @@
   "description": "Precompiled version of the undercut library for browsers newer than 2019-01-01",
   "author": "Anton Alexandrenok",
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
   "sideEffects": false,
   "scripts": {
     "build": ". scripts/build.sh",
     "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
     "lint": "eslint --format='unix' '**/*.?(c|m)js'",
-    "prepack": "test -f pull.js",
+    "prepack": "test ! -d scripts",
     "test": "jest --ci"
   },
   "devDependencies": {
@@ -25,16 +25,21 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
+  "exports": {
+    "./pull": "./pull.js",
+    "./push": "./push.js",
+    "./utils": "./utils.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/the-spyke/undercut",
     "directory": "packages/undercut-web-2019"
   },
   "files": [
-    "LICENSE",
-    "README.md",
     "*.js",
-    "*.js.map"
+    "*.js.map",
+    "LICENSE",
+    "README.md"
   ],
   "keywords": [
     "array",
