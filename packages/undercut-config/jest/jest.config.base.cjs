@@ -1,22 +1,18 @@
 "use strict";
 
+const { IGNORE_PATTERNS } = require(`../index.cjs`);
+
 module.exports = {
-	modulePathIgnorePatterns: [
-		`/build/`,
-		`/coverage/`,
-		`/dist/`,
-		`/node_modules/`,
+	collectCoverageFrom: [
+		`**/*.?(c|m)js`,
 	],
+	coveragePathIgnorePatterns: IGNORE_PATTERNS,
+	modulePathIgnorePatterns: IGNORE_PATTERNS,
 	testMatch: [
-		`**/*.test.*.js`,
-		`**/*.test.js`,
+		`**/*.test.*.?(c|m)js`,
+		`**/*.test.?(c|m)js`,
 	],
-	testPathIgnorePatterns: [
-		`/build/`,
-		`/coverage/`,
-		`/dist/`,
-		`/node_modules/`,
-	],
+	testPathIgnorePatterns: IGNORE_PATTERNS,
 	transform: {
 		"\\.(c|m)?js$": `@undercut/config/jest/babel_jest_transformer.cjs`
 	},
