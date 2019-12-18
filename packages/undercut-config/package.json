@@ -7,5 +7,16 @@
   "private": true,
   "type": "commonjs",
   "main": "index.cjs",
-  "sideEffects": false
+  "scripts": {
+    "build": "echo 'Empty build step'",
+    "clear": "rm -rf build dist",
+    "dist": "echo 'This package doesn't support publishing!' && exit 1",
+    "lint": "eslint --format='unix' '**/*.?(c|m)js'",
+    "test": "echo 'No tests'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/the-spyke/undercut",
+    "directory": "packages/undercut-config"
+  }
 }
