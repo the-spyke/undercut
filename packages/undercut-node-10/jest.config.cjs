@@ -7,6 +7,6 @@ module.exports = {
 	...nodeConfig,
 	projects: [
 		`.`,
-		...referRootProjects([`undercut-cli`]),
+		...referRootProjects(),
 	],
 };
