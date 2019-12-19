@@ -7,7 +7,28 @@ export function take(count) {
 
 	count = Math.trunc(count);
 
-	return takeWhile((_, i) => i < count);
+	return asObserver(function* (observer) {
+		try {
+			if (!count) {
+				return;
+			}
+
+			let index = 0;
+
+			while (true) {
+				observer.next(yield);
+				index++;
+
+				if (index >= count) {
+					return;
+				}
+			}
+		} catch (error) {
+			abort(observer, error);
+		} finally {
+			close(observer);
+		}
+	});
 }
 
 export function takeWhile(predicate) {
@@ -20,12 +41,11 @@ export function takeWhile(predicate) {
 			while (true) {
 				const item = yield;
 
-				if (predicate(item, index)) {
-					observer.next(item);
-				} else {
+				if (!predicate(item, index)) {
 					return;
 				}
 
+				observer.next(item);
 				index++;
 			}
 		} catch (error) {

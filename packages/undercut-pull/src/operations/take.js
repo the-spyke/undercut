@@ -6,7 +6,22 @@ export function take(count) {
 
 	count = Math.trunc(count);
 
-	return takeWhile((_, i) => i < count);
+	return function* (iterable) {
+		if (!count) {
+			return;
+		}
+
+		let index = 0;
+
+		for (const item of iterable) {
+			yield item;
+			index++;
+
+			if (index >= count) {
+				return;
+			}
+		}
+	};
 }
 
 export function takeWhile(predicate) {
@@ -16,12 +31,11 @@ export function takeWhile(predicate) {
 		let index = 0;
 
 		for (const item of iterable) {
-			if (predicate(item, index)) {
-				yield item;
-			} else {
+			if (!predicate(item, index)) {
 				return;
 			}
 
+			yield item;
 			index++;
 		}
 	};

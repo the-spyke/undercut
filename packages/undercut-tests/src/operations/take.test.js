@@ -1,4 +1,10 @@
-import { testOperationPull, testOperationPush } from "@undercut/testing";
+import {
+	getIntegerSource,
+	testPullLimited,
+	testPushLimited,
+	testOperationPull,
+	testOperationPush,
+} from "@undercut/testing";
 
 import { take as takePull, takeWhile as takeWhilePull } from "@undercut/pull/src/operations/take.js";
 import { take as takePush, takeWhile as takeWhilePush } from "@undercut/push/src/operations/take.js";
@@ -45,8 +51,29 @@ function testTake(testOperation, take) {
 }
 
 describe(`take`, () => {
-	test(`pull`, () => testTake(testOperationPull, takePull));
-	test(`push`, () => testTake(testOperationPush, takePush));
+	const source = getIntegerSource(4);
+
+	describe(`pull`, () => {
+		const take = takePull;
+
+		test(`should work`, () => testTake(testOperationPull, take));
+
+		test(`should not iterate more items than specified`, () => {
+			expect(() => testPullLimited(take(0), source, 0)).not.toThrow();
+			expect(() => testPullLimited(take(3), source, 3)).not.toThrow();
+		});
+	});
+
+	describe(`push`, () => {
+		const take = takePush;
+
+		test(`should work`, () => testTake(testOperationPush, take));
+
+		test(`should not wait for more items than specified`, () => {
+			expect(() => testPushLimited(take(0), source, 0)).not.toThrow();
+			expect(() => testPushLimited(take(3), source, 3)).not.toThrow();
+		});
+	});
 });
 
 function testTakeWhile(testOperation, takeWhile) {
