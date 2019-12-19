@@ -40,6 +40,10 @@ We also added 3 precompiled packages for browsers and Node:
 
 - **[BREAKING]** Removed `closeIterator`, `closeObserver`, `initializeObserver` utilities.
 
+### Fixed
+
+- `take` operations iteraited/observed a one excess item before exiting.
+
 ## [0.4.0] - 2019-10-15
 
 This release adds `Push Lines` and makes API more consistent in general.

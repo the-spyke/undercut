@@ -20,11 +20,11 @@ export function abort(coroutine, error) {
 */
 export function asObserver(generator) {
 	return function (...args) {
-		const genObject = generator(...args);
+		const observer = generator(...args);
 
-		genObject.next();
+		observer.next();
 
-		return genObject;
+		return observer;
 	};
 }
 
