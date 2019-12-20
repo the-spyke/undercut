@@ -1,4 +1,4 @@
-import { testPush } from "@undercut/testing";
+import { simulatePush } from "@undercut/testing";
 
 import { flatten } from "./operations/flatten.js";
 import { map } from "./operations/map.js";
@@ -21,7 +21,7 @@ test(`composeOperations`, () => {
 		]);
 	}
 
-	expect(testPush(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
+	expect(simulatePush(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
 
 	function interleaveDynamic(...sources) {
 		return composeOperations(() => [
@@ -30,11 +30,11 @@ test(`composeOperations`, () => {
 		]);
 	}
 
-	expect(testPush(interleaveDynamic([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
+	expect(simulatePush(interleaveDynamic([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
 });
 
 test(`pushLine`, () => {
-	function testPushLine(pushLineFactory, source) {
+	function simulatePushLine(pushLineFactory, source) {
 		const target = toArray();
 		const observer = pushLineFactory(target);
 
@@ -53,8 +53,8 @@ test(`pushLine`, () => {
 	expect(() => pushLine([], 1)).toThrow();
 	expect(() => pushLine(1, 2)).toThrow();
 
-	expect(testPushLine(t => pushLine([], t), [])).toEqual([]);
-	expect(testPushLine(t => pushLine([], t), [2, 3])).toEqual([2, 3]);
+	expect(simulatePushLine(t => pushLine([], t), [])).toEqual([]);
+	expect(simulatePushLine(t => pushLine([], t), [2, 3])).toEqual([2, 3]);
 
 	let target = toArray();
 	let pushLine1 = pushLine([

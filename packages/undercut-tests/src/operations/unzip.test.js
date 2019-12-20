@@ -1,4 +1,4 @@
-import { testPull, testPush, testOperationPull, testOperationPush } from "@undercut/testing";
+import { simulatePull, simulatePush, testOperationPull, testOperationPush } from "@undercut/testing";
 
 import { unzip as unzipPull, unzipWith as unzipWithPull } from "@undercut/pull/src/operations/unzip.js";
 import { unzip as unzipPush, unzipWith as unzipWithPush } from "@undercut/push/src/operations/unzip.js";
@@ -69,7 +69,7 @@ describe(`unzipWith`, () => {
 	test(`pull`, () => {
 		testUnzipWith(testOperationPull, unzipWithPull);
 
-		expect(() => testPull(
+		expect(() => simulatePull(
 			unzipWithPull(item => new Array(item).fill(item)),
 			[1, 2, 1]
 		)).toThrow(`"itemsExtractor" returns variable length arrays: was 1, now 2`);
@@ -77,7 +77,7 @@ describe(`unzipWith`, () => {
 	test(`push`, () => {
 		testUnzipWith(testOperationPush, unzipWithPush);
 
-		expect(() => testPush(
+		expect(() => simulatePush(
 			unzipWithPush(item => new Array(item).fill(item)),
 			[1, 2, 1]
 		)).toThrow(`"itemsExtractor" returns variable length arrays: was 1, now 2`);

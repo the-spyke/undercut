@@ -1,5 +1,5 @@
 import { zipWith as zipArray } from "@undercut/pull";
-import { testPull } from "@undercut/testing";
+import { simulatePull } from "@undercut/testing";
 import { identity } from "@undercut/utils";
 
 import { runPerfSuite } from "../perf.js";
@@ -39,53 +39,53 @@ function manual4(x, y, z, z2) {
 
 runPerfSuite(`zip-reducer-argumemts`, {
 	"fixed-x2": () => {
-		return testPull(zip1(manual2, b), a);
+		return simulatePull(zip1(manual2, b), a);
 	},
 	"fixed-x3": () => {
-		return testPull(zip3(manual3, b, c), a);
+		return simulatePull(zip3(manual3, b, c), a);
 	},
 	"fixed-x4": () => {
-		return testPull(zip4(manual4, b, c, d), a);
+		return simulatePull(zip4(manual4, b, c, d), a);
 	},
 
 	"multiple-array-x2": () => {
-		return testPull(zipArray(identity, b), a);
+		return simulatePull(zipArray(identity, b), a);
 	},
 	"multiple-array-x3": () => {
-		return testPull(zipArray(identity, b, c), a);
+		return simulatePull(zipArray(identity, b, c), a);
 	},
 	"multiple-array-x4": () => {
-		return testPull(zipArray(identity, b, c, d), a);
+		return simulatePull(zipArray(identity, b, c, d), a);
 	},
 
 	"multiple-array-destruct-x2": () => {
-		return testPull(zipArray(arrayDestruct2, b), a);
+		return simulatePull(zipArray(arrayDestruct2, b), a);
 	},
 	"multiple-array-destruct-x3": () => {
-		return testPull(zipArray(arrayDestruct3, b, c), a);
+		return simulatePull(zipArray(arrayDestruct3, b, c), a);
 	},
 	"multiple-array-destruct-x4": () => {
-		return testPull(zipArray(arrayDestruct4, b, c, d), a);
+		return simulatePull(zipArray(arrayDestruct4, b, c, d), a);
 	},
 
 	"multiple-args-x2": () => {
-		return testPull(zipArgs(restArgs, b), a);
+		return simulatePull(zipArgs(restArgs, b), a);
 	},
 	"multiple-args-x3": () => {
-		return testPull(zipArgs(restArgs, b, c), a);
+		return simulatePull(zipArgs(restArgs, b, c), a);
 	},
 	"multiple-args-x4": () => {
-		return testPull(zipArgs(restArgs, b, c, d), a);
+		return simulatePull(zipArgs(restArgs, b, c, d), a);
 	},
 
 	"multiple-args-manual-x2": () => {
-		return testPull(zipArgs(manual2, b), a);
+		return simulatePull(zipArgs(manual2, b), a);
 	},
 	"multiple-args-manual-x3": () => {
-		return testPull(zipArgs(manual3, b, c), a);
+		return simulatePull(zipArgs(manual3, b, c), a);
 	},
 	"multiple-args-manual-x4": () => {
-		return testPull(zipArgs(manual4, b, c, d), a);
+		return simulatePull(zipArgs(manual4, b, c, d), a);
 	},
 });
 

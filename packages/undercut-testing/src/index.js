@@ -1,9 +1,6 @@
-export function testPull(operation, source) {
+/* eslint-disable jest/no-export */
+export function simulatePull(operation, source) {
 	return [...operation(source)];
-}
-
-export function testPullLimited(operation, source, limit) {
-	return testPull(asLimitedPullOp(operation, limit), source);
 }
 
 /**
@@ -11,7 +8,7 @@ export function testPullLimited(operation, source, limit) {
  * @param {Iterable} source
  * @returns {Array}
  */
-export function testPush(operation, source) {
+export function simulatePush(operation, source) {
 	const result = [];
 	const observer = operation(getArrayObserver(result));
 
@@ -26,10 +23,6 @@ export function testPush(operation, source) {
 	}
 
 	return result;
-}
-
-export function testPushLimited(operation, source, limit) {
-	return testPush(asLimitedPushOp(operation, limit), source);
 }
 
 function getOperationSpy(operationFactory, factoryArgs = null, callbackArgs = null, callbackPosition = 0) {
@@ -49,18 +42,99 @@ function getOperationSpy(operationFactory, factoryArgs = null, callbackArgs = nu
 	return { operation: operationFactory(...args), spy };
 }
 
-function testOperation(executor, operationFactory, { args, source, target, callbackPosition, callbackArgs }) {
+function testOperation(simulate, operationFactory, { args, source, target, callbackPosition, callbackArgs }) {
 	const { operation, spy } = getOperationSpy(operationFactory, args, callbackArgs, callbackPosition);
-
-	expect(executor(operation, source)).toEqual(target);
+	const result = simulate(operation, source);
 
 	if (spy) {
 		expect(spy.mock.calls).toEqual(callbackArgs);
+	} else {
+		expect(result).toEqual(target);
 	}
 }
 
-export const testOperationPull = testOperation.bind(undefined, testPull);
-export const testOperationPush = testOperation.bind(undefined, testPush);
+function checkTestSpec(tester, spec) {
+	const allowedProps = new Set([`args`, `source`, ...tester.specProps]);
+	const invalidProps = Object.keys(spec).filter(p => !allowedProps.has(p));
+
+	if (invalidProps.length) {
+		const type = tester.name.replace(`Tester`, ``);
+
+		throw new Error(
+			`Excess props for ${type} tests. \n` +
+			`Allowed props: ${[...allowedProps].join(`, `)} \n` +
+			`Invalid props: ${invalidProps.join(`, `)}`);
+	}
+}
+
+function callbackTester({ simulate }, operationFactory, { args, source, callbackPosition, callbackArgs }) {
+	const { operation, spy } = getOperationSpy(operationFactory, args, callbackArgs, callbackPosition);
+
+	simulate(operation, source);
+
+	expect(spy.mock.calls).toEqual(callbackArgs);
+}
+
+callbackTester.specProps = [`callbackArgs`, `callbackPosition`];
+
+function limitTester({ simulate, asLimitedOp }, operationFactory, { args, source, limit }) {
+	const operation = operationFactory(...args);
+	const limitedOperation = asLimitedOp(operation, limit);
+
+	expect(() => simulate(limitedOperation, source)).not.toThrow();
+}
+
+limitTester.specProps = [`limit`];
+
+function targetTester({ simulate }, operationFactory, { args, source, target }) {
+	const operation = operationFactory(...args);
+	const result = simulate(operation, source);
+
+	expect(result).toEqual(target);
+}
+
+targetTester.specProps = [`target`];
+
+const testers = [
+	callbackTester,
+	limitTester,
+	targetTester,
+];
+
+const helpers = {
+	pull: {
+		simulate: simulatePull,
+		asLimitedOp: asLimitedPullOp,
+	},
+	push: {
+		simulate: simulatePush,
+		asLimitedOp: asLimitedPushOp,
+	}
+};
+
+export function createBySpec(type, operationFactory) {
+	if (!(type in helpers)) throw new Error(`Unknown test type: ${type}`);
+	if (!operationFactory) throw new Error(`"operationFactory" is required`);
+
+	return function bySpec(...testSpecs) {
+		if (!testSpecs.length) throw new Error(`"testSpec" is required`);
+
+		return function operationTest() {
+			for (const testSpec of testSpecs) {
+				const tester = testers.find(t => t.specProps.some(p => p in testSpec));
+
+				if (!tester) throw new Error(`Unknown tester for test spec: ${Object.keys(testSpec)}`);
+
+				checkTestSpec(tester, testSpec);
+
+				tester(helpers[type], operationFactory, testSpec);
+			}
+		};
+	};
+}
+
+export const testOperationPull = testOperation.bind(undefined, simulatePull);
+export const testOperationPush = testOperation.bind(undefined, simulatePush);
 
 function getArrayObserver(array) {
 	return {
@@ -78,7 +152,7 @@ function getArrayObserver(array) {
 
 export function getIntegerSource(n) {
 	return {
-		* [Symbol.iterator]() {
+		[Symbol.iterator]: function* () {
 			for (let index = 0; index < n; index++) {
 				yield index;
 			}
@@ -91,7 +165,7 @@ export function getIntegerSource(n) {
  */
 export function asLimitedSource(iterable, limit) {
 	return {
-		* [Symbol.iterator]() {
+		[Symbol.iterator]: function* () {
 			if (!limit) {
 				throw new Error(`Exceeded 0 items`);
 			}
