@@ -8,7 +8,7 @@ import { zip } from "./operations/zip.js";
 import {
 	composeOperations,
 	pull,
-	pullItems,
+	pullArray,
 	pullLine,
 } from "./pull_core.js";
 
@@ -71,14 +71,14 @@ test(`pull`, () => {
 	expect(pull(Array.from, [map(x => x * 0)], [3, 4])).toEqual([0, 0]);
 });
 
-test(`pullItems`, () => {
-	expect(() => pullItems()).toThrow();
-	expect(() => pullItems([])).toThrow();
-	expect(() => pullItems(2, [])).toThrow();
-	expect(() => pullItems([], 3)).toThrow();
+test(`pullArray`, () => {
+	expect(() => pullArray()).toThrow();
+	expect(() => pullArray([])).toThrow();
+	expect(() => pullArray(2, [])).toThrow();
+	expect(() => pullArray([], 3)).toThrow();
 
-	expect(pullItems([], [])).toEqual([]);
-	expect(pullItems([], [6, 7])).toEqual([6, 7]);
-	expect(pullItems([map(x => x + 1)], [])).toEqual([]);
-	expect(pullItems([map(x => x * 0)], [3, 4])).toEqual([0, 0]);
+	expect(pullArray([], [])).toEqual([]);
+	expect(pullArray([], [6, 7])).toEqual([6, 7]);
+	expect(pullArray([map(x => x + 1)], [])).toEqual([]);
+	expect(pullArray([map(x => x * 0)], [3, 4])).toEqual([0, 0]);
 });

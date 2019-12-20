@@ -1,5 +1,5 @@
 import {
-	composeOperations, pushItems,
+	composeOperations, pushArray,
 	groupBy as groupBy1,
 	flattenIterables,
 	reduce
@@ -46,12 +46,12 @@ const data = fillData(1000);
 
 runPerfSuite(`push-group-by_imperative-vs-composed`, {
 	"groupBy1": () => {
-		pushItems([
+		pushArray([
 			groupBy1(i => i.id),
 		], data);
 	},
 	"groupBy2": () => {
-		pushItems([
+		pushArray([
 			groupBy2(i => i.id),
 		], data);
 	},

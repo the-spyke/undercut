@@ -1,4 +1,4 @@
-import { composeOperations, pushItems, pushLine } from "@undercut/push";
+import { composeOperations, pushArray, pushLine } from "@undercut/push";
 import { abort, asObserver, close, identity } from "@undercut/utils";
 
 import { runPerfSuite } from "../perf.js";
@@ -144,25 +144,25 @@ const data3 = fillData(1000);
 
 runPerfSuite(`push_composed-vs-imperative`, {
 	"imperative": () => {
-		pushItems([
+		pushArray([
 			differenceByImperative(identity, data2),
 			differenceByImperative(identity, data3),
 		], data1);
 	},
 	"composed": () => {
-		pushItems([
+		pushArray([
 			differenceByComposed(identity, data2),
 			differenceByComposed(identity, data3),
 		], data1);
 	},
 	"composed2": () => {
-		pushItems([
+		pushArray([
 			differenceByComposed2(identity, data2),
 			differenceByComposed2(identity, data3),
 		], data1);
 	},
 	"composed3": () => {
-		pushItems([
+		pushArray([
 			differenceByComposed3(identity, data2),
 			differenceByComposed3(identity, data3),
 		], data1);

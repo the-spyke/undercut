@@ -57,11 +57,11 @@ If you're upgrading `undercut` to a newer version, upgrade `@babel/preset-env` a
 [![Edit undercut-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/undercut-example-9g1nh?fontsize=14&module=%2Fsrc%2Findex.js)
 
 ```js
-import { pullItems, filter, map, skip } from "@undercut/pull";
+import { pullArray, filter, map, skip } from "@undercut/pull";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 
-const result = pullItems([
+const result = pullArray([
     skip(2),
     filter(x => x % 3 === 0),
     map(x => x * 2) // Will be executed only 3 times.
@@ -163,7 +163,7 @@ const pipeline = [
     interleave([2, 4, 6])
 ];
 
-const result = pullItems(pipeline, source);
+const result = pullArray(pipeline, source);
 
 console.log(result); // [1, 2, 3, 4, 5, 6]
 ```
@@ -187,12 +187,12 @@ const result = pull(toArray, pipeline, source);
 console.log(result); // [8, 10, 14]
 ```
 
-#### `pullItems(pipeline, source) => Array`
+#### `pullArray(pipeline, source) => Array`
 
 Same as `pull`, but target is implicitly set to `toArray`.
 
 ```js
-import { pullItems, filter, map, skip, toArray } from "@undercut/pull";
+import { pullArray, filter, map, skip, toArray } from "@undercut/pull";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 const pipeline = [
@@ -201,7 +201,7 @@ const pipeline = [
     map(x => x * 2)
 ];
 
-const result = pullItems(pipeline, source);
+const result = pullArray(pipeline, source);
 
 console.log(result); // [8, 10, 14]
 ```
@@ -255,7 +255,7 @@ const pipeline = [
     pow(2)
 ];
 
-const result = pullItems(pipeline, source);
+const result = pullArray(pipeline, source);
 
 console.log(result); // [1, 4, 9]
 ```
@@ -327,7 +327,7 @@ const pipeline = [
     interleave([2, 4, 6])
 ];
 
-const result = pushItems(pipeline, source);
+const result = pushArray(pipeline, source);
 
 console.log(result); // [1, 2, 3, 4, 5, 6]
 ```
@@ -353,12 +353,12 @@ const target2 = push(target, pipeline, source); // target2 === target
 console.log(target.values); // [8, 10, 14]
 ```
 
-#### `pushItems(pipeline, source) => Array`
+#### `pushArray(pipeline, source) => Array`
 
 Same as `push`, but target is implicitly set to `toArray()` and its `values` property is returned.
 
 ```js
-import { pushItems, filter, map, skip, toArray } from "@undercut/push";
+import { pushArray, filter, map, skip, toArray } from "@undercut/push";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 const pipeline = [
@@ -367,7 +367,7 @@ const pipeline = [
     map(x => x * 2)
 ];
 
-const result = pushItems(pipeline, source);
+const result = pushArray(pipeline, source);
 
 console.log(result); // [8, 10, 14]
 ```
@@ -423,7 +423,7 @@ function pow(exponent) { // #1
 
 const source = [1, 2, 3];
 
-const result = pushItems([pow(2)], source);
+const result = pushArray([pow(2)], source);
 
 console.log(result); // [1, 4, 9]
 ```

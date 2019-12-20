@@ -48,6 +48,6 @@ export function pull(target, pipeline, source) {
 	return target(connectPipeline(pipeline, source));
 }
 
-export function pullItems(pipeline, source) {
+export function pullArray(pipeline, source) {
 	return pull(Array.from, pipeline, source);
 }
