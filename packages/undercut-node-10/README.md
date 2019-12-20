@@ -40,7 +40,7 @@ import { pull, filter, map, skip, toArray } from "undercut";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 
-const result = pull(toArray, [
+const result = pull(toArray(), [
     skip(2),
     filter(x => x % 3 === 0),
     map(x => x * 2) // Will be executed only 3 times.

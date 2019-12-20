@@ -147,7 +147,7 @@ Terms in releation to `Pull Lines`:
 Composes several existing operations into a new one.
 
 ```js
-import { composeOperations, pull, flatten, zip, toArray } from "@undercut/pull";
+import { composeOperations, pullArray, flatten, zip } from "@undercut/pull";
 
 function interleave(...sources) {
     const operations = [
@@ -182,17 +182,17 @@ const pipeline = [
     map(x => x * 2)
 ];
 
-const result = pull(toArray, pipeline, source);
+const result = pull(toArray(), pipeline, source);
 
 console.log(result); // [8, 10, 14]
 ```
 
 #### `pullArray(pipeline, source) => Array`
 
-Same as `pull`, but target is implicitly set to `toArray`.
+Same as `pull`, but target is implicitly set to `toArray()`.
 
 ```js
-import { pullArray, filter, map, skip, toArray } from "@undercut/pull";
+import { pullArray, filter, map, skip } from "@undercut/pull";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 const pipeline = [
@@ -213,7 +213,7 @@ Creates a `Pull Line`.
 Useful when you want to pass it somewhere or being able to re-evaluate the result again in the future.
 
 ```js
-import { pullLine, append, compact, skip, toArray } from "@undercut/pull";
+import { pullLine, append, compact, skip } from "@undercut/pull";
 
 const source = [0, 1, 2, 3];
 const pipeline = [
@@ -224,13 +224,13 @@ const pipeline = [
 
 const myItems = pullLine(pipeline, source); // No evaluation happens at this step.
 
-const result1 = toArray(myItems);
+const result1 = Array.from(myItems);
 
 console.log(result1); // [3, 4, 5]
 
 source.push(7); // Modify the source and re-evaluate. Pull Line has a reference to the source.
 
-const result2 = toArray(myItems);
+const result2 = Array.from(myItems);
 
 console.log(result2); // [3, 7, 4, 5]
 ```
@@ -271,11 +271,11 @@ console.log(result); // [1, 4, 9]
 Choose the one that suits you best:
 
 ```js
-pull(toArray, pipeline, source);
+pull(toArray(), pipeline, source);
 // or
 pull(Array.from, pipeline, source);
 // or
-toArray(pullLine(pipeline, source));
+toArray()(pullLine(pipeline, source));
 // or
 Array.from(pullLine(pipeline, source));
 ```
@@ -311,7 +311,7 @@ Terms in releation to `Push Lines`:
 Composes several existing operations into a new one.
 
 ```js
-import { composeOperations, push, flatten, zip, toArray } from "@undercut/push";
+import { composeOperations, pushArray, flatten, zip } from "@undercut/push";
 
 function interleave(...sources) {
     const operations = [
@@ -358,7 +358,7 @@ console.log(target.values); // [8, 10, 14]
 Same as `push`, but target is implicitly set to `toArray()` and its `values` property is returned.
 
 ```js
-import { pushArray, filter, map, skip, toArray } from "@undercut/push";
+import { pushArray, filter, map, skip } from "@undercut/push";
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 const pipeline = [

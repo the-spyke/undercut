@@ -16,11 +16,11 @@ test(`simple pull scenarios`, () => {
 	];
 
 	expect(
-		pull(toArray, pipeline1, data1)
+		pull(toArray(), pipeline1, data1)
 	).toEqual([2, 3, 5, 6, 7]);
 
 	expect(
-		pull(toArray, [
+		pull(toArray(), [
 			...pipeline1,
 			sum(),
 			map(x => x + 0.5),
@@ -28,24 +28,24 @@ test(`simple pull scenarios`, () => {
 	).toEqual([23.5]);
 
 	expect(
-		toArray(pullLine(pipeline1, data1))
+		toArray()(pullLine(pipeline1, data1))
 	).toEqual([2, 3, 5, 6, 7]);
 
 	const pullLine1 = pullLine(pipeline1, data1);
 
 	expect(
-		pull(toValue, [
+		pull(toValue(), [
 			sum(),
 			map(x => x + 0.5)
 		], pullLine1)
 	).toEqual(23.5);
 
 	expect(
-		pull(toArray, [min()], data1)
+		pull(toArray(), [min()], data1)
 	).toEqual([1]);
 
 	expect(
-		pull(toObject, [
+		pull(toObject(), [
 			filter(e => e[1] > 10)
 		], Object.entries({
 			a: 1,
@@ -66,6 +66,6 @@ test(`simple pull scenarios`, () => {
 	).toEqual([2, 3, 5, 6]);
 
 	expect(
-		pull(toArray, [map(x => 2 ** x)], range(0, 3))
+		pull(toArray(), [map(x => 2 ** x)], range(0, 3))
 	).toEqual([1, 2, 4]);
 });
