@@ -1,5 +1,5 @@
 import { identity } from "@undercut/utils/src/function.js";
-import { testPull } from "@undercut/testing";
+import { simulatePull } from "@undercut/testing";
 
 import { flatten } from "./operations/flatten.js";
 import { map } from "./operations/map.js";
@@ -17,13 +17,13 @@ test(`composeOperations`, () => {
 		return composeOperations([zip(...sources), flatten()]);
 	}
 
-	expect(testPull(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
+	expect(simulatePull(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
 
 	function interleaveDynamic(...sources) {
 		return composeOperations(() => [zip(...sources), flatten()]);
 	}
 
-	expect(testPull(interleaveDynamic([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
+	expect(simulatePull(interleaveDynamic([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
 
 	const fakeOperation = identity;
 	const pipeline = [
