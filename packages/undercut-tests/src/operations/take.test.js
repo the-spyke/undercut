@@ -91,7 +91,6 @@ describe(`takeWhile`, () => {
 		test(`should work with empty sources`, bySpec({
 			args: [x => x < 10],
 			source: [],
-			qqq: 1,
 			target: [],
 		}));
 		test(`should pass all items satisfying the predicate`, bySpec(
