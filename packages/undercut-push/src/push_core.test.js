@@ -9,7 +9,7 @@ import { toArray } from "./push_targets.js";
 import {
 	composeOperations,
 	push,
-	pushItems,
+	pushArray,
 	pushLine,
 } from "./push_core.js";
 
@@ -106,14 +106,14 @@ test(`push`, () => {
 	expect(push(target, [map(x => x * 0)], [3, 4]).values).toEqual([0, 0]);
 });
 
-test(`pushItems`, () => {
-	expect(() => pushItems()).toThrow();
-	expect(() => pushItems([])).toThrow();
-	expect(() => pushItems(2, [])).toThrow();
-	expect(() => pushItems([], 3)).toThrow();
+test(`pushArray`, () => {
+	expect(() => pushArray()).toThrow();
+	expect(() => pushArray([])).toThrow();
+	expect(() => pushArray(2, [])).toThrow();
+	expect(() => pushArray([], 3)).toThrow();
 
-	expect(pushItems([], [])).toEqual([]);
-	expect(pushItems([], [6, 7])).toEqual([6, 7]);
-	expect(pushItems([map(x => x + 1)], [])).toEqual([]);
-	expect(pushItems([map(x => x * 0)], [3, 4])).toEqual([0, 0]);
+	expect(pushArray([], [])).toEqual([]);
+	expect(pushArray([], [6, 7])).toEqual([6, 7]);
+	expect(pushArray([map(x => x + 1)], [])).toEqual([]);
+	expect(pushArray([map(x => x * 0)], [3, 4])).toEqual([0, 0]);
 });

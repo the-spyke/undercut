@@ -55,7 +55,7 @@ export function push(target, pipeline, source) {
 	return target;
 }
 
-export function pushItems(pipeline, source) {
+export function pushArray(pipeline, source) {
 	const target = toArray();
 
 	push(target, pipeline, source);
