@@ -36,6 +36,7 @@ We also added 3 precompiled packages for browsers and Node:
 - **[BREAKING]** renamed the old `delay` into `wait`.
 - **[BREAKING]** renamed `unwrap` into `unwrapPromise`.
 - **[BREAKING]** renamed `pullItems` and `pushItems` into `pullArray` and `pushArray`.
+- **[BREAKING]** Unified pull targets so all of them should be called first, like `toConsumer` did and push targets too.
 
 ### Removed
 

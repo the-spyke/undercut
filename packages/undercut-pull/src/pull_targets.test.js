@@ -10,9 +10,9 @@ import {
 } from "./pull_targets.js";
 
 test(`toArray`, () => {
-	expect(toArray([])).toEqual([]);
-	expect(toArray([1, 2, 3])).toEqual([1, 2, 3]);
-	expect(toArray(
+	expect(toArray()([])).toEqual([]);
+	expect(toArray()([1, 2, 3])).toEqual([1, 2, 3]);
+	expect(toArray()(
 		(function* gen() {
 			yield false;
 			yield 0;
@@ -29,8 +29,8 @@ test(`toConsumer`, () => {
 });
 
 test(`toMap`, () => {
-	expect(toMap([])).toEqual(new Map());
-	expect(toMap(
+	expect(toMap()([])).toEqual(new Map());
+	expect(toMap()(
 		(function* gen() {
 			yield [1, 1];
 			yield [null, 3];
@@ -41,11 +41,11 @@ test(`toMap`, () => {
 });
 
 test(`toNull`, () => {
-	expect(toNull([1, 2])).toBe(undefined);
+	expect(toNull()([1, 2])).toBe(undefined);
 
 	let isFinished = false;
 
-	expect(toNull(
+	expect(toNull()(
 		(function* gen() {
 			yield [1, 2];
 			yield [null, 3];
@@ -57,8 +57,8 @@ test(`toNull`, () => {
 });
 
 test(`toObject`, () => {
-	expect(toObject([])).toEqual({});
-	expect(toObject(
+	expect(toObject()([])).toEqual({});
+	expect(toObject()(
 		(function* gen() {
 			yield [`a`, 2];
 			yield [`b`, 3];
@@ -91,8 +91,8 @@ test(`toPushLine`, () => {
 });
 
 test(`toSet`, () => {
-	expect(toSet([])).toEqual(new Set());
-	expect(toSet(
+	expect(toSet()([])).toEqual(new Set());
+	expect(toSet()(
 		(function* gen() {
 			yield 1;
 			yield null;
@@ -103,11 +103,11 @@ test(`toSet`, () => {
 });
 
 test(`toValue`, () => {
-	expect(() => toValue([])).toThrow();
-	expect(toValue(
+	expect(() => toValue()([])).toThrow();
+	expect(toValue()(
 		(function* gen() {
 			yield 1;
 		})()
 	)).toBe(1);
-	expect(() => toValue([1, 2])).toThrow();
+	expect(() => toValue()([1, 2])).toThrow();
 });

@@ -3,16 +3,14 @@ import { abort, close } from "@undercut/utils/src/coroutine.js";
 import { isObserver } from "@undercut/utils/src/language.js";
 
 /**
- * @param {Iterable} iterable
  * @returns {Array}
  */
-export function toArray(iterable) {
-	return Array.from(iterable);
+export function toArray() {
+	return Array.from;
 }
 
 /**
- * @param {Function} consumer
- * @returns {Function}
+ * @type {<T>(consumer: (T, number) => void) => (Iterable<T>) => void}
  */
 export function toConsumer(consumer) {
 	return function (iterable) {
@@ -26,29 +24,30 @@ export function toConsumer(consumer) {
 }
 
 /**
- * @param {Iterable} iterable
- * @returns {Map}
+ * @returns {<T>(iterable: Iterable<T>) => Map<T>}
  */
-export function toMap(iterable) {
-	return new Map(iterable);
+export function toMap() {
+	return function (iterable) {
+		return new Map(iterable);
+	};
 }
 
 /**
- * @param {Iterable} iterable
- * @returns {void}
+ * @returns {<T>(iterable: Iterable<T>) => void}
  */
-export function toNull(iterable) {
-	for (const item of iterable) { // eslint-disable-line no-unused-vars
-		// Do nothing.
-	}
+export function toNull() {
+	return function (iterable) {
+		for (const item of iterable) { // eslint-disable-line no-unused-vars
+			// Do nothing.
+		}
+	};
 }
 
 /**
- * @param {Iterable} iterable
  * @returns {Object}
  */
-export function toObject(iterable) {
-	return Object.fromEntries(iterable);
+export function toObject() {
+	return Object.fromEntries;
 }
 
 /**
@@ -74,29 +73,31 @@ export function toPushLine(observer) {
 }
 
 /**
- * @param {Iterable} iterable
- * @returns {Set}
+ * @returns {<T>(iterable: Iterable<T>) => Set<T>}
  */
-export function toSet(iterable) {
-	return new Set(iterable);
+export function toSet() {
+	return function (iterable) {
+		return new Set(iterable);
+	};
 }
 
 /**
- * @param {Iterable} iterable
  * @returns {any}
  */
-export function toValue(iterable) {
-	let firstValue = undefined;
-	let count = 0;
+export function toValue() {
+	return function (iterable) {
+		let firstValue = undefined;
+		let count = 0;
 
-	for (const item of iterable) {
-		assert(count === 0, `"toValue()" may be applied only to a sequence of one item, but got at least 2.`);
+		for (const item of iterable) {
+			assert(count === 0, `"toValue()" may be applied only to a sequence of one item, but got at least 2.`);
 
-		firstValue = item;
-		count++;
-	}
+			firstValue = item;
+			count++;
+		}
 
-	assert(count === 1, `"toValue()" may be applied only to a sequence of one item, but got none.`);
+		assert(count === 1, `"toValue()" may be applied only to a sequence of one item, but got none.`);
 
-	return firstValue;
+		return firstValue;
+	};
 }
