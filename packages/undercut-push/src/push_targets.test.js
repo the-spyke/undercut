@@ -120,10 +120,12 @@ test(`toValue`, () => {
 
 	target.next(9);
 
-	expect(() => target.next(8)).toThrow(/got at least 2/);
+	expect(() => target.next(8)).toThrow();
 
 	setter = jest.fn();
 	target = toValue(setter);
 
-	expect(() => target.return()).toThrow(/got none/);
+	target.return();
+
+	expect(setter.mock.calls).toEqual([[undefined]]);
 });

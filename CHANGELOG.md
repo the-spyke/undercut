@@ -21,12 +21,13 @@ We also added 3 precompiled packages for browsers and Node:
 
 ### Added
 
-- Added `collect` operation. Much like `reduce`, but for filling items into a mutable `collection`.
+- Added `collect` operation. Much like `reduce`, but for filling items into a mutable `collection`. So, no need to return a value from the function.
 - Coroutine utilities.
 - New `delay` and `rethrow` utilities.
 - An ability of `composeOperations` to take a function instead of an array. This function must have no parameters and return an array of operations. This allows dynamic composition and having some shared state in a closure.
 - Precompiled packages for browsers and Node.
 - `@undercut/cli` for using in a shell and process strings with JavaScript.
+- `pullValue` and `pushValue` core functions running the pipeline and returning a single item or `undefined` from it. Basically, it's a `pull/push` with target implicitly set to `toValue()`.
 
 ### Changed
 
@@ -37,6 +38,7 @@ We also added 3 precompiled packages for browsers and Node:
 - **[BREAKING]** renamed `unwrap` into `unwrapPromise`.
 - **[BREAKING]** renamed `pullItems` and `pushItems` into `pullArray` and `pushArray`.
 - **[BREAKING]** Unified pull targets so all of them should be called first, like `toConsumer` did and push targets too.
+- **[BREAKING]** Rolled back `toValue` changes, so it doesn't throw on 0 items.
 
 ### Removed
 

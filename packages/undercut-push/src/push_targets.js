@@ -67,21 +67,19 @@ export function toNull() {
 const valueTarget = asObserver(function* (setter) {
 	assertFunctor(setter, `setter`);
 
-	let firstValue = undefined;
-	let count = 0;
+	let value = undefined;
+	let success = true;
 
 	try {
-		firstValue = yield;
-		count++;
+		value = yield;
 		yield;
-		count++;
-
-		assert(count === 1, `"toValue()" may be applied only to a sequence of one item, but got at least 2.`);
+		throw new Error(`"toValue()" may be applied only to a sequence of one item, but got at least 2.`);
+	} catch (error) {
+		success = false;
+		throw error;
 	} finally {
-		assert(count > 0, `"toValue()" may be applied only to a sequence of one item, but got none.`);
-
-		if (count === 1) {
-			setter(firstValue);
+		if (success) {
+			setter(value);
 		}
 	}
 });
