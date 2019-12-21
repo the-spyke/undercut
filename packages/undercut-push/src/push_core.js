@@ -2,7 +2,7 @@ import { assert, assertPipeline, assertSource } from "@undercut/utils/src/assert
 import { abort, close } from "@undercut/utils/src/coroutine.js";
 import { isObserver, isFunction } from "@undercut/utils/src/language.js";
 
-import { toArray } from "./push_targets.js";
+import { toArray, toValue } from "./push_targets.js";
 
 const operationErrorMessage = `An operation must be a function taking and returning an Observer.`;
 
@@ -61,4 +61,12 @@ export function pushArray(pipeline, source) {
 	push(target, pipeline, source);
 
 	return target.values;
+}
+
+export function pushValue(pipeline, source) {
+	let value = undefined;
+
+	push(toValue(v => (value = v)), pipeline, source);
+
+	return value;
 }

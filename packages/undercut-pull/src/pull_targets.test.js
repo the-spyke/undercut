@@ -103,7 +103,7 @@ test(`toSet`, () => {
 });
 
 test(`toValue`, () => {
-	expect(() => toValue()([])).toThrow();
+	expect(toValue()([])).toBe(undefined);
 	expect(toValue()(
 		(function* gen() {
 			yield 1;

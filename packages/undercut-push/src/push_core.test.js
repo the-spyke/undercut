@@ -1,5 +1,6 @@
 import { simulatePush } from "@undercut/testing";
 
+import { first } from "./operations/first.js";
 import { flatten } from "./operations/flatten.js";
 import { map } from "./operations/map.js";
 import { zip } from "./operations/zip.js";
@@ -11,6 +12,7 @@ import {
 	push,
 	pushArray,
 	pushLine,
+	pushValue,
 } from "./push_core.js";
 
 test(`composeOperations`, () => {
@@ -116,4 +118,19 @@ test(`pushArray`, () => {
 	expect(pushArray([], [6, 7])).toEqual([6, 7]);
 	expect(pushArray([map(x => x + 1)], [])).toEqual([]);
 	expect(pushArray([map(x => x * 0)], [3, 4])).toEqual([0, 0]);
+});
+
+test(`pushValue`, () => {
+	expect(() => pushValue()).toThrow();
+	expect(() => pushValue([])).toThrow();
+	expect(() => pushValue(2, [])).toThrow();
+	expect(() => pushValue([], 3)).toThrow();
+
+	expect(pushValue([], [])).toBe(undefined);
+	expect(pushValue([map(x => x + 1)], [])).toBe(undefined);
+	expect(pushValue([map(x => x + 1)], [1])).toBe(2);
+	expect(pushValue([map(x => x * 2), first()], [3, 4])).toBe(6);
+
+	expect(() => pushValue([], [6, 7])).toThrow();
+	expect(() => pushValue([map(x => x + 1)], [6, 7])).toThrow();
 });

@@ -1,6 +1,7 @@
 import { identity } from "@undercut/utils/src/function.js";
 import { simulatePull } from "@undercut/testing";
 
+import { first } from "./operations/first.js";
 import { flatten } from "./operations/flatten.js";
 import { map } from "./operations/map.js";
 import { zip } from "./operations/zip.js";
@@ -10,6 +11,7 @@ import {
 	pull,
 	pullArray,
 	pullLine,
+	pullValue,
 } from "./pull_core.js";
 
 test(`composeOperations`, () => {
@@ -81,4 +83,19 @@ test(`pullArray`, () => {
 	expect(pullArray([], [6, 7])).toEqual([6, 7]);
 	expect(pullArray([map(x => x + 1)], [])).toEqual([]);
 	expect(pullArray([map(x => x * 0)], [3, 4])).toEqual([0, 0]);
+});
+
+test(`pullValue`, () => {
+	expect(() => pullValue()).toThrow();
+	expect(() => pullValue([])).toThrow();
+	expect(() => pullValue(2, [])).toThrow();
+	expect(() => pullValue([], 3)).toThrow();
+
+	expect(pullValue([], [])).toBe(undefined);
+	expect(pullValue([map(x => x + 1)], [])).toBe(undefined);
+	expect(pullValue([map(x => x + 1)], [1])).toBe(2);
+	expect(pullValue([map(x => x * 2), first()], [3, 4])).toBe(6);
+
+	expect(() => pullValue([], [6, 7])).toThrow();
+	expect(() => pullValue([map(x => x + 1)], [6, 7])).toThrow();
 });

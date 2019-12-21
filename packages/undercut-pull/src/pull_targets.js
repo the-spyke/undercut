@@ -87,16 +87,14 @@ export function toSet() {
 export function toValue() {
 	return function (iterable) {
 		let firstValue = undefined;
-		let count = 0;
+		let hasValue = false;
 
 		for (const item of iterable) {
-			assert(count === 0, `"toValue()" may be applied only to a sequence of one item, but got at least 2.`);
+			assert(!hasValue, `"toValue()" may be applied only to a sequence of one item, but got at least 2.`);
 
 			firstValue = item;
-			count++;
+			hasValue = true;
 		}
-
-		assert(count === 1, `"toValue()" may be applied only to a sequence of one item, but got none.`);
 
 		return firstValue;
 	};

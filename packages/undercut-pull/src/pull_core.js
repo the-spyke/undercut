@@ -2,6 +2,8 @@ import { assert, assertPipeline, assertSource } from "@undercut/utils/src/assert
 import { createIterable, getIterator } from "@undercut/utils/src/iterable.js";
 import { isFunction, isIterable, isIterator } from "@undercut/utils/src/language.js";
 
+import { toValue } from "./pull_targets.js";
+
 const operationErrorMessage = `An operation must be a function taking and returning an Iterable.`;
 
 function connectPipeline(pipeline, source) {
@@ -50,4 +52,8 @@ export function pull(target, pipeline, source) {
 
 export function pullArray(pipeline, source) {
 	return pull(Array.from, pipeline, source);
+}
+
+export function pullValue(pipeline, source) {
+	return pull(toValue(), pipeline, source);
 }
