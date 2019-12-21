@@ -20,3 +20,15 @@ export function createIterable(getIterator) {
 		[Symbol.iterator]: getIterator
 	};
 }
+
+/**
+ * Returns the first item of the `iterable` or `undefined`.
+ * @type {<T>(iterable: Iterable<T>) => T | undefined }
+ */
+export function peekIterable(iterable) {
+	for (const item of iterable) {
+		return item;
+	}
+
+	return undefined;
+}
