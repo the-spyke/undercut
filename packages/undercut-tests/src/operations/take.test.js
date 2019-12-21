@@ -1,5 +1,3 @@
-/* eslint-disable jest/valid-describe */
-
 import { createBySpec } from "@undercut/testing";
 
 import { take as takePull, takeWhile as takeWhilePull } from "@undercut/pull/src/operations/take.js";
@@ -16,17 +14,17 @@ describe(`take`, () => {
 			expect(() => take()).toThrow();
 			expect(() => take(-1)).toThrow();
 		});
-		test(`should work with empty source`, bySpec({
+		test(`should work with empty source`, () => bySpec({
 			args: [1],
 			source: [],
 			target: [],
 		}));
-		test(`should allow to take 0 items`, bySpec({
+		test(`should allow to take 0 items`, () => bySpec({
 			args: [0],
 			source: [0, 1, 2, 3],
 			target: [],
 		}));
-		test(`should not iterate more items than specified`, bySpec(
+		test(`should not iterate more items than specified`, () => bySpec(
 			{
 				args: [0],
 				source: [0, 1, 2, 3],
@@ -38,7 +36,7 @@ describe(`take`, () => {
 				limit: 3,
 			},
 		));
-		test(`should truncate fractional values: 0.5`, bySpec(
+		test(`should truncate fractional values: 0.5`, () => bySpec(
 			{
 				args: [0.5],
 				source: [0, 1, 2],
@@ -55,17 +53,17 @@ describe(`take`, () => {
 				target: [0, 1, 2],
 			},
 		));
-		test(`should take 1 item`, bySpec({
+		test(`should take 1 item`, () => bySpec({
 			args: [1],
 			source: [0, 1, 2, 3],
 			target: [0],
 		}));
-		test(`should take several items`, bySpec({
+		test(`should take several items`, () => bySpec({
 			args: [3],
 			source: [0, 1, 2, 3, 4, 5],
 			target: [0, 1, 2],
 		}));
-		test(`should take even if source size is less than take value`, bySpec({
+		test(`should take even if source size is less than take value`, () => bySpec({
 			args: [15],
 			source: [0, 1],
 			target: [0, 1],
@@ -83,17 +81,17 @@ describe(`takeWhile`, () => {
 		test(`should throw on invalid or missing args`, () => {
 			expect(() => takeWhile()).toThrow();
 		});
-		test(`should pass item and index into callback`, bySpec({
+		test(`should pass item and index into callback`, () => bySpec({
 			args: [() => true],
 			source: [3, 4],
 			callbackArgs: [[3, 0], [4, 1]],
 		}));
-		test(`should work with empty sources`, bySpec({
+		test(`should work with empty sources`, () => bySpec({
 			args: [x => x < 10],
 			source: [],
 			target: [],
 		}));
-		test(`should pass all items satisfying the predicate`, bySpec(
+		test(`should pass all items satisfying the predicate`, () => bySpec(
 			{
 				args: [x => x < 10],
 				source: [1],
