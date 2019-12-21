@@ -27,3 +27,19 @@ export function collect(collector, factory) {
 		}
 	});
 }
+
+export function collectArray() {
+	return collect((arr, item) => arr.push(item), () => []);
+}
+
+export function collectMap() {
+	return collect((map, [key, value]) => map.set(key, value), () => new Map());
+}
+
+export function collectObject() {
+	return collect((obj, [key, value]) => (obj[key] = value), () => ({}));
+}
+
+export function collectSet() {
+	return collect((set, key) => set.add(key), () => new Set());
+}

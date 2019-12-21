@@ -22,7 +22,8 @@ We also added 3 precompiled packages for browsers and Node:
 ### Added
 
 - Added `collect` operation. Much like `reduce`, but for filling items into a mutable `collection`. So, no need to return a value from the function.
-- Coroutine utilities.
+- Added predefined `collect` variants: `collectArray`, `collectMap`, `collectObject`, and `collectSet`.
+- Added Coroutine utilities.
 - New `delay` and `rethrow` utilities.
 - An ability of `composeOperations` to take a function instead of an array. This function must have no parameters and return an array of operations. This allows dynamic composition and having some shared state in a closure.
 - Precompiled packages for browsers and Node.

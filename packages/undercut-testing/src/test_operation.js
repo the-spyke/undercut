@@ -50,7 +50,7 @@ function callbackTester({ simulate }, operationFactory, { args, source, callback
 
 callbackTester.specProps = [`callbackArgs`, `callbackPosition`];
 
-function limitTester({ simulate, asLimitedOp }, operationFactory, { args, source, limit }) {
+function limitTester({ simulate, asLimitedOp }, operationFactory, { args = [], source, limit }) {
 	const operation = operationFactory(...args);
 	const limitedOperation = asLimitedOp(operation, limit);
 
@@ -59,7 +59,7 @@ function limitTester({ simulate, asLimitedOp }, operationFactory, { args, source
 
 limitTester.specProps = [`limit`];
 
-function targetTester({ simulate }, operationFactory, { args, source, target }) {
+function targetTester({ simulate }, operationFactory, { args = [], source, target }) {
 	const operation = operationFactory(...args);
 	const result = simulate(operation, source);
 
@@ -84,17 +84,15 @@ export function createBySpecFactory(helpers) {
 		return function bySpec(...testSpecs) {
 			if (!testSpecs.length) throw new Error(`"testSpec" is required`);
 
-			return function operationTest() {
-				for (const testSpec of testSpecs) {
-					const tester = testers.find(t => t.specProps.some(p => p in testSpec));
+			for (const testSpec of testSpecs) {
+				const tester = testers.find(t => t.specProps.some(p => p in testSpec));
 
-					if (!tester) throw new Error(`Unknown tester for test spec: ${Object.keys(testSpec)}`);
+				if (!tester) throw new Error(`Unknown tester for test spec: ${Object.keys(testSpec)}`);
 
-					checkTestSpec(tester, testSpec);
+				checkTestSpec(tester, testSpec);
 
-					tester(helpers[type], operationFactory, testSpec);
-				}
-			};
+				tester(helpers[type], operationFactory, testSpec);
+			}
 		};
 	};
 }
