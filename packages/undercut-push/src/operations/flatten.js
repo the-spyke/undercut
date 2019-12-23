@@ -2,17 +2,17 @@ import { assert } from "@undercut/utils/src/assert.js";
 import { abort, asObserver, close } from "@undercut/utils/src/coroutine.js";
 import { isIterable, isPositiveOrZero } from "@undercut/utils/src/language.js";
 
-function spreadRec(observer, canSpread, maxDepth, currentDepth, value) {
-	if (currentDepth < maxDepth && canSpread(value)) {
-		for (const item of value) {
-			spreadRec(observer, canSpread, maxDepth, currentDepth + 1, item);
+function flattenRec(observer, canFlatten, maxDepth, currentDepth, item) {
+	if (currentDepth < maxDepth && canFlatten(item)) {
+		for (const nextItem of item) {
+			flattenRec(observer, canFlatten, maxDepth, currentDepth + 1, nextItem);
 		}
 	} else {
-		observer.next(value);
+		observer.next(item);
 	}
 }
 
-function flattenCore(canSpread, depth) {
+function flattenCore(canFlatten, depth) {
 	assert(isPositiveOrZero(depth), `"depth" is required, must be a number >= 0.`);
 
 	depth = Math.trunc(depth);
@@ -20,7 +20,7 @@ function flattenCore(canSpread, depth) {
 	return asObserver(function* (observer) {
 		try {
 			while (true) {
-				spreadRec(observer, canSpread, depth, 0, yield);
+				flattenRec(observer, canFlatten, depth, 0, yield);
 			}
 		} catch (error) {
 			abort(observer, error);
