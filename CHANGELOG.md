@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Big release for `undercut` as we shifted away from a single package to a set of independent scoped packages:
+Big release for the `undercut` as we shifted away from a single package to a set of independent scoped packages:
 
 - `@undercut/pull`
 - `@undercut/push`
@@ -15,9 +15,9 @@ Big release for `undercut` as we shifted away from a single package to a set of 
 
 We also added 3 precompiled packages for browsers and Node:
 
+- `@undercut/cli`
 - `@undercut/node-10`
 - `@undercut/web-2019`
-- `@undercut/cli`
 
 ### Added
 
@@ -25,25 +25,24 @@ We also added 3 precompiled packages for browsers and Node:
 - Added predefined `collect` variants: `collectArray`, `collectMap`, `collectObject`, and `collectSet`.
 - Added Coroutine utilities.
 - New `delay` and `rethrow` utilities.
-- An ability of `composeOperations` to take a function instead of an array. This function must have no parameters and return an array of operations. This allows dynamic composition and having some shared state in a closure.
+- An ability of `composeOperations` to take a function instead of an array: `() => Array<Operation>`. This allows dynamic composition and having some shared state in a closure.
 - Precompiled packages for browsers and Node.
 - `@undercut/cli` for using in a shell and process strings with JavaScript.
 - `pullValue` and `pushValue` core functions running the pipeline and returning a single item or `undefined` from it. Basically, it's a `pull/push` with target implicitly set to `toValue()`.
+- Added Iterable utilities back to the `utils` package.
+- Additional language utilities: `hasOwnProps`, `isArrayBuffer`, `isCoroutine`, `isDate`, `isError`, `isMap`, `isNegative`, `isNegativeOrZero`, `isNumberValue`, `isPlainObject`, `isPositive`, `isPositiveOrZero`, `isRegExp`, `isSet`, `isWeakMap`, `isWeakSet`.
 
 ### Changed
 
-- **[BREAKING]** `undercut` package is deprecated, use scoped versions like `@undercut/pull`.
-- **[BREAKING]** renamed `makeReiterable` into `createIterable`.
-- **[BREAKING]** renamed `makeUnclosable` into `asUnclosable`.
-- **[BREAKING]** renamed the old `delay` into `wait`.
-- **[BREAKING]** renamed `unwrap` into `unwrapPromise`.
-- **[BREAKING]** renamed `pullItems` and `pushItems` into `pullArray` and `pushArray`.
+- **[BREAKING]** Deprecate `undercut` package in favor of scoped versions like `@undercut/pull`.
+- **[BREAKING]** Renamed `makeReiterable` into `createIterable`.
+- **[BREAKING]** Renamed `makeUnclosable` into `asUnclosable`.
+- **[BREAKING]** Renamed the old `delay` into `wait`.
+- **[BREAKING]** Renamed `unwrap` into `unwrapPromise`.
+- **[BREAKING]** Renamed `pullItems` and `pushItems` into `pullArray` and `pushArray`.
 - **[BREAKING]** Unified pull targets so all of them should be called first, like `toConsumer` did and push targets too.
-- **[BREAKING]** Rolled back `toValue` changes, so it doesn't throw on 0 items.
-
-### Removed
-
-- **[BREAKING]** Removed `closeIterator`, `closeObserver`, `initializeObserver` utilities.
+- **[BREAKING]** Rolled back `toValue` changes, so it doesn't throw on empty sequences.
+- **[BREAKING]** Replaced `closeIterator`, `closeObserver`, `initializeObserver` with generic Coroutine utilities.
 
 ### Fixed
 

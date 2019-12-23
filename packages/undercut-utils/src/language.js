@@ -1,7 +1,18 @@
 /**
- * A re-export of `Array.isArray` for consistency.
+ * @param {any} value
+ * @returns {boolean}
  */
-export const isArray = Array.isArray;
+export function hasOwnProps(value) {
+	return isObjectValue(value) && Object.keys(value).length > 0;
+}
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isArrayBuffer(value) {
+	return value instanceof ArrayBuffer;
+}
 
 /**
  * @param {any} value
@@ -23,8 +34,24 @@ export function isCoroutine(value) {
  * @param {any} value
  * @returns {boolean}
  */
+export function isDate(value) {
+	return value instanceof Date;
+}
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
 export function isDefined(value) {
 	return typeof value !== `undefined`;
+}
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isError(value) {
+	return value instanceof Error;
 }
 
 /**
@@ -52,6 +79,14 @@ export function isIterable(value) {
 }
 
 export { isCoroutine as isIterator };
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isMap(value) {
+	return value instanceof Map;
+}
 
 /**
  * @param {any} value
@@ -122,6 +157,22 @@ export function isObjectValue(value) {
 
 export { isCoroutine as isObserver };
 
+const OBJECT_PROTO = Object.getPrototypeOf({});
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isPlainObject(value) {
+	if (!isObjectValue(value)) {
+		return false;
+	}
+
+	const proto = Object.getPrototypeOf(value);
+
+	return proto === OBJECT_PROTO || proto === null;
+}
+
 /**
  * @param {any} value
  * @returns {boolean}
@@ -136,6 +187,22 @@ export function isPositive(value) {
  */
 export function isPositiveOrZero(value) {
 	return isNumberValue(value) && value >= 0;
+}
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isRegExp(value) {
+	return value instanceof RegExp;
+}
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isSet(value) {
+	return value instanceof Set;
 }
 
 /**
@@ -168,4 +235,20 @@ export function isTruthy(value) {
  */
 export function isUndefined(value) {
 	return typeof value === `undefined`;
+}
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isWeakMap(value) {
+	return value instanceof WeakMap;
+}
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function isWeakSet(value) {
+	return value instanceof WeakSet;
 }
