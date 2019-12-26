@@ -1,1 +1,1 @@
-# undercut cli
+# @undercut/cli

@@ -20,15 +20,20 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 
 ## Quicklinks
 
+- [Installation](#installation)
+- [Usage](#usage)
 - [Concepts](#concepts)
 - [Pull](#pull)
 - [Push](#push)
 - [Operations](#operations)
 - [Utilities](#utilities)
+- [License](#license)
 
 ## Installation
 
-`Undercut` comes in several flavors. The `@undercut/pull,push,utils` packages are the intended way to consume it. These packages carry universal `stable ES Next` code. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and may be used in Node/Browser/microwave. Also, don't forget check that `/node_modules/@undercut/` isn't excluded from compilation and `core-js@3` polyfill or analogue is in place.
+`Undercut` comes in several flavors. The `@undercut/(pull|push|utils)` packages are the intended way to consume it. These packages carry `stable ES Next` code. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and may be used in Node/Browser/microwave.
+
+Don't forget check that `/node_modules/@undercut/` isn't excluded from compilation and `core-js@3` polyfill or analogue is in place.
 
 Several precompiled packages are provided for older projects or quick experiments. They do not require any sort of compilaton, just a polyfill:
 
@@ -42,7 +47,7 @@ npm install @undercut/pull
 yarn add @undercut/pull
 ```
 
-For precompiled packages it is convenient to use [Yarn aliases](https://yarnpkg.com/en/docs/cli/add#toc-yarn-add-alias):
+For precompiled packages it may be handy to use [Yarn aliases](https://yarnpkg.com/en/docs/cli/add#toc-yarn-add-alias):
 
 ```sh
 yarn add undercut@npm:@undercut/node-10
@@ -50,7 +55,7 @@ yarn add undercut@npm:@undercut/node-10
 
 ### Upgrading `undercut`
 
-If you're upgrading `undercut` to a newer version, upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
+If you're upgrading the `undercut` to a newer version, upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
 
 ## Usage
 
@@ -111,336 +116,11 @@ Of course, you can process synchronous items with `Push Lines` too, but `Pull Li
 
 ## Pull
 
-`Pull Lines` are bases on `Iterables`:
-
-```typescript
-interface Iterable {
-    [Symbol.iterator]() : Iterator;
-}
-
-interface Iterator {
-    next() : IteratorResult;
-}
-
-interface IteratorResult {
-    value : any;
-    done : boolean;
-}
-```
-
-`Pull` is the most used type of pipelines. A `Pull Line` is re-usable if its source is re-iterable.
-
-To use `Pull Lines` you need to import from `@undercut/pull`.
-
-Terms in releation to `Pull Lines`:
-
-- `iterable` -- an object implementing the [Iterable protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol).
-- `operation` -- a function taking an `Iterable` of source items and returning an `Iterable` of result items.
-- `pipeline` -- an ordered sequence (array) of `operations`.
-- `source` -- an `Iterable` which items will be processed. Many native objects are `Iterable` out of the box: arrays, maps, sets, strings.
-- `target` -- a function for extracting the result out of pipeline. Takes an `Iterable` and returns some value. Many native functions behave this way: `Array.from()`, `new Map()`, `Object.fromEntries()`, etc. `Targets` provided by the `undercut` are mostly wrappers around those native functions/constructors for convenience. Feel free to use the originals.
-
-### Core Pull functions
-
-#### `composeOperations(operations) => PullOperation`
-
-Composes several existing operations into a new one.
-
-```js
-import { composeOperations, pullArray, flatten, zip } from "@undercut/pull";
-
-function interleave(...sources) {
-    const operations = [
-        zip(...sources),
-        flatten()
-    ];
-
-    return composeOperations(operations);
-}
-
-const source = [1, 3, 5];
-const pipeline = [
-    interleave([2, 4, 6])
-];
-
-const result = pullArray(pipeline, source);
-
-console.log(result); // [1, 2, 3, 4, 5, 6]
-```
-
-#### `pull(target, pipeline, source) => TargetReturnValue`
-
-Executes the pipeline by pulling items from the source to the target and returns target's return value.
-
-```js
-import { pull, filter, map, skip, toArray } from "@undercut/pull";
-
-const source = [1, 2, 3, 4, 5, 6, 7];
-const pipeline = [
-    skip(2),
-    filter(x => x % 3 === 0),
-    map(x => x * 2)
-];
-
-const result = pull(toArray(), pipeline, source);
-
-console.log(result); // [8, 10, 14]
-```
-
-#### `pullArray(pipeline, source) => Array`
-
-Same as `pull`, but target is implicitly set to `toArray()`.
-
-```js
-import { pullArray, filter, map, skip } from "@undercut/pull";
-
-const source = [1, 2, 3, 4, 5, 6, 7];
-const pipeline = [
-    skip(2),
-    filter(x => x % 3 === 0),
-    map(x => x * 2)
-];
-
-const result = pullArray(pipeline, source);
-
-console.log(result); // [8, 10, 14]
-```
-
-#### `pullLine(pipeline, source) => Iterable`
-
-Creates a `Pull Line`.
-
-Useful when you want to pass it somewhere or being able to re-evaluate the result again in the future.
-
-```js
-import { pullLine, append, compact, skip } from "@undercut/pull";
-
-const source = [0, 1, 2, 3];
-const pipeline = [
-    append(4, 5),
-    compact(),
-    skip(2)
-];
-
-const myItems = pullLine(pipeline, source); // No evaluation happens at this step.
-
-const result1 = Array.from(myItems);
-
-console.log(result1); // [3, 4, 5]
-
-source.push(7); // Modify the source and re-evaluate. Pull Line has a reference to the source.
-
-const result2 = Array.from(myItems);
-
-console.log(result2); // [3, 7, 4, 5]
-```
-
-### Creating your own Pull Operation
-
-`Undercut` is built on top of existing JavaScript protocols and features like generators. So, the easiest way to build an `PullOperation` is to use Generators:
-
-```js
-function pow(exponent) { // #1
-    return function* (iterable) { // #2
-        for (const item of iterable) { // #3
-            const newItem = Math.pow(item, exponent); // #4
-
-            yield newItem; // #5
-        }
-    };
-}
-
-const source = [1, 2, 3];
-const pipeline = [
-    pow(2)
-];
-
-const result = pullArray(pipeline, source);
-
-console.log(result); // [1, 4, 9]
-```
-
-1. Start with an Operation factory. It captures arguments (if there is any) and may provide some additional logic/state to the Operation.
-2. Operation function itself. It's super convenient to use Generators for building an operation, but it may be a regular function too. During pipeline execution it will be called with an iterable containing items from the previous pipeline stage.
-3. Inside the operation usually you want to iterate over provided items.
-4. And do something with them or throw them away and build new ones.
-5. When you have something to pass further down the pipeline, just provide it to the `yield` operator (a feature of Generators).
-
-### Using different Pull targets or calling them directly
-
-Choose the one that suits you best:
-
-```js
-pull(toArray(), pipeline, source);
-// or
-pull(Array.from, pipeline, source);
-// or
-toArray()(pullLine(pipeline, source));
-// or
-Array.from(pullLine(pipeline, source));
-```
+[See Pull documentation in its package](packages/undercut-pull/README.md)
 
 ## Push
 
-`Push Lines` are based on `Observers` (which base on write-only generator objects):
-
-```typescript
-interface Observer {
-    next(value? : any) : void;
-    return() : void;
-    throw(error) : void;
-}
-```
-
-`Push` is used less often than `Pull` and has an independent implementation. `Push Lines` are **not** re-usable and you **must** close the `observer` when you're done with it by calling its `.return()` method. Closing the `observer` also signals `end-of-sequence` (many operations wait till they gather all items, until they could continue). The `.throw()` method allows to cancel execution at any time.
-
-To use `Push Lines` you need to import from `@undercut/push` entry point.
-
-Terms in releation to `Push Lines`:
-
-- `observer` -- an object implementing the `Observer protocol`.
-- `operation` -- a function taking an `observer` accepting result items and returning an `observer` accepting source items.
-- `pipeline` -- an ordered sequence (array) of `operations`.
-- `source` -- there is no real `source` in `Push Lines`, because someone need to manually put items into the `observer`, but several `push` functions can help you to process `iterables` with `Push Lines`.
-- `target` -- an `observer` that will receive the result.
-
-### Core Push functions
-
-#### `composeOperations(operations) => PushOperation`
-
-Composes several existing operations into a new one.
-
-```js
-import { composeOperations, pushArray, flatten, zip } from "@undercut/push";
-
-function interleave(...sources) {
-    const operations = [
-        zip(...sources),
-        flatten()
-    ];
-
-    return composeOperations(operations);
-}
-
-const source = [1, 3, 5];
-const pipeline = [
-    interleave([2, 4, 6])
-];
-
-const result = pushArray(pipeline, source);
-
-console.log(result); // [1, 2, 3, 4, 5, 6]
-```
-
-#### `push(target, pipeline, source) => target`
-
-Executes the pipeline by pushing items from an iterable source to the target and returns the target back.
-
-```js
-import { push, filter, map, skip, toArray } from "@undercut/push";
-
-const source = [1, 2, 3, 4, 5, 6, 7];
-const pipeline = [
-    skip(2),
-    filter(x => x % 3 === 0),
-    map(x => x * 2)
-];
-const target = toArray();
-
-const target2 = push(target, pipeline, source); // target2 === target
-
-// `toArray` target has `values` property.
-console.log(target.values); // [8, 10, 14]
-```
-
-#### `pushArray(pipeline, source) => Array`
-
-Same as `push`, but target is implicitly set to `toArray()` and its `values` property is returned.
-
-```js
-import { pushArray, filter, map, skip } from "@undercut/push";
-
-const source = [1, 2, 3, 4, 5, 6, 7];
-const pipeline = [
-    skip(2),
-    filter(x => x % 3 === 0),
-    map(x => x * 2)
-];
-
-const result = pushArray(pipeline, source);
-
-console.log(result); // [8, 10, 14]
-```
-
-#### `pushLine(pipeline, target) => Observer`
-
-Creates a `Push Line`.
-
-Usually, you will push an item in an event handler like button click, etc.
-
-```js
-import { pushLine, append, compact, skip, toArray } from "@undercut/push";
-
-const target = toArray();
-const pipeline = [
-    append(4, 5),
-    compact(),
-    skip(2)
-];
-
-const numbersObserver = pushLine(pipeline, target); // No evaluation happens at this step.
-
-[0, 1, 2, 3].forEach(x => numbersObserver.next(x)); // Push items.
-
-numbersObserver.return(); // Close the observer.
-
-console.log(target.values); // [3, 4, 5]
-
-useClosable(pushLine(pipeline, target), o => [1, 2, 3].forEach(x => o.next(x)));
-```
-
-### Creating your own Push Operation
-
-`Undercut` is built on top of existing JavaScript protocols and features like generators. So, the easiest way to build a `PushOperation` is to use Generators:
-
-```js
-function pow(exponent) { // #1
-    return function* (observer) { // #2
-        try { // #3
-            while (true) { // #4
-                const item = yield; // #5
-                const newItem = Math.pow(item, exponent); // #6
-
-                observer.next(newItem); // #7
-            }
-        } catch (e) { // #8
-            observer.throw(e); // #9
-        } finally { // #10
-            observer.return(); // #11
-        }
-    };
-}
-
-const source = [1, 2, 3];
-
-const result = pushArray([pow(2)], source);
-
-console.log(result); // [1, 4, 9]
-```
-
-1. Start with an operation factory. It captures arguments (if there is any) and may provide some additional functionality (but do not store any mutable state here, because operation must be reusable).
-2. Operation function itself. It's super convenient to use Generators for building an operation, but it may be a regular function too. During pipeline execution it will be called with an observer representing the next stage of the pipeline.
-3. `try-catch-finally` block should cover 2 possible exiting scenarios: cancellation and `end-of-sequence` signal.
-4. Observers wait for new items indefinitely. The loop ends only because of `yield`.
-5. Get an item by `yielding`.
-6. Do your computation.
-7. When you need to pass something down the pipleline, do this by passing it to `observer.next()` call.
-8. `yield` will throw on calling the `.throw()` method. This means a cancellation of the execution.
-9. You need to signal remaining observers in the chain, so they could clean up the resources too. This is done by passing the error to the `observer.throw()` call.
-10. You will get here in case of both cancellation and `end-of-sequence` signal.
-11. It is a good place to clean up your resources. You must also signal remaining observers in the chain by calling `observer.return()`.
-
-In case more advanced operations like grouping, where you need to look at all available items first before you can proceed, you can do this in `finally`. Make yourself a flag to skip computation in case of catching a cancellation, and pass items before closing the observer ([see the groupBy operation](packages/undercut-push/src/operations/group_by.js))
+[See Push documentation in its package](packages/undercut-push/README.md)
 
 ## Operations
 
@@ -501,43 +181,7 @@ Operation exist in both `pull` and `push` versions:
 
 ## Utilities
 
-Some utilities related to pull and push operations are exported in `@undercut/pull` and `@undercut/push` packages, but they identical to those in the `@undercut/utils` package, which exports all the list:
-
-- `asc(comparator, selector = identity) => OrderingSpec` -- used itself as a value for specifying ascending sorting direction, of as a factory function for creating OrderingSpec for `groupBy` operation.
-- `close(coroutine, tryBeforeClosing) => TryBeforeClosingReturnValue` -- closes the `coroutine` after passing it into optional `tryBeforeClosing` function allowing you to do something with it without manually writing `try/finally` block.
-- `compare` -- a set of predefined comparators for sorting.
-- `createIterable(function) => Iterable` -- makes an `Iterable` from a provided function. It could be a generator or a factory, but must return a new iterator every time.
-- `delay(promise, time) => Promise` -- returns a new Promise that waits `time` more miliseconds after the `promise` and fulfills with its result.
-- `desc(comparator, selector = identity) => OrderingSpec` -- used itself as a value for specifying descending sorting direction, of as a factory function for creating OrderingSpec for `groupBy` operation.
-- `getIterator(iterable) => Iterator` -- calls the `Symbol.iterator` method of the `iterable` for you.
-- `identity(value) => value` -- returns the same `value` the was provided as the first argument.
-- `isBoolean(value) => boolean` -- returns `true` if the `value` is of the boolean type, `false` otherwise.
-- `isDefined(value) => boolean` -- returns `true` if the `value` is exactly not `undefined`, `false` otherwise.
-- `isFalsy(value) => boolean` -- returns `true` if the `value` converted to Boolean is `false`, `false` otherwise.
-- `isFunction(value) => boolean` -- returns `true` if the `value` is a function, `false` otherwise.
-- `isIterable(value) => boolean` -- returns `true` if the `value` is an object having `Symbol.iterator` method, `false` otherwise.
-- `isIterator(value) => boolean` -- returns `true` if the `value` is an object having `next` method, `false` otherwise.
-- `isNegative(value) => boolean` -- returns `true` if the `value` is a Number less than zero, `false` otherwise.
-- `isNegativeOrZero(value) => boolean` -- returns `true` if the `value` is a Number less or equal to zero, `false` otherwise.
-- `isNull(value) => boolean` -- returns `true` if the `value` is exactly `null`, `false` otherwise.
-- `isNullish(value) => boolean` -- returns `true` if the `value` is exactly `null` or `undefined`, `false` otherwise.
-- `isNumber(value) => boolean` -- returns `true` if the `value` is of the Number type, `false` otherwise. `NaN` is a Number in JavaScript.
-- `isNumberValue(value) => boolean` -- same as `isNumber`, but returns `false` for `NaN`.
-- `isObject(value) => boolean` -- returns `true` if the `value` is an Object, `false` otherwise. `null` is an Object is JavaScript.
-- `isObjectValue(value) => boolean` -- same as `isObject`, but returns `false` for `null`.
-- `isObserver(value) => boolean` -- returns `true` if the `value` is an object with the `next` method, `false` otherwise.
-- `isPositive(value) => boolean` -- returns `true` if the `value` is a Number greater that zero, `false` otherwise.
-- `isPositiveOrZero(value) => boolean` -- returns `true` if the `value` is a Number equal or greater than zero, `false` otherwise.
-- `isString(value) => boolean` -- returns `true` if the `value` is of the String type, `false` otherwise.
-- `isSymbol(value) => boolean` -- returns `true` if the `value` is of the Symbol type, `false` otherwise.
-- `isTruthy(value) => boolean` -- returns `true` if the `value` converted to Boolean is `true`, `false` otherwise.
-- `isUndefined(value) => boolean` -- returns `true` if the `value` is exactly `undefined`, `false` otherwise.
-- `negate(value) => boolean` -- performs the `!` operation with provided value.
-- `negateSign(value) => number` -- inverts the sign of the numeric value.
-- `noop() => void` -- an empty function.
-- `rethrow(error) => void` -- immidietly throws provided `error`.
-- `unwrapPromise() => object` -- creates a new Promise and returnss it together with its `resolve`/`reject` functions.
-- `wait(time) => Promise` -- returns a Promise fulfilling after `time` miliseconds.
+Some utilities related to pull and push operations are exported in `pull` and `push` packages too, but they identical to those in the `@undercut/utils` package, which exports [all the list](packages/undercut-utils/README.md).
 
 ## License
 
