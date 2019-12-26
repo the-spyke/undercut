@@ -1,5 +1,5 @@
 import { assert, assertFunctor } from "./assert.js";
-import { isFunction } from "./language";
+import { isFunction } from "./language.js";
 
 /**
  * @param {Iterable} iterable

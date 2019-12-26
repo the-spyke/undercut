@@ -18,21 +18,32 @@ function zipCore(itemFactory, sources) {
 
 	return asObserver(function* (observer) {
 		const cohort = Cohort.of(observer);
-		const iterators = [];
 
 		let index = 0;
+		let iterators = [];
 
 		try {
-			for (const source of sources) {
-				const iterator = getIterator(source);
+			sources.forEach(source => cohort.next(getIterator(source)));
 
-				cohort.next(iterator);
-				iterators.push(iterator);
-			}
+			iterators = cohort.coroutines.slice();
+			iterators[0] = null;
 
 			while (true) {
 				const item = yield;
-				const values = getValues(iterators);
+				const values = iterators.map((iterator, index) => {
+					if (!iterator) {
+						return undefined;
+					}
+
+					const { value, done } = iterator.next();
+
+					if (done) {
+						iterators[index] = null;
+						close(iterator);
+					}
+
+					return value;
+				});
 
 				values[0] = item;
 
@@ -46,13 +57,30 @@ function zipCore(itemFactory, sources) {
 			close(cohort, () => {
 				if (cohort.isFine) {
 					while (true) { // eslint-disable-line no-constant-condition
-						const values = getValues(iterators);
+						let allDone = true;
 
-						if (values[0]) {
+						const values = iterators.map((iterator, index) => {
+							if (!iterator) {
+								return undefined;
+							}
+
+							const { value, done } = iterator.next();
+
+							if (done) {
+								iterators[index] = null;
+								close(iterator);
+							} else {
+								allDone = false;
+							}
+
+							return value;
+						});
+
+						if (allDone) {
 							break;
-						} else {
-							observer.next(itemFactory(values, index));
 						}
+
+						observer.next(itemFactory(values, index));
 
 						index++;
 					}
@@ -60,32 +88,4 @@ function zipCore(itemFactory, sources) {
 			});
 		}
 	});
-}
-
-function getValues(iterators) {
-	const values = Array(iterators.length + 1);
-
-	values[0] = 1;
-
-	for (let index = 0; index < iterators.length; index++) {
-		const iterator = iterators[index];
-
-		if (iterator) {
-			const { value, done } = iterator.next();
-
-			if (done) {
-				close(iterator);
-
-				iterators[index] = null;
-				values[index + 1] = undefined;
-			} else {
-				values[index + 1] = value;
-				values[0] = undefined;
-			}
-		} else {
-			values[index + 1] = undefined;
-		}
-	}
-
-	return values;
 }
