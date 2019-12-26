@@ -14,7 +14,7 @@ export function unionBy(selector, ...sources) {
 	assertFunctor(selector, `selector`);
 
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 		const keys = new Set();
 
 		try {

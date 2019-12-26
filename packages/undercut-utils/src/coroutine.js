@@ -62,7 +62,12 @@ export function close(coroutine, tryBeforeClosing) {
 }
 
 export class Cohort {
-	static from(...coroutines) {
+	/** @type {(coroutines: Array<Coroutine>) => Cohort} */
+	static from(coroutines) {
+		return new Cohort(coroutines);
+	}
+
+	static of(...coroutines) {
 		return new Cohort(coroutines);
 	}
 

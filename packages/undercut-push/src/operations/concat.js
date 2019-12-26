@@ -5,7 +5,7 @@ export function concatStart(source) {
 	assertSource(source);
 
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 
 		let hasItems = false;
 
@@ -41,7 +41,7 @@ export function concatEnd(source) {
 	assertSource(source);
 
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 
 		try {
 			while (true) {

@@ -9,7 +9,7 @@ export function chunk(size) {
 	size = Math.trunc(size);
 
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 
 		let chunk = [];
 

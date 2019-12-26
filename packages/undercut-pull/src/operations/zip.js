@@ -17,7 +17,7 @@ function zipCore(itemFactory, sources) {
 	assertSources(sources);
 
 	return function* (iterable) {
-		const cohort = Cohort.from(getIterator(iterable));
+		const cohort = Cohort.of(getIterator(iterable));
 
 		try {
 			sources.forEach(source => cohort.next(getIterator(source)));

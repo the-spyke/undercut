@@ -4,7 +4,7 @@ import { getIterator } from "@undercut/utils/src/iterable.js";
 
 export function interleave(...sources) {
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 		const iterators = [];
 		const readIterator = iterator => {
 			const { value, done } = iterator.next();

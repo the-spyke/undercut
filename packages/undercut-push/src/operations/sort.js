@@ -8,7 +8,7 @@ export function sort(comparator, order = asc) {
 	assert(order === asc || order === desc, `"order" must be the asc or the desc function.`);
 
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 		const items = [];
 
 		try {

@@ -4,7 +4,7 @@ export function join(separator = `,`) {
 	separator = String(separator);
 
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 
 		let result = null;
 

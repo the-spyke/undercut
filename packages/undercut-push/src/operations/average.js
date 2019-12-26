@@ -2,7 +2,7 @@ import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.
 
 export function average() {
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 
 		let sum = 0;
 		let count = 0;

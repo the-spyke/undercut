@@ -5,7 +5,7 @@ export function groupBy(keySelector) {
 	assertFunctor(keySelector, `keySelector`);
 
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 		const groups = new Map();
 
 		try {
