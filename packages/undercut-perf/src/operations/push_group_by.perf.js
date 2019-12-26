@@ -1,9 +1,10 @@
 import {
 	composeOperations, pushArray,
 	groupBy as groupBy1,
-	flattenIterables,
+	flatten,
 	reduce
 } from "@undercut/push";
+import { isIterable } from "@undercut/utils";
 import { assertFunctor } from "@undercut/utils/src/assert.js";
 
 import { runPerfSuite } from "../perf.js";
@@ -26,7 +27,7 @@ function groupBy2(keySelector) {
 
 			return groups;
 		}, new Map()),
-		flattenIterables(),
+		flatten(isIterable),
 	]);
 }
 
