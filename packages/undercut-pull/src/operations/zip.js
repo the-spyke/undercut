@@ -22,20 +22,31 @@ function zipCore(itemFactory, sources) {
 		try {
 			sources.forEach(source => cohort.next(getIterator(source)));
 
+			const iterators = cohort.coroutines.slice();
+
 			let index = 0;
 
 			while (true) {
-				let done = true;
+				let allDone = true;
 
-				const values = cohort.coroutines.map(iter => {
-					const item = iter.next();
+				const values = iterators.map((iterator, index) => {
+					if (!iterator) {
+						return undefined;
+					}
 
-					done = done && item.done;
+					const { value, done } = iterator.next();
 
-					return item.value;
+					if (done) {
+						iterators[index] = null;
+						close(iterator);
+					} else {
+						allDone = false;
+					}
+
+					return value;
 				});
 
-				if (done) {
+				if (allDone) {
 					break;
 				}
 
