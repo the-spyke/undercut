@@ -23,9 +23,8 @@ commands:
           name: ESLint
           command: |
             cd << parameters.path >>
-            yarn lint --format="junit" --output-file="eslint.xml"
             mkdir -p $ARTIFACTS/test_results/eslint
-            cp -v eslint.xml $ARTIFACTS/test_results/eslint/
+            yarn lint --format="junit" --output-file="$ARTIFACTS/test_results/eslint/eslint.xml"
   test:
     description: Run Jest.
     parameters:
@@ -40,9 +39,9 @@ commands:
           name: Jest
           command: |
             cd << parameters.path >>
+            export JEST_JUNIT_OUTPUT_DIR="$ARTIFACTS/test_results/jest"
+            mkdir -p $JEST_JUNIT_OUTPUT_DIR
             yarn test --ci <<# parameters.coverage >>--coverage<</ parameters.coverage >> --reporters="default" --reporters="jest-junit" --runInBand
-            mkdir -p $ARTIFACTS/test_results/jest
-            cp -v jest.xml $ARTIFACTS/test_results/jest/
           environment:
             JEST_JUNIT_OUTPUT_NAME: jest.xml
       - when:
