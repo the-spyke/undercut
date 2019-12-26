@@ -24,13 +24,15 @@ We also added 3 precompiled packages for browsers and Node:
 - Added `collect` operation. Much like `reduce`, but for filling items into a mutable `collection`. So, no need to return a value from the function.
 - Added predefined `collect` variants: `collectArray`, `collectMap`, `collectObject`, and `collectSet`.
 - Added Coroutine utilities.
-- New `delay` and `rethrow` utilities.
+- Added new `delay` and `rethrow` utilities.
 - An ability of `composeOperations` to take a function instead of an array: `() => Array<Operation>`. This allows dynamic composition and having some shared state in a closure.
 - Precompiled packages for browsers and Node.
-- `@undercut/cli` for using in a shell and process strings with JavaScript.
+- `@undercut/cli` package for using in a shell for processing strings with JavaScript.
 - `pullValue` and `pushValue` core functions running the pipeline and returning a single item or `undefined` from it. Basically, it's a `pull/push` with target implicitly set to `toValue()`.
 - Added Iterable utilities back to the `utils` package.
 - Additional language utilities: `hasOwnProps`, `isArrayBuffer`, `isCoroutine`, `isDate`, `isError`, `isMap`, `isNegative`, `isNegativeOrZero`, `isNumberValue`, `isPlainObject`, `isPositive`, `isPositiveOrZero`, `isRegExp`, `isSet`, `isWeakMap`, `isWeakSet`.
+- Added `flatMap` recursive operation and `getRecursiveMapper` iterable utility for working with nested data.
+- Added `flattenArrays` operation for convenience.
 
 ### Changed
 
@@ -43,6 +45,11 @@ We also added 3 precompiled packages for browsers and Node:
 - **[BREAKING]** Unified pull targets so all of them should be called first, like `toConsumer` did and push targets too.
 - **[BREAKING]** Rolled back `toValue` changes, so it doesn't throw on empty sequences.
 - **[BREAKING]** Replaced `closeIterator`, `closeObserver`, `initializeObserver` with generic Coroutine utilities.
+- **[BREAKING]** Changed `flatten` to accept `predicate` and `depth` instead of just `depth` to be able to flatten different types of iterables.
+
+### Removed
+
+- **[BREAKING]** Removed `flattenIterables`, use more generic `flatten(isIterable)` instead.
 
 ### Fixed
 

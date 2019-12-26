@@ -26,20 +26,6 @@ export function testOperation(simulate, operationFactory, { args, source, target
 	}
 }
 
-function checkTestSpec(tester, spec) {
-	const allowedProps = new Set([`args`, `source`, ...tester.specProps]);
-	const invalidProps = Object.keys(spec).filter(p => !allowedProps.has(p));
-
-	if (invalidProps.length) {
-		const type = tester.name.replace(`Tester`, ``);
-
-		throw new Error(
-			`Excess props for ${type} tests. \n` +
-			`Allowed props: ${[...allowedProps].join(`, `)} \n` +
-			`Invalid props: ${invalidProps.join(`, `)}`);
-	}
-}
-
 function callbackTester({ simulate }, operationFactory, { args, source, callbackPosition, callbackArgs }) {
 	const { operation, spy } = getOperationSpy(operationFactory, args, callbackArgs, callbackPosition);
 
@@ -74,25 +60,39 @@ const testers = [
 	targetTester,
 ];
 
+function findTesterForSpec(testSpec) {
+	if (!testSpec) throw new Error(`"testSpec" is required`);
+
+	const tester = testers.find(t => t.specProps.some(p => p in testSpec));
+
+	if (!tester) throw new Error(`Unknown tester for a test spec with props: ${Object.keys(testSpec)}`);
+
+	const allowedProps = new Set([`args`, `source`, ...tester.specProps]);
+	const invalidProps = Object.keys(testSpec).filter(p => !allowedProps.has(p));
+
+	if (invalidProps.length) {
+		const type = tester.name.replace(`Tester`, ``);
+
+		throw new Error(
+			`Excess props for ${type} tests. \n` +
+			`Allowed props: ${[...allowedProps].join(`, `)} \n` +
+			`Invalid props: ${invalidProps.join(`, `)}`);
+	}
+
+	return tester;
+}
+
 export function createBySpecFactory(helpers) {
 	if (!helpers) throw new Error(`"helpers" is required`);
 
-	return function createBySpec(type, operationFactory) {
+	return function createBySpec(/** @type {"pull" | "push"} */ type, operationFactory) {
 		if (!(type in helpers)) throw new Error(`Unknown test type: ${type}`);
 		if (!operationFactory) throw new Error(`"operationFactory" is required`);
 
-		return function bySpec(...testSpecs) {
-			if (!testSpecs.length) throw new Error(`"testSpec" is required`);
+		return function bySpec(testSpec) {
+			const tester = findTesterForSpec(testSpec);
 
-			for (const testSpec of testSpecs) {
-				const tester = testers.find(t => t.specProps.some(p => p in testSpec));
-
-				if (!tester) throw new Error(`Unknown tester for test spec: ${Object.keys(testSpec)}`);
-
-				checkTestSpec(tester, testSpec);
-
-				tester(helpers[type], operationFactory, testSpec);
-			}
+			tester(helpers[type], operationFactory, testSpec);
 		};
 	};
 }

@@ -1,7 +1,7 @@
 import { simulatePush } from "@undercut/testing";
 
 import { first } from "./operations/first.js";
-import { flatten } from "./operations/flatten.js";
+import { flattenArrays } from "./operations/flatten.js";
 import { map } from "./operations/map.js";
 import { zip } from "./operations/zip.js";
 
@@ -19,7 +19,7 @@ test(`composeOperations`, () => {
 	function interleave(...sources) {
 		return composeOperations([
 			zip(...sources),
-			flatten()
+			flattenArrays()
 		]);
 	}
 
@@ -28,7 +28,7 @@ test(`composeOperations`, () => {
 	function interleaveDynamic(...sources) {
 		return composeOperations(() => [
 			zip(...sources),
-			flatten()
+			flattenArrays()
 		]);
 	}
 

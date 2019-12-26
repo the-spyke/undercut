@@ -2,7 +2,7 @@ import { identity } from "@undercut/utils/src/function.js";
 import { simulatePull } from "@undercut/testing";
 
 import { first } from "./operations/first.js";
-import { flatten } from "./operations/flatten.js";
+import { flattenArrays } from "./operations/flatten.js";
 import { map } from "./operations/map.js";
 import { zip } from "./operations/zip.js";
 
@@ -16,13 +16,13 @@ import {
 
 test(`composeOperations`, () => {
 	function interleave(...sources) {
-		return composeOperations([zip(...sources), flatten()]);
+		return composeOperations([zip(...sources), flattenArrays()]);
 	}
 
 	expect(simulatePull(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
 
 	function interleaveDynamic(...sources) {
-		return composeOperations(() => [zip(...sources), flatten()]);
+		return composeOperations(() => [zip(...sources), flattenArrays()]);
 	}
 
 	expect(simulatePull(interleaveDynamic([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
