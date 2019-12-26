@@ -1,30 +1,62 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { isIterable, isPositiveOrZero } from "@undercut/utils/src/language.js";
+import { assert, assertFunctor } from "@undercut/utils/src/assert.js";
+import { identity } from "@undercut/utils/src/function.js";
+import { getRecursiveMapper } from "@undercut/utils/src/iterable.js";
+import { isPositiveOrZero } from "@undercut/utils/src/language.js";
 
-function* flattenRec(canFlatten, maxDepth, currentDepth, iterable) {
-	for (const item of iterable) {
-		if (currentDepth < maxDepth && canFlatten(item)) {
-			yield* flattenRec(canFlatten, maxDepth, currentDepth + 1, item);
-		} else {
-			yield item;
-		}
-	}
-}
-
-function flattenCore(canFlatten, depth) {
+export function flatten(predicate, depth = 1) {
 	assert(isPositiveOrZero(depth), `"depth" is required, must be a number >= 0.`);
 
 	depth = Math.trunc(depth);
 
-	return function (iterable) {
-		return flattenRec(canFlatten, depth, 0, iterable);
+	if (depth < 1) {
+		return identity;
+	}
+
+	if (depth < 2) {
+		return flatten1(predicate);
+	}
+
+	return flatMap((item, index, itemDepth) => itemDepth < depth && predicate(item, index, itemDepth));
+}
+
+export function flattenArrays(depth = 1) {
+	return flatten(Array.isArray, depth);
+}
+
+export function flatMap(predicate, mapper) {
+	const recursiveMapper = getRecursiveMapper(predicate, mapper);
+
+	return function* (iterable) {
+		let index = 0;
+
+		for (const item of iterable) {
+			const childItems = recursiveMapper(item, index);
+
+			for (const childItem of childItems) {
+				yield childItem;
+			}
+
+			index++;
+		}
 	};
 }
 
-export function flatten(depth = 1) {
-	return flattenCore(Array.isArray, depth);
-}
+function flatten1(predicate) {
+	assertFunctor(predicate, `predicate`);
 
-export function flattenIterables(depth = 1) {
-	return flattenCore(isIterable, depth);
+	return function* (iterable) {
+		let index = 0;
+
+		for (const item of iterable) {
+			if (predicate(item, index, 0)) {
+				for (const childItem of item) {
+					yield childItem;
+				}
+			} else {
+				yield item;
+			}
+
+			index++;
+		}
+	};
 }

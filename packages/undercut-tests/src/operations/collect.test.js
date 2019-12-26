@@ -45,16 +45,14 @@ describe(`collectArray`, () => {
 			source: [],
 			target: [[]]
 		}));
-		test(`should collect all items into an array`, () => bySpec(
-			{
-				source: [1, 2, 3],
-				target: [[1, 2, 3]]
-			},
-			{
-				source: [false, `a`, 3],
-				target: [[false, `a`, 3]]
-			},
-		));
+		test(`should collect all numbers into an array`, () => bySpec({
+			source: [1, 2, 3],
+			target: [[1, 2, 3]]
+		}));
+		test(`should collect all items of any type into an array`, () => bySpec({
+			source: [false, `a`, 3],
+			target: [[false, `a`, 3]]
+		}));
 	});
 });
 
@@ -69,16 +67,14 @@ describe(`collectMap`, () => {
 			source: [],
 			target: [new Map()]
 		}));
-		test(`should collect all items into a map`, () => bySpec(
-			{
-				source: [[1, 11], [2, 22], [3, 33]],
-				target: [new Map([[1, 11], [2, 22], [3, 33]])]
-			},
-			{
-				source: [[false, 11], [`a`, 22], [{}, 3]],
-				target: [new Map([[false, 11], [`a`, 22], [{}, 3]])]
-			},
-		));
+		test(`should collect all entries with numeric keys into a map`, () => bySpec({
+			source: [[1, 11], [2, 22], [3, 33]],
+			target: [new Map([[1, 11], [2, 22], [3, 33]])]
+		}));
+		test(`should collect all entries with any keys into a map`, () => bySpec({
+			source: [[false, 11], [`a`, 22], [{}, 3]],
+			target: [new Map([[false, 11], [`a`, 22], [{}, 3]])]
+		}));
 	});
 });
 
@@ -93,16 +89,14 @@ describe(`collectObject`, () => {
 			source: [],
 			target: [{}]
 		}));
-		test(`should collect all items into an object`, () => bySpec(
-			{
-				source: [[1, 11], [2, 22], [3, 33]],
-				target: [{ 1: 11, 2: 22, 3: 33 }]
-			},
-			{
-				source: [[false, 11], [`a`, 22], [44, 3]],
-				target: [{ "false": 11, "a": 22, "44": 3 }]
-			},
-		));
+		test(`should collect all entries with numeric keys into an object`, () => bySpec({
+			source: [[1, 11], [2, 22], [3, 33]],
+			target: [{ 1: 11, 2: 22, 3: 33 }]
+		}));
+		test(`should collect all entries into an object by stringifying key values`, () => bySpec({
+			source: [[false, 11], [`a`, 22], [44, 3]],
+			target: [{ "false": 11, "a": 22, "44": 3 }]
+		}));
 	});
 });
 
@@ -117,15 +111,13 @@ describe(`collectSet`, () => {
 			source: [],
 			target: [new Set()]
 		}));
-		test(`should collect all items into an object`, () => bySpec(
-			{
-				source: [1, 2, 3],
-				target: [new Set([1, 2, 3])]
-			},
-			{
-				source: [false, `a`, 3],
-				target: [new Set([false, `a`, 3])]
-			},
-		));
+		test(`should collect all items into a set`, () => bySpec({
+			source: [1, 2, 3],
+			target: [new Set([1, 2, 3])]
+		}));
+		test(`should collect all items of any type into a set`, () => bySpec({
+			source: [false, `a`, 3],
+			target: [new Set([false, `a`, 3])]
+		}));
 	});
 });

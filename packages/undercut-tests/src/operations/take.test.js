@@ -24,35 +24,31 @@ describe(`take`, () => {
 			source: [0, 1, 2, 3],
 			target: [],
 		}));
-		test(`should not iterate more items than specified`, () => bySpec(
-			{
-				args: [0],
-				source: [0, 1, 2, 3],
-				limit: 0,
-			},
-			{
-				args: [3],
-				source: [0, 1, 2, 3],
-				limit: 3,
-			},
-		));
-		test(`should truncate fractional values: 0.5`, () => bySpec(
-			{
-				args: [0.5],
-				source: [0, 1, 2],
-				target: [],
-			},
-			{
-				args: [1.7],
-				source: [0, 1, 2],
-				target: [0],
-			},
-			{
-				args: [15.01],
-				source: [0, 1, 2],
-				target: [0, 1, 2],
-			},
-		));
+		test(`should not iterate with count = 0`, () => bySpec({
+			args: [0],
+			source: [0, 1, 2, 3],
+			limit: 0,
+		}));
+		test(`should iterate exactly 3 items with count = 3`, () => bySpec({
+			args: [3],
+			source: [0, 1, 2, 3],
+			limit: 3,
+		}));
+		test(`should truncate fractional values below 1`, () => bySpec({
+			args: [0.7555],
+			source: [0, 1, 2],
+			target: [],
+		}));
+		test(`should truncate fractional values with count between 1 and size`, () => bySpec({
+			args: [1.7],
+			source: [0, 1, 2],
+			target: [0],
+		}));
+		test(`should truncate fractional values with count > size`, () => bySpec({
+			args: [15.01],
+			source: [0, 1, 2],
+			target: [0, 1, 2],
+		}));
 		test(`should take 1 item`, () => bySpec({
 			args: [1],
 			source: [0, 1, 2, 3],
@@ -91,32 +87,25 @@ describe(`takeWhile`, () => {
 			source: [],
 			target: [],
 		}));
-		test(`should pass all items satisfying the predicate`, () => bySpec(
-			{
-				args: [x => x < 10],
-				source: [1],
-				target: [1],
-			},
-			{
-				args: [x => x < 10],
-				source: [1, 9],
-				target: [1, 9],
-			},
-			{
-				args: [x => x < 10],
-				source: [1, 9, 10],
-				target: [1, 9]
-			},
-			{
-				args: [x => x < 10],
-				source: [1, 2, 12],
-				target: [1, 2],
-			},
-			{
-				args: [x => x < 10],
-				source: [1, 2, 10, 12],
-				target: [1, 2],
-			}
-		));
+		test(`should pass all items satisfying the predicate for 1 item`, () => bySpec({
+			args: [x => x < 10],
+			source: [1],
+			target: [1],
+		}));
+		test(`should pass all items satisfying the predicate fore more than 1 item`, () => bySpec({
+			args: [x => x < 10],
+			source: [1, 9],
+			target: [1, 9],
+		}));
+		test(`should pass only items satisfying the predicate`, () => bySpec({
+			args: [x => x < 10],
+			source: [1, 9, 10],
+			target: [1, 9]
+		}));
+		test(`should pass all items satisfying the predicate with not eligable at the end`, () => bySpec({
+			args: [x => x < 10],
+			source: [1, 2, 12],
+			target: [1, 2],
+		}));
 	});
 });
