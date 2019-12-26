@@ -5,7 +5,7 @@ export function reduce(reducer, initial) {
 	assertFunctor(reducer, `predicate`);
 
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 
 		let acc = initial;
 

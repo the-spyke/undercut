@@ -5,7 +5,7 @@ export function some(predicate) {
 	assertFunctor(predicate, `predicate`);
 
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 
 		let result = false;
 

@@ -2,7 +2,7 @@ import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.
 
 export function reverse() {
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 		const items = [];
 
 		try {

@@ -6,7 +6,7 @@ export function collect(collector, factory) {
 	assertFunctor(factory, `factory`);
 
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 		const collection = factory();
 
 		try {

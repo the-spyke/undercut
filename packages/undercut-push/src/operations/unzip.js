@@ -11,7 +11,7 @@ export function unzipWith(itemsExtractor) {
 	assert(isFunction(itemsExtractor), `"itemsExtractor" is required, must be a function.`);
 
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 		const results = [];
 
 		try {

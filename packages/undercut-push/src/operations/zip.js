@@ -17,7 +17,7 @@ function zipCore(itemFactory, sources) {
 	assertSources(sources);
 
 	return asObserver(function* (observer) {
-		const cohort = Cohort.from(observer);
+		const cohort = Cohort.of(observer);
 		const iterators = [];
 
 		let index = 0;
