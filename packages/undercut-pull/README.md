@@ -6,10 +6,12 @@ This package provides the `pull` functionality and is a part of the larger [unde
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Concepts](#concepts)
+- [Concepts](https://github.com/the-spyke/undercut#concepts)
 - [Pull](#pull)
 - [Tutorials](#tutorials)
-- [Operations](#operations)
+- [Operations](https://github.com/the-spyke/undercut#operations)
+- [Sources](#sources)
+- [Targets](#targets)
 - [Utilities](#utilities)
 - [License](#license)
 
@@ -47,53 +49,25 @@ console.log(result); // [8, 10, 14]
 
 [![Edit undercut-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/undercut-example-9g1nh?fontsize=14&module=%2Fsrc%2Findex.js)
 
-## Concepts
-
-`Undercut` helps constructing pipelines for data processing. Instead of creating new concepts it leverages existing JavaScript protocols and features like [Iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) and [Generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
-
-`Pipelines` is just a term for ordered sequences of operations (just like a conveyor on a factory). Imagine you want to process a bunch of `source` items and put the result items somewhere (`target`).
-
-```text
-source ----> [ op_0 | op_1 | ... | op_N ] ----> target
-                       pipeline
-```
-
-Depending on the fact whether the `source` items are or aren't yet available you will have two different approaches: `pull` and `push`.
-
-If `source` items are available at the moment of execution, we can *pull* items from it one by one and process them synchronously. `Undercut` call this a `Pull Line`. It is created by combining a `source` and a `pipeline` into an `Iterable`. This `Iterable` may be passed around and used by any native ES construct like `for-of` loop to read the result. `Undercut` also provides a bunch of `target` helpers for one-line extracting results out of Iterables into common structures like arrays/objects/maps/etc.
-
-```text
-Pull Line -- pull items from an Iterable
-
-( source + pipeline = Iterable )
-```
-
-If `source` items are **not** available at the moment of execution, we have to process items as they appear. We can do this by *pushing* items into a `Push Line`. It is created by combining a `pipeline` and a `target` into an `Observer`. `Observers` are convenient in use cases like reacting on a button click and may be passed around or used by several producers.
-
-```text
-Push line -- push items into an Observer
-
-( pipeline + target = Observer )
-```
-
-Of course, you can process synchronous items with `Push Lines` too, but `Pull Lines` are easier to operate and write operations for.
+## [Concepts](https://github.com/the-spyke/undercut#concepts)
 
 ## Pull
 
 `Pull Lines` are bases on `Iterables`:
 
 ```typescript
-interface Iterable {
-    [Symbol.iterator]() : Iterator;
+interface Iterable<T> {
+    [Symbol.iterator](): Iterator<T>;
 }
 
-interface Iterator {
-    next() : IteratorResult;
+interface Iterator<T> {
+    next(): IteratorResult<T>;
+    return?(): void;
 }
 
-interface IteratorResult {
-    value : any;
-    done : boolean;
+interface IteratorResult<T> {
+    value: T;
+    done: boolean;
 }
 ```
 
@@ -106,6 +80,14 @@ Terms in releation to `Pull Lines`:
 - `pipeline` -- an ordered sequence (array) of `operations`.
 - `source` -- an `Iterable` which items will be processed. Many native objects are `Iterable` out of the box: arrays, maps, sets, strings.
 - `target` -- a function for extracting the result out of pipeline. Takes an `Iterable` and returns some value. Many native functions behave this way: `Array.from()`, `new Map()`, `Object.fromEntries()`, etc. `Targets` provided by the `undercut` are mostly wrappers around those native functions/constructors for convenience. Feel free to use the originals.
+
+```typescript
+type PullOperation = <T, R>(iterable: Iterable<T>) => Iterable<R>;
+
+type PullPipeline = Array<PullOperation>;
+
+type PullTarget = <T, R>(iterable: Iterable<T>) => R;
+```
 
 ### Core Pull functions
 
@@ -249,13 +231,26 @@ toArray()(pullLine(pipeline, source));
 Array.from(pullLine(pipeline, source));
 ```
 
-## Operations
+## [Operations](https://github.com/the-spyke/undercut#operations)
 
-To view the list please visit [project's readme](https://github.com/the-spyke/undercut#operations).
+## Sources
+
+- `range(start, end, step = 1)` -- creates an iterable of numbers from the `start` to (not including) the `end` by the `step` (optional, only positive because the sign will be chosen depending on whether the `start` is or isn't less than the `end`)
+
+## Targets
+
+- `toArray()` -- returns a function that pulls an iterable into an array.
+- `toConsumer(consumer)` -- returns a function that pulls an iterable an passes items one-by-one into the `consumer` function.
+- `toMap()` -- returns a function that pulls an iterable into a Map. So, items must be `[key, value]`.
+- `toNull()` -- returns a function that pulls an iterable and does nothing with the items.
+- `toObject()` -- returns a function that pulls an iterable into an object. So, items must be `[key, value]` and keys will be stringified.
+- `toObserver(observer)` -- returns a function that pulls and pushed item one-by-one into the specified observer.
+- `toSet()` -- returns a function that pulls an iterable into a Set.
+- `toValue()` -- returns a function that pulls an iterable, checks that there's no items or exactly 1 item, and return it or `undefined`. In case of more than 1 item it throws an error.
 
 ## Utilities
 
-Some specific utilities are exported in this package too, but they are identical to those in the `@undercut/utils` package, which exports [the full list](https://github.com/the-spyke/undercut/blob/master/packages/undercut-utils/README.md).
+Some specific utilities are exported in this package too, but they are identical to those in the `@undercut/utils` package, which exports [the entire list](https://github.com/the-spyke/undercut/blob/master/packages/undercut-utils/README.md).
 
 ## License
 
