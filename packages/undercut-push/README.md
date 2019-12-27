@@ -231,10 +231,10 @@ In case more advanced operations like grouping, where you need to look at all av
 
 ## Targets
 
-- `toArray()` -- returns a function that creates an observer that puts all items into an array. The observer has the `values` property to access this array.
+- `toArray()` -- returns a function that creates an observer that saves all items into an array. The observer has the `values` property to access this array.
 - `toConsumer(consumer, finalizer)` -- returns a function that creates an observer that passes items into the `consumer`. On `end-of-sequence` or error the `finalizer` will be called with the `error` (if any, or `undefined`) and items `count`.
 - `toNull()` -- returns a function that creates an observer that does nothing.
-- `toValue(setter)` -- returns a function that creates an observer that checks that there's only 0 or 1 items and passes it into the `setter` (`undefined` in case of 0 items). In case of more than 1 item it will throw an error.
+- `toValue()` -- returns a function that creates an observer that saves the first item into the own `value` property.
 
 ## Utilities
 

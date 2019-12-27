@@ -33,6 +33,7 @@ We also added 3 precompiled packages for browsers and Node:
 - Additional language utilities: `hasOwnProps`, `isArrayBuffer`, `isCoroutine`, `isDate`, `isError`, `isMap`, `isNegative`, `isNegativeOrZero`, `isNumberValue`, `isPlainObject`, `isPositive`, `isPositiveOrZero`, `isRegExp`, `isSet`, `isWeakMap`, `isWeakSet`.
 - Added `flatMap` recursive operation and `getRecursiveMapper` iterable utility for working with nested data.
 - Added `flattenArrays` operation for convenience.
+- Added back `peekIterable` utility.
 
 ### Changed
 
@@ -43,7 +44,7 @@ We also added 3 precompiled packages for browsers and Node:
 - **[BREAKING]** Renamed `unwrap` into `unwrapPromise`.
 - **[BREAKING]** Renamed `pullItems` and `pushItems` into `pullArray` and `pushArray`.
 - **[BREAKING]** Unified pull targets so all of them should be called first, like `toConsumer` did and push targets too.
-- **[BREAKING]** Rolled back `toValue` changes, so it doesn't throw on empty sequences.
+- **[BREAKING]** Changed `toValue` to not throw on empty sequences or >1 item. It just returns the first item or `undefined`.
 - **[BREAKING]** Replaced `closeIterator`, `closeObserver`, `initializeObserver` with generic Coroutine utilities.
 - **[BREAKING]** Changed `flatten` to accept `predicate` and `depth` instead of just `depth` to be able to flatten different types of iterables.
 - **[BREAKING]** Renamed `toPushLine` pull target into `toObserver`.

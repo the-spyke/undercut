@@ -109,5 +109,5 @@ test(`toValue`, () => {
 			yield 1;
 		})()
 	)).toBe(1);
-	expect(() => toValue()([1, 2])).toThrow();
+	expect(toValue()([7, 2])).toBe(7);
 });
