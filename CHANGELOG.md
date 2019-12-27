@@ -46,6 +46,7 @@ We also added 3 precompiled packages for browsers and Node:
 - **[BREAKING]** Rolled back `toValue` changes, so it doesn't throw on empty sequences.
 - **[BREAKING]** Replaced `closeIterator`, `closeObserver`, `initializeObserver` with generic Coroutine utilities.
 - **[BREAKING]** Changed `flatten` to accept `predicate` and `depth` instead of just `depth` to be able to flatten different types of iterables.
+- **[BREAKING]** Renamed `toPushLine` pull target into `toObserver`.
 
 ### Removed
 

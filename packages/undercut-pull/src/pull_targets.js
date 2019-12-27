@@ -54,7 +54,7 @@ export function toObject() {
  * @param {Observer} observer
  * @returns {Function}
  */
-export function toPushLine(observer) {
+export function toObserver(observer) {
 	assert(isObserver(observer), `"observer" is required and must be an Observable.`);
 
 	return function (iterable) {

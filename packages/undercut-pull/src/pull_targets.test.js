@@ -4,7 +4,7 @@ import {
 	toMap,
 	toNull,
 	toObject,
-	toPushLine,
+	toObserver,
 	toSet,
 	toValue,
 } from "./pull_targets.js";
@@ -67,9 +67,9 @@ test(`toObject`, () => {
 	)).toEqual({ "a": 2, "b": 3, "c": 5 });
 });
 
-test(`toPushLine`, () => {
-	expect(() => toPushLine()).toThrow();
-	expect(() => toPushLine(1)).toThrow();
+test(`toObserver`, () => {
+	expect(() => toObserver()).toThrow();
+	expect(() => toObserver(1)).toThrow();
 
 	const pushLine1 = {
 		next(value) {
@@ -82,10 +82,10 @@ test(`toPushLine`, () => {
 		values: [],
 	};
 
-	expect(toPushLine(pushLine1)).toEqual(expect.any(Function));
-	expect(toPushLine(pushLine1)([])).toBe(pushLine1);
+	expect(toObserver(pushLine1)).toEqual(expect.any(Function));
+	expect(toObserver(pushLine1)([])).toBe(pushLine1);
 
-	toPushLine(pushLine1)([1, 5, 3]);
+	toObserver(pushLine1)([1, 5, 3]);
 
 	expect(pushLine1.values).toEqual([1, 5, 3]);
 });
