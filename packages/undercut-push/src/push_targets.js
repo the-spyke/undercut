@@ -17,9 +17,6 @@ export function toArray() {
 }
 
 const consumerTarget = asObserver(function* (consumer, finalizer) {
-	assertFunctor(consumer, `consumer`);
-	assert(isUndefined(finalizer) || isFunction(finalizer), `"finalizer" is optional, could be a function.`);
-
 	let error = undefined;
 	let index = 0;
 
@@ -44,6 +41,9 @@ const consumerTarget = asObserver(function* (consumer, finalizer) {
  * @returns {Observer}
  */
 export function toConsumer(consumer, finalizer) {
+	assertFunctor(consumer, `consumer`);
+	assert(isUndefined(finalizer) || isFunction(finalizer), `"finalizer" is optional, could be a function.`);
+
 	return consumerTarget(consumer, finalizer);
 }
 
@@ -64,30 +64,22 @@ export function toNull() {
 	};
 }
 
-const valueTarget = asObserver(function* (setter) {
-	assertFunctor(setter, `setter`);
-
-	let value = undefined;
-	let success = true;
-
-	try {
-		value = yield;
-		yield;
-		throw new Error(`"toValue()" may be applied only to a sequence of one item, but got at least 2.`);
-	} catch (error) {
-		success = false;
-		throw error;
-	} finally {
-		if (success) {
-			setter(value);
-		}
-	}
-});
-
 /**
- * @param {Function} setter
  * @returns {Observer}
  */
-export function toValue(setter) {
-	return valueTarget(setter);
+export function toValue() {
+	return {
+		next(value) {
+			if (!this.hasValue) {
+				this.value = value;
+				this.hasValue = true;
+			}
+		},
+		return() {
+			// Empty.
+		},
+		throw: rethrow,
+		value: undefined,
+		hasValue: false,
+	};
 }

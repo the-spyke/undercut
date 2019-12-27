@@ -1,5 +1,6 @@
 import { assert } from "@undercut/utils/src/assert.js";
 import { abort, close } from "@undercut/utils/src/coroutine.js";
+import { peekIterable } from "@undercut/utils/src/iterable.js";
 import { isObserver } from "@undercut/utils/src/language.js";
 
 /**
@@ -82,20 +83,8 @@ export function toSet() {
 }
 
 /**
- * @returns {any}
+ * @returns {<T>(iterable: Iterable<T>) => T | undefined}
  */
 export function toValue() {
-	return function (iterable) {
-		let firstValue = undefined;
-		let hasValue = false;
-
-		for (const item of iterable) {
-			assert(!hasValue, `"toValue()" may be applied only to a sequence of one item, but got at least 2.`);
-
-			firstValue = item;
-			hasValue = true;
-		}
-
-		return firstValue;
-	};
+	return peekIterable;
 }

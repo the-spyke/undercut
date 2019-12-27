@@ -56,17 +56,9 @@ export function push(target, pipeline, source) {
 }
 
 export function pushArray(pipeline, source) {
-	const target = toArray();
-
-	push(target, pipeline, source);
-
-	return target.values;
+	return push(toArray(), pipeline, source).values;
 }
 
 export function pushValue(pipeline, source) {
-	let value = undefined;
-
-	push(toValue(v => (value = v)), pipeline, source);
-
-	return value;
+	return push(toValue(), pipeline, source).value;
 }

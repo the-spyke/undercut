@@ -121,16 +121,10 @@ test(`pushArray`, () => {
 });
 
 test(`pushValue`, () => {
-	expect(() => pushValue()).toThrow();
-	expect(() => pushValue([])).toThrow();
-	expect(() => pushValue(2, [])).toThrow();
-	expect(() => pushValue([], 3)).toThrow();
-
 	expect(pushValue([], [])).toBe(undefined);
+	expect(pushValue([], [6, 7])).toBe(6);
 	expect(pushValue([map(x => x + 1)], [])).toBe(undefined);
 	expect(pushValue([map(x => x + 1)], [1])).toBe(2);
+	expect(pushValue([map(x => x + 1)], [6, 3])).toBe(7);
 	expect(pushValue([map(x => x * 2), first()], [3, 4])).toBe(6);
-
-	expect(() => pushValue([], [6, 7])).toThrow();
-	expect(() => pushValue([map(x => x + 1)], [6, 7])).toThrow();
 });

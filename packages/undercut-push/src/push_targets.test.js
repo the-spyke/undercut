@@ -91,41 +91,35 @@ test(`toNull`, () => {
 });
 
 test(`toValue`, () => {
-	expect(() => toValue()).toThrow();
-	expect(() => toValue(123)).toThrow();
-
-	let setter = jest.fn();
-	let target = toValue(setter);
+	let target = toValue();
 
 	expect(target).toEqual(expect.objectContaining({
 		next: expect.any(Function),
 		throw: expect.any(Function),
 		return: expect.any(Function),
+		value: undefined,
+		hasValue: false,
 	}));
-
-	expect(setter.mock.calls).toEqual([]);
 
 	target.next(5);
 
-	expect(setter.mock.calls).toEqual([]);
+	expect(target.value).toBe(5);
+	expect(target.hasValue).toBe(true);
+
+	target.next(7);
+
+	expect(target.value).toBe(5);
+	expect(target.hasValue).toBe(true);
 
 	target.return();
 
-	expect(setter.mock.calls).toEqual([[5]]);
+	expect(target.value).toBe(5);
+	expect(target.hasValue).toBe(true);
 
-	setter = jest.fn();
-	target = toValue(setter);
-
-	expect(setter.mock.calls).toEqual([]);
-
-	target.next(9);
-
-	expect(() => target.next(8)).toThrow();
-
-	setter = jest.fn();
-	target = toValue(setter);
+	target = toValue();
 
 	target.return();
 
-	expect(setter.mock.calls).toEqual([[undefined]]);
+	expect(target.value).toBe(undefined);
+	expect(target.hasValue).toBe(false);
 });

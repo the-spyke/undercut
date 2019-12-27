@@ -246,7 +246,7 @@ Array.from(pullLine(pipeline, source));
 - `toObject()` -- returns a function that pulls an iterable into an object. So, items must be `[key, value]` and keys will be stringified.
 - `toObserver(observer)` -- returns a function that pulls and pushed item one-by-one into the specified observer.
 - `toSet()` -- returns a function that pulls an iterable into a Set.
-- `toValue()` -- returns a function that pulls an iterable, checks that there's no items or exactly 1 item, and return it or `undefined`. In case of more than 1 item it throws an error.
+- `toValue()` -- returns a function that pulls the first item of the iterable (or `undefined`).
 
 ## Utilities
 

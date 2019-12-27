@@ -86,16 +86,10 @@ test(`pullArray`, () => {
 });
 
 test(`pullValue`, () => {
-	expect(() => pullValue()).toThrow();
-	expect(() => pullValue([])).toThrow();
-	expect(() => pullValue(2, [])).toThrow();
-	expect(() => pullValue([], 3)).toThrow();
-
 	expect(pullValue([], [])).toBe(undefined);
+	expect(pullValue([], [6, 7])).toBe(6);
 	expect(pullValue([map(x => x + 1)], [])).toBe(undefined);
 	expect(pullValue([map(x => x + 1)], [1])).toBe(2);
+	expect(pullValue([map(x => x + 1)], [6, 3])).toBe(7);
 	expect(pullValue([map(x => x * 2), first()], [3, 4])).toBe(6);
-
-	expect(() => pullValue([], [6, 7])).toThrow();
-	expect(() => pullValue([map(x => x + 1)], [6, 7])).toThrow();
 });
