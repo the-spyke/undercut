@@ -39,7 +39,7 @@ console.log(isNumberValue(NaN)); // false
 
 ## Utilities
 
-Some specific utilities like `asc`/`desc` are exported in `pull` and `push` packages too, but they are identical to the ones in this package.
+Some specific utilities like `asc`/`desc` are exported in `pull` and `push` packages too, but they are identical to ones in this package, which exports the entire list:
 
 - `asc(comparator, selector = identity) => OrderingSpec` -- used itself as a value for specifying ascending sorting direction, of as a factory function for creating OrderingSpec for `groupBy` operation.
 - `close(coroutine, tryBeforeClosing) => TryBeforeClosingReturnValue` -- closes the `coroutine` after passing it into optional `tryBeforeClosing` function allowing you to do something with it without manually writing `try/finally` block.

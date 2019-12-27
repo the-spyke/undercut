@@ -6,10 +6,12 @@ This package provides the `push` functionality and is a part of the larger [unde
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Concepts](#concepts)
-- [Push](#push)
+- [Concepts](https://github.com/the-spyke/undercut#concepts)
+- [Pull](#pull)
 - [Tutorials](#tutorials)
-- [Operations](#operations)
+- [Operations](https://github.com/the-spyke/undercut#operations)
+- [Sources](#sources)
+- [Targets](#targets)
 - [Utilities](#utilities)
 - [License](#license)
 
@@ -47,46 +49,17 @@ console.log(result); // [8, 10, 14]
 
 [![Edit undercut-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/undercut-example-9g1nh?fontsize=14&module=%2Fsrc%2Findex.js)
 
-## Concepts
-
-`Undercut` helps constructing pipelines for data processing. Instead of creating new concepts it leverages existing JavaScript protocols and features like [Iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) and [Generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
-
-`Pipelines` is just a term for ordered sequences of operations (just like a conveyor on a factory). Imagine you want to process a bunch of `source` items and put the result items somewhere (`target`).
-
-```text
-source ----> [ op_0 | op_1 | ... | op_N ] ----> target
-                       pipeline
-```
-
-Depending on the fact whether the `source` items are or aren't yet available you will have two different approaches: `pull` and `push`.
-
-If `source` items are available at the moment of execution, we can *pull* items from it one by one and process them synchronously. `Undercut` call this a `Pull Line`. It is created by combining a `source` and a `pipeline` into an `Iterable`. This `Iterable` may be passed around and used by any native ES construct like `for-of` loop to read the result. `Undercut` also provides a bunch of `target` helpers for one-line extracting results out of Iterables into common structures like arrays/objects/maps/etc.
-
-```text
-Pull Line -- pull items from an Iterable
-
-( source + pipeline = Iterable )
-```
-
-If `source` items are **not** available at the moment of execution, we have to process items as they appear. We can do this by *pushing* items into a `Push Line`. It is created by combining a `pipeline` and a `target` into an `Observer`. `Observers` are convenient in use cases like reacting on a button click and may be passed around or used by several producers.
-
-```text
-Push line -- push items into an Observer
-
-( pipeline + target = Observer )
-```
-
-Of course, you can process synchronous items with `Push Lines` too, but `Pull Lines` are easier to operate and write operations for.
+## [Concepts](https://github.com/the-spyke/undercut#concepts)
 
 ## Push
 
-`Push Lines` are based on `Observers` (which base on write-only generator objects):
+`Push Lines` are based on `Observers` (which are a sub-type of Coroutines):
 
 ```typescript
-interface Observer {
-    next(value? : any) : void;
-    return() : void;
-    throw(error) : void;
+interface Observer<T> {
+    next(value : T): void;
+    return?(): void;
+    throw?(error): void;
 }
 ```
 
@@ -101,6 +74,14 @@ Terms in releation to `Push Lines`:
 - `pipeline` -- an ordered sequence (array) of `operations`.
 - `source` -- there is no real `source` in `Push Lines`, because someone need to manually put items into the `observer`, but several `push` functions can help you to process `iterables` with `Push Lines`.
 - `target` -- an `observer` that will receive the result.
+
+```typescript
+type PushOperation = <T, R>(observer: Observer<T>) => Observer<R>;
+
+type PullPipeline = Array<PushOperation>;
+
+type PushTarget = Observer<T>;
+```
 
 ### Core Push functions
 
@@ -242,13 +223,22 @@ console.log(result); // [1, 4, 9]
 
 In case more advanced operations like grouping, where you need to look at all available items first before you can proceed, you can do this in `finally`. Make yourself a flag to skip computation in case of catching a cancellation, and pass items before closing the observer ([see the groupBy operation](packages/undercut-push/src/operations/group_by.js))
 
-## Operations
+## [Operations](https://github.com/the-spyke/undercut#operations)
 
-To view the list please visit [project's readme](https://github.com/the-spyke/undercut#operations).
+## Sources
+
+`Push` doesn't have its own `sources` because it's asynchronous by nature. You can use `pull` sources or other iterables for convenience functions like `push` and `pushArray`.
+
+## Targets
+
+- `toArray()` -- returns a function that creates an observer that puts all items into an array. The observer has the `values` property to access this array.
+- `toConsumer(consumer, finalizer)` -- returns a function that creates an observer that passes items into the `consumer`. On `end-of-sequence` or error the `finalizer` will be called with the `error` (if any, or `undefined`) and items `count`.
+- `toNull()` -- returns a function that creates an observer that does nothing.
+- `toValue(setter)` -- returns a function that creates an observer that checks that there's only 0 or 1 items and passes it into the `setter` (`undefined` in case of 0 items). In case of more than 1 item it will throw an error.
 
 ## Utilities
 
-Some specific related utilities are exported in this package too, but they are identical to those in the `@undercut/utils` package, which exports [the full list](https://github.com/the-spyke/undercut/blob/master/packages/undercut-utils/README.md).
+Some specific utilities are exported in this package too, but they are identical to those in the `@undercut/utils` package, which exports [the entire list](https://github.com/the-spyke/undercut/blob/master/packages/undercut-utils/README.md).
 
 ## License
 

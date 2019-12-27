@@ -1,4 +1,4 @@
-# ✂ undercut-node-10 ✂
+# @undercut/node-10
 
 An official prebuilt CommonJS version of the [undercut](https://www.npmjs.com/package/undercut) package for Node.js 10. An easy way to try the `undercut` when your project isn't built or doesn't have Babel yet.
 
