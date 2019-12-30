@@ -34,6 +34,7 @@ We also added 3 precompiled packages for browsers and Node:
 - Added `flatMap` recursive operation and `getRecursiveMapper` iterable utility for working with nested data.
 - Added `flattenArrays` operation for convenience.
 - Added back `peekIterable` utility.
+- Added `buffer` and `bufferAll` operations.
 
 ### Changed
 
