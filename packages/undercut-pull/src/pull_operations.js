@@ -1,6 +1,7 @@
 export * from "./operations/append.js";
 export * from "./operations/average.js";
 export * from "./operations/chunk.js";
+export * from "./operations/collect.js";
 export * from "./operations/compact.js";
 export * from "./operations/concat.js";
 export * from "./operations/count.js";
