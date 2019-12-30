@@ -1,7 +1,8 @@
 import { assert, assertFunctor } from "@undercut/utils/src/assert.js";
 import { identity } from "@undercut/utils/src/function.js";
-import { getRecursiveMapper } from "@undercut/utils/src/iterable.js";
 import { isPositiveOrZero } from "@undercut/utils/src/language.js";
+
+import { flatMap } from "./flat_map.js";
 
 export function flatten(predicate, depth = 1) {
 	assert(isPositiveOrZero(depth), `"depth" is required, must be a number >= 0.`);
@@ -21,24 +22,6 @@ export function flatten(predicate, depth = 1) {
 
 export function flattenArrays(depth = 1) {
 	return flatten(Array.isArray, depth);
-}
-
-export function flatMap(predicate, mapper) {
-	const recursiveMapper = getRecursiveMapper(predicate, mapper);
-
-	return function* (iterable) {
-		let index = 0;
-
-		for (const item of iterable) {
-			const childItems = recursiveMapper(item, index);
-
-			for (const childItem of childItems) {
-				yield childItem;
-			}
-
-			index++;
-		}
-	};
 }
 
 function flatten1(predicate) {
