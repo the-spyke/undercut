@@ -1,12 +1,12 @@
 import { createBySpec } from "@undercut/testing";
 
-import { buffer as bufferPull, bufferAll as bufferAllPull } from "@undercut/pull/src/operations/buffer.js";
-import { buffer as bufferPush, bufferAll as bufferAllPush } from "@undercut/push/src/operations/buffer.js";
+import * as pull from "@undercut/pull/src/operations/buffer.js";
+import * as push from "@undercut/push/src/operations/buffer.js";
 
 describe(`buffer`, () => {
 	describe.each([
-		[`pull`, bufferPull],
-		[`push`, bufferPush],
+		[`pull`, pull.buffer],
+		[`push`, push.buffer],
 	])(`%s`, (type, buffer) => {
 		const bySpec = createBySpec(type, buffer);
 
@@ -51,8 +51,8 @@ describe(`buffer`, () => {
 
 describe(`bufferAll`, () => {
 	describe.each([
-		[`pull`, bufferAllPull],
-		[`push`, bufferAllPush],
+		[`pull`, pull.bufferAll],
+		[`push`, push.bufferAll],
 	])(`%s`, (type, bufferAll) => {
 		const bySpec = createBySpec(type, bufferAll);
 

@@ -11,6 +11,7 @@ export * from "./operations/every.js";
 export * from "./operations/filter.js";
 export * from "./operations/find.js";
 export * from "./operations/first.js";
+export * from "./operations/flat_map.js";
 export * from "./operations/flatten.js";
 export * from "./operations/for_each.js";
 export * from "./operations/group_by.js";

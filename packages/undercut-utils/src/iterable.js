@@ -34,14 +34,14 @@ export function peekIterable(iterable) {
 	return undefined;
 }
 
-function* iterateMapTreeRec(mapper, predicate, item, index, depth) {
+function* iterateMapTreeRec(predicate, mapper, item, index, depth) {
 	const mappedItem = mapper ? mapper(item, index, depth) : item;
 
 	if (predicate(mappedItem, index, depth)) {
 		let childIndex = 0;
 
 		for (const childItem of mappedItem) {
-			yield* iterateMapTreeRec(mapper, predicate, childItem, childIndex, depth + 1);
+			yield* iterateMapTreeRec(predicate, mapper, childItem, childIndex, depth + 1);
 
 			childIndex++;
 		}
@@ -62,6 +62,6 @@ export function getRecursiveMapper(predicate, mapper) {
 	assert(mapper === undefined || isFunction(mapper), `"mapper" should be a function or undefined.`);
 
 	return function recursiveMapper(item, index) {
-		return iterateMapTreeRec(mapper, predicate, item, index, 0);
+		return iterateMapTreeRec(predicate, mapper, item, index, 0);
 	};
 }
