@@ -6,6 +6,8 @@ These operations exist in both `pull` and `push` versions:
 
 - `append(...items)` -- adds its arguments to the end of the sequence.
 - `average()` -- reduces the sequence into a number by calculating the average of it.
+- `beffer(size)` -- buffers items into an array of `size` before passing them further. The `pull` version isn't very useful.
+- `befferAll()` -- beffers all items into an array before passing them further. The `pull` version isn't very useful.
 - `chunk(size)` -- groups items in the sequence into arrays of `size` items.
 - `compact()` -- removes all falsy items from the sequence.
 - `concatEnd(source)` -- adds items from the `source` to the end of the sequence.
