@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Big release for the `undercut` as we shifted away from a single package to a set of independent scoped packages:
+Big release for the `undercut` as we moved away from a single package to a set of independent scoped packages:
 
 - `@undercut/pull`
 - `@undercut/push`
@@ -21,7 +21,7 @@ We also added 3 precompiled packages for browsers and Node:
 
 ### Added
 
-- Added `collect` operation. Much like `reduce`, but for filling items into a mutable `collection`. So, no need to return a value from the function.
+- Added `collect` operation. Much like `reduce`, but for filling items into a mutable `collection`. No need to return a value from the functor.
 - Added predefined `collect` variants: `collectArray`, `collectMap`, `collectObject`, and `collectSet`.
 - Added Coroutine utilities.
 - Added new `delay` and `rethrow` utilities.
@@ -32,13 +32,13 @@ We also added 3 precompiled packages for browsers and Node:
 - Added Iterable utilities back to the `utils` package.
 - Additional language utilities: `hasOwnProps`, `isArrayBuffer`, `isCoroutine`, `isDate`, `isError`, `isMap`, `isNegative`, `isNegativeOrZero`, `isNumberValue`, `isPlainObject`, `isPositive`, `isPositiveOrZero`, `isRegExp`, `isSet`, `isWeakMap`, `isWeakSet`.
 - Added `flatMap` recursive operation and `getRecursiveMapper` iterable utility for working with nested data.
-- Added `flattenArrays` operation for convenience.
+- Added predefined `flattenArrays` operation for convenience.
 - Added back `peekIterable` utility.
 - Added `buffer` and `bufferAll` operations.
 
 ### Changed
 
-- **[BREAKING]** Deprecate `undercut` package in favor of scoped versions like `@undercut/pull`.
+- **[BREAKING]** Deprecate `undercut` package in favor of scoped versions `@undercut/*`.
 - **[BREAKING]** Renamed `makeReiterable` into `createIterable`.
 - **[BREAKING]** Renamed `makeUnclosable` into `asUnclosable`.
 - **[BREAKING]** Renamed the old `delay` into `wait`.
