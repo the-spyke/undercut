@@ -1,7 +1,7 @@
 {
   "name": "@undercut/cli",
   "version": "0.4.0",
-  "description": "Undercut CLI: process data with undercut and JS in a terminal",
+  "description": "Process data with the 'undercut' and JavaScript in a shell",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
