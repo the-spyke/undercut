@@ -11,25 +11,12 @@ export function identity(value) {
 }
 
 /**
- * Applies boolean negation to the predicate's return value.
- * @param {Function} predicate
- * @returns {Function}
+ * Changes the sign of the `value`.
+ * @param {number} value
+ * @returns {number}
  */
-export function negate(predicate) {
-	return function (...args) {
-		return !predicate(...args);
-	};
-}
-
-/**
- * Multiplies the predicate's return value by `-1`.
- * @param {Function} predicate
- * @returns {Function}
- */
-export function negateSign(operation) {
-	return function (...args) {
-		return -1 * operation(...args);
-	};
+export function negate(value) {
+	return -value;
 }
 
 /**
@@ -37,6 +24,15 @@ export function negateSign(operation) {
  */
 export function noop() {
 	// Empty.
+}
+
+/**
+ * Applies logical not `!` operator to the `value`.
+ * @param {any} value
+ * @returns {boolean}
+ */
+export function not(value) {
+	return !value;
 }
 
 /**

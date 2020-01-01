@@ -1,8 +1,8 @@
 import {
 	identity,
 	negate,
-	negateSign,
-	noop
+	noop,
+	not,
 } from "./function.js";
 
 test(`identity`, () => {
@@ -10,13 +10,15 @@ test(`identity`, () => {
 });
 
 test(`negate`, () => {
-	expect(negate(x => x > 0)(42)).toBe(false);
-});
-
-test(`negateSign`, () => {
-	expect(negateSign(x => x + 1)(42)).toBe(-43);
+	expect(negate(42)).toBe(-42);
+	expect(negate(-42)).toBe(42);
 });
 
 test(`noop`, () => {
 	expect(() => noop()).not.toThrow();
+});
+
+test(`not`, () => {
+	expect(not(true)).toBe(false);
+	expect(not(null)).toBe(true);
 });
