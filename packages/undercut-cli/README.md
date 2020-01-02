@@ -31,14 +31,14 @@ undercut [...options] [...operations]
 You're building a `Push Line` where the source is `stdin` and the target is `stdout`. Operations should be quoted (prevents parsing by the shell) and separated by spaces. You can use everything that is available in the global context of Node.js. `undercut`'s packages are available too under their names: `pull`, `push`, and `utils`.
 
 ```sh
-undercut 'push.map(s => parseInt(s, 10))' 'push.filter(utils.isNumberValue)'
+undercut 'map(s => parseInt(s, 10))' 'filter(utils.isNumberValue)'
 ```
 
-If your expression starts with a call to a `push` operation, you may omit `"push."` prefix there:
+If your expression starts with a call to a `push` exported function, you may omit `"push."` prefix there:
 
 ```sh
-undercut 'sortStrings(push.desc)'
-          ^           ^--- but not here
+undercut 'composeOperations([push.sortStrings(utils.desc)])'
+          ^                  ^--- but not here
           |--- skip prefix here
 ```
 
