@@ -50,6 +50,7 @@ We also added 3 precompiled packages for browsers and Node:
 - **[BREAKING]** Changed `flatten` to accept `predicate` and `depth` instead of just `depth` to be able to flatten different types of iterables.
 - **[BREAKING]** Renamed `toPushLine` pull target into `toObserver`.
 - **[BREAKING]** Renamed `negate` into `not` and `negateSign` into `negate`, they now work with values instead of functions.
+- **[BREAKING]** Refactored `asc` and `desc` functions to return a Comparator instead of an array.
 
 ### Removed
 

@@ -1,4 +1,3 @@
-import { noop } from "@undercut/utils/src/function.js";
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 import { desc } from "@undercut/utils/src/ordering.js";
 
@@ -6,9 +5,8 @@ import { sort as sortPull, sortNumbers as sortNumbersPull, sortStrings as sortSt
 import { sort as sortPush, sortNumbers as sortNumbersPush, sortStrings as sortStringsPush } from "@undercut/push/src/operations/sort.js";
 
 function testSort(testOperation, sort) {
-	expect(() => testOperation(sort, { source: [], target: [] })).toThrow();
 	expect(() => testOperation(sort, {
-		args: [(a, b) => a - b, noop],
+		args: [(a, b) => a - b, 32],
 		source: [4, 1, 2],
 		target: [1, 2, 4]
 	})).toThrow();
@@ -17,6 +15,12 @@ function testSort(testOperation, sort) {
 		args: [(a, b) => a - b],
 		source: [4, 1, 2],
 		target: [1, 2, 4]
+	});
+
+	testOperation(sort, {
+		args: [(a, b) => a - b, desc],
+		source: [4, 1, 2],
+		target: [4, 2, 1]
 	});
 }
 
