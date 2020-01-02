@@ -234,18 +234,18 @@ Array.from(pullLine(pipeline, source));
 
 ## Sources
 
-- `range(start, end, step = 1)` -- creates an iterable of numbers from the `start` to (not including) the `end` by the `step` (optional, only positive because the sign will be chosen depending on whether the `start` is or isn't less than the `end`)
+- `range(start, end, step = 1) => Iterable` -- creates an iterable of numbers from the `start` to (not including) the `end` by the `step` (optional, only positive because the sign will be chosen depending on whether the `start` is or isn't less than the `end`)
 
 ## Targets
 
-- `toArray()` -- returns a function that pulls an iterable into an array.
-- `toConsumer(consumer)` -- returns a function that pulls an iterable an passes items one-by-one into the `consumer` function.
-- `toMap()` -- returns a function that pulls an iterable into a Map. So, items must be `[key, value]`.
-- `toNull()` -- returns a function that pulls an iterable and does nothing with the items.
-- `toObject()` -- returns a function that pulls an iterable into an object. So, items must be `[key, value]` and keys will be stringified.
-- `toObserver(observer)` -- returns a function that pulls and pushed item one-by-one into the specified observer.
-- `toSet()` -- returns a function that pulls an iterable into a Set.
-- `toValue()` -- returns a function that pulls the first item of the iterable (or `undefined`).
+- `toArray() => PullTarget` -- returns a function that pulls an iterable into an array.
+- `toConsumer(consumer) => PullTarget` -- returns a function that pulls an iterable an passes items one-by-one into the `consumer` function.
+- `toMap() => PullTarget` -- returns a function that pulls an iterable into a Map. So, items must be `[key, value]`.
+- `toNull() => PullTarget` -- returns a function that pulls an iterable and does nothing with the items.
+- `toObject() => PullTarget` -- returns a function that pulls an iterable into an object. So, items must be `[key, value]` and keys will be stringified.
+- `toObserver(observer) => PullTarget` -- returns a function that pulls and pushed item one-by-one into the specified observer.
+- `toSet() => PullTarget` -- returns a function that pulls an iterable into a Set.
+- `toValue() => PullTarget` -- returns a function that pulls the first item of the iterable and returns it or `undefined`.
 
 ## License
 

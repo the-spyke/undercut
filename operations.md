@@ -9,6 +9,11 @@ These operations exist in both `pull` and `push` versions:
 - `beffer(size)` -- buffers items into an array of `size` before passing them further. The `pull` version isn't very useful.
 - `befferAll()` -- beffers all items into an array before passing them further. The `pull` version isn't very useful.
 - `chunk(size)` -- groups items in the sequence into arrays of `size` items.
+- `collect(collector, collectionFactory)` -- collects items into a mutable collection. Is very similar to `reduce`,b ut no need to return a value.
+- `collectArray()` -- a predefined version of `collect` resulting into an `Array`.
+- `collectMap()` -- a predefined version of `collect` resulting into a `Map`. Items must be entries `[key, value]`.
+- `collectObject()` -- a predefined version of `collect` resulting into an `Object`. Items must be entries `[key, value]`.
+- `collectSet()` -- a predefined version of `collect` resulting into a `Set`.
 - `compact()` -- removes all falsy items from the sequence.
 - `concatEnd(source)` -- adds items from the `source` to the end of the sequence.
 - `concatStart(source)` -- adds items from the `source` to the beginning of the sequence.
@@ -20,8 +25,9 @@ These operations exist in both `pull` and `push` versions:
 - `find(predicate)` -- reduces the sequence to the first item for which `predicate` have returned `true`.
 - `findIndex(predicate)` -- reduces the sequence to the index of the first item for which the `predicate` have returned `true`.
 - `first()` -- removes all items from the sequence, but the first one.
-- `flatten(depth = 1)` -- flattens nested arrays in the sequence `depth` levels deep. `depth` can be `Infinity`.
-- `flattenIterables(depth = 1)` -- flattens nested iterables in the sequence `depth` levels deep. `depth` can be `Infinity`.
+- `flatten(predicate, depth = 1)` -- flattens iterable items `depth` levels deep. `predicates` decides wheter the item can/should be flattened. `depth` can be `Infinity`.
+- `flattenArrays(depth = 1)` -- flattens all nested arrays `depth` levels deep. `depth` can be `Infinity`.
+- `flattenIterables(depth = 1)` -- flattens all nested iterables `depth` levels deep. `depth` can be `Infinity`.
 - `forEach(action)` -- executes the `action` for every item in the sequence, used for side effects.
 - `groupBy(keySelector)` -- groups items of the sequence into the new `[key, items]` items matching by the `selected key`.
 - `includes(value)` -- reduces the sequence into a boolean depending on whether the `value` was found in it.
@@ -34,7 +40,7 @@ These operations exist in both `pull` and `push` versions:
 - `max()` -- reduces the sequence into a number by finding maximum value.
 - `min()` -- reduces the sequence into a number by finding minimum value.
 - `nth(n)` -- removes all items from the sequence, but the `n`th one.
-- `orderBy(...orderingSpecs)` -- reorders items in the sequence by ordering specs, you build them with `asc` and `desc` utilities.
+- `orderBy(...comparators)` -- reorders items in the sequence special comparators built with the `asc` and `desc` utilities.
 - `prepend(...items)` -- adds its arguments to the beginning of the sequence.
 - `reduce(reducer, initial = undefined)` -- reduces the sequence into a value starting with the `initial` one and executing the `reducer` for every item.
 - `remove(predicate)` -- removes all items from the sequence for which the `predicate` returns `true`.
