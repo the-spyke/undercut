@@ -12,7 +12,6 @@ This package provides the `pull` functionality and is a part of the larger [unde
 - [Operations](https://github.com/the-spyke/undercut#operations)
 - [Sources](#sources)
 - [Targets](#targets)
-- [Utilities](#utilities)
 - [License](#license)
 
 ## Installation
@@ -247,10 +246,6 @@ Array.from(pullLine(pipeline, source));
 - `toObserver(observer)` -- returns a function that pulls and pushed item one-by-one into the specified observer.
 - `toSet()` -- returns a function that pulls an iterable into a Set.
 - `toValue()` -- returns a function that pulls the first item of the iterable (or `undefined`).
-
-## Utilities
-
-Some specific utilities are exported in this package too, but they are identical to those in the `@undercut/utils` package, which exports [the entire list](https://github.com/the-spyke/undercut/blob/master/packages/undercut-utils/README.md).
 
 ## License
 

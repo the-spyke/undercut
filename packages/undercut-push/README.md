@@ -12,7 +12,6 @@ This package provides the `push` functionality and is a part of the larger [unde
 - [Operations](https://github.com/the-spyke/undercut#operations)
 - [Sources](#sources)
 - [Targets](#targets)
-- [Utilities](#utilities)
 - [License](#license)
 
 ## Installation
@@ -235,10 +234,6 @@ In case more advanced operations like grouping, where you need to look at all av
 - `toConsumer(consumer, finalizer)` -- returns a function that creates an observer that passes items into the `consumer`. On `end-of-sequence` or error the `finalizer` will be called with the `error` (if any, or `undefined`) and items `count`.
 - `toNull()` -- returns a function that creates an observer that does nothing.
 - `toValue()` -- returns a function that creates an observer that saves the first item into the own `value` property.
-
-## Utilities
-
-Some specific utilities are exported in this package too, but they are identical to those in the `@undercut/utils` package, which exports [the entire list](https://github.com/the-spyke/undercut/blob/master/packages/undercut-utils/README.md).
 
 ## License
 
