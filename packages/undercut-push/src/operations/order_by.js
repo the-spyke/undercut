@@ -1,10 +1,10 @@
 import { assert } from "@undercut/utils/src/assert.js";
-import { orderingFactory } from "@undercut/utils/src/ordering.js";
+import { composeComparators } from "@undercut/utils/src/ordering.js";
 
 import { sort } from "./sort.js";
 
-export function orderBy(...orderingSpecs) {
-	assert(orderingSpecs.length > 0, `You must specify at least 1 ordering spec with "asc()" or "desc()"`);
+export function orderBy(...comparators) {
+	assert(comparators.length > 0, `You must specify at least 1 order by "asc" or "desc" function calls.`);
 
-	return sort(orderingFactory(orderingSpecs));
+	return sort(composeComparators(comparators));
 }
