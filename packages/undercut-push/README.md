@@ -230,10 +230,10 @@ In case more advanced operations like grouping, where you need to look at all av
 
 ## Targets
 
-- `toArray()` -- returns a function that creates an observer that saves all items into an array. The observer has the `values` property to access this array.
-- `toConsumer(consumer, finalizer)` -- returns a function that creates an observer that passes items into the `consumer`. On `end-of-sequence` or error the `finalizer` will be called with the `error` (if any, or `undefined`) and items `count`.
-- `toNull()` -- returns a function that creates an observer that does nothing.
-- `toValue()` -- returns a function that creates an observer that saves the first item into the own `value` property.
+- `toArray() => Observer` -- returns an observer that saves all items into an array. The observer has the `values` property to access this array.
+- `toConsumer(consumer, finalizer) => Observer` -- returns an observer that passes items into the `consumer`. On `end-of-sequence` or error the `finalizer` will be called with the `error` (if any, or `undefined`) and items `count`.
+- `toNull() => Observer` -- returns an observer that does nothing.
+- `toValue() => Observer` -- returns an observer that saves the first item into the own `value` property.
 
 ## License
 
