@@ -35,6 +35,7 @@ We also added 3 precompiled packages for browsers and Node:
 - Added predefined `flattenArrays` operation for convenience.
 - Added back `peekIterable` utility.
 - Added `buffer` and `bufferAll` operations.
+- Added `composeComparators` utility.
 
 ### Changed
 
@@ -51,6 +52,10 @@ We also added 3 precompiled packages for browsers and Node:
 - **[BREAKING]** Renamed `toPushLine` pull target into `toObserver`.
 - **[BREAKING]** Renamed `negate` into `not` and `negateSign` into `negate`, they now work with values instead of functions.
 - **[BREAKING]** Refactored `asc` and `desc` functions to return a Comparator instead of an array.
+
+### Removed
+
+- **[BREAKING]** Removed utilities from `pull` and `push` package exports.
 
 ### Fixed
 
