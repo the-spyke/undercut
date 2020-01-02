@@ -119,3 +119,39 @@ describe(`flattenArrays`, () => {
 		}));
 	});
 });
+
+describe(`flattenIterables`, () => {
+	describe.each([
+		[`pull`, pull.flattenIterables],
+		[`push`, push.flattenIterables],
+	])(`%s`, (type, flattenIterables) => {
+		const bySpec = createBySpec(type, flattenIterables);
+
+		test(`should throw on invalid args`, () => {
+			expect(() => flattenIterables(-1)).toThrow();
+			expect(() => flattenIterables(NaN)).toThrow();
+		});
+		test(`should work with empty sources`, () => bySpec({
+			source: [],
+			target: [],
+		}));
+		test(`should work when there is nothing to flatten`, () => bySpec({
+			source: [1, 2, 3],
+			target: [1, 2, 3],
+		}));
+		test(`should work with depth = 1 by default`, () => bySpec({
+			source: [1, [2, [3]], 4, new Set([5, 6])],
+			target: [1, 2, [3], 4, 5, 6],
+		}));
+		test(`should work with depth > 1`, () => bySpec({
+			args: [10],
+			source: [[0], 2, 4, [6, 9], 1, [false, [new Set([5, 6])]]],
+			target: [0, 2, 4, 6, 9, 1, false, 5, 6],
+		}));
+		test(`should flatten deeply nested iterables when depth = Infinity`, () => bySpec({
+			args: [Infinity],
+			source: [[[[[[[[[new Set([5, 6])]]]]]]]]],
+			target: [5, 6],
+		}));
+	});
+});
