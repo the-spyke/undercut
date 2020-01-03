@@ -26,7 +26,6 @@ module.exports = {
 	},
 	output: {
 		filename: `[name].js`,
-		globalObject: `this`,
 		libraryTarget: `commonjs2`,
 		path: BUILD_DIR,
 	},
