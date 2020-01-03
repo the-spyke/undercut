@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Using an AMD module</title>
+</head>
+
+<body>
+	<p>
+		Hello from an AMD module!
+	</p>
+	<p id="result">n/a</p>
+	<!-- Import polyfills first: -->
+	<script src="https://unpkg.com/core-js-bundle@^3/minified.js"></script>
+	<!-- We're using Require.js and an AMD loader in this example: -->
+	<script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
+	<!-- Now your code: -->
+	<script>
+		"use strict";
+
+		// Require the `undercut` by a local path or a CDN URL.
+		// In this case it's a local build, but your should be more like "scripts/undercut/pull.js".
+		requirejs(["../build/pull.js"], function ({ pullArray, filter, map, skip }) {
+			const source = [1, 2, 3, 4, 5, 6, 7];
+
+			const result = pullArray([
+				skip(2),
+				filter(x => x % 3 === 0),
+				map(x => x * 2)
+			], source);
+
+			const text = `result == ${JSON.stringify(result)}`; // [8, 10, 14]
+
+			console.log(text);
+			document.getElementById("result").innerText = text;
+		});
+	</script>
+</body>
+
+</html>

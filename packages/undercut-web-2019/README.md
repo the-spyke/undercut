@@ -1,46 +1,74 @@
 # @undercut/web-2019
 
-An official prebuilt CJS version of the [undercut](https://www.npmjs.com/package/undercut) package for Node.js 10. An easy way to try the `undercut` when your project isn't built or doesn't have Babel yet.
+A precompiled version of the [undercut](https://github.com/the-spyke/undercut) packages for [web browsers not older than 2019-01-01](https://browserl.ist/?q=since+2019%2C+edge+>%3D+18%2C+not+android+>+0). Contains `pull`, `push`, and `utils` entries. An easy way to try the `undercut` when your project has no build step or you're doing a quick experiment.
+
+## Quicklinks
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Documentation](https://github.com/the-spyke/undercut)
+- [License](#license)
 
 ## Installation
 
+Install the `npm` package if you're using some kind of a bundler:
+
 ```sh
-npm install undercut-web-2019
+npm install @undercut/web-2019
 # or
-yarn add undercut-web-2019
+yarn add @undercut/web-2019
+```
+
+Or use the [unpkg](https://unpkg.com) CDN to import scripts by their URLs:
+
+```html
+<script src="https://unpkg.com/@undercut/web-2019/pull.js"></script>
+<script src="https://unpkg.com/@undercut/web-2019/push.js"></script>
+<script src="https://unpkg.com/@undercut/web-2019/utils.js"></script>
 ```
 
 You may also try [Yarn aliases](https://yarnpkg.com/en/docs/cli/add#toc-yarn-add-alias) for convenience:
 
 ```sh
-yarn add undercut@npm:undercut-web-2019
+yarn add undercut@npm:@undercut/web-2019
 ```
 
 ### Prerequisites
 
-You need to import `core-js@3` somewhere at the very beginning of you app. Like so:
+You need to import `core-js@3` (or another similar polyfill) before you import the `undercut`:
 
-```js
-// index.js
-require("core-js/es");
-// ...
-const undercut = require("undercut-web-2019");
+```html
+<!-- index.html -->
+<script src="https://unpkg.com/core-js-bundle@^3/minified.js"></script>
 ```
+
+### Upgrading
+
+If you're upgrading the `undercut` to a newer version, please upgrade `core-js` to the latest versions too.
 
 ## Usage
 
-Same as for the `undercut`, but imports should be from the `undercut-web-2019` if you aren't using Yarn aliases.
+Usage is similar to original packages. Please check the [GitHub repo](https://github.com/the-spyke/undercut) for more detailed documentation and examples.
 
-Please check [GitHub repo](https://github.com/the-spyke/undercut) for more detailed documentation and examples.
-
-[![Edit undercut-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/undercut-example-9g1nh?fontsize=14&module=%2Fsrc%2Findex.js)
+Import desired entry first:
 
 ```js
-import { pull, filter, map, skip, toArray } from "undercut";
+// When using as a script tag and its global variable:
+const { pullArray, filter, map, skip } = undercut.pull;
+// When using as a CommonJS module:
+const { pullArray, filter, map, skip } = require("@undercut/web-2019/pull");
+// When using as an AMD module:
+require(["scripts/undercut/pull.js"], function ({ pullArray, filter, map, skip }) {
+    /* Your code */
+});
+```
 
+And then use it in your code:
+
+```js
 const source = [1, 2, 3, 4, 5, 6, 7];
 
-const result = pull(toArray, [
+const result = pullArray([
     skip(2),
     filter(x => x % 3 === 0),
     map(x => x * 2) // Will be executed only 3 times.
@@ -48,6 +76,10 @@ const result = pull(toArray, [
 
 console.log(result); // [8, 10, 14]
 ```
+
+[![Edit undercut-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/undercut-example-9g1nh?fontsize=14&module=%2Fsrc%2Findex.js)
+
+## [Documentation](https://github.com/the-spyke/undercut)
 
 ## License
 

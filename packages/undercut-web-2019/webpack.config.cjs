@@ -26,11 +26,9 @@ module.exports = {
 	},
 	output: {
 		filename: `[name].js`,
-		globalObject: `this`,
 		library: [`undercut`, `[name]`],
 		libraryTarget: `umd`,
 		path: BUILD_DIR,
-		umdNamedDefine: true,
 	},
 	target: `web`,
 };
