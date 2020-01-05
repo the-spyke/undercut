@@ -1,6 +1,6 @@
 {
   "name": "@undercut/tests",
-  "version": "1.0.0",
+  "version": "0.4.0",
   "description": "Undercut tests",
   "author": "Anton Alexandrenok",
   "license": "MIT",
@@ -16,10 +16,10 @@
   "devDependencies": {
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
-    "@undercut/config": "^1.0.0",
+    "@undercut/config": "^0.4.0",
     "@undercut/pull": "^0.4.0",
     "@undercut/push": "^0.4.0",
-    "@undercut/testing": "^1.0.0",
+    "@undercut/testing": "^0.4.0",
     "@undercut/utils": "^0.4.0",
     "babel-jest": "^24.9.0",
     "core-js": "^3.4.2",
