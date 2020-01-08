@@ -1,6 +1,5 @@
 # ✂ undercut ✂
 
-[![version](https://img.shields.io/npm/v/undercut.svg)](https://www.npmjs.com/package/undercut)
 [![downloads](https://img.shields.io/npm/dm/undercut.svg)](https://www.npmjs.com/package/undercut)
 [![license](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
 
