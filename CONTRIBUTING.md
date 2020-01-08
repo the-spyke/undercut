@@ -13,7 +13,9 @@ Please ensure that you have the latest [Node.js](https://nodejs.org/) and [Yarn]
 
 ## Setup
 
-To start contributing fork the project on GitHub and clone your fork:
+This project follows [GitHub's standard forking model](https://guides.github.com/activities/forking/). Please fork the project to submit pull requests.
+
+Clone your fork:
 
 ```sh
 git clone https://github.com/${username}/undercut.git
