@@ -2,10 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
-## [Unreleased]
+## Unreleased
+
+*Changes that have landed in "master" but are not yet released.*
 
 Big release for the `undercut` as we moved away from a single package to a set of independent scoped packages:
 
@@ -61,7 +62,7 @@ We also added 3 precompiled packages for browsers and Node:
 
 - `take` operations iteraited/observed a one excess item before exiting.
 
-## [0.4.0] - 2019-10-15
+## v0.4.0 (2019-10-15)
 
 This release adds `Push Lines` and makes API more consistent in general.
 
@@ -89,7 +90,7 @@ This release adds `Push Lines` and makes API more consistent in general.
 
 - **[BREAKING]** Removed `reverseComparator` utility.
 
-## [0.3.0] - 2019-07-15
+## v0.3.0 (2019-07-15)
 
 Dependencies were updated to resolve GitHub security alerts.
 
@@ -102,7 +103,7 @@ Dependencies were updated to resolve GitHub security alerts.
 
 - **[BREAKING]** Relaxed requirements for number arguments in `chunk()`, `flatten()`, `nth()`, `skip()`, and `take()`. Now they may take a fractional number. `flatten()` behavior is also more inline with `Array.prototype.flat()`.
 
-## [0.2.0] - 2019-05-04
+## v0.2.0 (2019-05-04)
 
 ### Added
 
@@ -134,7 +135,7 @@ Dependencies were updated to resolve GitHub security alerts.
 
 - Fixed re-iteration support of pull lines.
 
-## [0.1.1] - 2019-04-24
+## v0.1.1 (2019-04-24)
 
 This version works fine on Node 12.0.0 without ESM-to-CJS transpilation, just use `--experimental-modules` flag.
 
@@ -142,7 +143,7 @@ This version works fine on Node 12.0.0 without ESM-to-CJS transpilation, just us
 
 - Fixed module entry points
 
-## [0.1.0] - 2019-04-22
+## v0.1.0 (2019-04-22)
 
 Initial release.
 
