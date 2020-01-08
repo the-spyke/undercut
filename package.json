@@ -9,6 +9,7 @@
   "scripts": {
     "clear": ". scripts/clear.sh",
     "lint": "./scripts/lint.sh",
+    "set-version": "lerna version --no-git-tag-version --no-push",
     "test": "jest"
   },
   "devDependencies": {
@@ -22,7 +23,8 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^23.0.4",
     "jest": "^24.9.0",
-    "jest-junit": "^9.0.0"
+    "jest-junit": "^9.0.0",
+    "lerna": "^3.20.2"
   },
   "resolutions": {
     "jest-config": "file:./deps/jest-config-24.9.0.tgz"
