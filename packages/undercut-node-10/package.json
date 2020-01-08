@@ -43,6 +43,10 @@
     "url": "https://github.com/the-spyke/undercut",
     "directory": "packages/undercut-node-10"
   },
+  "publishConfig": {
+    "access": "public",
+    "directory": "build"
+  },
   "files": [
     "*.js",
     "*.js.map",

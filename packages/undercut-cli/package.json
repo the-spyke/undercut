@@ -41,7 +41,8 @@
     "directory": "packages/undercut-cli"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   },
   "files": [
     "lib/",

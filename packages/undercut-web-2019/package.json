@@ -39,6 +39,10 @@
     "url": "https://github.com/the-spyke/undercut",
     "directory": "packages/undercut-web-2019"
   },
+  "publishConfig": {
+    "access": "public",
+    "directory": "build"
+  },
   "files": [
     "*.js",
     "*.js.map",
