@@ -22,18 +22,18 @@
   },
   "dependencies": {
     "@undercut/node-10": "^0.4.0",
-    "core-js": "^3.4.2",
-    "yargs": "^15.0.2"
+    "core-js": "^3.6.2",
+    "yargs": "^15.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.5",
-    "@babel/core": "^7.7.4",
-    "@babel/preset-env": "^7.7.4",
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
     "@undercut/config": "^0.4.0",
     "babel-jest": "^24.9.0",
     "jest": "^24.9.0",
-    "jest-junit": "^9.0.0",
-    "semver": "^6.3.0"
+    "jest-junit": "^10.0.0",
+    "semver": "^7.1.1"
   },
   "repository": {
     "type": "git",
