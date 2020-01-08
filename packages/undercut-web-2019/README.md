@@ -77,8 +77,6 @@ const result = pullArray([
 console.log(result); // [8, 10, 14]
 ```
 
-[![Edit undercut-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/undercut-example-9g1nh?fontsize=14&module=%2Fsrc%2Findex.js)
-
 ## [Documentation](https://github.com/the-spyke/undercut)
 
 ## License

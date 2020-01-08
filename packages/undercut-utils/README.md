@@ -35,8 +35,6 @@ console.log(isNumberValue("hello")); // false
 console.log(isNumberValue(NaN)); // false
 ```
 
-[![Edit undercut-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/undercut-example-9g1nh?fontsize=14&module=%2Fsrc%2Findex.js)
-
 ## Utilities
 
 - `Cohort` -- a helper class to group several coroutines (iterables, observers, etc) and abort/close them together. It has some flags to check useful in the `close` callback. See examples in `push` operations code.
