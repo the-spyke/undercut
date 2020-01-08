@@ -1,6 +1,6 @@
 {
   "name": "@undercut/web-2019",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Precompiled version of the undercut library for browsers newer than 2019-01-01",
   "author": "Anton Alexandrenok",
   "license": "MIT",
@@ -17,10 +17,10 @@
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
-    "@undercut/config": "^0.4.0",
-    "@undercut/pull": "^0.4.0",
-    "@undercut/push": "^0.4.0",
-    "@undercut/utils": "^0.4.0",
+    "@undercut/config": "^0.5.0",
+    "@undercut/pull": "^0.5.0",
+    "@undercut/push": "^0.5.0",
+    "@undercut/utils": "^0.5.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "core-js": "^3.6.2",

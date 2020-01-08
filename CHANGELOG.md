@@ -8,13 +8,15 @@ The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 *Changes that have landed in "master" but are not yet released.*
 
-Big release for the `undercut` as we moved away from a single package to a set of independent scoped packages:
+## v0.5.0 (2020-01-08)
+
+`Undercut` moved away from a single package to a set of independent scoped packages:
 
 - `@undercut/pull`
 - `@undercut/push`
 - `@undercut/utils`
 
-We also added 3 precompiled packages for browsers and Node:
+There're also 3 new precompiled packages for browsers and Node:
 
 - `@undercut/cli`
 - `@undercut/node-10`
