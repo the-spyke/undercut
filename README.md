@@ -32,8 +32,8 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 
 There are 3 main packages:
 
-- `@undercut/pull` -- exports Pull Lines (Iterables) + some related utils. [Go to the package's documentation.](packages/undercut-pull/README.md)
-- `@undercut/push` -- exports Push Lines (Observers) + some related utils. [Go to the package's documentation.](packages/undercut-push/README.md)
+- `@undercut/pull` -- exports Pull Lines (Iterables). [Go to the package's documentation.](packages/undercut-pull/README.md)
+- `@undercut/push` -- exports Push Lines (Observers). [Go to the package's documentation.](packages/undercut-push/README.md)
 - `@undercut/utils` -- exports all the various JavaScript utilities. [Go to the package's documentation.](packages/undercut-utils/README.md)
 
 These packages are the intended way to use the `undercut`. They carry `stable ES Next` code. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and may be used in Node/Browser/microwave.
