@@ -2,7 +2,6 @@
 
 [![version](https://img.shields.io/npm/v/undercut.svg)](https://www.npmjs.com/package/undercut)
 [![downloads](https://img.shields.io/npm/dm/undercut.svg)](https://www.npmjs.com/package/undercut)
-[![chat](https://badges.gitter.im/undercutjs/community.svg)](https://gitter.im/undercutjs/community)
 [![license](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
 
 [![circleci](https://circleci.com/gh/the-spyke/undercut.svg?style=shield)](https://circleci.com/gh/the-spyke/undercut)
