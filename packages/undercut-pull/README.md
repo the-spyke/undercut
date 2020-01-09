@@ -26,9 +26,9 @@ npm install @undercut/pull
 yarn add @undercut/pull
 ```
 
-### Upgrading
+### Updating
 
-If you're upgrading the `undercut` to a newer version, please upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
+If you're upgrading `undercut` to a newer version, please upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
 
 ## Usage
 
@@ -76,7 +76,7 @@ Terms in releation to `Pull Lines`:
 - `operation` -- a function taking an `Iterable` of source items and returning an `Iterable` of result items.
 - `pipeline` -- an ordered sequence (array) of `operations`.
 - `source` -- an `Iterable` which items will be processed. Many native objects are `Iterable` out of the box: arrays, maps, sets, strings.
-- `target` -- a function for extracting the result out of pipeline. Takes an `Iterable` and returns some value. Many native functions behave this way: `Array.from()`, `new Map()`, `Object.fromEntries()`, etc. `Targets` provided by the `undercut` are mostly wrappers around those native functions/constructors for convenience. Feel free to use the originals.
+- `target` -- a function for extracting the result out of pipeline. Takes an `Iterable` and returns some value. Many native functions behave this way: `Array.from()`, `new Map()`, `Object.fromEntries()`, etc. `Targets` provided by `undercut` are mostly wrappers around those native functions/constructors for convenience. Feel free to use the originals.
 
 ```typescript
 type PullOperation = <T, R>(iterable: Iterable<T>) => Iterable<R>;

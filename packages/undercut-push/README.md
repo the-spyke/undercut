@@ -26,9 +26,9 @@ npm install @undercut/push
 yarn add @undercut/push
 ```
 
-### Upgrading
+### Updating
 
-If you're upgrading the `undercut` to a newer version, please upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
+If you're upgrading `undercut` to a newer version, please upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
 
 ## Usage
 

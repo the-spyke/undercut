@@ -1,10 +1,9 @@
 # ✂ undercut ✂
 
-[![downloads](https://img.shields.io/npm/dm/undercut.svg)](https://www.npmjs.com/package/undercut)
-[![license](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
-
+[![downloads](https://img.shields.io/npm/dm/@undercut/utils)](https://www.npmjs.com/package/@undercut/utils)
 [![circleci](https://circleci.com/gh/the-spyke/undercut.svg?style=shield)](https://circleci.com/gh/the-spyke/undercut)
 [![codecov](https://codecov.io/gh/the-spyke/undercut/branch/master/graph/badge.svg)](https://codecov.io/gh/the-spyke/undercut)
+[![license](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
 
 JavaScript data processing pipelines and utilities. Use native Iterators/Generators/Observers like it's 2015 already.
 
@@ -31,11 +30,11 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 
 There are 3 main packages:
 
-- `@undercut/pull` -- exports Pull Lines (Iterables). [Go to the package's documentation.](packages/undercut-pull/README.md)
-- `@undercut/push` -- exports Push Lines (Observers). [Go to the package's documentation.](packages/undercut-push/README.md)
-- `@undercut/utils` -- exports all the various JavaScript utilities. [Go to the package's documentation.](packages/undercut-utils/README.md)
+- [`@undercut/pull`](https://www.npmjs.com/package/@undercut/pull) -- exports Pull Lines (Iterables). [\[documentation\]](packages/undercut-pull/README.md)
+- [`@undercut/push`](https://www.npmjs.com/package/@undercut/push) -- exports Push Lines (Observers). [\[documentation\]](packages/undercut-push/README.md)
+- [`@undercut/utils`](https://www.npmjs.com/package/@undercut/utils) -- exports all the various JavaScript utilities. [\[documentation\]](packages/undercut-utils/README.md)
 
-These packages are the intended way to use the `undercut`. They carry `stable ES Next` code. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and may be used in Node/Browser/microwave.
+These packages are the intended way to use `undercut`. They carry `stable ES Next` code. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and may be used in Node/Browser/microwave.
 
 Don't forget to check that `/node_modules/@undercut/` isn't excluded from compilation and `core-js@3` polyfill or analogue is in place.
 
@@ -51,13 +50,13 @@ yarn add @undercut/pull
 
 Several precompiled packages are available for older projects or quick experiments. They do not require any sort of compilaton:
 
-- `@undercut/cli` -- provides a command line interface for processing data with JavaScript and the `undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. This package is compiled for Node.js 10 LTS and upwards. [Go to the package's documentation.](packages/undercut-cli/README.md)
-- `@undercut/node-10` -- a precompiled CommonJS version for Node.js 10 LTS and upwards. Requires stable polyfills from `core-js@3`. [Go to the package's documentation.](packages/undercut-node-10/README.md)
-- `@undercut/web-2019` -- a precompiled version for web browsers not older than 2019-01-01. Creates the `undercut` property in the `window`, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`. [Go to the package's documentation.](packages/undercut-web-2019/README.md)
+- [`@undercut/cli`](https://www.npmjs.com/package/@undercut/cli) -- provides a command line interface for processing data with JavaScript and `undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. This package is compiled for Node.js 10 LTS and upwards. [\[documentation\]](packages/undercut-cli/README.md)
+- [`@undercut/node-10`](https://www.npmjs.com/package/@undercut/node-10) -- a precompiled CommonJS version for Node.js 10 LTS and upwards. Requires stable polyfills from `core-js@3`. [\[documentation\]](packages/undercut-node-10/README.md)
+- [`@undercut/web-2019`](https://www.npmjs.com/package/@undercut/web-2019) -- a precompiled version for web browsers not older than 2019-01-01. Creates `undercut` property in the `window`, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`. [\[documentation\]](packages/undercut-web-2019/README.md)
 
-### Upgrading the `undercut`
+### Updating `undercut`
 
-If you're upgrading the `undercut` to a newer version, please upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
+If you're upgrading `undercut` to a newer version, please upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
 
 ## Usage
 

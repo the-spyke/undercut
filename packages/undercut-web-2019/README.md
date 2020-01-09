@@ -1,6 +1,6 @@
 # @undercut/web-2019
 
-A precompiled version of the [undercut](https://github.com/the-spyke/undercut) packages for [web browsers not older than 2019-01-01](https://browserl.ist/?q=since+2019%2C+edge+>%3D+18%2C+not+android+>+0). Contains `pull`, `push`, and `utils` entries. An easy way to try the `undercut` when your project has no build step or you're doing a quick experiment.
+A precompiled version of the [undercut](https://github.com/the-spyke/undercut) packages for [web browsers not older than 2019-01-01](https://browserl.ist/?q=since+2019%2C+edge+>%3D+18%2C+not+android+>+0). Contains `pull`, `push`, and `utils` entries. An easy way to try `undercut` when your project has no build step or you're doing a quick experiment.
 
 ## Quicklinks
 
@@ -35,16 +35,16 @@ yarn add undercut@npm:@undercut/web-2019
 
 ### Prerequisites
 
-You need to import `core-js@3` (or another similar polyfill) before you import the `undercut`:
+You need to import `core-js@3` (or another similar polyfill) before you import `undercut`:
 
 ```html
 <!-- index.html -->
 <script src="https://unpkg.com/core-js-bundle@^3/minified.js"></script>
 ```
 
-### Upgrading
+### Updating
 
-If you're upgrading the `undercut` to a newer version, please upgrade `core-js` to the latest versions too.
+If you're upgrading `undercut` to a newer version, please upgrade `core-js` to the latest versions too.
 
 ## Usage
 
