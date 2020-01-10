@@ -11,6 +11,9 @@ pids
 *.seed
 *.pid.lock
 
+# Misc
+.DS_Store
+
 # Dependency directories
 node_modules/
 
