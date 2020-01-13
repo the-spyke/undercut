@@ -1,0 +1,36 @@
+---
+title: Language Utils
+---
+
+- `hasOwnProps(value) => boolean` -- returns `true` if the `value` is an object having own properties, `false` otherwise.
+- `isArrayBuffer(value) => boolean` -- returns `true` if the `value` is an `ArrayBuffer`, `false` otherwise.
+- `isBoolean(value) => boolean` -- returns `true` if the `value` is of the boolean type, `false` otherwise.
+- `isCoroutine(value) => boolean` -- returns `true` if the `value` looks like `Coroutine`, `false` otherwise. The only mandatory method is `next`.
+- `isDate(value) => boolean` -- returns `true` if the `value` is a `Date` object, `false` otherwise.
+- `isDefined(value) => boolean` -- returns `true` if the `value` is exactly not `undefined`, `false` otherwise.
+- `isError(value) => boolean` -- returns `true` if the `value` is an `Error`, `false` otherwise.
+- `isFalsy(value) => boolean` -- returns `true` if the `value` converted to Boolean is `false`, `false` otherwise.
+- `isFunction(value) => boolean` -- returns `true` if the `value` is a function, `false` otherwise.
+- `isIterable(value) => boolean` -- returns `true` if the `value` is an object having `Symbol.iterator` method, `false` otherwise.
+- `isIterator(value) => boolean` -- returns `true` if the `value` is an object having `next` method, `false` otherwise.
+- `isMap(value) => boolean` -- returns `true` if the `value` is an `Map`, `false` otherwise.
+- `isNegative(value) => boolean` -- returns `true` if the `value` is a Number less than zero, `false` otherwise.
+- `isNegativeOrZero(value) => boolean` -- returns `true` if the `value` is a Number less or equal to zero, `false` otherwise.
+- `isNull(value) => boolean` -- returns `true` if the `value` is exactly `null`, `false` otherwise.
+- `isNullish(value) => boolean` -- returns `true` if the `value` is exactly `null` or `undefined`, `false` otherwise.
+- `isNumber(value) => boolean` -- returns `true` if the `value` is of the Number type, `false` otherwise. `NaN` is a Number in JavaScript.
+- `isNumberValue(value) => boolean` -- same as `isNumber`, but returns `false` for `NaN`.
+- `isObject(value) => boolean` -- returns `true` if the `value` is an Object, `false` otherwise. `null` is an Object is JavaScript.
+- `isObjectValue(value) => boolean` -- same as `isObject`, but returns `false` for `null`.
+- `isObserver(value) => boolean` -- returns `true` if the `value` is an object with the `next` method, `false` otherwise.
+- `isPlainObject(value) => boolean` -- returns `true` if the `value` is an object having no prototype or an Object.prototype, `false` otherwise.
+- `isPositive(value) => boolean` -- returns `true` if the `value` is a Number greater that zero, `false` otherwise.
+- `isPositiveOrZero(value) => boolean` -- returns `true` if the `value` is a Number equal or greater than zero, `false` otherwise.
+- `isRegExp(value) => boolean` -- returns `true` if the `value` is a `RegExp`, `false` otherwise.
+- `isSet(value) => boolean` -- returns `true` if the `value` is a `Set`, `false` otherwise.
+- `isString(value) => boolean` -- returns `true` if the `value` is of the String type, `false` otherwise.
+- `isSymbol(value) => boolean` -- returns `true` if the `value` is of the Symbol type, `false` otherwise.
+- `isTruthy(value) => boolean` -- returns `true` if the `value` converted to Boolean is `true`, `false` otherwise.
+- `isUndefined(value) => boolean` -- returns `true` if the `value` is exactly `undefined`, `false` otherwise.
+- `isWeakMap(value) => boolean` -- returns `true` if the `value` is a `WeakMap`, `false` otherwise.
+- `isWeakSet(value) => boolean` -- returns `true` if the `value` is a `WeakSet`, `false` otherwise.

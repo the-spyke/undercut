@@ -15,24 +15,13 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 - Lazy evaluation when possible
 - Tree shaking friendliness
 
-## Quicklinks
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Concepts](#concepts)
-- [Pull](packages/undercut-pull/README.md)
-- [Push](packages/undercut-push/README.md)
-- [Operations](operations.md)
-- [Utilities](packages/undercut-utils/README.md)
-- [License](#license)
-
 ## Installation
 
 There are 3 main packages:
 
-- [`@undercut/pull`](https://www.npmjs.com/package/@undercut/pull) -- exports Pull Lines (Iterables). [\[documentation\]](packages/undercut-pull/README.md)
-- [`@undercut/push`](https://www.npmjs.com/package/@undercut/push) -- exports Push Lines (Observers). [\[documentation\]](packages/undercut-push/README.md)
-- [`@undercut/utils`](https://www.npmjs.com/package/@undercut/utils) -- exports all the various JavaScript utilities. [\[documentation\]](packages/undercut-utils/README.md)
+- [`@undercut/pull`](https://www.npmjs.com/package/@undercut/pull) -- exports Pull Lines (Iterables).
+- [`@undercut/push`](https://www.npmjs.com/package/@undercut/push) -- exports Push Lines (Observers).
+- [`@undercut/utils`](https://www.npmjs.com/package/@undercut/utils) -- exports all the various JavaScript utilities.
 
 These packages are the intended way to use `undercut`. They carry `stable ES Next` code. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and may be used in Node/Browser/microwave.
 
@@ -48,11 +37,11 @@ yarn add @undercut/pull
 
 ### Additional packages
 
-Several precompiled packages are available for older projects or quick experiments. They do not require any sort of compilaton:
+Several precompiled packages are available:
 
-- [`@undercut/cli`](https://www.npmjs.com/package/@undercut/cli) -- provides a command line interface for processing data with JavaScript and `undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. This package is compiled for Node.js 10 LTS and upwards. [\[documentation\]](packages/undercut-cli/README.md)
-- [`@undercut/node-10`](https://www.npmjs.com/package/@undercut/node-10) -- a precompiled CommonJS version for Node.js 10 LTS and upwards. Requires stable polyfills from `core-js@3`. [\[documentation\]](packages/undercut-node-10/README.md)
-- [`@undercut/web-2019`](https://www.npmjs.com/package/@undercut/web-2019) -- a precompiled version for web browsers not older than 2019-01-01. Creates `undercut` property in the `window`, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`. [\[documentation\]](packages/undercut-web-2019/README.md)
+- [`@undercut/cli`](https://www.npmjs.com/package/@undercut/cli) -- provides a command line interface for processing data with JavaScript and `undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. Works on Node.js 10.13 and upwards.
+- [`@undercut/node-10`](https://www.npmjs.com/package/@undercut/node-10) -- a precompiled CommonJS version for Node.js 10.13 and upwards. Requires stable polyfills from `core-js@3`.
+- [`@undercut/web-2019`](https://www.npmjs.com/package/@undercut/web-2019) -- a precompiled version for web browsers not older than `2019-01-01`. Creates `undercut` variable in the global scope, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
 
 ### Updating `undercut`
 
@@ -75,6 +64,8 @@ console.log(result); // [8, 10, 14]
 ```
 
 ## Concepts
+
+*\* Please visit the website for full documentation or look in the `docs` folder.*
 
 `Undercut` helps constructing pipelines for data processing. Instead of creating new concepts it leverages existing JavaScript protocols and features like [Iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) and [Generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
 
@@ -104,14 +95,6 @@ Push line -- push items into an Observer
 ```
 
 Of course, you can process synchronous items with `Push Lines` too, but `Pull Lines` are easier to operate and write operations for.
-
-## [Pull](packages/undercut-pull/README.md)
-
-## [Push](packages/undercut-push/README.md)
-
-## [Operations](operations.md)
-
-## [Utilities](packages/undercut-utils/README.md)
 
 ## License
 

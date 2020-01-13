@@ -1,0 +1,27 @@
+{
+	"env": {
+		"browser": true
+	},
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"plugins": [
+		"react"
+	],
+	"extends": [
+		"plugin:react/recommended"
+	],
+	"rules": {
+		"import/no-unresolved": [
+			"error",
+			{
+				"ignore": [
+					"^@docusaurus\/",
+					"^@theme\/"
+				]
+			}
+		]
+	}
+}

@@ -2,13 +2,6 @@
 
 A precompiled CommonJS version of the [undercut](https://github.com/the-spyke/undercut) packages for Node.js 10 LTS and upward. Contains `pull`, `push`, and `utils` entries. An easy way to try `undercut` when your project has no build step or you're doing a quick experiment.
 
-## Quicklinks
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Documentation](https://github.com/the-spyke/undercut)
-- [License](#license)
-
 ## Installation
 
 ```sh
@@ -53,8 +46,6 @@ const result = pullArray([
 
 console.log(result); // [8, 10, 14]
 ```
-
-## [Documentation](https://github.com/the-spyke/undercut)
 
 ## License
 

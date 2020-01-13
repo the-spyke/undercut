@@ -1,6 +1,8 @@
-# @undercut/utils
+---
+title: Utils Overview
+---
 
-This package provides various JavaScript utilities and is a part of the larger [undercut](https://github.com/the-spyke/undercut) project.
+`@undercut/utils` package provides various JavaScript utilities.
 
 ## Installation
 
@@ -8,7 +10,7 @@ This package provides various JavaScript utilities and is a part of the larger [
 
 Don't forget check that `/node_modules/@undercut/` isn't excluded from compilation and `core-js@3` polyfill or analogue is in place.
 
-```sh
+```bash
 npm install @undercut/utils
 # or
 yarn add @undercut/utils
@@ -27,7 +29,3 @@ console.log(isNumberValue(123)); // true
 console.log(isNumberValue("hello")); // false
 console.log(isNumberValue(NaN)); // false
 ```
-
-## License
-
-Licensed under the MIT License, see [LICENSE](LICENSE) for more information.
