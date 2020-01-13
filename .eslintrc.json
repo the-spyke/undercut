@@ -99,6 +99,12 @@
 			}
 		],
 		"import/no-extraneous-dependencies": "error",
+		"import/no-unresolved": [
+			"error",
+			{
+				"commonjs": true
+			}
+		],
 		"indent": [
 			"error",
 			"tab",

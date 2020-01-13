@@ -1,8 +1,8 @@
-# Operations
+---
+title: Operations List
+---
 
-## Common operations
-
-These operations exist in both `pull` and `push` versions:
+Currently all operations exist in both `pull` and `push` versions:
 
 - `append(...items)` -- adds its arguments to the end of the sequence.
 - `average()` -- reduces the sequence into a number by calculating the average of it.
@@ -64,11 +64,3 @@ These operations exist in both `pull` and `push` versions:
 - `unzipWith(itemsExtractor)` -- reverse to the `zip` producing a sequence of sources by getting their items from the `extractor`.
 - `zip(...sources)` -- transforms the sequence into a new one by combining by one item from it and the sources into an array.
 - `zipWith(itemFactory, ...sources)` -- transforms the sequence into a new one by combining by one item from it and the source into a value returned by the `itemFactory`.
-
-## Pull-only operations
-
-- N/A
-
-## Push-only operations
-
-- N/A
