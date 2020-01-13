@@ -13,14 +13,14 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
+    "@babel/core": "^7.8.0",
+    "@babel/preset-env": "^7.8.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
-    "core-js": "^3.6.2",
+    "core-js": "^3.6.3",
     "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-jest": "^23.3.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jest": "^23.6.0",
     "eslint-plugin-react": "^7.17.0",
     "jest": "^24.9.0",
     "jest-junit": "^10.0.0",
@@ -30,6 +30,7 @@
     "jest-config": "file:./deps/jest-config-24.9.0.tgz"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "website/"
   ]
 }
