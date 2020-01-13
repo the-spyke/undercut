@@ -3,8 +3,8 @@
 module.exports = {
 	title: `undercut`,
 	tagline: `JavaScript data processing pipelines and utilities`,
-	url: `https://the-spyke.github.io`,
-	baseUrl: `/undercut/`,
+	url: `https://undercut.js.org`,
+	baseUrl: `/`,
 	favicon: `img/favicon.ico`,
 	organizationName: `the-spyke`,
 	projectName: `undercut`,
