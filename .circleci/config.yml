@@ -175,26 +175,50 @@ workflows:
   version: 2
   workflow:
     jobs:
-      - check_all
+      - check_all:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - build_pull:
           requires:
             - check_all
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - build_push:
           requires:
             - check_all
       - build_utils:
           requires:
             - check_all
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - build_node_10:
           requires:
             - build_pull
             - build_push
             - build_utils
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - build_cli:
           requires:
             - build_node_10
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - build_web_2019:
           requires:
             - build_pull
             - build_push
             - build_utils
+          filters:
+            branches:
+              ignore:
+                - gh-pages
