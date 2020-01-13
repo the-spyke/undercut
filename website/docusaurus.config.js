@@ -32,7 +32,7 @@ module.exports = {
 		},
 		footer: {
 			style: `dark`,
-			copyright: `Copyright © 2019-${new Date().getFullYear()} Anton Alexandrenok. Built with Docusaurus.`,
+			copyright: `Built with Docusaurus. Hosted on GitHub.`,
 		},
 	},
 	presets: [
