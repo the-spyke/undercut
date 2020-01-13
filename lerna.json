@@ -1,4 +1,12 @@
 {
+	"command": {
+		"version": {
+			"ignoreChanges": [
+				"*.md",
+				"*.test.?(c|m)js"
+			]
+		}
+	},
 	"npmClient": "yarn",
 	"useWorkspaces": true,
 	"version": "0.5.0"
