@@ -28,9 +28,9 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "since 2019",
+      "edge >= 18",
+      "not android > 0"
     ],
     "development": [
       "last 1 chrome version",
