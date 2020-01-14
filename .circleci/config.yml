@@ -177,17 +177,6 @@ jobs:
           coverage: true
       - finalize
 
-  deploy_website:
-    executor: node
-    steps:
-      - initialize
-      - run:
-        name: Deploy to GitHub Pages
-        command: |
-          cd website
-          USE_SSH=true yarn deploy
-      - finalize
-
 workflows:
   version: 2
   workflow:
