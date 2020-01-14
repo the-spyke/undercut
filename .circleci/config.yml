@@ -85,11 +85,21 @@ commands:
             mkdir -p $ARTIFACTS
   finalize:
     description: Finalize a JS project build and upload its artifacts.
+    parameters:
+      persist:
+        type: boolean
+        default: true
     steps:
       - store_artifacts:
           path: artifacts
       - store_test_results:
           path: artifacts/test_results
+      - when:
+          condition: << parameters.persist >>
+          steps:
+            - persist_to_workspace:
+                root: artifacts
+                paths: *.tgz
   build:
     description: Build a JS project, run tests, compose a package, and do all other stuff.
     parameters:
@@ -177,6 +187,19 @@ jobs:
           coverage: true
       - finalize
 
+  packages:
+    executor: node
+    steps:
+      - attach_workspace:
+          at: packages
+      - run:
+          name: Pack all
+          command: |
+            mkdir artifacts
+            tar -cv -f artifacts/packages.tar packages
+      - store_artifacts:
+          path: artifacts
+
 workflows:
   version: 2
   workflow:
@@ -231,6 +254,15 @@ workflows:
       - build_website:
           requires:
             - check_all
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - packages:
+          requires:
+            - build_cli
+            - build_web_2019
+            - build_website
           filters:
             branches:
               ignore:
