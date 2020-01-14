@@ -34,6 +34,9 @@ module.exports = {
 			style: `dark`,
 			copyright: `Built with Docusaurus. Hosted on GitHub.`,
 		},
+		googleAnalytics: {
+			trackingID: `UA-156198423-1`,
+		},
 	},
 	presets: [
 		[
@@ -49,5 +52,8 @@ module.exports = {
 				},
 			},
 		],
+	],
+	plugins: [
+		`@docusaurus/plugin-google-analytics`,
 	],
 };

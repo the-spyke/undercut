@@ -7358,7 +7358,7 @@ jest-cli@^24.9.0:
     realpath-native "^1.1.0"
     yargs "^13.3.0"
 
-jest-config@^24.9.0, "jest-config@file:./deps/jest-config-24.9.0.tgz":
+jest-config@^24.9.0:
   version "24.9.0"
   resolved "file:./deps/jest-config-24.9.0.tgz#f2febba500956950b7efb491348918d6df2e37b9"
   dependencies:
