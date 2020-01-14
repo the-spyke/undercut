@@ -6,7 +6,7 @@ executors:
       - image: node:13.5-buster-slim
   node_10:
     docker:
-      - image: node:10-buster-slim
+      - image: node:10.17-buster-slim
 
 orbs:
   codecov: codecov/codecov@1.0.5
