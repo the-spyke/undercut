@@ -7,18 +7,24 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "start": "docusaurus start",
+    "clear": "rm -rf .docusaurus build dist",
     "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy"
+    "deploy": "docusaurus deploy",
+    "dist": "rm -rf dist && mkdir dist && tar -czv -f 'dist/undercut-website.tgz' --transform='s/^build/package/' build",
+    "lint": "eslint --format='unix' '**/*.?(c|m)js'",
+    "start": "docusaurus start",
+    "swizzle": "docusaurus swizzle"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.40",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.40",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@docusaurus/core": "^2.0.0-alpha.40",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.40",
+    "eslint": "^6.8.0"
   },
   "browserslist": {
     "production": [

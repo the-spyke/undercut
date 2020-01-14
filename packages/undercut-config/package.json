@@ -14,6 +14,9 @@
     "lint": "eslint --format='unix' '**/*.?(c|m)js'",
     "test": "echo 'No tests'"
   },
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/the-spyke/undercut",
