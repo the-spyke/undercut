@@ -185,7 +185,7 @@ jobs:
       - lint
       - test:
           coverage: true
-      - finalize
+      - finalize:
           persist: false
 
   packages:
