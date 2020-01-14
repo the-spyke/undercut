@@ -186,6 +186,7 @@ jobs:
       - test:
           coverage: true
       - finalize
+          persist: false
 
   packages:
     executor: node
