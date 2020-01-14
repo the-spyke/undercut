@@ -99,7 +99,7 @@ commands:
           steps:
             - persist_to_workspace:
                 root: artifacts
-                paths: *.tgz
+                paths: "*.tgz"
   build:
     description: Build a JS project, run tests, compose a package, and do all other stuff.
     parameters:
