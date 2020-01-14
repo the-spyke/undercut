@@ -162,6 +162,12 @@ jobs:
           path: packages/undercut-web-2019
           test: true
 
+  build_website:
+    executor: node
+    steps:
+      - build:
+          path: website
+
   check_all:
     executor: node
     steps:
@@ -169,6 +175,17 @@ jobs:
       - lint
       - test:
           coverage: true
+      - finalize
+
+  deploy_website:
+    executor: node
+    steps:
+      - initialize
+      - run:
+        name: Deploy to GitHub Pages
+        command: |
+          cd website
+          USE_SSH=true yarn deploy
       - finalize
 
 workflows:
@@ -218,6 +235,13 @@ workflows:
             - build_pull
             - build_push
             - build_utils
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - build_website:
+          requires:
+            - check_all
           filters:
             branches:
               ignore:
