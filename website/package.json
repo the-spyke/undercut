@@ -28,9 +28,7 @@
   },
   "browserslist": {
     "production": [
-      "since 2019",
-      "edge >= 18",
-      "not android > 0"
+      "defaults"
     ],
     "development": [
       "last 1 chrome version",
