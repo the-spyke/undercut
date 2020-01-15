@@ -37,9 +37,10 @@ yarn install
 3. Make sure that tests pass: `yarn test`.
 4. Check linting errors: `yarn lint`.
 5. Check that build works: `yarn build`.
-6. Commit your changes and push the branch.
-7. Submit a pull request to the upstream repository.
-8. Make sure that CI build has no issues.
+6. Make required documentation changes.
+7. Commit your changes and push the branch.
+8. Submit a pull request to the upstream repository.
+9. Make sure that CI build has no issues.
 
 ### Making a commit
 
@@ -92,3 +93,9 @@ Build is done with the `"build"` script at an individual package level. Some pro
 ## Dist
 
 The `"dist"` script produces tarballs ready for distribution or publishing in the `dist` folder.
+
+## Documentation
+
+Documentation is written in Markdown or MDX and is located in the `docs` folder. The files will be used later to build and publish static pages on [undercut.js.org](https://undercut.js.org). The website is built with [Docusaurus](https://docusaurus.io/) and published to the `gp-pages` branch and [GitHub Pages](https://pages.github.com) service.
+
+If you're adding a new document, don't forget to reference it on the [sidebar](website/sidebar.js).
