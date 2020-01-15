@@ -96,6 +96,12 @@ The `"dist"` script produces tarballs ready for distribution or publishing in th
 
 ## Documentation
 
-Documentation is written in Markdown or MDX and is located in the `docs` folder. The files will be used later to build and publish static pages on [undercut.js.org](https://undercut.js.org). The website is built with [Docusaurus](https://docusaurus.io/) and published to the `gp-pages` branch and [GitHub Pages](https://pages.github.com) service.
+Documentation is written in Markdown or MDX and is located in the `docs` folder. The files will be used later to build and publish static pages on [undercut.js.org](https://undercut.js.org).
 
-If you're adding a new document, don't forget to reference it on the [sidebar](website/sidebar.js).
+If you're adding a new document, don't forget to reference it on the website's [sidebar](website/sidebar.js).
+
+## Website
+
+The [website](https://undercut.js.org) is built with [Docusaurus](https://docusaurus.io/) and published to the `gp-pages` branch and [GitHub Pages](https://pages.github.com) service.
+
+Algolia search configuration is located in [their repo](https://github.com/algolia/docsearch-configs/blob/master/configs/the-spyke_undercut.json).
