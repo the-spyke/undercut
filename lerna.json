@@ -2,7 +2,10 @@
 	"command": {
 		"version": {
 			"ignoreChanges": [
-				"*.md",
+				"**/__snapshots__/",
+				"**/__tests__/",
+				"website/",
+				"*.md?(x)",
 				"*.test.?(c|m)js"
 			]
 		}
