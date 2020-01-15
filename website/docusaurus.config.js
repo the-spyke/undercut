@@ -34,6 +34,11 @@ module.exports = {
 			style: `dark`,
 			copyright: `Built with Docusaurus. Hosted on GitHub.`,
 		},
+		algolia: {
+			apiKey: `51afb3f562cf52544110b900593b21e9`,
+			indexName: `the-spyke_undercut`,
+			algoliaOptions: {}
+		},
 		googleAnalytics: {
 			trackingID: `UA-156198423-1`,
 		},
