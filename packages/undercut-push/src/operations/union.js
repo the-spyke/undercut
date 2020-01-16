@@ -1,6 +1,6 @@
 import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { identity } from "@undercut/utils/src/function.js";
 import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
+import { identity } from "@undercut/utils/src/function.js";
 
 /**
  * Multisets are not supported.

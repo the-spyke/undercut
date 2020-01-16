@@ -1,5 +1,6 @@
-import { identity } from "@undercut/utils/src/function.js";
 import { simulatePull } from "@undercut/testing";
+
+import { identity } from "@undercut/utils/src/function.js";
 
 import { first } from "./operations/first.js";
 import { flattenArrays } from "./operations/flatten.js";

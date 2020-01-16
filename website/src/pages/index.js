@@ -1,11 +1,11 @@
 /* eslint-env react */
 
 import cx from "classnames";
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 import Link from "@docusaurus/Link";
 import Layout from "@theme/Layout";
