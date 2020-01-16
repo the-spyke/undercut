@@ -3,10 +3,10 @@ version: 2.1
 executors:
   node:
     docker:
-      - image: node:13.5-buster-slim
+      - image: node:13-buster-slim
   node_10:
     docker:
-      - image: node:10.17-buster-slim
+      - image: node:10-buster-slim
 
 orbs:
   codecov: codecov/codecov@1.0.5
