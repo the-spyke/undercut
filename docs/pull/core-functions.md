@@ -38,7 +38,7 @@ import { pull, filter, map, skip, toArray } from "@undercut/pull";
 const source = [1, 2, 3, 4, 5, 6, 7];
 const pipeline = [
     skip(2),
-    filter(x => x % 3 === 0),
+    filter(x => x % 3),
     map(x => x * 2)
 ];
 
@@ -57,7 +57,7 @@ import { pullArray, filter, map, skip } from "@undercut/pull";
 const source = [1, 2, 3, 4, 5, 6, 7];
 const pipeline = [
     skip(2),
-    filter(x => x % 3 === 0),
+    filter(x => x % 3),
     map(x => x * 2)
 ];
 

@@ -70,7 +70,7 @@ const source = [1, 2, 3, 4, 5, 6, 7];
 
 const result = pullArray([
     skip(2),
-    filter(x => x % 3 === 0),
+    filter(x => x % 3),
     map(x => x * 2) // Will be executed only 3 times.
 ], source);
 
