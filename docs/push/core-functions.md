@@ -7,12 +7,12 @@ title: Core Push Functions
 Composes several existing operations into a new one.
 
 ```js
-import { composeOperations, pushArray, flatten, zip } from "@undercut/push";
+import { composeOperations, pushArray, flattenArrays, zip } from "@undercut/push";
 
 function interleave(...sources) {
     const operations = [
         zip(...sources),
-        flatten()
+        flattenArrays()
     ];
 
     return composeOperations(operations);

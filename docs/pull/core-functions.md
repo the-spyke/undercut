@@ -7,12 +7,12 @@ title: Core Pull Functions
 Composes several existing operations into a new one.
 
 ```js
-import { composeOperations, pullArray, flatten, zip } from "@undercut/pull";
+import { composeOperations, pullArray, flattenArrays, zip } from "@undercut/pull";
 
 function interleave(...sources) {
     const operations = [
         zip(...sources),
-        flatten()
+        flattenArrays()
     ];
 
     return composeOperations(operations);
