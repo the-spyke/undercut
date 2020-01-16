@@ -98,11 +98,50 @@
 				"after": true
 			}
 		],
+		"import/extensions": [
+			"error",
+			"ignorePackages"
+		],
+		"import/newline-after-import": "error",
+		"import/no-cycle": "error",
 		"import/no-extraneous-dependencies": "error",
+		"import/no-mutable-exports": "error",
+		"import/no-self-import": "error",
 		"import/no-unresolved": [
 			"error",
 			{
 				"commonjs": true
+			}
+		],
+		"import/no-useless-path-segments": [
+			"error",
+			{
+				"commonjs": true
+			}
+		],
+		"import/order": [
+			"error",
+			{
+				"groups": [
+					"builtin",
+					"external",
+					"internal",
+					[
+						"parent",
+						"sibling"
+					],
+					"index"
+				],
+				"newlines-between": "always-and-inside-groups",
+				"pathGroups": [
+					{
+						"pattern": "@@(docusaurus|theme|undercut)/**",
+						"group": "internal"
+					}
+				],
+				"pathGroupsExcludedImportTypes": [
+					"builtin"
+				]
 			}
 		],
 		"indent": [
