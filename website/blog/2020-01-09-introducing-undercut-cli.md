@@ -1,7 +1,7 @@
 ---
 id: introducing-undercut-cli
 title: Processing data in a shell... with JavaScript!
-tags: [shell, cli]
+tags: [cli, shell, tutorial]
 ---
 
 Processing data in a shell may be very convenient, especially for experienced terminal users. You pipe text data through various commands, redirect streams, read and write files.
