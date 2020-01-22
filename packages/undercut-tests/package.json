@@ -14,17 +14,17 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.0",
-    "@babel/preset-env": "^7.8.0",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
     "@undercut/config": "^0.5.0",
     "@undercut/pull": "^0.5.0",
     "@undercut/push": "^0.5.0",
     "@undercut/testing": "^0.5.0",
     "@undercut/utils": "^0.5.0",
-    "babel-jest": "^24.9.0",
-    "core-js": "^3.6.3",
+    "babel-jest": "^25.1.0",
+    "core-js": "^3.6.4",
     "eslint": "^6.8.0",
-    "jest": "^24.9.0",
+    "jest": "^25.1.0",
     "jest-junit": "^10.0.0"
   },
   "repository": {
