@@ -19,7 +19,10 @@ export default function Support() {
 						<p>You may open an issue with label &quot;Issue: Question&quot; on <a href="https://github.com/the-spyke/undercut/issues">GitHub</a>.</p>
 
 						<h2>Twitter</h2>
-						<p><a href="https://twitter.com/search?q=%23undercutjs">#undercutjs</a> hash tag on Twitter is used to keep up with the latest undercut news.</p>
+						<p><a href="https://twitter.com/search?q=%23undercutjs">#undercutjs</a> hash tag on Twitter is used to keep up with the latest Undercut news.</p>
+
+						<h2>DEV Community</h2>
+						<p>Use <a href="https://dev.to/t/undercutjs">#undercutjs</a> tag on <b>DEV.to</b> to find posts, ask for help, or just discuss Undercut.</p>
 
 						<h2>License</h2>
 						<p>

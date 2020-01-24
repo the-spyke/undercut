@@ -17,7 +17,10 @@ module.exports = {
 			},
 			links: [
 				{ to: `docs/introduction`, label: `Docs`, position: `left` },
-				{ to: `blog`, label: `Blog`, position: `left` },
+				{
+					href: `https://codesandbox.io/s/undercut-demo-1up46?fontsize=14&hidenavigation=1&moduleview=1&theme=dark&previewwindow=console`,
+					label: `Try it out`,
+				},
 				{ to: `support`, label: `Support`, position: `left` },
 				{
 					href: `https://github.com/the-spyke/undercut/releases`,

@@ -26,7 +26,7 @@ const features = [
 	{
 		title: `Balanced API`,
 		imageUrl: `img/undraw_dev_focus.svg`,
-		description: `Not too imperative, not too functional. The API undercut provides is small and friendly.`,
+		description: `Not too imperative, not too functional. Undercut provides small and friendly API.`,
 	},
 ];
 
