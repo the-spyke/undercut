@@ -1,12 +1,12 @@
 ---
 id: what-is-undercut
-title: What is undercut.js?
+title: What is Undercut?
 tags: [tutorial]
 ---
 
-[Undercut.js](https://undercut.js.org) (or simply `undercut`) is a library for processing data in a lazy or deferred manner by building pipelines.
+[Undercut](https://undercut.js.org) is a library for processing data in a lazy or deferred manner by building pipelines.
 
-The focus of the library is on leveraging existing JavaScript features like Iterators / Observers / Generators / ES Modules while having balanced API: not being Java/C# influenced or heavily functional. Generators alone allows you to write various operations is a couple of lines, but `undercut` also aims to avoid prototype extension and a situation, where you need to name a method as `flat` instead of `flatten`. You may also use it as an alternative to Lodash's `chain` functionality with support for lazy execution, tree shaking, etc.
+The focus of the library is on leveraging existing JavaScript features like Iterators/Generators while having balanced API: not being Java/C# influenced or heavily functional. `Undercut` also aims to avoid prototype extension and a situation, where you need to name a method as `flat` instead of `flatten`. You may also use it as an alternative to Lodash's `chain` functionality with support for lazy execution, tree shaking, etc.
 
 Imagine a conveyor on a car factory: a chain of operations from welding body parts and painting doors to gluing a logo and inflating wheels. Every operation is independent and is based only on a protocol: a car comes from this side and goes to that side after the operation is complete.
 
@@ -51,7 +51,7 @@ pipeline[1] = map(x => x - 4);
 
 Arrays give you this flexibility to concatenate, merge, copy, and modify existing pipelines.
 
-To finish the conveyor there should be some mechanism like moving belt that will transport a car from one operation from another. This is where `undercut` tries to help (not mentioning a pack of 40+ prebuilt common operations like filter/map/skip/etc).
+To finish the conveyor there should be some mechanism like moving belt that will transport a car from one operation from another. This is where `Undercut` tries to help (not mentioning a pack of 40+ prebuilt common operations like filter/map/skip/etc).
 
 [Core pull functions](https://undercut.js.org/docs/pull/core-functions) allow you to quickly run a pipeline and acquire the result or combine it into something self-contained and reusable like an Iterable.
 
@@ -165,4 +165,4 @@ const result = pullArray(pipeline, source);
 console.log(result); // [1, 4, 9]
 ```
 
-It is only a brief review of the `undercut`, but should be enough for basic use cases. If you want to learn more, please with [undercut.js.org](https://undercut.js.org) for documentation and tutorials.
+It was only a brief review of the `Undercut`, but should be enough for basic use cases. If you want to learn more, please with [undercut.js.org](https://undercut.js.org) for documentation and tutorials.
