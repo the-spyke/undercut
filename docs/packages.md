@@ -4,7 +4,7 @@ title: Precompiled Packages
 
 ### `@undercut/cli`
 
-Provides a command line interface for processing data with JavaScript and `undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. This package works on Node.js 10.13 and upwards.
+Provides a command line interface for processing data with JavaScript and `Undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. This package works on Node.js 10.13 and upwards.
 
 [Full documentation.](cli/overview)
 
@@ -30,7 +30,7 @@ console.log(result); // [8, 10, 14]
 
 ### `@undercut/web-2019`
 
-A precompiled version of `pull/push/utils` packages for web browsers not older than `2019-01-01`. Creates `undercut` variable in the global scope, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
+A precompiled version of `pull/push/utils` packages for web browsers not older than `2019-01-01`. Creates the `undercut` variable in the global scope, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
 
 Usage is similar to original packages, but supports different loading styles. Import desired entry first:
 

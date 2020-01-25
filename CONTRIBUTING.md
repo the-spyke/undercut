@@ -1,4 +1,4 @@
-# Contributing to `undercut`
+# Contributing to `Undercut`
 
 Please ensure that you have the latest [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/).
 

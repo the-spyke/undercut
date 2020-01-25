@@ -1,7 +1,7 @@
 /* eslint-env node*/
 
 module.exports = {
-	title: `undercut`,
+	title: `Undercut`,
 	tagline: `JavaScript data processing pipelines and utilities`,
 	url: `https://undercut.js.org`,
 	baseUrl: `/`,
@@ -10,7 +10,7 @@ module.exports = {
 	projectName: `undercut`,
 	themeConfig: {
 		navbar: {
-			title: `undercut`,
+			title: `Undercut`,
 			logo: {
 				alt: `logo`,
 				src: `img/logo-192x192.png`,

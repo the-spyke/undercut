@@ -1,6 +1,6 @@
 # @undercut/push
 
-This package provides the `push` functionality and is a part of the larger [undercut](https://github.com/the-spyke/undercut) project.
+This package provides the `push` functionality and is a part of the larger [Undercut](https://github.com/the-spyke/undercut) project.
 
 ## Installation
 
@@ -21,17 +21,29 @@ If you're upgrading `undercut` to a newer version, please upgrade `@babel/preset
 ## Usage
 
 ```js
-import { pushArray, filter, map, skip } from "@undercut/push";
+import { pushLine, filter, map, skip, toConsumer } from "@undercut/push";
 
-const source = [1, 2, 3, 4, 5, 6, 7];
+const pipeline = [skip(2), filter(x => x % 3), map(x => x * 2)];
 
-const result = pushArray([
-    skip(2),
-    filter(x => x % 3),
-    map(x => x * 2) // Will be executed only 3 times.
-], source);
+const observer = pushLine(pipeline, toConsumer(x => console.log(x)));
 
-console.log(result); // [8, 10, 14]
+console.log(`before`);
+
+observer.next(1);
+observer.next(2);
+observer.next(3);
+observer.next(4);
+
+console.log(`in the middle`);
+
+observer.next(5);
+observer.next(6);
+observer.next(7);
+
+console.log(`after`);
+
+observer.return();
+
 ```
 
 ## License

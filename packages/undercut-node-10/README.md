@@ -1,6 +1,6 @@
 # @undercut/node-10
 
-A precompiled CommonJS version of the [undercut](https://github.com/the-spyke/undercut) packages for Node.js 10 LTS and upward. Contains `pull`, `push`, and `utils` entries. An easy way to try `undercut` when your project has no build step or you're doing a quick experiment.
+A precompiled CommonJS version of the [undercut](https://github.com/the-spyke/undercut) packages for Node.js 10 LTS and upward. Contains `pull`, `push`, and `utils` entries. An easy way to try `Undercut` when your project has no build step or you're doing a quick experiment.
 
 ## Installation
 
@@ -18,7 +18,7 @@ yarn add undercut@npm:@undercut/node-10
 
 ### Prerequisites
 
-You need to import `core-js@3` (or another similar polyfill) before you import `undercut`:
+You need to import `core-js@3` (or another similar polyfill) before you import `Undercut`:
 
 ```js
 // index.js
@@ -27,7 +27,7 @@ require("core-js/es");
 
 ### Updating
 
-If you're upgrading `undercut` to a newer version, please upgrade `core-js` to the latest versions too.
+If you're upgrading `Undercut` to a newer version, please upgrade `core-js` to the latest versions too.
 
 ## Usage
 

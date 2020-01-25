@@ -1,6 +1,6 @@
 # @undercut/cli
 
-`@undercut/cli` is a command line utility for data processing using `undercut`'s Push Lines and any valid JavaScript expressions. It is a part of the larger [undercut](https://github.com/the-spyke/undercut) project.
+`@undercut/cli` is a command line utility for data processing using `Undercut`'s Push Lines and any valid JavaScript expressions. It is a part of the larger [undercut](https://github.com/the-spyke/undercut) project.
 
 ## Quicklinks
 
@@ -22,13 +22,13 @@ You may also install it locally, but don't forget to add `node_modules/.bin` to 
 
 ## Usage
 
-The name of the installed command is `undercut`. You may also import the `run` function from the `@undercut/cli` to call it programmatically.
+The name of the installed command is `Undercut`. You may also import the `run` function from the `@undercut/cli` to call it programmatically.
 
 ```sh
 undercut [...options] [...operations]
 ```
 
-You're building a `Push Line` where the source is `stdin` and the target is `stdout`. Operations should be quoted (prevents parsing by the shell) and separated by spaces. You can use everything that is available in the global context of Node.js. `undercut`'s packages are available too under their names: `pull`, `push`, and `utils`.
+You're building a `Push Line` where the source is `stdin` and the target is `stdout`. Operations should be quoted (prevents parsing by the shell) and separated by spaces. You can use everything that is available in the global context of Node.js. `Undercut`'s packages are available too under their names: `pull`, `push`, and `utils`.
 
 ```sh
 undercut 'map(s => parseInt(s, 10))' 'filter(utils.isNumberValue)'

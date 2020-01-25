@@ -20,7 +20,7 @@ There are 3 main packages:
 - [`@undercut/push`](push/overview) -- exports Push Lines (Observers).
 - [`@undercut/utils`](utils/overview) -- exports all the various JavaScript utilities.
 
-These packages are the intended way to use `undercut` and carry `stable ES Next` code. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and may be used in Node/Browser/microwave.
+These packages are the intended way to use `Undercut` and carry `stable ES Next` code. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and may be used in Node/Browser/microwave.
 
 Don't forget to check that `/node_modules/@undercut/` isn't excluded from compilation and `core-js@3` polyfill or analogue is in place.
 
