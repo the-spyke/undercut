@@ -18,8 +18,8 @@
     "@undercut/utils": "^0.5.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
     "@undercut/config": "^0.5.0",
     "@undercut/testing": "^0.5.0",
     "babel-jest": "^25.1.0",
