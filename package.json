@@ -13,16 +13,16 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.7",
-    "@babel/preset-env": "^7.8.7",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^25.1.0",
+    "babel-jest": "^25.2.6",
     "core-js": "^3.6.4",
     "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jest": "^23.8.2",
     "eslint-plugin-react": "^7.19.0",
-    "jest": "^25.1.0",
+    "jest": "^25.2.7",
     "jest-junit": "^10.0.0",
     "lerna": "^3.20.2"
   },
