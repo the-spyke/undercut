@@ -1,6 +1,8 @@
-import baseConfig from "./jest.config.base.js";
+"use strict";
 
-export default {
+const baseConfig = require(`./jest.config.base.cjs`);
+
+module.exports = {
 	...baseConfig,
 	projects: [
 		// `<rootDir>/packages/undercut-cli/`, -- Should be tested from a Node 10 environment.
