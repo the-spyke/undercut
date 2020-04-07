@@ -65,7 +65,7 @@ console.log(result); // [8, 10, 14]
 
 ## Concepts
 
-*\* Please visit the website for full documentation or look in the `docs` folder.*
+*\* Please visit the [website](https://undercut.js.org) for full documentation or look in the `docs` folder.*
 
 `Undercut` helps constructing pipelines for data processing. Instead of creating new concepts it leverages existing JavaScript protocols and features like [Iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) and [Generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
 
