@@ -25,6 +25,7 @@ module.exports = {
 				{
 					href: `https://github.com/the-spyke/undercut/releases`,
 					label: `Releases`,
+					position: `left`,
 				},
 				{
 					href: `https://github.com/the-spyke/undercut`,
