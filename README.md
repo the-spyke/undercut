@@ -10,7 +10,7 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 - Based on existing JS protocols and language features
 - Balanced API: not too imperative, not too functional
 - Easy operation extensibility and composability
-- Pure ES Modules with Node 13 loader compliance
+- Pure ES Modules with Node 14 loader compliance
 - Raw code in the packages + precompiled versions
 - Lazy evaluation when possible
 - Tree shaking friendliness

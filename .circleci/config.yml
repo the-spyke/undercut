@@ -3,7 +3,7 @@ version: 2.1
 executors:
   node:
     docker:
-      - image: node:13-buster
+      - image: node:14-buster
   node_10:
     docker:
       - image: node:10-buster
