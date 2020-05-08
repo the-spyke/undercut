@@ -170,7 +170,6 @@
 		"no-extend-native": "error",
 		"no-floating-decimal": "error",
 		"no-implied-eval": "error",
-		"no-import-assign": "error",
 		"no-labels": "error",
 		"no-lone-blocks": "error",
 		"no-lonely-if": "error",
