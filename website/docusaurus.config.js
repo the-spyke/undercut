@@ -18,15 +18,21 @@ module.exports = {
 			links: [
 				{ to: `docs/introduction`, label: `Docs`, position: `left` },
 				{
-					href: `https://codesandbox.io/s/undercut-demo-1up46?fontsize=14&hidenavigation=1&moduleview=1&theme=dark&previewwindow=console`,
-					label: `Try it out`,
+					href: `https://dev.to/t/undercutjs`,
+					label: `Blog`,
+					position: `left`,
 				},
-				{ to: `support`, label: `Support`, position: `left` },
 				{
 					href: `https://github.com/the-spyke/undercut/releases`,
 					label: `Releases`,
 					position: `left`,
 				},
+				{
+					href: `https://codesandbox.io/s/undercut-demo-1up46?fontsize=14&hidenavigation=1&moduleview=1&theme=dark&previewwindow=console`,
+					label: `Try it out`,
+					position: `left`,
+				},
+				{ to: `support`, label: `Support`, position: `right` },
 				{
 					href: `https://github.com/the-spyke/undercut`,
 					label: `GitHub`,
