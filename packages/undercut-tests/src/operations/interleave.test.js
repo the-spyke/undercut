@@ -1,3 +1,5 @@
+import { describe, test } from "@jest/globals";
+
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
 import { interleave as interleavePull } from "@undercut/pull/src/operations/interleave.js";

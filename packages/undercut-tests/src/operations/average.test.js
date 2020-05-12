@@ -1,3 +1,5 @@
+import { describe, test } from "@jest/globals";
+
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
 import { average as averagePull } from "@undercut/pull/src/operations/average.js";

@@ -1,3 +1,5 @@
+import { describe, test } from "@jest/globals";
+
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
 import { compact as compactPull } from "@undercut/pull/src/operations/compact.js";

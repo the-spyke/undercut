@@ -1,3 +1,5 @@
+import { expect, test } from "@jest/globals";
+
 import { simulatePull } from "./index.js";
 
 test(`simulatePull`, () => {

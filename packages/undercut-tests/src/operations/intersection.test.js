@@ -1,3 +1,5 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
 import { intersection as intersectionPull, intersectionBy as intersectionByPull } from "@undercut/pull/src/operations/intersection.js";

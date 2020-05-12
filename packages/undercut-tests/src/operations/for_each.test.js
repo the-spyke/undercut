@@ -1,3 +1,5 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
 import { forEach as forEachPull } from "@undercut/pull/src/operations/for_each.js";

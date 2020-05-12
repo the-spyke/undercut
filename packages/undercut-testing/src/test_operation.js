@@ -1,3 +1,5 @@
+import { expect, jest } from "@jest/globals";
+
 function getOperationSpy(operationFactory, factoryArgs = null, callbackArgs = null, callbackPosition = 0) {
 	if (!Array.isArray(factoryArgs)) {
 		return { operation: operationFactory() };

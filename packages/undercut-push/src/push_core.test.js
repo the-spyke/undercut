@@ -1,3 +1,5 @@
+import { expect, test } from "@jest/globals";
+
 import { simulatePush } from "@undercut/testing";
 
 import { first } from "./operations/first.js";

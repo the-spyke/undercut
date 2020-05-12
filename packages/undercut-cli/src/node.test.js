@@ -1,3 +1,4 @@
+import { expect, test } from "@jest/globals";
 import { satisfies } from "semver";
 
 test(`Node.js version should be at least 10.13`, () => {

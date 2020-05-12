@@ -1,3 +1,5 @@
+import { expect, test } from "@jest/globals";
+
 import { parseImport } from "./index.js";
 
 test(`parseImports`, () => {

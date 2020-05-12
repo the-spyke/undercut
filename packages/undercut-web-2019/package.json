@@ -17,6 +17,7 @@
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
+    "@jest/globals": "^26.0.1",
     "@undercut/config": "^0.5.0",
     "@undercut/pull": "^0.5.0",
     "@undercut/push": "^0.5.0",

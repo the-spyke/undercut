@@ -5,8 +5,7 @@
 	},
 	"extends": [
 		"eslint:recommended",
-		"plugin:import/recommended",
-		"plugin:jest/recommended"
+		"plugin:import/recommended"
 	],
 	"globals": {
 		"Atomics": "readonly",
@@ -22,12 +21,23 @@
 	"overrides": [
 		{
 			"env": {
-				"jest": true
+				// Disable jest globals to use it only from imports.
+				"jest": false,
+				"jest/globals": false
 			},
+			"extends": [
+				"plugin:jest/recommended"
+			],
 			"files": [
 				"**/*.test.*.js",
 				"**/*.test.js"
-			]
+			],
+			"plugins": [
+				"jest"
+			],
+			"rules": {
+				"jest/expect-expect": "off"
+			}
 		},
 		{
 			"env": {
@@ -44,8 +54,7 @@
 		"sourceType": "module"
 	},
 	"plugins": [
-		"import",
-		"jest"
+		"import"
 	],
 	"root": true,
 	"rules": {
@@ -151,7 +160,6 @@
 				"SwitchCase": 1
 			}
 		],
-		"jest/expect-expect": "off",
 		"key-spacing": [
 			"error",
 			{

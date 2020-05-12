@@ -1,3 +1,5 @@
+import { expect, test } from "@jest/globals";
+
 import { noop } from "./function.js";
 
 import * as language from "./language.js";

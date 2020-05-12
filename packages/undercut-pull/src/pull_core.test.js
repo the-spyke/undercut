@@ -1,3 +1,5 @@
+import { expect, test } from "@jest/globals";
+
 import { simulatePull } from "@undercut/testing";
 
 import { identity } from "@undercut/utils/src/function.js";

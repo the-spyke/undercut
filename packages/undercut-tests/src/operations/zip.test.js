@@ -1,3 +1,5 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { testOperationPull, testOperationPush } from "@undercut/testing";
 
 import { zip as zipPull, zipWith as zipWithPull } from "@undercut/pull/src/operations/zip.js";

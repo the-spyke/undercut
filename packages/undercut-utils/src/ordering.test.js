@@ -1,3 +1,5 @@
+import { expect, test } from "@jest/globals";
+
 import * as compare from "./compare.js";
 
 import { asc, desc } from "./ordering.js";
