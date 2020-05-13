@@ -2,6 +2,8 @@
 
 `@undercut/cli` is a command line utility for data processing using `Undercut`'s Push Lines and any valid JavaScript expressions. It is a part of the larger [undercut](https://github.com/the-spyke/undercut) project.
 
+Please visit [undercut.js.org](https://undercut.js.org) for overview and documentation.
+
 ## Quicklinks
 
 - [Installation](#installation)
@@ -18,7 +20,7 @@ npm install --global @undercut/cli
 yarn global add @undercut/cli
 ```
 
-You may also install it locally, but don't forget to add `node_modules/.bin` to the `PATH`.
+You may also install it locally.
 
 ## Usage
 

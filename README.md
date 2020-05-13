@@ -15,38 +15,6 @@ JavaScript data processing pipelines and utilities. Use native Iterators/Generat
 - Lazy evaluation when possible
 - Tree shaking friendliness
 
-## Installation
-
-There are 3 main packages:
-
-- [`@undercut/pull`](https://www.npmjs.com/package/@undercut/pull) -- exports Pull Lines (Iterables).
-- [`@undercut/push`](https://www.npmjs.com/package/@undercut/push) -- exports Push Lines (Observers).
-- [`@undercut/utils`](https://www.npmjs.com/package/@undercut/utils) -- exports all the various JavaScript utilities.
-
-These packages are the intended way to use `Undercut`. They carry `stable ES Next` code. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and may be used in Node/Browser/microwave.
-
-Don't forget to check that `/node_modules/@undercut/` isn't excluded from compilation and `core-js@3` polyfill or analogue is in place.
-
-Package main entry points are stable, so any export removal/renaming is as a breaking change.
-
-```sh
-npm install @undercut/pull
-# or
-yarn add @undercut/pull
-```
-
-### Additional packages
-
-Several precompiled packages are available:
-
-- [`@undercut/cli`](https://www.npmjs.com/package/@undercut/cli) -- provides a command line interface for processing data with JavaScript and `undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. Works on Node.js 10.13 and upwards.
-- [`@undercut/node-10`](https://www.npmjs.com/package/@undercut/node-10) -- a precompiled CommonJS version for Node.js 10.13 and upwards. Requires stable polyfills from `core-js@3`.
-- [`@undercut/web-2019`](https://www.npmjs.com/package/@undercut/web-2019) -- a precompiled version for web browsers not older than `2019-01-01`. Creates `undercut` variable in the global scope, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
-
-### Updating `undercut`
-
-If you're upgrading `Undercut` to a newer version, please upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
-
 ## Usage
 
 ```js
@@ -63,9 +31,41 @@ const result = pullArray([
 console.log(result); // [8, 10, 14]
 ```
 
+## Installation
+
+There are 3 main packages:
+
+- [@undercut/pull](https://www.npmjs.com/package/@undercut/pull) -- provides Pull Lines (Iterables).
+- [@undercut/push](https://www.npmjs.com/package/@undercut/push) -- provides Push Lines (Observers).
+- [@undercut/utils](https://www.npmjs.com/package/@undercut/utils) -- provides various JavaScript language utilities.
+
+These packages are the intended way to use `Undercut`. They carry `stable ES Next` code in the `ESM` format. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and may be used in Node/Browser/microwave.
+
+Don't forget to check that `/node_modules/@undercut/` isn't excluded from compilation and `core-js@3` polyfill or analogue is in place.
+
+Package main entry points are stable, so any export removal/renaming is as a breaking change.
+
+```sh
+npm install @undercut/pull
+# or
+yarn add @undercut/pull
+```
+
+### Additional packages
+
+Several precompiled packages are available:
+
+- [@undercut/cli](https://www.npmjs.com/package/@undercut/cli) -- provides a command line interface for processing data with JavaScript and `undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. Works on Node.js 10.13 and upwards.
+- [@undercut/node-10](https://www.npmjs.com/package/@undercut/node-10) -- a precompiled CommonJS version for Node.js 10.13 and upwards. Requires stable polyfills from `core-js@3`.
+- [@undercut/web-2019](https://www.npmjs.com/package/@undercut/web-2019) -- a precompiled version for web browsers not older than `2019-01-01`. Creates `undercut` variable in the global scope, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
+
+### Updating `undercut`
+
+If you're upgrading `Undercut` to a newer version, please upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
+
 ## Concepts
 
-*\* Please visit the [website](https://undercut.js.org) for full documentation or look in the `docs` folder.*
+> Please visit [undercut.js.org](https://undercut.js.org) for full documentation or look in the [docs](docs/) folder.
 
 `Undercut` helps constructing pipelines for data processing. Instead of creating new concepts it leverages existing JavaScript protocols and features like [Iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) and [Generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
 
@@ -76,25 +76,49 @@ source ----> [ op_0 | op_1 | ... | op_N ] ----> target
                        pipeline
 ```
 
-Depending on the fact whether the `source` items are or aren't yet available you will have two different approaches: `pull` and `push`.
+Depending on the fact whether the `source` items are or aren't yet available you will have two different approaches: [pull](#pull) and [push](#push).
+
+### Pull
 
 If `source` items are available at the moment of execution, we can *pull* items from it one by one and process them synchronously. `Undercut` call this a `Pull Line`. It is created by combining a `source` and a `pipeline` into an `Iterable`. This `Iterable` may be passed around and used by any native ES construct like `for-of` loop to read the result. `Undercut` also provides a bunch of `target` helpers for one-line extracting results out of Iterables into common structures like arrays/objects/maps/etc.
 
-```text
-Pull Line -- pull items from an Iterable
+Pull Line -- pull items from an Iterable:
 
-( source + pipeline = Iterable )
+```js
+const source = [0, 1, 2, 3];
+const pipeline = [
+    append(4, 5),
+    compact(),
+    skip(2)
+];
+
+// source + pipeline = Iterable
+const iterable = pullLine(pipeline, source);
 ```
+
+Read more about [pull](https://undercut.js.org/docs/pull/overview).
+
+### Push
 
 If `source` items are **not** available at the moment of execution, we have to process items as they appear. We can do this by *pushing* items into a `Push Line`. It is created by combining a `pipeline` and a `target` into an `Observer`. `Observers` are convenient in use cases like reacting on a button click and may be passed around or used by several producers.
 
-```text
-Push line -- push items into an Observer
+Push line -- push items into an Observer:
 
-( pipeline + target = Observer )
+```js
+const target = toArray();
+const pipeline = [
+    append(4, 5),
+    compact(),
+    skip(2)
+];
+
+// pipeline + target = Observer
+const observer = pushLine(pipeline, target);
 ```
 
 Of course, you can process synchronous items with `Push Lines` too, but `Pull Lines` are easier to operate and write operations for.
+
+Read more about [push](https://undercut.js.org/docs/push/overview).
 
 ## License
 

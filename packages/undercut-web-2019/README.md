@@ -2,12 +2,38 @@
 
 A precompiled version of the [Undercut](https://github.com/the-spyke/undercut) packages for [web browsers not older than 2019-01-01](https://browserl.ist/?q=since+2019%2C+edge+>%3D+18%2C+not+android+>+0). Contains `pull`, `push`, and `utils` entries. An easy way to try `Undercut` when your project has no build step or you're doing a quick experiment.
 
-## Quicklinks
+Please visit [undercut.js.org](https://undercut.js.org) for overview and documentation.
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Documentation](https://github.com/the-spyke/undercut)
-- [License](#license)
+## Usage
+
+Usage is similar to the original `ESM` packages.
+
+Import desired entry first:
+
+```js
+// When using as a script tag and its global variable:
+const { pullArray, filter, map, skip } = undercut.pull;
+// When using as a CommonJS module:
+const { pullArray, filter, map, skip } = require("@undercut/web-2019/pull");
+// When using as an AMD module:
+require(["scripts/undercut/pull.js"], function ({ pullArray, filter, map, skip }) {
+    /* Your code */
+});
+```
+
+And then use it in your code:
+
+```js
+const source = [1, 2, 3, 4, 5, 6, 7];
+
+const result = pullArray([
+    skip(2),
+    filter(x => x % 3),
+    map(x => x * 2) // Will be executed only 3 times.
+], source);
+
+console.log(result); // [8, 10, 14]
+```
 
 ## Installation
 
@@ -45,39 +71,6 @@ You need to import `core-js@3` (or another similar polyfill) before you import `
 ### Updating
 
 If you're upgrading `Undercut` to a newer version, please upgrade `core-js` to the latest versions too.
-
-## Usage
-
-Usage is similar to original packages. Please check the [GitHub repo](https://github.com/the-spyke/undercut) for more detailed documentation and examples.
-
-Import desired entry first:
-
-```js
-// When using as a script tag and its global variable:
-const { pullArray, filter, map, skip } = undercut.pull;
-// When using as a CommonJS module:
-const { pullArray, filter, map, skip } = require("@undercut/web-2019/pull");
-// When using as an AMD module:
-require(["scripts/undercut/pull.js"], function ({ pullArray, filter, map, skip }) {
-    /* Your code */
-});
-```
-
-And then use it in your code:
-
-```js
-const source = [1, 2, 3, 4, 5, 6, 7];
-
-const result = pullArray([
-    skip(2),
-    filter(x => x % 3),
-    map(x => x * 2) // Will be executed only 3 times.
-], source);
-
-console.log(result); // [8, 10, 14]
-```
-
-## [Documentation](https://github.com/the-spyke/undercut)
 
 ## License
 
