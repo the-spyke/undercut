@@ -2,16 +2,18 @@
 	"env": {
 		"browser": true
 	},
+	"extends": [
+		"plugin:react/recommended",
+		"plugin:react-hooks/recommended"
+	],
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
 		}
 	},
 	"plugins": [
-		"react"
-	],
-	"extends": [
-		"plugin:react/recommended"
+		"react",
+		"react-hooks"
 	],
 	"rules": {
 		"import/no-unresolved": [
@@ -23,5 +25,10 @@
 				]
 			}
 		]
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
 	}
 }
