@@ -55,7 +55,7 @@ module.exports = {
 	},
 	presets: [
 		[
-			`@docusaurus/preset-classic`,
+			require.resolve(`@docusaurus/preset-classic`),
 			{
 				docs: {
 					editUrl: `https://github.com/the-spyke/undercut/edit/master/docs/`,

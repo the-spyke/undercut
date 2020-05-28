@@ -22,9 +22,9 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.54",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.54",
-    "eslint": "^7.0.0"
+    "@docusaurus/core": "^2.0.0-alpha.56",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.56",
+    "eslint": "^7.1.0"
   },
   "browserslist": {
     "production": [
