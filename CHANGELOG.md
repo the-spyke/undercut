@@ -8,6 +8,10 @@ The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 *Changes that have landed in "master" but are not yet released.*
 
+## v0.5.1 (2020-05-30)
+
+Updated `readme` files and package metadata.
+
 ## v0.5.0 (2020-01-08)
 
 `Undercut` moved away from a single package to a set of independent scoped packages:

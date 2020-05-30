@@ -1,6 +1,6 @@
 {
   "name": "@undercut/pull",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Undercut pull pipelines",
   "author": "Anton Alexandrenok",
   "license": "MIT",
@@ -15,14 +15,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "@undercut/utils": "^0.5.0"
+    "@undercut/utils": "^0.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
     "@jest/globals": "^26.0.1",
-    "@undercut/config": "^0.5.0",
-    "@undercut/testing": "^0.5.0",
+    "@undercut/config": "^0.5.1",
+    "@undercut/testing": "^0.5.1",
     "babel-jest": "^26.0.1",
     "core-js": "^3.6.5",
     "eslint": "^7.1.0",

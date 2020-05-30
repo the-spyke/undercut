@@ -1,6 +1,6 @@
 {
   "name": "@undercut/website",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Website for undercut",
   "author": "Anton Alexandrenok",
   "license": "MIT",
@@ -24,9 +24,9 @@
   "devDependencies": {
     "@docusaurus/core": "^2.0.0-alpha.56",
     "@docusaurus/preset-classic": "^2.0.0-alpha.56",
-	"eslint": "^7.1.0",
-	"eslint-plugin-react": "^7.20.0",
-	"eslint-plugin-react-hooks": "^4.0.4"
+    "eslint": "^7.1.0",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4"
   },
   "browserslist": {
     "production": [
