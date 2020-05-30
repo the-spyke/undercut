@@ -1,7 +1,7 @@
 {
   "name": "@undercut/web-2019",
   "version": "0.5.0",
-  "description": "Precompiled version of the undercut library for browsers newer than 2019-01-01",
+  "description": "Precompiled version of the Undercut library for browsers",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
@@ -36,6 +36,7 @@
     "./push": "./push.js",
     "./utils": "./utils.js"
   },
+  "homepage": "https://undercut.js.org/",
   "repository": {
     "type": "git",
     "url": "https://github.com/the-spyke/undercut",
@@ -54,17 +55,23 @@
   "keywords": [
     "array",
     "browser",
+    "collection",
     "data",
+    "deep",
+    "filter",
+    "generator",
     "iterable",
-    "iteration",
     "iterator",
     "itertools",
     "lazy",
     "linq",
     "lodash",
+    "map",
+    "observer",
+    "pipe",
     "pipeline",
+    "reduce",
     "undercut",
-    "underscore",
-    "util"
+    "underscore"
   ]
 }

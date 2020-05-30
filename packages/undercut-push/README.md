@@ -46,7 +46,7 @@ yarn add @undercut/push
 
 ### Updating
 
-If you're upgrading `undercut` to a newer version, please upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
+If you're upgrading `Undercut` to a newer version, please update `@babel/preset-env` and `core-js` packages to the latest versions too.
 
 ## License
 

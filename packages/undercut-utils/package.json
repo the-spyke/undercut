@@ -1,7 +1,7 @@
 {
   "name": "@undercut/utils",
   "version": "0.5.0",
-  "description": "Utilities part of the undercut library",
+  "description": "Undercut utilities",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
@@ -25,6 +25,7 @@
     "jest": "^26.0.1",
     "jest-junit": "^10.0.0"
   },
+  "homepage": "https://undercut.js.org/",
   "repository": {
     "type": "git",
     "url": "https://github.com/the-spyke/undercut",
@@ -39,11 +40,7 @@
     "README.md"
   ],
   "keywords": [
-    "array",
-    "iterable",
-    "iteration",
-    "iterator",
-    "itertools",
+    "esm",
     "lodash",
     "undercut",
     "underscore",

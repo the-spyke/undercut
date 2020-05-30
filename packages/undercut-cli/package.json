@@ -1,7 +1,7 @@
 {
   "name": "@undercut/cli",
   "version": "0.5.0",
-  "description": "Process data with the 'undercut' and JavaScript in a shell",
+  "description": "Process data with the Undercut and JavaScript in a shell",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
@@ -37,6 +37,7 @@
     "jest-junit": "^10.0.0",
     "semver": "^7.3.2"
   },
+  "homepage": "https://undercut.js.org/",
   "repository": {
     "type": "git",
     "url": "https://github.com/the-spyke/undercut",
@@ -53,13 +54,16 @@
   ],
   "keywords": [
     "cli",
+    "console",
     "data",
     "filter",
+    "map",
     "pipe",
-    "pipeline",
+    "reduce",
+    "shell",
     "stdin",
     "stdout",
-    "undercut",
-    "util"
+    "termial",
+    "undercut"
   ]
 }

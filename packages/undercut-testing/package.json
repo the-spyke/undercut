@@ -25,10 +25,5 @@
     "eslint": "^7.1.0",
     "jest": "^26.0.1",
     "jest-junit": "^10.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/the-spyke/undercut",
-    "directory": "packages/undercut-testing"
   }
 }

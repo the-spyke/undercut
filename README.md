@@ -57,11 +57,11 @@ yarn add @undercut/pull
 
 Several precompiled packages are available:
 
-- [@undercut/cli](https://www.npmjs.com/package/@undercut/cli) -- provides a command line interface for processing data with JavaScript and `undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. Works on Node.js 10.13 and upwards.
+- [@undercut/cli](https://www.npmjs.com/package/@undercut/cli) -- provides a command line interface for processing data with JavaScript and `Undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. Works on Node.js 10.13 and upwards.
 - [@undercut/node-10](https://www.npmjs.com/package/@undercut/node-10) -- a precompiled CommonJS version for Node.js 10.13 and upwards. Requires stable polyfills from `core-js@3`.
 - [@undercut/web-2019](https://www.npmjs.com/package/@undercut/web-2019) -- a precompiled version for web browsers not older than `2019-01-01`. Creates `undercut` variable in the global scope, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
 
-### Updating `undercut`
+### Updating
 
 If you're upgrading `Undercut` to a newer version, please upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
 

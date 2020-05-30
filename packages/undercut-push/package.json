@@ -29,6 +29,7 @@
     "jest": "^26.0.1",
     "jest-junit": "^10.0.0"
   },
+  "homepage": "https://undercut.js.org/",
   "repository": {
     "type": "git",
     "url": "https://github.com/the-spyke/undercut",
@@ -44,17 +45,24 @@
   ],
   "keywords": [
     "array",
+    "collection",
     "data",
+    "deep",
+    "esm",
+    "filter",
+    "generator",
     "iterable",
-    "iteration",
     "iterator",
     "itertools",
     "lazy",
     "linq",
     "lodash",
+    "map",
+    "observer",
+    "pipe",
     "pipeline",
+    "reduce",
     "undercut",
-    "underscore",
-    "util"
+    "underscore"
   ]
 }
