@@ -1,6 +1,6 @@
 # ✂ undercut ✂
 
-[![downloads](https://img.shields.io/npm/dm/@undercut/utils)](https://www.npmjs.com/package/@undercut/utils)
+[![downloads](https://img.shields.io/npm/dm/@undercut/pull)](https://www.npmjs.com/package/@undercut/pull)
 [![circleci](https://circleci.com/gh/the-spyke/undercut.svg?style=shield)](https://circleci.com/gh/the-spyke/undercut)
 [![codecov](https://codecov.io/gh/the-spyke/undercut/branch/master/graph/badge.svg)](https://codecov.io/gh/the-spyke/undercut)
 [![license](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
