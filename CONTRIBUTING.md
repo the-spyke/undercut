@@ -48,20 +48,20 @@ The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 Commit types:
 
-- `fix` -- a bug fix.
-- `feature` -- a new feature.
-- `refactor` -- code refactoring: big/structural changes without adding new features or fixing bugs.
-- `polish` -- code style, typos, and other small changes not affecting functionality.
 - `chore` -- build scripts, infrastructure, configuration, dependencies, and maintenance tasks.
 - `docs` -- documentation related changes.
+- `feature` -- a new feature.
+- `fix` -- a bug fix.
 - `perf` -- performance related changes (hopefully, an improvement).
-- `test` -- changes in tests.
+- `polish` -- code style, typos, and other small changes not affecting functionality.
+- `refactor` -- code refactoring: big/structural changes without adding new features or fixing bugs.
+- `release` -- release related changes and version bumps.
+- `tests` -- changes in tests.
 
 Scope types:
 
 - Package related: `cli`, `pull`, `push`, `utils`.
 - `deps` -- changes in dependencies and updates.
-- `release` -- release related changes and version bumps.
 - any other that makes sence.
 
 ## Linting
