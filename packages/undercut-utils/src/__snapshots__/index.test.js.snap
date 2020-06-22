@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Exports of the main entry should be stable 1`] = `
+exports[`Exports of the main "utils" entry should be stable 1`] = `
 Array [
   "Cohort",
   "abort",
