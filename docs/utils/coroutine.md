@@ -1,5 +1,5 @@
 ---
-title: Coroutine Utils
+title: Coroutine Utilities
 ---
 
 - `Cohort` -- a helper class to group several coroutines (iterables, observers, etc) and abort/close them together. It has some flags to check useful in the `close` callback. See examples in `push` operations code.

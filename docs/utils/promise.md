@@ -1,5 +1,5 @@
 ---
-title: Promise Utils
+title: Promise Utilities
 ---
 
 - `delay(promise, time) => Promise` -- returns a new Promise that waits `time` more miliseconds after the `promise` fulfills returning its result.

@@ -1,5 +1,5 @@
 ---
-title: Iterable Utils
+title: Iterable Utilities
 ---
 
 - `createIterable(function) => Iterable` -- makes an `Iterable` from a provided function. It could be a generator or a factory, but must return a new `Iterator` every time.

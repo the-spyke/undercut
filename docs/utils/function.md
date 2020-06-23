@@ -1,5 +1,5 @@
 ---
-title: Functions
+title: Function Utilities
 ---
 
 - `getDoneItem(value) => IteratorResult` -- returns an IteratorResult with `done` set to `true`.

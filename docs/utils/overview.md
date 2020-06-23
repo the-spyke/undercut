@@ -1,8 +1,8 @@
 ---
-title: Utils Overview
+title: Utilities Overview
 ---
 
-`@undercut/utils` package provides various JavaScript utilities.
+`@undercut/utils` package provides generic JavaScript utilities for objects/promises/comparison/etc.
 
 ## Installation
 
