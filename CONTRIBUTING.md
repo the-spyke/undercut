@@ -58,10 +58,11 @@ Commit types:
 - `release` -- release related changes and version bumps.
 - `tests` -- changes in tests.
 
-Scope types:
+Common scopes:
 
 - Package related: `cli`, `pull`, `push`, `utils`.
 - `deps` -- changes in dependencies and updates.
+- `website` -- changes related to the website.
 - any other that makes sence.
 
 ## Linting

@@ -31,6 +31,7 @@ module.exports = {
 			`utils/function`,
 			`utils/iterable`,
 			`utils/language`,
+			`utils/object`,
 			`utils/ordering`,
 			`utils/promise`,
 		],
