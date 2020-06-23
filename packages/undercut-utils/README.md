@@ -1,8 +1,8 @@
 # @undercut/utils
 
-This package provides various JavaScript utilities and is a part of the larger [Undercut](https://github.com/the-spyke/undercut) project.
+Generic JavaScript utilities for objects/promises/comparison/etc.
 
-Please visit [undercut.js.org](https://undercut.js.org) for overview and documentation.
+The package is a part of the larger [Undercut](https://github.com/the-spyke/undercut) project. Please visit [undercut.js.org](https://undercut.js.org) for overview and documentation.
 
 ## Usage
 

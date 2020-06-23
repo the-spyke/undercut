@@ -1,5 +1,5 @@
 ---
-title: Language Utils
+title: Language Utilities
 ---
 
 - `hasOwnProps(value) => boolean` -- returns `true` if the `value` is an object having own properties, `false` otherwise.
