@@ -18,7 +18,7 @@ module.exports = {
 			links: [
 				{ to: `docs/introduction`, label: `Docs`, position: `left` },
 				{
-					href: `https://dev.to/t/undercutjs`,
+					href: `https://dev.to/t/undercutjs/latest`,
 					label: `Blog`,
 					position: `left`,
 				},
