@@ -1,29 +1,27 @@
-import { describe, expect, test } from "@jest/globals";
+import { expect, test } from "@jest/globals";
 
 import { createBySpec } from "@undercut/testing";
 import { isIterable, isNumberValue, isString, noop } from "@undercut/utils";
 
-import * as pull from "@undercut/pull/src/operations/flat_map.js";
-import * as push from "@undercut/push/src/operations/flat_map.js";
+export function flatMap(type, flatMap) {
+	const bySpec = createBySpec(type, flatMap);
 
-describe(`flatMap`, () => {
-	describe.each([
-		[`pull`, pull.flatMap],
-		[`push`, push.flatMap],
-	])(`%s`, (type, flatMap) => {
-		const bySpec = createBySpec(type, flatMap);
+	test(`should throw on invalid or missing args`, () => {
+		expect(() => flatMap()).toThrow();
+		expect(() => flatMap(1)).toThrow();
+		expect(() => flatMap(noop, 1)).toThrow();
+	});
 
-		test(`should throw on invalid or missing args`, () => {
-			expect(() => flatMap()).toThrow();
-			expect(() => flatMap(1)).toThrow();
-			expect(() => flatMap(noop, 1)).toThrow();
-		});
-		test(`should work without mapper`, () => bySpec({
+	test(`should work without mapper`, () => {
+		bySpec({
 			args: [Array.isArray],
 			source: [[7], 2, 4, [[5]], `test`],
 			target: [7, 2, 4, 5, `test`],
-		}));
-		test(`should pass item, index, depth into the predicate`, () => bySpec({
+		});
+	});
+
+	test(`should pass item, index, depth into the predicate`, () => {
+		bySpec({
 			args: [Array.isArray],
 			source: [[7], 2, 4, [false, [5]], `test`],
 			callbackArgs: [
@@ -37,8 +35,11 @@ describe(`flatMap`, () => {
 				[5, 0, 2],
 				[`test`, 4, 0],
 			],
-		}));
-		test(`should pass item, index, depth into the mapper`, () => bySpec({
+		});
+	});
+
+	test(`should pass item, index, depth into the mapper`, () => {
+		bySpec({
 			args: [Array.isArray, x => x],
 			source: [[7], 2, 4, [false, [5]], `test`],
 			callbackPosition: 1,
@@ -53,27 +54,36 @@ describe(`flatMap`, () => {
 				[5, 0, 2],
 				[`test`, 4, 0],
 			],
-		}));
-		test(`should flatten only items for which predicate has returned true`, () => bySpec({
+		});
+	});
+
+	test(`should flatten only items for which predicate has returned true`, () => {
+		bySpec({
 			args: [item => isString(item) && item.length > 1],
 			source: [[7], 2, 4, [false, [5]], `test`],
 			target: [[7], 2, 4, [false, [5]], `t`, `e`, `s`, `t`],
-		}));
-		test(`should map all the items independently of the predicate's return value`, () => bySpec({
+		});
+	});
+
+	test(`should map all the items independently of the predicate's return value`, () => {
+		bySpec({
 			args: [
 				(item, index, depth) => Array.isArray(item) && depth < 1,
 				item => isNumberValue(item) ? item + 0.5 : item
 			],
 			source: [[7], 2, 4, [false, [5]], `test`],
 			target: [7.5, 2.5, 4.5, false, [5], `test`],
-		}));
-		test(`should work with any iterable items`, () => bySpec({
+		});
+	});
+
+	test(`should work with any iterable items`, () => {
+		bySpec({
 			args: [
 				isIterable,
 				item => Array.isArray(item) ? item.values() : item
 			],
 			source: [[7, [[]]], 2, 4, [false, [5], new Map()], new Set([9, 0])],
 			target: [7, 2, 4, false, 5, 9, 0],
-		}));
+		});
 	});
-});
+}

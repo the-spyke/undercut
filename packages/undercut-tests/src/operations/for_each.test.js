@@ -1,28 +1,26 @@
-import { describe, expect, test } from "@jest/globals";
+import { expect, test } from "@jest/globals";
 
-import { testOperationPull, testOperationPush } from "@undercut/testing";
+import { createTestOperation } from "@undercut/testing";
 
-import { forEach as forEachPull } from "@undercut/pull/src/operations/for_each.js";
-import { forEach as forEachPush } from "@undercut/push/src/operations/for_each.js";
+export function forEach(type, forEach) {
+	const testOperation = createTestOperation(type);
 
-function testForEach(testOperation, forEach) {
-	expect(() => forEach()).toThrow();
-
-	testOperation(forEach, {
-		args: [() => true],
-		source: [],
-		target: [],
-		callbackArgs: []
+	test(`should throw on ivalid arguments`, () => {
+		expect(() => forEach()).toThrow();
 	});
-	testOperation(forEach, {
-		args: [() => true],
-		source: [undefined, false, 7],
-		target: [undefined, false, 7],
-		callbackArgs: [[undefined, 0], [false, 1], [7, 2]]
+
+	test(`should work [legacy]`, () => {
+		testOperation(forEach, {
+			args: [() => true],
+			source: [],
+			target: [],
+			callbackArgs: []
+		});
+		testOperation(forEach, {
+			args: [() => true],
+			source: [undefined, false, 7],
+			target: [undefined, false, 7],
+			callbackArgs: [[undefined, 0], [false, 1], [7, 2]]
+		});
 	});
 }
-
-describe(`forEach`, () => {
-	test(`pull`, () => testForEach(testOperationPull, forEachPull));
-	test(`push`, () => testForEach(testOperationPush, forEachPush));
-});

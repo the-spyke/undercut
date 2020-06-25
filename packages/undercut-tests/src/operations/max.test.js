@@ -1,38 +1,34 @@
-import { describe, test } from "@jest/globals";
+import { test } from "@jest/globals";
 
-import { testOperationPull, testOperationPush } from "@undercut/testing";
+import { createTestOperation } from "@undercut/testing";
 
-import { max as maxPull } from "@undercut/pull/src/operations/max.js";
-import { max as maxPush } from "@undercut/push/src/operations/max.js";
+export function max(type, max) {
+	const testOperation = createTestOperation(type);
 
-function testMax(testOperation, max) {
-	testOperation(max, {
-		source: [],
-		target: []
-	});
-	testOperation(max, {
-		source: [1],
-		target: [1]
-	});
-	testOperation(max, {
-		source: [0],
-		target: [0]
-	});
-	testOperation(max, {
-		source: [-1],
-		target: [-1]
-	});
-	testOperation(max, {
-		source: [-4, 1, 3, 5],
-		target: [5]
-	});
-	testOperation(max, {
-		source: [1, -3, -5],
-		target: [1]
+	test(`should work [legacy]`, () => {
+		testOperation(max, {
+			source: [],
+			target: []
+		});
+		testOperation(max, {
+			source: [1],
+			target: [1]
+		});
+		testOperation(max, {
+			source: [0],
+			target: [0]
+		});
+		testOperation(max, {
+			source: [-1],
+			target: [-1]
+		});
+		testOperation(max, {
+			source: [-4, 1, 3, 5],
+			target: [5]
+		});
+		testOperation(max, {
+			source: [1, -3, -5],
+			target: [1]
+		});
 	});
 }
-
-describe(`max`, () => {
-	test(`pull`, () => testMax(testOperationPull, maxPull));
-	test(`push`, () => testMax(testOperationPush, maxPush));
-});

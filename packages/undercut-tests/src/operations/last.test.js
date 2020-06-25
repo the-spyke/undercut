@@ -1,30 +1,26 @@
-import { describe, test } from "@jest/globals";
+import { test } from "@jest/globals";
 
-import { testOperationPull, testOperationPush } from "@undercut/testing";
+import { createTestOperation } from "@undercut/testing";
 
-import { last as lastPull } from "@undercut/pull/src/operations/last.js";
-import { last as lastPush } from "@undercut/push/src/operations/last.js";
+export function last(type, last) {
+	const testOperation = createTestOperation(type);
 
-function testLast(testOperation, last) {
-	testOperation(last, {
-		source: [],
-		target: []
-	});
-	testOperation(last, {
-		source: [1],
-		target: [1]
-	});
-	testOperation(last, {
-		source: [undefined],
-		target: [undefined]
-	});
-	testOperation(last, {
-		source: [2, {}, undefined, 4, -3, null],
-		target: [null]
+	test(`should work [legacy]`, () => {
+		testOperation(last, {
+			source: [],
+			target: []
+		});
+		testOperation(last, {
+			source: [1],
+			target: [1]
+		});
+		testOperation(last, {
+			source: [undefined],
+			target: [undefined]
+		});
+		testOperation(last, {
+			source: [2, {}, undefined, 4, -3, null],
+			target: [null]
+		});
 	});
 }
-
-describe(`last`, () => {
-	test(`pull`, () => testLast(testOperationPull, lastPull));
-	test(`push`, () => testLast(testOperationPush, lastPush));
-});

@@ -1,32 +1,30 @@
-import { describe, expect, test } from "@jest/globals";
+import { expect, test } from "@jest/globals";
 
-import { testOperationPull, testOperationPush } from "@undercut/testing";
+import { createTestOperation } from "@undercut/testing";
 
-import { map as mapPull } from "@undercut/pull/src/operations/map.js";
-import { map as mapPush } from "@undercut/push/src/operations/map.js";
+export function map(type, map) {
+	const testOperation = createTestOperation(type);
 
-function testMap(testOperation, map) {
-	expect(() => map()).toThrow();
-
-	testOperation(map, {
-		args: [() => 3],
-		source: [],
-		target: []
+	test(`should throw on ivalid arguments`, () => {
+		expect(() => map()).toThrow();
 	});
-	testOperation(map, {
-		args: [() => 3],
-		source: [1, 2],
-		target: [3, 3],
-		callbackArgs: [[1, 0], [2, 1]]
-	});
-	testOperation(map, {
-		args: [x => x * 2],
-		source: [1, -1, 3],
-		target: [2, -2, 6]
+
+	test(`should work [legacy]`, () => {
+		testOperation(map, {
+			args: [() => 3],
+			source: [],
+			target: []
+		});
+		testOperation(map, {
+			args: [() => 3],
+			source: [1, 2],
+			target: [3, 3],
+			callbackArgs: [[1, 0], [2, 1]]
+		});
+		testOperation(map, {
+			args: [x => x * 2],
+			source: [1, -1, 3],
+			target: [2, -2, 6]
+		});
 	});
 }
-
-describe(`map`, () => {
-	test(`pull`, () => testMap(testOperationPull, mapPull));
-	test(`push`, () => testMap(testOperationPush, mapPush));
-});

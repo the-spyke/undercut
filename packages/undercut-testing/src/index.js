@@ -30,6 +30,13 @@ export function simulatePush(operation, source) {
 export const testOperationPull = testOperation.bind(undefined, simulatePull);
 export const testOperationPush = testOperation.bind(undefined, simulatePush);
 
+export function createTestOperation(type) {
+	if (type === `pull`) return testOperationPull;
+	if (type === `push`) return testOperationPush;
+
+	throw new Error(`Unknown operation type: ${type}`);
+}
+
 export const createBySpec = createBySpecFactory({
 	pull: {
 		simulate: simulatePull,

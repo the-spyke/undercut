@@ -1,42 +1,40 @@
-import { describe, expect, test } from "@jest/globals";
+import { expect, test } from "@jest/globals";
 
-import { testOperationPull, testOperationPush } from "@undercut/testing";
+import { createTestOperation } from "@undercut/testing";
 
-import { some as somePull } from "@undercut/pull/src/operations/some.js";
-import { some as somePush } from "@undercut/push/src/operations/some.js";
+export function some(type, some) {
+	const testOperation = createTestOperation(type);
 
-function testSome(testOperation, some) {
-	expect(() => some()).toThrow();
+	test(`should throw on ivalid arguments`, () => {
+		expect(() => some()).toThrow();
+	});
 
-	testOperation(some, {
-		args: [() => false],
-		source: [3, 4],
-		target: [false],
-		callbackArgs: [[3, 0], [4, 1]]
-	});
-	testOperation(some, {
-		args: [x => x > 5],
-		source: [],
-		target: [false]
-	});
-	testOperation(some, {
-		args: [x => x > 5],
-		source: [1],
-		target: [false]
-	});
-	testOperation(some, {
-		args: [x => x > 5],
-		source: [2, 5],
-		target: [false]
-	});
-	testOperation(some, {
-		args: [x => x > 5],
-		source: [1, 7, 2, 5],
-		target: [true]
+	test(`should work [legacy]`, () => {
+		testOperation(some, {
+			args: [() => false],
+			source: [3, 4],
+			target: [false],
+			callbackArgs: [[3, 0], [4, 1]]
+		});
+		testOperation(some, {
+			args: [x => x > 5],
+			source: [],
+			target: [false]
+		});
+		testOperation(some, {
+			args: [x => x > 5],
+			source: [1],
+			target: [false]
+		});
+		testOperation(some, {
+			args: [x => x > 5],
+			source: [2, 5],
+			target: [false]
+		});
+		testOperation(some, {
+			args: [x => x > 5],
+			source: [1, 7, 2, 5],
+			target: [true]
+		});
 	});
 }
-
-describe(`some`, () => {
-	test(`pull`, () => testSome(testOperationPull, somePull));
-	test(`push`, () => testSome(testOperationPush, somePush));
-});
