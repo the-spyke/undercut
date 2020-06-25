@@ -9,6 +9,7 @@ JavaScript data processing pipelines and utilities. Use native JS features witho
 
 - Based on existing JS protocols and language features
 - Balanced API: not too imperative, not too functional
+- Various language utilities to use instead of Lodash
 - Easy operation extensibility and composability
 - Pure ES Modules with Node 14 loader compliance
 - Raw code in the packages + precompiled versions
@@ -37,13 +38,13 @@ console.log(result); // [8, 10, 14]
 
 There are 3 main packages:
 
-- [@undercut/pull](https://www.npmjs.com/package/@undercut/pull) -- provides Pull Lines (Iterables).
-- [@undercut/push](https://www.npmjs.com/package/@undercut/push) -- provides Push Lines (Observers).
-- [@undercut/utils](https://www.npmjs.com/package/@undercut/utils) -- provides various JavaScript language utilities.
+- [@undercut/pull](https://www.npmjs.com/package/@undercut/pull) -- Pull Lines (Iterables).
+- [@undercut/push](https://www.npmjs.com/package/@undercut/push) -- Push Lines (Observers).
+- [@undercut/utils](https://www.npmjs.com/package/@undercut/utils) -- Various JavaScript language utilities.
 
-These packages are the intended way to use `Undercut` and carry `stable ES Next` code in the `ESM` format. It is very convenient for apps using Webpack/Babel/etc, and will help to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in its codebase. The code is universal and may be used in Node/Browser/microwave. Don't forget to check that `/node_modules/@undercut/` isn't excluded from compilation and `core-js@3` polyfill or analogue is in place.
+These packages are the intended way to use `Undercut` and carry `stable ES Next` code in the `ESM` format. It is very convenient for apps using Webpack/Babel/etc, and helps to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in their codebase. The code itself is universal and may be used in Node/Browser/Microwave. Your environment may require `core-js@3` or similar polyfill to use them raw.
 
-If you're scared of written above, checkout our [CodeSandbox demo](https://codesandbox.io/s/undercut-demo-1up46?fontsize=14&hidenavigation=1&moduleview=1&theme=dark&previewwindow=console) on how easy it's to use.
+Checkout our [CodeSandbox demo](https://codesandbox.io/s/undercut-demo-1up46?fontsize=14&hidenavigation=1&moduleview=1&theme=dark&previewwindow=console) on how easy it is to use.
 
 Package main entry points are stable, so any export removal/renaming is as a breaking change.
 
@@ -57,9 +58,9 @@ yarn add @undercut/pull
 
 Several precompiled packages are available:
 
-- [@undercut/cli](https://www.npmjs.com/package/@undercut/cli) -- provides a command line interface for processing data with JavaScript and `Undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. Works on Node.js 10.13 and upwards.
-- [@undercut/node-10](https://www.npmjs.com/package/@undercut/node-10) -- a precompiled CommonJS version for Node.js 10.13 and upwards. Requires stable polyfills from `core-js@3`.
-- [@undercut/web-2019](https://www.npmjs.com/package/@undercut/web-2019) -- a precompiled version for web browsers not older than `2019-01-01`. Creates `undercut` variable in the global scope, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
+- [@undercut/cli](https://www.npmjs.com/package/@undercut/cli) -- A command line interface for processing data with JavaScript and `Undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. Works on Node.js 10.13 and upwards.
+- [@undercut/node-10](https://www.npmjs.com/package/@undercut/node-10) -- A precompiled CommonJS version for Node.js 10.13 and upwards. Requires stable polyfills from `core-js@3`.
+- [@undercut/web-2019](https://www.npmjs.com/package/@undercut/web-2019) -- A precompiled version for web browsers not older than `2019-01-01`. Creates `undercut` variable in the global scope, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
 
 ### Updating
 
