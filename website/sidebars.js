@@ -6,6 +6,7 @@ module.exports = {
 			`introduction`,
 			`concepts`,
 			`packages`,
+			`faq`,
 		],
 		Operations: [
 			`operations/overview`,
