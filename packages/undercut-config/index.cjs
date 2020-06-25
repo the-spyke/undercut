@@ -13,6 +13,7 @@ const IGNORE_PATTERNS = [
 	`/coverage/`,
 	`/dist/`,
 	`/node_modules/`,
+	`\\.config\\.(c|m)?js`,
 ];
 
 module.exports = {

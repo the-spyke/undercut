@@ -1,0 +1,6 @@
+{
+	"rules": {
+		"jest/no-export": "off",
+		"jest/no-identical-title": "off"
+	}
+}

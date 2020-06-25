@@ -23,6 +23,7 @@
     "@jest/globals": "^26.0.1",
     "@undercut/config": "^0.5.1",
     "@undercut/testing": "^0.5.1",
+    "@undercut/tests": "^0.5.1",
     "babel-jest": "^26.0.1",
     "core-js": "^3.6.5",
     "eslint": "^7.1.0",

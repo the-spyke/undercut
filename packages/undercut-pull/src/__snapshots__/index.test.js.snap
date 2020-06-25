@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Exports of the main "pull" entry should be stable 1`] = `
+exports[`Pull exports of the main "pull" entry should be stable 1`] = `
 Array [
   "append",
   "average",

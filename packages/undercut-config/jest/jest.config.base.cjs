@@ -7,7 +7,8 @@ module.exports = {
 		`**/*.?(c|m)js`,
 	],
 	coveragePathIgnorePatterns: IGNORE_PATTERNS,
-	modulePathIgnorePatterns: IGNORE_PATTERNS,
+	coverageProvider: `v8`,
+	moduleFileExtensions: [`js`, `cjs`, `mjs`, `json`, `jsx`, `ts`, `tsx`, `node`],
 	testMatch: [
 		`**/*.test.*.?(c|m)js`,
 		`**/*.test.?(c|m)js`,

@@ -6,26 +6,18 @@
   "license": "MIT",
   "private": true,
   "type": "module",
+  "main": "src/index.js",
   "scripts": {
     "build": "echo 'Empty build step'",
     "clear": "rm -rf build dist",
     "dist": "echo 'This package doesn't support publishing!' && exit 1",
     "lint": "eslint --format='unix' '**/*.?(c|m)js'",
-    "test": "jest"
+    "test": "echo 'No tests in this package'"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.1",
-    "@babel/preset-env": "^7.10.1",
     "@jest/globals": "^26.0.1",
-    "@undercut/config": "^0.5.1",
-    "@undercut/pull": "^0.5.1",
-    "@undercut/push": "^0.5.1",
     "@undercut/testing": "^0.5.1",
     "@undercut/utils": "^0.5.1",
-    "babel-jest": "^26.0.1",
-    "core-js": "^3.6.5",
-    "eslint": "^7.1.0",
-    "jest": "^26.0.1",
-    "jest-junit": "^10.0.0"
+    "eslint": "^7.1.0"
   }
 }
