@@ -28,7 +28,8 @@
     "lerna": "^3.22.1"
   },
   "workspaces": [
-    "packages/*"
+	"packages/*",
+	"website"
   ],
   "repository": {
     "type": "git",
