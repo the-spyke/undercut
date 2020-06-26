@@ -18,17 +18,17 @@
     "@undercut/utils": "^0.5.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.1",
-    "@babel/preset-env": "^7.10.1",
-    "@jest/globals": "^26.0.1",
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@jest/globals": "^26.1.0",
     "@undercut/config": "^0.5.1",
     "@undercut/testing": "^0.5.1",
     "@undercut/tests": "^0.5.1",
-    "babel-jest": "^26.0.1",
+    "babel-jest": "^26.1.0",
     "core-js": "^3.6.5",
-    "eslint": "^7.1.0",
-    "jest": "^26.0.1",
-    "jest-junit": "^10.0.0"
+    "eslint": "^7.3.1",
+    "jest": "^26.1.0",
+    "jest-junit": "^11.0.1"
   },
   "homepage": "https://undercut.js.org/",
   "repository": {
