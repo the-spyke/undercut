@@ -30,5 +30,9 @@
   "workspaces": [
     "packages/*",
     "website"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/the-spyke/undercut"
+  }
 }
