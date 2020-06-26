@@ -1,6 +1,6 @@
 /* eslint-env react */
 
-import cx from "classnames";
+import clsx from "clsx";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -38,7 +38,7 @@ Feature.propTypes = {
 
 function Feature({ imageUrl, title, description }) {
 	return (
-		<div className={cx(`col col--4`, styles.feature)}>
+		<div className={clsx(`col col--4`, styles.feature)}>
 			<div className="text--center">
 				<img className={styles.featureImage} src={useBaseUrl(imageUrl)} alt={title} />
 			</div>
@@ -54,13 +54,13 @@ export default function Home() {
 
 	return (
 		<Layout title={siteConfig.title} description={siteConfig.tagline}>
-			<header className={cx(`hero hero--primary`, styles.heroBanner)}>
+			<header className={clsx(`hero hero--primary`, styles.heroBanner)}>
 				<div className="container">
 					<h1 className="hero__title">✂ undercut ✂</h1>
 					<p className="hero__subtitle">{siteConfig.tagline}</p>
 					<div className={styles.buttons}>
 						<Link
-							className={cx(`button button--outline button--secondary button--lg`, styles.getStarted)}
+							className={clsx(`button button--outline button--secondary button--lg`, styles.getStarted)}
 							to={useBaseUrl(`docs/introduction`)}
 						>
 							Get Started
