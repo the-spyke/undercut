@@ -7,7 +7,7 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "clear": "rm -rf .docusaurus build dist",
+    "clear": "rm -rf .docusaurus build dist node_modules",
     "build": "docusaurus build",
     "deploy": "docusaurus deploy",
     "dist": "rm -rf dist && mkdir dist && tar -czv -f 'dist/undercut-website.tgz' --transform='s/^build/package/' build",
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@docusaurus/core": "^2.0.0-alpha.56",
     "@docusaurus/preset-classic": "^2.0.0-alpha.56",
-    "eslint": "^7.1.0",
+    "eslint": "^7.3.1",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.4"
   },

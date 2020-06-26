@@ -15,9 +15,9 @@
     "test": "echo 'No tests in this package'"
   },
   "devDependencies": {
-    "@jest/globals": "^26.0.1",
+    "@jest/globals": "^26.1.0",
     "@undercut/testing": "^0.5.1",
     "@undercut/utils": "^0.5.1",
-    "eslint": "^7.1.0"
+    "eslint": "^7.3.1"
   }
 }
