@@ -1,6 +1,6 @@
 {
   "name": "@undercut/cli",
-  "version": "0.5.2",
+  "version": "0.5.1",
   "description": "Process data with the Undercut and JavaScript in a shell",
   "author": "Anton Alexandrenok",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@undercut/node-10": "^0.5.2",
+    "@undercut/node-10": "^0.5.1",
     "core-js": "^3.6.5",
     "yargs": "^15.3.1"
   },
@@ -30,7 +30,7 @@
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
     "@jest/globals": "^26.1.0",
-    "@undercut/config": "^0.5.2",
+    "@undercut/config": "^0.5.1",
     "babel-jest": "^26.1.0",
     "eslint": "^7.3.1",
     "jest": "^26.1.0",
