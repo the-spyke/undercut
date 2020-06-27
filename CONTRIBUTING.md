@@ -46,24 +46,28 @@ yarn install
 
 The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
-Commit types:
+Commit types are similar to [the Angular convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines) with slight modifications:
 
-- `chore` -- build scripts, infrastructure, configuration, dependencies, and maintenance tasks.
-- `docs` -- documentation related changes.
-- `feature` -- a new feature.
+- `chore` type is used for most maintenance changes.
+- `build` and `ci` types are moved to scopes.
+- `style` type is renamed to `polish`.
+
+Types:
+
+- `chore` -- build scripts, infrastructure, configuration, dependencies, and maintenance tasks (example scopes: build, ci, deps, release).
+- `docs` -- documentation only changes.
+- `feat` -- a new feature.
 - `fix` -- a bug fix.
-- `perf` -- performance related changes (hopefully, an improvement).
-- `polish` -- code style, typos, and other small changes not affecting functionality.
+- `perf` -- code performance related changes (hopefully, an improvement).
+- `polish` -- changes that do not affect the meaning of the code code (typos, white-space, formatting, missing semi-colons, etc).
 - `refactor` -- code refactoring: big/structural changes without adding new features or fixing bugs.
-- `release` -- release related changes and version bumps.
-- `tests` -- changes in tests.
+- `test` -- adding missing tests or correcting existing tests.
 
-Common scopes:
+Additional scopes:
 
 - Package related: `cli`, `pull`, `push`, `utils`.
-- `deps` -- changes in dependencies and updates.
 - `website` -- changes related to the website.
-- any other that makes sence.
+- any other that makes sense.
 
 ## Linting
 
@@ -89,11 +93,11 @@ Add `"--coverage"` to see test coverage.
 
 ## Build
 
-Build is done with the `"build"` script at an individual package level. Some projects doesn't have a `build` step right now, in this case there will be a message in terminal that build step is empty. If the build step isn't empty, built files go to the `build` directory in the respective package.
+Build is done with the `build` script at an individual package level. Some projects doesn't have a `build` step right now, in this case there will be a message in terminal that build step is empty. If the build step isn't empty, built files go to the `build` directory in the respective package.
 
 ## Dist
 
-The `"dist"` script produces tarballs ready for distribution or publishing in the `dist` folder.
+The `dist` script produces tarballs ready for distribution or publishing in the `dist` folder.
 
 ## Documentation
 
@@ -106,3 +110,5 @@ If you're adding a new document, don't forget to reference it on the website's [
 The [website](https://undercut.js.org) is built with [Docusaurus](https://docusaurus.io/) and published to the `gp-pages` branch and [GitHub Pages](https://pages.github.com) service.
 
 Algolia search configuration is located in [their repo](https://github.com/algolia/docsearch-configs/blob/master/configs/the-spyke_undercut.json).
+
+Custom domain is provided by [JS.ORG](https://js.org/) and configured in [their repo](https://github.com/js-org/js.org).
