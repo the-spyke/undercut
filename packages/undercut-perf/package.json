@@ -1,6 +1,6 @@
 {
   "name": "@undercut/perf",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Undercut performance tests",
   "author": "Anton Alexandrenok",
   "license": "MIT",
@@ -16,10 +16,10 @@
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
-    "@undercut/pull": "^0.5.1",
-    "@undercut/push": "^0.5.1",
-    "@undercut/testing": "^0.5.1",
-    "@undercut/utils": "^0.5.1",
+    "@undercut/pull": "^0.5.2",
+    "@undercut/push": "^0.5.2",
+    "@undercut/testing": "^0.5.2",
+    "@undercut/utils": "^0.5.2",
     "babel-jest": "^26.1.0",
     "benchmark": "^2.1.4",
     "core-js": "^3.6.5",

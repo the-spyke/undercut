@@ -1,6 +1,6 @@
 {
   "name": "@undercut/tests",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Undercut tests",
   "author": "Anton Alexandrenok",
   "license": "MIT",
@@ -16,8 +16,8 @@
   },
   "devDependencies": {
     "@jest/globals": "^26.1.0",
-    "@undercut/testing": "^0.5.1",
-    "@undercut/utils": "^0.5.1",
+    "@undercut/testing": "^0.5.2",
+    "@undercut/utils": "^0.5.2",
     "eslint": "^7.3.1"
   }
 }
