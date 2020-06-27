@@ -10,7 +10,7 @@
     "clear": ". scripts/clear.sh",
     "lerna": "lerna",
     "lint": "./scripts/lint.sh",
-    "set-version": "lerna version --no-git-tag-version --no-push",
+    "release": "lerna version --no-git-tag-version --no-private --no-push",
     "test": "jest"
   },
   "devDependencies": {
