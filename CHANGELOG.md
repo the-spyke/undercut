@@ -1,18 +1,13 @@
-# Changelog
+# Change Log
 
 All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
-
-## Unreleased
-
-*Changes that have landed in "master" but are not yet released.*
-
-## v0.5.1 (2020-05-30)
+## [0.5.1](https://github.com/the-spyke/undercut/compare/v0.5.0...v0.5.1) (2020-05-30)
 
 Updated `readme` files and package metadata.
 
-## v0.5.0 (2020-01-08)
+## [0.5.0](https://github.com/the-spyke/undercut/compare/v0.4.0...v0.5.0) (2020-01-08)
 
 `Undercut` moved away from a single package to a set of independent scoped packages:
 
@@ -68,7 +63,7 @@ There're also 3 new precompiled packages for browsers and Node:
 
 - `take` operations iteraited/observed a one excess item before exiting.
 
-## v0.4.0 (2019-10-15)
+## [0.4.0](https://github.com/the-spyke/undercut/compare/v0.3.0...v0.4.0) (2019-10-15)
 
 This release adds `Push Lines` and makes API more consistent in general.
 
@@ -96,7 +91,7 @@ This release adds `Push Lines` and makes API more consistent in general.
 
 - **[BREAKING]** Removed `reverseComparator` utility.
 
-## v0.3.0 (2019-07-15)
+## [0.3.0](https://github.com/the-spyke/undercut/compare/v0.2.0...v0.3.0) (2019-07-15)
 
 Dependencies were updated to resolve GitHub security alerts.
 
@@ -109,7 +104,7 @@ Dependencies were updated to resolve GitHub security alerts.
 
 - **[BREAKING]** Relaxed requirements for number arguments in `chunk()`, `flatten()`, `nth()`, `skip()`, and `take()`. Now they may take a fractional number. `flatten()` behavior is also more inline with `Array.prototype.flat()`.
 
-## v0.2.0 (2019-05-04)
+## [0.2.0](https://github.com/the-spyke/undercut/compare/v0.1.1...v0.2.0) (2019-05-04)
 
 ### Added
 
@@ -141,7 +136,7 @@ Dependencies were updated to resolve GitHub security alerts.
 
 - Fixed re-iteration support of pull lines.
 
-## v0.1.1 (2019-04-24)
+## [0.1.1](https://github.com/the-spyke/undercut/compare/v0.1.0...v0.1.1) (2019-04-24)
 
 This version works fine on Node 12.0.0 without ESM-to-CJS transpilation, just use `--experimental-modules` flag.
 
@@ -149,7 +144,7 @@ This version works fine on Node 12.0.0 without ESM-to-CJS transpilation, just us
 
 - Fixed module entry points
 
-## v0.1.0 (2019-04-22)
+## [0.1.0](https://github.com/the-spyke/undercut/compare/ab6e2ba...v0.1.0) (2019-04-22)
 
 Initial release.
 
