@@ -144,7 +144,7 @@ This version works fine on Node 12.0.0 without ESM-to-CJS transpilation, just us
 
 - Fixed module entry points
 
-## [0.1.0](https://github.com/the-spyke/undercut/compare/ab6e2ba...v0.1.0) (2019-04-22)
+## 0.1.0 (2019-04-22)
 
 Initial release.
 
