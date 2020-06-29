@@ -12,7 +12,7 @@
 		}
 	},
 	"changelogPreset": {
-		"name": "conventionalcommits",
+		"name": "conventional-changelog-conventionalcommits",
 		"commitUrlFormat": "{{host}}/{{owner}}/{{repository}}/commit/{{hash}}",
 		"compareUrlFormat": "{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}",
 		"header": "Changelog",
