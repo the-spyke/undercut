@@ -11,7 +11,7 @@
 			"PR: Revert :leftwards_arrow_with_hook:": ":leftwards_arrow_with_hook: Revert"
 		}
 	},
-	"changelogPreset": "@undercut/conventional-changelog",
+	"changelogPreset": "@undercut/conventional-changelog-preset",
 	"command": {
 		"publish": {
 			"message": "chore(release): %s"
