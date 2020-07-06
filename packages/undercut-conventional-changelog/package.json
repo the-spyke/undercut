@@ -1,0 +1,25 @@
+{
+  "name": "@undercut/conventional-changelog",
+  "version": "1.0.0",
+  "description": "TODO",
+  "private": true,
+  "author": "Anton Alexandrenok",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "test-windows": "mocha --timeout 30000"
+  },
+  "dependencies": {
+    "compare-func": "^2.0.0"
+  },
+  "homepage": "https://undercut.js.org/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/the-spyke/undercut",
+    "directory": "packages/undercut-conventional-changelog"
+  }
+}
