@@ -11,60 +11,7 @@
 			"PR: Revert :leftwards_arrow_with_hook:": ":leftwards_arrow_with_hook: Revert"
 		}
 	},
-	"changelogPreset": {
-		"name": "conventional-changelog-conventionalcommits",
-		"commitUrlFormat": "{{host}}/{{owner}}/{{repository}}/commit/{{hash}}",
-		"compareUrlFormat": "{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}",
-		"header": "Changelog",
-		"issuePrefixes": [
-			"#"
-		],
-		"issueUrlFormat": "{{host}}/{{owner}}/{{repository}}/issues/{{id}}",
-		"releaseCommitMessageFormat": "chore(release): {{currentTag}}",
-		"types": [
-			{
-				"type": "feat",
-				"section": ":rocket: New Feature"
-			},
-			{
-				"type": "feature",
-				"section": ":rocket: New Feature"
-			},
-			{
-				"type": "fix",
-				"section": ":bug: Bug Fix"
-			},
-			{
-				"type": "polish",
-				"section": ":nail_care: Polish"
-			},
-			{
-				"type": "refactor",
-				"section": ":nail_care: Polish"
-			},
-			{
-				"type": "docs",
-				"section": ":memo: Documentation"
-			},
-			{
-				"type": "chore",
-				"section": ":house: Internal"
-			},
-			{
-				"type": "test",
-				"section": ":house: Internal"
-			},
-			{
-				"type": "perf",
-				"section": ":running_woman: Performance"
-			},
-			{
-				"type": "revert",
-				"section": ":leftwards_arrow_with_hook: Revert"
-			}
-		],
-		"userUrlFormat": "{{host}}/{{user}}"
-	},
+	"changelogPreset": "@undercut/conventional-changelog",
 	"command": {
 		"publish": {
 			"message": "chore(release): %s"
