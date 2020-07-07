@@ -1,10 +1,11 @@
 'use strict';
 
-const { breakingHeaderPattern } = require(`./get_parser_opts.js`)();
+const getParserOpts = require(`./get_parser_opts.js`);
 
 module.exports = function addBandNotes(commit) {
 	if (commit.notes.length) return;
 
+	const { breakingHeaderPattern } = getParserOpts({});
 	const match = commit.header.match(breakingHeaderPattern);
 
 	if (match) {
