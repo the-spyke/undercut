@@ -4,6 +4,7 @@ const getParserOpts = require(`./get_parser_opts.js`);
 const getWriterOpts = require(`./get_writer_opts.js`);
 const getRecommendedBumpOpts = require(`./get_recommended_bump_opts.js`);
 
+// No async function here because Lerna has buggy detection in resolveConfigPromise().
 module.exports = function getUndercutPreset(config = {}) {
 	const parserOpts = getParserOpts(config);
 	const recommendedBumpOpts = getRecommendedBumpOpts(config);
