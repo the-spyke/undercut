@@ -71,7 +71,7 @@ function getTransform(config) {
 		const commitType = typesLookup.get(typeKey);
 
 		// breaking changes attached to any type are still displayed.
-		if (discard && (!commitType || commitType.hidden)) return;
+		if (discard && (!commitType || commitType.hidden)) return undefined;
 
 		if (commitType) {
 			commit.type = commitType.section;
@@ -124,7 +124,7 @@ function getTransform(config) {
 		// remove references that already appear in the subject
 		commit.references = commit.references.filter(reference => !issues.includes(reference.prefix + reference.issue));
 
-		// return commit;
+		return commit;
 	};
 }
 
