@@ -1,7 +1,1 @@
-* {{#if scope}}**{{scope}}:** {{/if}}{{#if subject}}{{subject}}{{else}}{{header}}{{/if}} ([{{shortHash}}]({{commitUrlFormat}}))
-{{~#if references}}
-  , closes
-  {{~#each references~}}
-    [{{#if this.owner}}{{this.owner}}/{{/if}}{{this.repository}}{{this.prefix}}{{this.issue}}]({{issueUrlFormat}})
-  {{/each}}
-{{/if}}
+* {{#if scope}}**{{scope}}:** {{/if}}{{#if subject}}{{subject}}{{else}}{{header}}{{/if}} ([{{shortHash}}]({{commitUrlFormat}})){{#if references}}, closes{{#each references}} [{{#if this.owner}}{{this.owner}}/{{/if}}{{this.repository}}{{this.prefix}}{{this.issue}}]({{issueUrlFormat}}){{/each}}{{/if}}
