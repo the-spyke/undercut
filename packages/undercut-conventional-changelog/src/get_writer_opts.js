@@ -10,9 +10,9 @@ const addBangNotes = require(`./add_bang_notes.js`);
 /**
  * Handlebar partials for various property substitutions based on commit context.
  */
-const owner = `{{#if this.owner}}{{~this.owner}}{{else}}{{~@root.owner}}{{/if}}`;
-const host = `{{~@root.host}}`;
-const repository = `{{#if this.repository}}{{~this.repository}}{{else}}{{~@root.repository}}{{/if}}`;
+const owner = `{{#if this.owner}}{{this.owner}}{{else}}{{@root.owner}}{{/if}}`;
+const host = `{{@root.host}}`;
+const repository = `{{#if this.repository}}{{this.repository}}{{else}}{{@root.repository}}{{/if}}`;
 const sections = {
 	NewFeature: `:rocket: New Feature`,
 	BugFix: `:bug: Bug Fix`,
@@ -133,7 +133,6 @@ function defaultConfig(config) {
 	return {
 		commitUrlFormat: `{{host}}/{{owner}}/{{repository}}/commit/{{hash}}`,
 		compareUrlFormat: `{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}`,
-		header: `Changelog`,
 		issuePrefixes: [`#`],
 		issueUrlFormat: `{{host}}/{{owner}}/{{repository}}/issues/{{id}}`,
 		releaseCommitMessageFormat: `chore(release): {{currentTag}}`,
