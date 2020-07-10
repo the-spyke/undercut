@@ -53,8 +53,6 @@ function getTransform(config) {
 	});
 
 	return (commit, context) => {
-		let discard = true;
-
 		const issues = [];
 		const typeKey = (commit.revert ? `revert` : (commit.type || ``)).toLowerCase();
 
@@ -65,13 +63,16 @@ function getTransform(config) {
 
 		commit.notes.forEach(note => {
 			note.title = `BREAKING CHANGES`;
-			discard = false;
 		});
 
 		const commitType = typesLookup.get(typeKey);
 
 		// breaking changes attached to any type are still displayed.
-		if (discard && (!commitType || commitType.hidden)) return undefined;
+		if (!commit.notes.length && (!commitType || commitType.hidden)) {
+			console.info(`Skipping commit: ${commit.hash}\n${commit.header}`);
+
+			return undefined;
+		}
 
 		if (commitType) {
 			commit.type = commitType.section;
