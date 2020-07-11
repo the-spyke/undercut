@@ -6,8 +6,6 @@ module.exports = {
 	url: `https://undercut.js.org`,
 	baseUrl: `/`,
 	favicon: `img/favicon.ico`,
-	organizationName: `the-spyke`,
-	projectName: `undercut`,
 	themeConfig: {
 		navbar: {
 			title: `Undercut`,
