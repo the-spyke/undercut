@@ -34,7 +34,6 @@
     "babel-jest": "^26.1.0",
     "eslint": "^7.3.1",
     "jest": "^26.1.0",
-    "jest-junit": "^11.0.1",
     "semver": "^7.3.2"
   },
   "homepage": "https://undercut.js.org/",
