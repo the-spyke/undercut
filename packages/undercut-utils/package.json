@@ -24,7 +24,7 @@
     "eslint": "^7.3.1",
     "jest": "^26.1.0"
   },
-  "homepage": "https://undercut.js.org/",
+  "homepage": "https://undercut.js.org",
   "repository": {
     "type": "git",
     "url": "https://github.com/the-spyke/undercut",

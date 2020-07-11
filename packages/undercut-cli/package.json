@@ -36,7 +36,7 @@
     "jest": "^26.1.0",
     "semver": "^7.3.2"
   },
-  "homepage": "https://undercut.js.org/",
+  "homepage": "https://undercut.js.org",
   "repository": {
     "type": "git",
     "url": "https://github.com/the-spyke/undercut",
