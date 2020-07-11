@@ -107,6 +107,26 @@ describe(`Undercut Preset`, () => {
 		).toBe(true);
 	});
 
+	test(`should sort commits at first by scope and at second by subject`, async () => {
+		shell.exec(`git tag v0.1.0`);
+		gitDummyCommit(`fix(cc): order-3`);
+		gitDummyCommit(`fix(*): order-5`);
+		gitDummyCommit(`fix(bb): order-2`);
+		gitDummyCommit(`fix(aa): order-1`);
+		gitDummyCommit(`fix: order-4`);
+
+		const changelog = await getChangelog({}, {
+			outputUnreleased: true,
+		});
+
+		expect(
+			changelog.indexOf(`order-1`) < changelog.indexOf(`order-2`) &&
+			changelog.indexOf(`order-2`) < changelog.indexOf(`order-3`) &&
+			changelog.indexOf(`order-3`) < changelog.indexOf(`order-4`) &&
+			changelog.indexOf(`order-4`) < changelog.indexOf(`order-5`)
+		).toBe(true);
+	});
+
 	test(`should not list breaking change twice if ! is used`, async () => {
 		const changelog = await getChangelog();
 

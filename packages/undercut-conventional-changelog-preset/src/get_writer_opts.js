@@ -3,8 +3,6 @@
 const { readFile } = require(`fs/promises`);
 const { resolve } = require(`path`);
 
-const compareFunc = require(`compare-func`);
-
 const addBangNotes = require(`./add_bang_notes.js`);
 
 /**
@@ -35,12 +33,9 @@ module.exports = async function getWriterOpts(config) {
 		commitPartial: await loadCommitPartial(config),
 		footerPartial: await loadTemplate(`../templates/footer.hbs`),
 		groupBy: `type`,
-		// the groupings of commit messages, e.g., Features vs., Bug Fixes, are
-		// sorted based on their probable importance:
 		commitGroupsSort,
-		commitsSort: [`scope`, `subject`],
+		commitsSort,
 		noteGroupsSort: `title`,
-		notesSort: compareFunc,
 		transform,
 	};
 };
@@ -57,7 +52,7 @@ function getTransform(config) {
 		const issues = [];
 		const typeKey = (commit.revert ? `revert` : (commit.type || ``)).toLowerCase();
 
-		// adds additional breaking change notes
+		// Adds additional breaking change notes
 		// for the special case, test(system)!: hello world, where there is
 		// a '!' but no 'BREAKING CHANGE' in body:
 		addBangNotes(commit);
@@ -68,7 +63,7 @@ function getTransform(config) {
 
 		const commitType = typesLookup.get(typeKey);
 
-		// breaking changes attached to any type are still displayed.
+		// Breaking changes attached to any type are still displayed.
 		if (!commit.notes.length && (!commitType || commitType.hidden)) {
 			if (!skippedCommits.has(commit.hash)) {
 				skippedCommits.add(commit.hash);
@@ -83,7 +78,7 @@ function getTransform(config) {
 			commit.type = commitType.section;
 		}
 
-		if (commit.scope === `*`) {
+		if (commit.scope === `*` || !commit.scope) {
 			commit.scope = ``;
 		}
 
@@ -127,7 +122,7 @@ function getTransform(config) {
 			});
 		}
 
-		// remove references that already appear in the subject
+		// Remove references that already appear in the subject.
 		commit.references = commit.references.filter(reference => !issues.includes(reference.prefix + reference.issue));
 
 		return commit;
@@ -164,6 +159,23 @@ function commitGroupsSort(groupA, groupB) {
 	const rankB = sectionsOrder.get(groupB.title) ?? 1000;
 
 	return rankA - rankB;
+}
+
+function compareStrings(a, b) {
+	if (a < b) return -1;
+	if (a > b) return 1;
+
+	return 0;
+}
+
+function commitsSort(commitA, commitB) {
+	const scopeRank = compareStrings(commitA.scope, commitB.scope);
+
+	if (scopeRank === 0) return compareStrings(commitA.subject, commitB.subject);
+	if (!commitA.scope) return 1;
+	if (!commitB.scope) return -1;
+
+	return scopeRank;
 }
 
 async function loadHeaderPartial(config) {
