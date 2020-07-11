@@ -46,6 +46,7 @@ module.exports = async function getWriterOpts(config) {
 };
 
 function getTransform(config) {
+	const skippedCommits = new Set();
 	const typesLookup = new Map();
 
 	config.types.forEach(type => {
@@ -69,7 +70,11 @@ function getTransform(config) {
 
 		// breaking changes attached to any type are still displayed.
 		if (!commit.notes.length && (!commitType || commitType.hidden)) {
-			console.info(`Skipping commit: ${commit.hash}\n${commit.header}`);
+			if (!skippedCommits.has(commit.hash)) {
+				skippedCommits.add(commit.hash);
+
+				console.info(`> Skipping commit: ${commit.hash}\n${commit.header}`); // eslint-disable-line no-console
+			}
 
 			return undefined;
 		}
