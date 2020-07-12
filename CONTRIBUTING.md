@@ -90,7 +90,7 @@ Tests are done with [Jest](https://jestjs.io/). Script's name is `"test"`, and i
 yarn test
 ```
 
-You can pass additional options (like `"--watch"`) to Jest here. [The list of packages tested from the root.](packages/undercut-config/jest/jest.config.root.cjs)
+You can pass additional options (like `"--watch"`) to Jest here.
 
 Add `"--coverage"` to see test coverage.
 
