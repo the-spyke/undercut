@@ -58,6 +58,9 @@ describe(`Undercut Preset`, () => {
 		shell.cd(`tmp`);
 		shell.mkdir(`git-templates`);
 		shell.exec(`git init --template=./git-templates`);
+		shell.exec(`git config user.email "bot@example.com"`);
+		shell.exec(`git config user.name Bot`);
+		shell.exec(`git commit -m "chore: initial commit" --allow-empty --no-gpg-sign`);
 
 		setupBaseCommits();
 	});
