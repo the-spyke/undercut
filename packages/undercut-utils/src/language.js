@@ -1,3 +1,5 @@
+const ObjectPrototype = Object.getPrototypeOf({});
+
 /**
  * @param {any} value
  * @returns {boolean}
@@ -43,7 +45,7 @@ export function isDate(value) {
  * @returns {boolean}
  */
 export function isDefined(value) {
-	return typeof value !== `undefined`;
+	return value !== undefined;
 }
 
 /**
@@ -157,8 +159,6 @@ export function isObjectValue(value) {
 
 export { isCoroutine as isObserver };
 
-const OBJECT_PROTO = Object.getPrototypeOf({});
-
 /**
  * @param {any} value
  * @returns {boolean}
@@ -170,7 +170,7 @@ export function isPlainObject(value) {
 
 	const proto = Object.getPrototypeOf(value);
 
-	return proto === OBJECT_PROTO || proto === null;
+	return proto === ObjectPrototype || proto === null;
 }
 
 /**
@@ -226,7 +226,7 @@ export function isSymbol(value) {
  * @returns {boolean}
  */
 export function isTruthy(value) {
-	return !!value;
+	return Boolean(value);
 }
 
 /**
@@ -234,7 +234,7 @@ export function isTruthy(value) {
  * @returns {boolean}
  */
 export function isUndefined(value) {
-	return typeof value === `undefined`;
+	return value === undefined;
 }
 
 /**
