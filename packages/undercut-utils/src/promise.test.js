@@ -1,4 +1,5 @@
-import { describe, expect, test } from "@jest/globals";
+import { afterEach, beforeEach, describe, expect, jest, test } from "@jest/globals";
+import PromiseMock from "promise-mock";
 
 import {
 	delay,
@@ -6,12 +7,38 @@ import {
 	wait,
 } from "./promise.js";
 
-test(`delay`, () => {
-	expect(() => delay()).toThrow();
+describe(`delay`, () => {
+	beforeEach(() => {
+		jest.useFakeTimers();
+		PromiseMock.install();
+	});
 
-	const timeStart = Date.now();
+	afterEach(() => {
+		PromiseMock.uninstall();
+		jest.useRealTimers();
+	});
 
-	return expect(delay(wait(11), 11).then(() => Date.now() - timeStart)).resolves.toBeGreaterThanOrEqual(20);
+	test(`should throw on no arguments`, () => {
+		expect(() => delay()).toThrow();
+	});
+
+	test(`should return a new promise settling after "time" ms later`, () => {
+		const callback = jest.fn();
+
+		delay(Promise.resolve(7), 111).then(callback, callback);
+
+		Promise.runAll();
+		jest.advanceTimersByTime(110);
+
+		expect(() => Promise.runAll()).toThrow();
+		expect(callback).not.toHaveBeenCalled();
+
+		jest.advanceTimersByTime(1);
+		Promise.runAll();
+
+		expect(callback).toHaveBeenCalledWith(7);
+		expect(jest.getTimerCount()).toBe(0);
+	});
 });
 
 describe(`unwrapPromise`, () => {
@@ -40,10 +67,35 @@ describe(`unwrapPromise`, () => {
 	});
 });
 
-test(`wait`, () => {
-	expect(wait()).toEqual(expect.any(Promise));
+describe(`wait`, () => {
+	beforeEach(() => {
+		jest.useFakeTimers();
+		PromiseMock.install();
+	});
 
-	const timeStart = Date.now();
+	afterEach(() => {
+		PromiseMock.uninstall();
+		jest.useRealTimers();
+	});
 
-	return expect(wait(21).then(() => Date.now() - timeStart)).resolves.toBeGreaterThanOrEqual(20);
+	test(`should work without arguments`, () => {
+		expect(wait()).toEqual(expect.any(Promise));
+	});
+
+	test(`should wait the specifiet amount of time`, () => {
+		const callback = jest.fn();
+
+		wait(111).then(callback, callback);
+
+		jest.advanceTimersByTime(110);
+
+		expect(() => Promise.runAll()).toThrow();
+		expect(callback).not.toHaveBeenCalled();
+
+		jest.advanceTimersByTime(1);
+		Promise.runAll();
+
+		expect(callback).toHaveBeenCalled();
+		expect(jest.getTimerCount()).toBe(0);
+	});
 });
