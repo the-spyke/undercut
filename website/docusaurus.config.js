@@ -40,7 +40,7 @@ module.exports = {
 		},
 		footer: {
 			style: `dark`,
-			copyright: `Built with Docusaurus. Hosted on GitHub.`,
+			copyright: `Built with Docusaurus. Hosted on Netlify`,
 		},
 		algolia: {
 			apiKey: `51afb3f562cf52544110b900593b21e9`,
