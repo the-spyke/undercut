@@ -22,7 +22,8 @@
     "babel-jest": "^26.1.0",
     "core-js": "^3.6.5",
     "eslint": "^7.3.1",
-    "jest": "^26.1.0"
+    "jest": "^26.1.0",
+    "promise-mock": "^2.1.0"
   },
   "homepage": "https://undercut.js.org",
   "repository": {
