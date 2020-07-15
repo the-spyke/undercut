@@ -1,7 +1,5 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { noop } from "./function.js";
-
 import * as language from "./language.js";
 
 describe.each(Object.entries(language))(`%s`, (name, operation) => {
@@ -34,7 +32,7 @@ describe.each(Object.entries(language))(`%s`, (name, operation) => {
 		[`False`, false],
 		[`Function (async)`, async function () { await Promise.resolve(); }],
 		[`Function (generator)`, function* () { yield 1; }],
-		[`Function (regular)`, noop],
+		[`Function (regular)`, function () { return 0; }],
 		[`Generator object`, (function* () { yield 1; })()],
 		[`Infinity (negative)`, -Infinity],
 		[`Infinity (positive)`, Infinity],
