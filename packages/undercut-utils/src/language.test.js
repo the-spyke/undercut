@@ -59,6 +59,7 @@ describe.each(Object.entries(language))(`%s`, (name, operation) => {
 		[`Number (zero positive)`, 0],
 		[`Object (plain empty)`, {}],
 		[`Object (plain with props)`, { x: 0 }],
+		[`Promise`, Promise.resolve()],
 		[`RegExp`, /test/],
 		[`Set`, new Set()],
 		[`String (empty)`, ``],

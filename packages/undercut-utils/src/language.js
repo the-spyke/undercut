@@ -205,6 +205,14 @@ export function isPositiveOrZero(value) {
  * @param {any} value
  * @returns {boolean}
  */
+export function isPromise(value) {
+	return value instanceof Promise;
+}
+
+/**
+ * @param {any} value
+ * @returns {boolean}
+ */
 export function isRegExp(value) {
 	return value instanceof RegExp;
 }
