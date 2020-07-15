@@ -65,9 +65,16 @@ function getTestValues() {
 		[47, -123.321, `Negative fractional number`],
 		[48, -0, `Negative zero`],
 		[49, 123.321, `Positive fractional number`],
+		[50, async function () { await Promise.resolve(); }, `Async function`],
 	];
 	/* eslint-enable brace-style */
 }
+
+test(`getObjectType`, () => {
+	const types = getTestValues().map(tv => language.getObjectType(tv[1]));
+
+	expect(types).toMatchSnapshot();
+});
 
 test(`hasOwnProps`, () => {
 	expect(positiveResults(language.hasOwnProps)).toEqual(resultsByIndex([
@@ -119,7 +126,7 @@ test(`isFalsy`, () => {
 
 test(`isFunction`, () => {
 	expect(positiveResults(language.isFunction)).toEqual(resultsByIndex([
-		24, 34, 44,
+		24, 34, 44, 50,
 	]));
 });
 
@@ -179,13 +186,13 @@ test(`isNumberValue`, () => {
 
 test(`isObject`, () => {
 	expect(positiveResults(language.isObject)).toEqual(resultsByExcluded([
-		10, 11, 12, 13, 14, 15, 16, 17, 18, 24, 34, 41, 42, 43, 44, 47, 48, 49,
+		10, 11, 12, 13, 14, 15, 16, 17, 18, 24, 34, 41, 42, 43, 44, 47, 48, 49, 50,
 	]));
 });
 
 test(`isObjectValue`, () => {
 	expect(positiveResults(language.isObjectValue)).toEqual(resultsByExcluded([
-		10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 24, 34, 41, 42, 43, 44, 47, 48, 49,
+		10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 24, 34, 41, 42, 43, 44, 47, 48, 49, 50,
 	]));
 });
 

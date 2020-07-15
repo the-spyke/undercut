@@ -1,6 +1,18 @@
 const ObjectPrototype = Object.getPrototypeOf({});
 
 /**
+ * Gets value's type from "Object.prototype.toString" method. For example, an async function will return "AsyncFunction".
+ * Use for data passed between different contexts, where "instanceof" doesn't work.
+ * @param {any} value
+ * @returns {string}
+ */
+export function getObjectType(value) {
+	const type = ObjectPrototype.toString.call(value);
+
+	return type.substring(8, type.length - 1); // Remove "[object " and the closing bracket.
+}
+
+/**
  * @param {any} value
  * @returns {boolean}
  */
