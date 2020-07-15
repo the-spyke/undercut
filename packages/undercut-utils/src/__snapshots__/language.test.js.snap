@@ -1,47 +1,2839 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getObjectType 1`] = `
-Array [
-  "Undefined",
-  "Boolean",
-  "Boolean",
-  "Number",
-  "Number",
-  "Number",
-  "String",
-  "String",
-  "Symbol",
-  "Null",
-  "Object",
-  "Object",
-  "Array",
-  "Array",
-  "Function",
-  "RegExp",
-  "Map",
-  "Set",
-  "WeakMap",
-  "WeakSet",
-  "ArrayBuffer",
-  "Int32Array",
-  "Error",
-  "Date",
-  "GeneratorFunction",
-  "Generator",
-  "Object",
-  "Object",
-  "Object",
-  "Object",
-  "Object",
-  "Number",
-  "Number",
-  "Number",
-  "Function",
-  "Object",
-  "Object",
-  "Number",
-  "Number",
-  "Number",
-  "AsyncFunction",
-]
-`;
+exports[`getObjectType should work for "Array (empty)" 1`] = `"Array"`;
+
+exports[`getObjectType should work for "Array (with values)" 1`] = `"Array"`;
+
+exports[`getObjectType should work for "ArrayBuffer" 1`] = `"ArrayBuffer"`;
+
+exports[`getObjectType should work for "Class (Empty)" 1`] = `"Function"`;
+
+exports[`getObjectType should work for "Class (instance of Empty)" 1`] = `"Object"`;
+
+exports[`getObjectType should work for "Class (instance of User)" 1`] = `"Object"`;
+
+exports[`getObjectType should work for "Coroutine (manual full)" 1`] = `"Object"`;
+
+exports[`getObjectType should work for "Coroutine (manual next + close)" 1`] = `"Object"`;
+
+exports[`getObjectType should work for "Coroutine (manual next + throw)" 1`] = `"Object"`;
+
+exports[`getObjectType should work for "Coroutine (manual next only)" 1`] = `"Object"`;
+
+exports[`getObjectType should work for "Date" 1`] = `"Date"`;
+
+exports[`getObjectType should work for "Error" 1`] = `"Error"`;
+
+exports[`getObjectType should work for "False" 1`] = `"Boolean"`;
+
+exports[`getObjectType should work for "Function (async)" 1`] = `"AsyncFunction"`;
+
+exports[`getObjectType should work for "Function (generator)" 1`] = `"GeneratorFunction"`;
+
+exports[`getObjectType should work for "Function (regular)" 1`] = `"Function"`;
+
+exports[`getObjectType should work for "Generator object" 1`] = `"Generator"`;
+
+exports[`getObjectType should work for "Infinity (negative)" 1`] = `"Number"`;
+
+exports[`getObjectType should work for "Infinity (positive)" 1`] = `"Number"`;
+
+exports[`getObjectType should work for "Int8Array" 1`] = `"Int8Array"`;
+
+exports[`getObjectType should work for "Int16Array" 1`] = `"Int16Array"`;
+
+exports[`getObjectType should work for "Int32Array" 1`] = `"Int32Array"`;
+
+exports[`getObjectType should work for "Iterable (manual)" 1`] = `"Object"`;
+
+exports[`getObjectType should work for "Map" 1`] = `"Map"`;
+
+exports[`getObjectType should work for "NaN" 1`] = `"Number"`;
+
+exports[`getObjectType should work for "Null" 1`] = `"Null"`;
+
+exports[`getObjectType should work for "Number (fractional negative)" 1`] = `"Number"`;
+
+exports[`getObjectType should work for "Number (fractional positive)" 1`] = `"Number"`;
+
+exports[`getObjectType should work for "Number (integer negative)" 1`] = `"Number"`;
+
+exports[`getObjectType should work for "Number (integer positive)" 1`] = `"Number"`;
+
+exports[`getObjectType should work for "Number (zero negative)" 1`] = `"Number"`;
+
+exports[`getObjectType should work for "Number (zero positive)" 1`] = `"Number"`;
+
+exports[`getObjectType should work for "Object (plain empty)" 1`] = `"Object"`;
+
+exports[`getObjectType should work for "Object (plain with props)" 1`] = `"Object"`;
+
+exports[`getObjectType should work for "RegExp" 1`] = `"RegExp"`;
+
+exports[`getObjectType should work for "Set" 1`] = `"Set"`;
+
+exports[`getObjectType should work for "String (empty)" 1`] = `"String"`;
+
+exports[`getObjectType should work for "String (simple)" 1`] = `"String"`;
+
+exports[`getObjectType should work for "Symbol" 1`] = `"Symbol"`;
+
+exports[`getObjectType should work for "True" 1`] = `"Boolean"`;
+
+exports[`getObjectType should work for "Undefined" 1`] = `"Undefined"`;
+
+exports[`getObjectType should work for "WeakMap" 1`] = `"WeakMap"`;
+
+exports[`getObjectType should work for "WeakSet" 1`] = `"WeakSet"`;
+
+exports[`hasOwnProps should work for "Array (empty)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Array (with values)" 1`] = `true`;
+
+exports[`hasOwnProps should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Class (Empty)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Coroutine (manual full)" 1`] = `true`;
+
+exports[`hasOwnProps should work for "Coroutine (manual next + close)" 1`] = `true`;
+
+exports[`hasOwnProps should work for "Coroutine (manual next + throw)" 1`] = `true`;
+
+exports[`hasOwnProps should work for "Coroutine (manual next only)" 1`] = `true`;
+
+exports[`hasOwnProps should work for "Date" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Error" 1`] = `false`;
+
+exports[`hasOwnProps should work for "False" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Function (async)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Function (generator)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Function (regular)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Generator object" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Int8Array" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Int16Array" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Int32Array" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Map" 1`] = `false`;
+
+exports[`hasOwnProps should work for "NaN" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Null" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Object (plain with props)" 1`] = `true`;
+
+exports[`hasOwnProps should work for "RegExp" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Set" 1`] = `false`;
+
+exports[`hasOwnProps should work for "String (empty)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "String (simple)" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Symbol" 1`] = `false`;
+
+exports[`hasOwnProps should work for "True" 1`] = `false`;
+
+exports[`hasOwnProps should work for "Undefined" 1`] = `false`;
+
+exports[`hasOwnProps should work for "WeakMap" 1`] = `false`;
+
+exports[`hasOwnProps should work for "WeakSet" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Array (empty)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Array (with values)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "ArrayBuffer" 1`] = `true`;
+
+exports[`isArrayBuffer should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Date" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Error" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "False" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Function (async)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Function (generator)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Function (regular)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Generator object" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Int8Array" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Int16Array" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Int32Array" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Map" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "NaN" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Null" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "RegExp" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Set" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "String (empty)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "String (simple)" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Symbol" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "True" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "Undefined" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "WeakMap" 1`] = `false`;
+
+exports[`isArrayBuffer should work for "WeakSet" 1`] = `false`;
+
+exports[`isBoolean should work for "Array (empty)" 1`] = `false`;
+
+exports[`isBoolean should work for "Array (with values)" 1`] = `false`;
+
+exports[`isBoolean should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isBoolean should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isBoolean should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isBoolean should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isBoolean should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isBoolean should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isBoolean should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isBoolean should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isBoolean should work for "Date" 1`] = `false`;
+
+exports[`isBoolean should work for "Error" 1`] = `false`;
+
+exports[`isBoolean should work for "False" 1`] = `true`;
+
+exports[`isBoolean should work for "Function (async)" 1`] = `false`;
+
+exports[`isBoolean should work for "Function (generator)" 1`] = `false`;
+
+exports[`isBoolean should work for "Function (regular)" 1`] = `false`;
+
+exports[`isBoolean should work for "Generator object" 1`] = `false`;
+
+exports[`isBoolean should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isBoolean should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isBoolean should work for "Int8Array" 1`] = `false`;
+
+exports[`isBoolean should work for "Int16Array" 1`] = `false`;
+
+exports[`isBoolean should work for "Int32Array" 1`] = `false`;
+
+exports[`isBoolean should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isBoolean should work for "Map" 1`] = `false`;
+
+exports[`isBoolean should work for "NaN" 1`] = `false`;
+
+exports[`isBoolean should work for "Null" 1`] = `false`;
+
+exports[`isBoolean should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isBoolean should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isBoolean should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isBoolean should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isBoolean should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isBoolean should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isBoolean should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isBoolean should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isBoolean should work for "RegExp" 1`] = `false`;
+
+exports[`isBoolean should work for "Set" 1`] = `false`;
+
+exports[`isBoolean should work for "String (empty)" 1`] = `false`;
+
+exports[`isBoolean should work for "String (simple)" 1`] = `false`;
+
+exports[`isBoolean should work for "Symbol" 1`] = `false`;
+
+exports[`isBoolean should work for "True" 1`] = `true`;
+
+exports[`isBoolean should work for "Undefined" 1`] = `false`;
+
+exports[`isBoolean should work for "WeakMap" 1`] = `false`;
+
+exports[`isBoolean should work for "WeakSet" 1`] = `false`;
+
+exports[`isCoroutine should work for "Array (empty)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Array (with values)" 1`] = `false`;
+
+exports[`isCoroutine should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isCoroutine should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Coroutine (manual full)" 1`] = `true`;
+
+exports[`isCoroutine should work for "Coroutine (manual next + close)" 1`] = `true`;
+
+exports[`isCoroutine should work for "Coroutine (manual next + throw)" 1`] = `true`;
+
+exports[`isCoroutine should work for "Coroutine (manual next only)" 1`] = `true`;
+
+exports[`isCoroutine should work for "Date" 1`] = `false`;
+
+exports[`isCoroutine should work for "Error" 1`] = `false`;
+
+exports[`isCoroutine should work for "False" 1`] = `false`;
+
+exports[`isCoroutine should work for "Function (async)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Function (generator)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Function (regular)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Generator object" 1`] = `true`;
+
+exports[`isCoroutine should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Int8Array" 1`] = `false`;
+
+exports[`isCoroutine should work for "Int16Array" 1`] = `false`;
+
+exports[`isCoroutine should work for "Int32Array" 1`] = `false`;
+
+exports[`isCoroutine should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Map" 1`] = `false`;
+
+exports[`isCoroutine should work for "NaN" 1`] = `false`;
+
+exports[`isCoroutine should work for "Null" 1`] = `false`;
+
+exports[`isCoroutine should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isCoroutine should work for "RegExp" 1`] = `false`;
+
+exports[`isCoroutine should work for "Set" 1`] = `false`;
+
+exports[`isCoroutine should work for "String (empty)" 1`] = `false`;
+
+exports[`isCoroutine should work for "String (simple)" 1`] = `false`;
+
+exports[`isCoroutine should work for "Symbol" 1`] = `false`;
+
+exports[`isCoroutine should work for "True" 1`] = `false`;
+
+exports[`isCoroutine should work for "Undefined" 1`] = `false`;
+
+exports[`isCoroutine should work for "WeakMap" 1`] = `false`;
+
+exports[`isCoroutine should work for "WeakSet" 1`] = `false`;
+
+exports[`isDate should work for "Array (empty)" 1`] = `false`;
+
+exports[`isDate should work for "Array (with values)" 1`] = `false`;
+
+exports[`isDate should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isDate should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isDate should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isDate should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isDate should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isDate should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isDate should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isDate should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isDate should work for "Date" 1`] = `true`;
+
+exports[`isDate should work for "Error" 1`] = `false`;
+
+exports[`isDate should work for "False" 1`] = `false`;
+
+exports[`isDate should work for "Function (async)" 1`] = `false`;
+
+exports[`isDate should work for "Function (generator)" 1`] = `false`;
+
+exports[`isDate should work for "Function (regular)" 1`] = `false`;
+
+exports[`isDate should work for "Generator object" 1`] = `false`;
+
+exports[`isDate should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isDate should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isDate should work for "Int8Array" 1`] = `false`;
+
+exports[`isDate should work for "Int16Array" 1`] = `false`;
+
+exports[`isDate should work for "Int32Array" 1`] = `false`;
+
+exports[`isDate should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isDate should work for "Map" 1`] = `false`;
+
+exports[`isDate should work for "NaN" 1`] = `false`;
+
+exports[`isDate should work for "Null" 1`] = `false`;
+
+exports[`isDate should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isDate should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isDate should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isDate should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isDate should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isDate should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isDate should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isDate should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isDate should work for "RegExp" 1`] = `false`;
+
+exports[`isDate should work for "Set" 1`] = `false`;
+
+exports[`isDate should work for "String (empty)" 1`] = `false`;
+
+exports[`isDate should work for "String (simple)" 1`] = `false`;
+
+exports[`isDate should work for "Symbol" 1`] = `false`;
+
+exports[`isDate should work for "True" 1`] = `false`;
+
+exports[`isDate should work for "Undefined" 1`] = `false`;
+
+exports[`isDate should work for "WeakMap" 1`] = `false`;
+
+exports[`isDate should work for "WeakSet" 1`] = `false`;
+
+exports[`isDefined should work for "Array (empty)" 1`] = `true`;
+
+exports[`isDefined should work for "Array (with values)" 1`] = `true`;
+
+exports[`isDefined should work for "ArrayBuffer" 1`] = `true`;
+
+exports[`isDefined should work for "Class (Empty)" 1`] = `true`;
+
+exports[`isDefined should work for "Class (instance of Empty)" 1`] = `true`;
+
+exports[`isDefined should work for "Class (instance of User)" 1`] = `true`;
+
+exports[`isDefined should work for "Coroutine (manual full)" 1`] = `true`;
+
+exports[`isDefined should work for "Coroutine (manual next + close)" 1`] = `true`;
+
+exports[`isDefined should work for "Coroutine (manual next + throw)" 1`] = `true`;
+
+exports[`isDefined should work for "Coroutine (manual next only)" 1`] = `true`;
+
+exports[`isDefined should work for "Date" 1`] = `true`;
+
+exports[`isDefined should work for "Error" 1`] = `true`;
+
+exports[`isDefined should work for "False" 1`] = `true`;
+
+exports[`isDefined should work for "Function (async)" 1`] = `true`;
+
+exports[`isDefined should work for "Function (generator)" 1`] = `true`;
+
+exports[`isDefined should work for "Function (regular)" 1`] = `true`;
+
+exports[`isDefined should work for "Generator object" 1`] = `true`;
+
+exports[`isDefined should work for "Infinity (negative)" 1`] = `true`;
+
+exports[`isDefined should work for "Infinity (positive)" 1`] = `true`;
+
+exports[`isDefined should work for "Int8Array" 1`] = `true`;
+
+exports[`isDefined should work for "Int16Array" 1`] = `true`;
+
+exports[`isDefined should work for "Int32Array" 1`] = `true`;
+
+exports[`isDefined should work for "Iterable (manual)" 1`] = `true`;
+
+exports[`isDefined should work for "Map" 1`] = `true`;
+
+exports[`isDefined should work for "NaN" 1`] = `true`;
+
+exports[`isDefined should work for "Null" 1`] = `true`;
+
+exports[`isDefined should work for "Number (fractional negative)" 1`] = `true`;
+
+exports[`isDefined should work for "Number (fractional positive)" 1`] = `true`;
+
+exports[`isDefined should work for "Number (integer negative)" 1`] = `true`;
+
+exports[`isDefined should work for "Number (integer positive)" 1`] = `true`;
+
+exports[`isDefined should work for "Number (zero negative)" 1`] = `true`;
+
+exports[`isDefined should work for "Number (zero positive)" 1`] = `true`;
+
+exports[`isDefined should work for "Object (plain empty)" 1`] = `true`;
+
+exports[`isDefined should work for "Object (plain with props)" 1`] = `true`;
+
+exports[`isDefined should work for "RegExp" 1`] = `true`;
+
+exports[`isDefined should work for "Set" 1`] = `true`;
+
+exports[`isDefined should work for "String (empty)" 1`] = `true`;
+
+exports[`isDefined should work for "String (simple)" 1`] = `true`;
+
+exports[`isDefined should work for "Symbol" 1`] = `true`;
+
+exports[`isDefined should work for "True" 1`] = `true`;
+
+exports[`isDefined should work for "Undefined" 1`] = `false`;
+
+exports[`isDefined should work for "WeakMap" 1`] = `true`;
+
+exports[`isDefined should work for "WeakSet" 1`] = `true`;
+
+exports[`isError should work for "Array (empty)" 1`] = `false`;
+
+exports[`isError should work for "Array (with values)" 1`] = `false`;
+
+exports[`isError should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isError should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isError should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isError should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isError should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isError should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isError should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isError should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isError should work for "Date" 1`] = `false`;
+
+exports[`isError should work for "Error" 1`] = `true`;
+
+exports[`isError should work for "False" 1`] = `false`;
+
+exports[`isError should work for "Function (async)" 1`] = `false`;
+
+exports[`isError should work for "Function (generator)" 1`] = `false`;
+
+exports[`isError should work for "Function (regular)" 1`] = `false`;
+
+exports[`isError should work for "Generator object" 1`] = `false`;
+
+exports[`isError should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isError should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isError should work for "Int8Array" 1`] = `false`;
+
+exports[`isError should work for "Int16Array" 1`] = `false`;
+
+exports[`isError should work for "Int32Array" 1`] = `false`;
+
+exports[`isError should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isError should work for "Map" 1`] = `false`;
+
+exports[`isError should work for "NaN" 1`] = `false`;
+
+exports[`isError should work for "Null" 1`] = `false`;
+
+exports[`isError should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isError should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isError should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isError should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isError should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isError should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isError should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isError should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isError should work for "RegExp" 1`] = `false`;
+
+exports[`isError should work for "Set" 1`] = `false`;
+
+exports[`isError should work for "String (empty)" 1`] = `false`;
+
+exports[`isError should work for "String (simple)" 1`] = `false`;
+
+exports[`isError should work for "Symbol" 1`] = `false`;
+
+exports[`isError should work for "True" 1`] = `false`;
+
+exports[`isError should work for "Undefined" 1`] = `false`;
+
+exports[`isError should work for "WeakMap" 1`] = `false`;
+
+exports[`isError should work for "WeakSet" 1`] = `false`;
+
+exports[`isFalsy should work for "Array (empty)" 1`] = `false`;
+
+exports[`isFalsy should work for "Array (with values)" 1`] = `false`;
+
+exports[`isFalsy should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isFalsy should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isFalsy should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isFalsy should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isFalsy should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isFalsy should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isFalsy should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isFalsy should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isFalsy should work for "Date" 1`] = `false`;
+
+exports[`isFalsy should work for "Error" 1`] = `false`;
+
+exports[`isFalsy should work for "False" 1`] = `true`;
+
+exports[`isFalsy should work for "Function (async)" 1`] = `false`;
+
+exports[`isFalsy should work for "Function (generator)" 1`] = `false`;
+
+exports[`isFalsy should work for "Function (regular)" 1`] = `false`;
+
+exports[`isFalsy should work for "Generator object" 1`] = `false`;
+
+exports[`isFalsy should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isFalsy should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isFalsy should work for "Int8Array" 1`] = `false`;
+
+exports[`isFalsy should work for "Int16Array" 1`] = `false`;
+
+exports[`isFalsy should work for "Int32Array" 1`] = `false`;
+
+exports[`isFalsy should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isFalsy should work for "Map" 1`] = `false`;
+
+exports[`isFalsy should work for "NaN" 1`] = `true`;
+
+exports[`isFalsy should work for "Null" 1`] = `true`;
+
+exports[`isFalsy should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isFalsy should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isFalsy should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isFalsy should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isFalsy should work for "Number (zero negative)" 1`] = `true`;
+
+exports[`isFalsy should work for "Number (zero positive)" 1`] = `true`;
+
+exports[`isFalsy should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isFalsy should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isFalsy should work for "RegExp" 1`] = `false`;
+
+exports[`isFalsy should work for "Set" 1`] = `false`;
+
+exports[`isFalsy should work for "String (empty)" 1`] = `true`;
+
+exports[`isFalsy should work for "String (simple)" 1`] = `false`;
+
+exports[`isFalsy should work for "Symbol" 1`] = `false`;
+
+exports[`isFalsy should work for "True" 1`] = `false`;
+
+exports[`isFalsy should work for "Undefined" 1`] = `true`;
+
+exports[`isFalsy should work for "WeakMap" 1`] = `false`;
+
+exports[`isFalsy should work for "WeakSet" 1`] = `false`;
+
+exports[`isFunction should work for "Array (empty)" 1`] = `false`;
+
+exports[`isFunction should work for "Array (with values)" 1`] = `false`;
+
+exports[`isFunction should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isFunction should work for "Class (Empty)" 1`] = `true`;
+
+exports[`isFunction should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isFunction should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isFunction should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isFunction should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isFunction should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isFunction should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isFunction should work for "Date" 1`] = `false`;
+
+exports[`isFunction should work for "Error" 1`] = `false`;
+
+exports[`isFunction should work for "False" 1`] = `false`;
+
+exports[`isFunction should work for "Function (async)" 1`] = `true`;
+
+exports[`isFunction should work for "Function (generator)" 1`] = `true`;
+
+exports[`isFunction should work for "Function (regular)" 1`] = `true`;
+
+exports[`isFunction should work for "Generator object" 1`] = `false`;
+
+exports[`isFunction should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isFunction should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isFunction should work for "Int8Array" 1`] = `false`;
+
+exports[`isFunction should work for "Int16Array" 1`] = `false`;
+
+exports[`isFunction should work for "Int32Array" 1`] = `false`;
+
+exports[`isFunction should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isFunction should work for "Map" 1`] = `false`;
+
+exports[`isFunction should work for "NaN" 1`] = `false`;
+
+exports[`isFunction should work for "Null" 1`] = `false`;
+
+exports[`isFunction should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isFunction should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isFunction should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isFunction should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isFunction should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isFunction should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isFunction should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isFunction should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isFunction should work for "RegExp" 1`] = `false`;
+
+exports[`isFunction should work for "Set" 1`] = `false`;
+
+exports[`isFunction should work for "String (empty)" 1`] = `false`;
+
+exports[`isFunction should work for "String (simple)" 1`] = `false`;
+
+exports[`isFunction should work for "Symbol" 1`] = `false`;
+
+exports[`isFunction should work for "True" 1`] = `false`;
+
+exports[`isFunction should work for "Undefined" 1`] = `false`;
+
+exports[`isFunction should work for "WeakMap" 1`] = `false`;
+
+exports[`isFunction should work for "WeakSet" 1`] = `false`;
+
+exports[`isIterable should work for "Array (empty)" 1`] = `true`;
+
+exports[`isIterable should work for "Array (with values)" 1`] = `true`;
+
+exports[`isIterable should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isIterable should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isIterable should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isIterable should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isIterable should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isIterable should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isIterable should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isIterable should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isIterable should work for "Date" 1`] = `false`;
+
+exports[`isIterable should work for "Error" 1`] = `false`;
+
+exports[`isIterable should work for "False" 1`] = `false`;
+
+exports[`isIterable should work for "Function (async)" 1`] = `false`;
+
+exports[`isIterable should work for "Function (generator)" 1`] = `false`;
+
+exports[`isIterable should work for "Function (regular)" 1`] = `false`;
+
+exports[`isIterable should work for "Generator object" 1`] = `true`;
+
+exports[`isIterable should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isIterable should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isIterable should work for "Int8Array" 1`] = `true`;
+
+exports[`isIterable should work for "Int16Array" 1`] = `true`;
+
+exports[`isIterable should work for "Int32Array" 1`] = `true`;
+
+exports[`isIterable should work for "Iterable (manual)" 1`] = `true`;
+
+exports[`isIterable should work for "Map" 1`] = `true`;
+
+exports[`isIterable should work for "NaN" 1`] = `false`;
+
+exports[`isIterable should work for "Null" 1`] = `false`;
+
+exports[`isIterable should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isIterable should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isIterable should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isIterable should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isIterable should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isIterable should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isIterable should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isIterable should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isIterable should work for "RegExp" 1`] = `false`;
+
+exports[`isIterable should work for "Set" 1`] = `true`;
+
+exports[`isIterable should work for "String (empty)" 1`] = `true`;
+
+exports[`isIterable should work for "String (simple)" 1`] = `true`;
+
+exports[`isIterable should work for "Symbol" 1`] = `false`;
+
+exports[`isIterable should work for "True" 1`] = `false`;
+
+exports[`isIterable should work for "Undefined" 1`] = `false`;
+
+exports[`isIterable should work for "WeakMap" 1`] = `false`;
+
+exports[`isIterable should work for "WeakSet" 1`] = `false`;
+
+exports[`isIterator should work for "Array (empty)" 1`] = `false`;
+
+exports[`isIterator should work for "Array (with values)" 1`] = `false`;
+
+exports[`isIterator should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isIterator should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isIterator should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isIterator should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isIterator should work for "Coroutine (manual full)" 1`] = `true`;
+
+exports[`isIterator should work for "Coroutine (manual next + close)" 1`] = `true`;
+
+exports[`isIterator should work for "Coroutine (manual next + throw)" 1`] = `true`;
+
+exports[`isIterator should work for "Coroutine (manual next only)" 1`] = `true`;
+
+exports[`isIterator should work for "Date" 1`] = `false`;
+
+exports[`isIterator should work for "Error" 1`] = `false`;
+
+exports[`isIterator should work for "False" 1`] = `false`;
+
+exports[`isIterator should work for "Function (async)" 1`] = `false`;
+
+exports[`isIterator should work for "Function (generator)" 1`] = `false`;
+
+exports[`isIterator should work for "Function (regular)" 1`] = `false`;
+
+exports[`isIterator should work for "Generator object" 1`] = `true`;
+
+exports[`isIterator should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isIterator should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isIterator should work for "Int8Array" 1`] = `false`;
+
+exports[`isIterator should work for "Int16Array" 1`] = `false`;
+
+exports[`isIterator should work for "Int32Array" 1`] = `false`;
+
+exports[`isIterator should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isIterator should work for "Map" 1`] = `false`;
+
+exports[`isIterator should work for "NaN" 1`] = `false`;
+
+exports[`isIterator should work for "Null" 1`] = `false`;
+
+exports[`isIterator should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isIterator should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isIterator should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isIterator should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isIterator should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isIterator should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isIterator should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isIterator should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isIterator should work for "RegExp" 1`] = `false`;
+
+exports[`isIterator should work for "Set" 1`] = `false`;
+
+exports[`isIterator should work for "String (empty)" 1`] = `false`;
+
+exports[`isIterator should work for "String (simple)" 1`] = `false`;
+
+exports[`isIterator should work for "Symbol" 1`] = `false`;
+
+exports[`isIterator should work for "True" 1`] = `false`;
+
+exports[`isIterator should work for "Undefined" 1`] = `false`;
+
+exports[`isIterator should work for "WeakMap" 1`] = `false`;
+
+exports[`isIterator should work for "WeakSet" 1`] = `false`;
+
+exports[`isMap should work for "Array (empty)" 1`] = `false`;
+
+exports[`isMap should work for "Array (with values)" 1`] = `false`;
+
+exports[`isMap should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isMap should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isMap should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isMap should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isMap should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isMap should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isMap should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isMap should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isMap should work for "Date" 1`] = `false`;
+
+exports[`isMap should work for "Error" 1`] = `false`;
+
+exports[`isMap should work for "False" 1`] = `false`;
+
+exports[`isMap should work for "Function (async)" 1`] = `false`;
+
+exports[`isMap should work for "Function (generator)" 1`] = `false`;
+
+exports[`isMap should work for "Function (regular)" 1`] = `false`;
+
+exports[`isMap should work for "Generator object" 1`] = `false`;
+
+exports[`isMap should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isMap should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isMap should work for "Int8Array" 1`] = `false`;
+
+exports[`isMap should work for "Int16Array" 1`] = `false`;
+
+exports[`isMap should work for "Int32Array" 1`] = `false`;
+
+exports[`isMap should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isMap should work for "Map" 1`] = `true`;
+
+exports[`isMap should work for "NaN" 1`] = `false`;
+
+exports[`isMap should work for "Null" 1`] = `false`;
+
+exports[`isMap should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isMap should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isMap should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isMap should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isMap should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isMap should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isMap should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isMap should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isMap should work for "RegExp" 1`] = `false`;
+
+exports[`isMap should work for "Set" 1`] = `false`;
+
+exports[`isMap should work for "String (empty)" 1`] = `false`;
+
+exports[`isMap should work for "String (simple)" 1`] = `false`;
+
+exports[`isMap should work for "Symbol" 1`] = `false`;
+
+exports[`isMap should work for "True" 1`] = `false`;
+
+exports[`isMap should work for "Undefined" 1`] = `false`;
+
+exports[`isMap should work for "WeakMap" 1`] = `false`;
+
+exports[`isMap should work for "WeakSet" 1`] = `false`;
+
+exports[`isNegative should work for "Array (empty)" 1`] = `false`;
+
+exports[`isNegative should work for "Array (with values)" 1`] = `false`;
+
+exports[`isNegative should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isNegative should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isNegative should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isNegative should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isNegative should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isNegative should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isNegative should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isNegative should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isNegative should work for "Date" 1`] = `false`;
+
+exports[`isNegative should work for "Error" 1`] = `false`;
+
+exports[`isNegative should work for "False" 1`] = `false`;
+
+exports[`isNegative should work for "Function (async)" 1`] = `false`;
+
+exports[`isNegative should work for "Function (generator)" 1`] = `false`;
+
+exports[`isNegative should work for "Function (regular)" 1`] = `false`;
+
+exports[`isNegative should work for "Generator object" 1`] = `false`;
+
+exports[`isNegative should work for "Infinity (negative)" 1`] = `true`;
+
+exports[`isNegative should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isNegative should work for "Int8Array" 1`] = `false`;
+
+exports[`isNegative should work for "Int16Array" 1`] = `false`;
+
+exports[`isNegative should work for "Int32Array" 1`] = `false`;
+
+exports[`isNegative should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isNegative should work for "Map" 1`] = `false`;
+
+exports[`isNegative should work for "NaN" 1`] = `false`;
+
+exports[`isNegative should work for "Null" 1`] = `false`;
+
+exports[`isNegative should work for "Number (fractional negative)" 1`] = `true`;
+
+exports[`isNegative should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isNegative should work for "Number (integer negative)" 1`] = `true`;
+
+exports[`isNegative should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isNegative should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isNegative should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isNegative should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isNegative should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isNegative should work for "RegExp" 1`] = `false`;
+
+exports[`isNegative should work for "Set" 1`] = `false`;
+
+exports[`isNegative should work for "String (empty)" 1`] = `false`;
+
+exports[`isNegative should work for "String (simple)" 1`] = `false`;
+
+exports[`isNegative should work for "Symbol" 1`] = `false`;
+
+exports[`isNegative should work for "True" 1`] = `false`;
+
+exports[`isNegative should work for "Undefined" 1`] = `false`;
+
+exports[`isNegative should work for "WeakMap" 1`] = `false`;
+
+exports[`isNegative should work for "WeakSet" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Array (empty)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Array (with values)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Date" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Error" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "False" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Function (async)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Function (generator)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Function (regular)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Generator object" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Infinity (negative)" 1`] = `true`;
+
+exports[`isNegativeOrZero should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Int8Array" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Int16Array" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Int32Array" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Map" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "NaN" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Null" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Number (fractional negative)" 1`] = `true`;
+
+exports[`isNegativeOrZero should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Number (integer negative)" 1`] = `true`;
+
+exports[`isNegativeOrZero should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Number (zero negative)" 1`] = `true`;
+
+exports[`isNegativeOrZero should work for "Number (zero positive)" 1`] = `true`;
+
+exports[`isNegativeOrZero should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "RegExp" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Set" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "String (empty)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "String (simple)" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Symbol" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "True" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "Undefined" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "WeakMap" 1`] = `false`;
+
+exports[`isNegativeOrZero should work for "WeakSet" 1`] = `false`;
+
+exports[`isNull should work for "Array (empty)" 1`] = `false`;
+
+exports[`isNull should work for "Array (with values)" 1`] = `false`;
+
+exports[`isNull should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isNull should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isNull should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isNull should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isNull should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isNull should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isNull should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isNull should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isNull should work for "Date" 1`] = `false`;
+
+exports[`isNull should work for "Error" 1`] = `false`;
+
+exports[`isNull should work for "False" 1`] = `false`;
+
+exports[`isNull should work for "Function (async)" 1`] = `false`;
+
+exports[`isNull should work for "Function (generator)" 1`] = `false`;
+
+exports[`isNull should work for "Function (regular)" 1`] = `false`;
+
+exports[`isNull should work for "Generator object" 1`] = `false`;
+
+exports[`isNull should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isNull should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isNull should work for "Int8Array" 1`] = `false`;
+
+exports[`isNull should work for "Int16Array" 1`] = `false`;
+
+exports[`isNull should work for "Int32Array" 1`] = `false`;
+
+exports[`isNull should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isNull should work for "Map" 1`] = `false`;
+
+exports[`isNull should work for "NaN" 1`] = `false`;
+
+exports[`isNull should work for "Null" 1`] = `true`;
+
+exports[`isNull should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isNull should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isNull should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isNull should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isNull should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isNull should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isNull should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isNull should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isNull should work for "RegExp" 1`] = `false`;
+
+exports[`isNull should work for "Set" 1`] = `false`;
+
+exports[`isNull should work for "String (empty)" 1`] = `false`;
+
+exports[`isNull should work for "String (simple)" 1`] = `false`;
+
+exports[`isNull should work for "Symbol" 1`] = `false`;
+
+exports[`isNull should work for "True" 1`] = `false`;
+
+exports[`isNull should work for "Undefined" 1`] = `false`;
+
+exports[`isNull should work for "WeakMap" 1`] = `false`;
+
+exports[`isNull should work for "WeakSet" 1`] = `false`;
+
+exports[`isNullish should work for "Array (empty)" 1`] = `false`;
+
+exports[`isNullish should work for "Array (with values)" 1`] = `false`;
+
+exports[`isNullish should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isNullish should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isNullish should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isNullish should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isNullish should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isNullish should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isNullish should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isNullish should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isNullish should work for "Date" 1`] = `false`;
+
+exports[`isNullish should work for "Error" 1`] = `false`;
+
+exports[`isNullish should work for "False" 1`] = `false`;
+
+exports[`isNullish should work for "Function (async)" 1`] = `false`;
+
+exports[`isNullish should work for "Function (generator)" 1`] = `false`;
+
+exports[`isNullish should work for "Function (regular)" 1`] = `false`;
+
+exports[`isNullish should work for "Generator object" 1`] = `false`;
+
+exports[`isNullish should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isNullish should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isNullish should work for "Int8Array" 1`] = `false`;
+
+exports[`isNullish should work for "Int16Array" 1`] = `false`;
+
+exports[`isNullish should work for "Int32Array" 1`] = `false`;
+
+exports[`isNullish should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isNullish should work for "Map" 1`] = `false`;
+
+exports[`isNullish should work for "NaN" 1`] = `false`;
+
+exports[`isNullish should work for "Null" 1`] = `true`;
+
+exports[`isNullish should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isNullish should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isNullish should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isNullish should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isNullish should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isNullish should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isNullish should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isNullish should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isNullish should work for "RegExp" 1`] = `false`;
+
+exports[`isNullish should work for "Set" 1`] = `false`;
+
+exports[`isNullish should work for "String (empty)" 1`] = `false`;
+
+exports[`isNullish should work for "String (simple)" 1`] = `false`;
+
+exports[`isNullish should work for "Symbol" 1`] = `false`;
+
+exports[`isNullish should work for "True" 1`] = `false`;
+
+exports[`isNullish should work for "Undefined" 1`] = `true`;
+
+exports[`isNullish should work for "WeakMap" 1`] = `false`;
+
+exports[`isNullish should work for "WeakSet" 1`] = `false`;
+
+exports[`isNumber should work for "Array (empty)" 1`] = `false`;
+
+exports[`isNumber should work for "Array (with values)" 1`] = `false`;
+
+exports[`isNumber should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isNumber should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isNumber should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isNumber should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isNumber should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isNumber should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isNumber should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isNumber should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isNumber should work for "Date" 1`] = `false`;
+
+exports[`isNumber should work for "Error" 1`] = `false`;
+
+exports[`isNumber should work for "False" 1`] = `false`;
+
+exports[`isNumber should work for "Function (async)" 1`] = `false`;
+
+exports[`isNumber should work for "Function (generator)" 1`] = `false`;
+
+exports[`isNumber should work for "Function (regular)" 1`] = `false`;
+
+exports[`isNumber should work for "Generator object" 1`] = `false`;
+
+exports[`isNumber should work for "Infinity (negative)" 1`] = `true`;
+
+exports[`isNumber should work for "Infinity (positive)" 1`] = `true`;
+
+exports[`isNumber should work for "Int8Array" 1`] = `false`;
+
+exports[`isNumber should work for "Int16Array" 1`] = `false`;
+
+exports[`isNumber should work for "Int32Array" 1`] = `false`;
+
+exports[`isNumber should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isNumber should work for "Map" 1`] = `false`;
+
+exports[`isNumber should work for "NaN" 1`] = `true`;
+
+exports[`isNumber should work for "Null" 1`] = `false`;
+
+exports[`isNumber should work for "Number (fractional negative)" 1`] = `true`;
+
+exports[`isNumber should work for "Number (fractional positive)" 1`] = `true`;
+
+exports[`isNumber should work for "Number (integer negative)" 1`] = `true`;
+
+exports[`isNumber should work for "Number (integer positive)" 1`] = `true`;
+
+exports[`isNumber should work for "Number (zero negative)" 1`] = `true`;
+
+exports[`isNumber should work for "Number (zero positive)" 1`] = `true`;
+
+exports[`isNumber should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isNumber should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isNumber should work for "RegExp" 1`] = `false`;
+
+exports[`isNumber should work for "Set" 1`] = `false`;
+
+exports[`isNumber should work for "String (empty)" 1`] = `false`;
+
+exports[`isNumber should work for "String (simple)" 1`] = `false`;
+
+exports[`isNumber should work for "Symbol" 1`] = `false`;
+
+exports[`isNumber should work for "True" 1`] = `false`;
+
+exports[`isNumber should work for "Undefined" 1`] = `false`;
+
+exports[`isNumber should work for "WeakMap" 1`] = `false`;
+
+exports[`isNumber should work for "WeakSet" 1`] = `false`;
+
+exports[`isNumberValue should work for "Array (empty)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Array (with values)" 1`] = `false`;
+
+exports[`isNumberValue should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isNumberValue should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Date" 1`] = `false`;
+
+exports[`isNumberValue should work for "Error" 1`] = `false`;
+
+exports[`isNumberValue should work for "False" 1`] = `false`;
+
+exports[`isNumberValue should work for "Function (async)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Function (generator)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Function (regular)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Generator object" 1`] = `false`;
+
+exports[`isNumberValue should work for "Infinity (negative)" 1`] = `true`;
+
+exports[`isNumberValue should work for "Infinity (positive)" 1`] = `true`;
+
+exports[`isNumberValue should work for "Int8Array" 1`] = `false`;
+
+exports[`isNumberValue should work for "Int16Array" 1`] = `false`;
+
+exports[`isNumberValue should work for "Int32Array" 1`] = `false`;
+
+exports[`isNumberValue should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Map" 1`] = `false`;
+
+exports[`isNumberValue should work for "NaN" 1`] = `false`;
+
+exports[`isNumberValue should work for "Null" 1`] = `false`;
+
+exports[`isNumberValue should work for "Number (fractional negative)" 1`] = `true`;
+
+exports[`isNumberValue should work for "Number (fractional positive)" 1`] = `true`;
+
+exports[`isNumberValue should work for "Number (integer negative)" 1`] = `true`;
+
+exports[`isNumberValue should work for "Number (integer positive)" 1`] = `true`;
+
+exports[`isNumberValue should work for "Number (zero negative)" 1`] = `true`;
+
+exports[`isNumberValue should work for "Number (zero positive)" 1`] = `true`;
+
+exports[`isNumberValue should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isNumberValue should work for "RegExp" 1`] = `false`;
+
+exports[`isNumberValue should work for "Set" 1`] = `false`;
+
+exports[`isNumberValue should work for "String (empty)" 1`] = `false`;
+
+exports[`isNumberValue should work for "String (simple)" 1`] = `false`;
+
+exports[`isNumberValue should work for "Symbol" 1`] = `false`;
+
+exports[`isNumberValue should work for "True" 1`] = `false`;
+
+exports[`isNumberValue should work for "Undefined" 1`] = `false`;
+
+exports[`isNumberValue should work for "WeakMap" 1`] = `false`;
+
+exports[`isNumberValue should work for "WeakSet" 1`] = `false`;
+
+exports[`isObject should work for "Array (empty)" 1`] = `true`;
+
+exports[`isObject should work for "Array (with values)" 1`] = `true`;
+
+exports[`isObject should work for "ArrayBuffer" 1`] = `true`;
+
+exports[`isObject should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isObject should work for "Class (instance of Empty)" 1`] = `true`;
+
+exports[`isObject should work for "Class (instance of User)" 1`] = `true`;
+
+exports[`isObject should work for "Coroutine (manual full)" 1`] = `true`;
+
+exports[`isObject should work for "Coroutine (manual next + close)" 1`] = `true`;
+
+exports[`isObject should work for "Coroutine (manual next + throw)" 1`] = `true`;
+
+exports[`isObject should work for "Coroutine (manual next only)" 1`] = `true`;
+
+exports[`isObject should work for "Date" 1`] = `true`;
+
+exports[`isObject should work for "Error" 1`] = `true`;
+
+exports[`isObject should work for "False" 1`] = `false`;
+
+exports[`isObject should work for "Function (async)" 1`] = `false`;
+
+exports[`isObject should work for "Function (generator)" 1`] = `false`;
+
+exports[`isObject should work for "Function (regular)" 1`] = `false`;
+
+exports[`isObject should work for "Generator object" 1`] = `true`;
+
+exports[`isObject should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isObject should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isObject should work for "Int8Array" 1`] = `true`;
+
+exports[`isObject should work for "Int16Array" 1`] = `true`;
+
+exports[`isObject should work for "Int32Array" 1`] = `true`;
+
+exports[`isObject should work for "Iterable (manual)" 1`] = `true`;
+
+exports[`isObject should work for "Map" 1`] = `true`;
+
+exports[`isObject should work for "NaN" 1`] = `false`;
+
+exports[`isObject should work for "Null" 1`] = `true`;
+
+exports[`isObject should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isObject should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isObject should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isObject should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isObject should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isObject should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isObject should work for "Object (plain empty)" 1`] = `true`;
+
+exports[`isObject should work for "Object (plain with props)" 1`] = `true`;
+
+exports[`isObject should work for "RegExp" 1`] = `true`;
+
+exports[`isObject should work for "Set" 1`] = `true`;
+
+exports[`isObject should work for "String (empty)" 1`] = `false`;
+
+exports[`isObject should work for "String (simple)" 1`] = `false`;
+
+exports[`isObject should work for "Symbol" 1`] = `false`;
+
+exports[`isObject should work for "True" 1`] = `false`;
+
+exports[`isObject should work for "Undefined" 1`] = `false`;
+
+exports[`isObject should work for "WeakMap" 1`] = `true`;
+
+exports[`isObject should work for "WeakSet" 1`] = `true`;
+
+exports[`isObjectValue should work for "Array (empty)" 1`] = `true`;
+
+exports[`isObjectValue should work for "Array (with values)" 1`] = `true`;
+
+exports[`isObjectValue should work for "ArrayBuffer" 1`] = `true`;
+
+exports[`isObjectValue should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Class (instance of Empty)" 1`] = `true`;
+
+exports[`isObjectValue should work for "Class (instance of User)" 1`] = `true`;
+
+exports[`isObjectValue should work for "Coroutine (manual full)" 1`] = `true`;
+
+exports[`isObjectValue should work for "Coroutine (manual next + close)" 1`] = `true`;
+
+exports[`isObjectValue should work for "Coroutine (manual next + throw)" 1`] = `true`;
+
+exports[`isObjectValue should work for "Coroutine (manual next only)" 1`] = `true`;
+
+exports[`isObjectValue should work for "Date" 1`] = `true`;
+
+exports[`isObjectValue should work for "Error" 1`] = `true`;
+
+exports[`isObjectValue should work for "False" 1`] = `false`;
+
+exports[`isObjectValue should work for "Function (async)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Function (generator)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Function (regular)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Generator object" 1`] = `true`;
+
+exports[`isObjectValue should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Int8Array" 1`] = `true`;
+
+exports[`isObjectValue should work for "Int16Array" 1`] = `true`;
+
+exports[`isObjectValue should work for "Int32Array" 1`] = `true`;
+
+exports[`isObjectValue should work for "Iterable (manual)" 1`] = `true`;
+
+exports[`isObjectValue should work for "Map" 1`] = `true`;
+
+exports[`isObjectValue should work for "NaN" 1`] = `false`;
+
+exports[`isObjectValue should work for "Null" 1`] = `false`;
+
+exports[`isObjectValue should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Object (plain empty)" 1`] = `true`;
+
+exports[`isObjectValue should work for "Object (plain with props)" 1`] = `true`;
+
+exports[`isObjectValue should work for "RegExp" 1`] = `true`;
+
+exports[`isObjectValue should work for "Set" 1`] = `true`;
+
+exports[`isObjectValue should work for "String (empty)" 1`] = `false`;
+
+exports[`isObjectValue should work for "String (simple)" 1`] = `false`;
+
+exports[`isObjectValue should work for "Symbol" 1`] = `false`;
+
+exports[`isObjectValue should work for "True" 1`] = `false`;
+
+exports[`isObjectValue should work for "Undefined" 1`] = `false`;
+
+exports[`isObjectValue should work for "WeakMap" 1`] = `true`;
+
+exports[`isObjectValue should work for "WeakSet" 1`] = `true`;
+
+exports[`isObserver should work for "Array (empty)" 1`] = `false`;
+
+exports[`isObserver should work for "Array (with values)" 1`] = `false`;
+
+exports[`isObserver should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isObserver should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isObserver should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isObserver should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isObserver should work for "Coroutine (manual full)" 1`] = `true`;
+
+exports[`isObserver should work for "Coroutine (manual next + close)" 1`] = `true`;
+
+exports[`isObserver should work for "Coroutine (manual next + throw)" 1`] = `true`;
+
+exports[`isObserver should work for "Coroutine (manual next only)" 1`] = `true`;
+
+exports[`isObserver should work for "Date" 1`] = `false`;
+
+exports[`isObserver should work for "Error" 1`] = `false`;
+
+exports[`isObserver should work for "False" 1`] = `false`;
+
+exports[`isObserver should work for "Function (async)" 1`] = `false`;
+
+exports[`isObserver should work for "Function (generator)" 1`] = `false`;
+
+exports[`isObserver should work for "Function (regular)" 1`] = `false`;
+
+exports[`isObserver should work for "Generator object" 1`] = `true`;
+
+exports[`isObserver should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isObserver should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isObserver should work for "Int8Array" 1`] = `false`;
+
+exports[`isObserver should work for "Int16Array" 1`] = `false`;
+
+exports[`isObserver should work for "Int32Array" 1`] = `false`;
+
+exports[`isObserver should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isObserver should work for "Map" 1`] = `false`;
+
+exports[`isObserver should work for "NaN" 1`] = `false`;
+
+exports[`isObserver should work for "Null" 1`] = `false`;
+
+exports[`isObserver should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isObserver should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isObserver should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isObserver should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isObserver should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isObserver should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isObserver should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isObserver should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isObserver should work for "RegExp" 1`] = `false`;
+
+exports[`isObserver should work for "Set" 1`] = `false`;
+
+exports[`isObserver should work for "String (empty)" 1`] = `false`;
+
+exports[`isObserver should work for "String (simple)" 1`] = `false`;
+
+exports[`isObserver should work for "Symbol" 1`] = `false`;
+
+exports[`isObserver should work for "True" 1`] = `false`;
+
+exports[`isObserver should work for "Undefined" 1`] = `false`;
+
+exports[`isObserver should work for "WeakMap" 1`] = `false`;
+
+exports[`isObserver should work for "WeakSet" 1`] = `false`;
+
+exports[`isPlainObject should work for "Array (empty)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Array (with values)" 1`] = `false`;
+
+exports[`isPlainObject should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isPlainObject should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Coroutine (manual full)" 1`] = `true`;
+
+exports[`isPlainObject should work for "Coroutine (manual next + close)" 1`] = `true`;
+
+exports[`isPlainObject should work for "Coroutine (manual next + throw)" 1`] = `true`;
+
+exports[`isPlainObject should work for "Coroutine (manual next only)" 1`] = `true`;
+
+exports[`isPlainObject should work for "Date" 1`] = `false`;
+
+exports[`isPlainObject should work for "Error" 1`] = `false`;
+
+exports[`isPlainObject should work for "False" 1`] = `false`;
+
+exports[`isPlainObject should work for "Function (async)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Function (generator)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Function (regular)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Generator object" 1`] = `false`;
+
+exports[`isPlainObject should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Int8Array" 1`] = `false`;
+
+exports[`isPlainObject should work for "Int16Array" 1`] = `false`;
+
+exports[`isPlainObject should work for "Int32Array" 1`] = `false`;
+
+exports[`isPlainObject should work for "Iterable (manual)" 1`] = `true`;
+
+exports[`isPlainObject should work for "Map" 1`] = `false`;
+
+exports[`isPlainObject should work for "NaN" 1`] = `false`;
+
+exports[`isPlainObject should work for "Null" 1`] = `false`;
+
+exports[`isPlainObject should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Object (plain empty)" 1`] = `true`;
+
+exports[`isPlainObject should work for "Object (plain with props)" 1`] = `true`;
+
+exports[`isPlainObject should work for "RegExp" 1`] = `false`;
+
+exports[`isPlainObject should work for "Set" 1`] = `false`;
+
+exports[`isPlainObject should work for "String (empty)" 1`] = `false`;
+
+exports[`isPlainObject should work for "String (simple)" 1`] = `false`;
+
+exports[`isPlainObject should work for "Symbol" 1`] = `false`;
+
+exports[`isPlainObject should work for "True" 1`] = `false`;
+
+exports[`isPlainObject should work for "Undefined" 1`] = `false`;
+
+exports[`isPlainObject should work for "WeakMap" 1`] = `false`;
+
+exports[`isPlainObject should work for "WeakSet" 1`] = `false`;
+
+exports[`isPositive should work for "Array (empty)" 1`] = `false`;
+
+exports[`isPositive should work for "Array (with values)" 1`] = `false`;
+
+exports[`isPositive should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isPositive should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isPositive should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isPositive should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isPositive should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isPositive should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isPositive should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isPositive should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isPositive should work for "Date" 1`] = `false`;
+
+exports[`isPositive should work for "Error" 1`] = `false`;
+
+exports[`isPositive should work for "False" 1`] = `false`;
+
+exports[`isPositive should work for "Function (async)" 1`] = `false`;
+
+exports[`isPositive should work for "Function (generator)" 1`] = `false`;
+
+exports[`isPositive should work for "Function (regular)" 1`] = `false`;
+
+exports[`isPositive should work for "Generator object" 1`] = `false`;
+
+exports[`isPositive should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isPositive should work for "Infinity (positive)" 1`] = `true`;
+
+exports[`isPositive should work for "Int8Array" 1`] = `false`;
+
+exports[`isPositive should work for "Int16Array" 1`] = `false`;
+
+exports[`isPositive should work for "Int32Array" 1`] = `false`;
+
+exports[`isPositive should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isPositive should work for "Map" 1`] = `false`;
+
+exports[`isPositive should work for "NaN" 1`] = `false`;
+
+exports[`isPositive should work for "Null" 1`] = `false`;
+
+exports[`isPositive should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isPositive should work for "Number (fractional positive)" 1`] = `true`;
+
+exports[`isPositive should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isPositive should work for "Number (integer positive)" 1`] = `true`;
+
+exports[`isPositive should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isPositive should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isPositive should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isPositive should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isPositive should work for "RegExp" 1`] = `false`;
+
+exports[`isPositive should work for "Set" 1`] = `false`;
+
+exports[`isPositive should work for "String (empty)" 1`] = `false`;
+
+exports[`isPositive should work for "String (simple)" 1`] = `false`;
+
+exports[`isPositive should work for "Symbol" 1`] = `false`;
+
+exports[`isPositive should work for "True" 1`] = `false`;
+
+exports[`isPositive should work for "Undefined" 1`] = `false`;
+
+exports[`isPositive should work for "WeakMap" 1`] = `false`;
+
+exports[`isPositive should work for "WeakSet" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Array (empty)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Array (with values)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Date" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Error" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "False" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Function (async)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Function (generator)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Function (regular)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Generator object" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Infinity (positive)" 1`] = `true`;
+
+exports[`isPositiveOrZero should work for "Int8Array" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Int16Array" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Int32Array" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Map" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "NaN" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Null" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Number (fractional positive)" 1`] = `true`;
+
+exports[`isPositiveOrZero should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Number (integer positive)" 1`] = `true`;
+
+exports[`isPositiveOrZero should work for "Number (zero negative)" 1`] = `true`;
+
+exports[`isPositiveOrZero should work for "Number (zero positive)" 1`] = `true`;
+
+exports[`isPositiveOrZero should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "RegExp" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Set" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "String (empty)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "String (simple)" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Symbol" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "True" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "Undefined" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "WeakMap" 1`] = `false`;
+
+exports[`isPositiveOrZero should work for "WeakSet" 1`] = `false`;
+
+exports[`isRegExp should work for "Array (empty)" 1`] = `false`;
+
+exports[`isRegExp should work for "Array (with values)" 1`] = `false`;
+
+exports[`isRegExp should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isRegExp should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isRegExp should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isRegExp should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isRegExp should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isRegExp should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isRegExp should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isRegExp should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isRegExp should work for "Date" 1`] = `false`;
+
+exports[`isRegExp should work for "Error" 1`] = `false`;
+
+exports[`isRegExp should work for "False" 1`] = `false`;
+
+exports[`isRegExp should work for "Function (async)" 1`] = `false`;
+
+exports[`isRegExp should work for "Function (generator)" 1`] = `false`;
+
+exports[`isRegExp should work for "Function (regular)" 1`] = `false`;
+
+exports[`isRegExp should work for "Generator object" 1`] = `false`;
+
+exports[`isRegExp should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isRegExp should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isRegExp should work for "Int8Array" 1`] = `false`;
+
+exports[`isRegExp should work for "Int16Array" 1`] = `false`;
+
+exports[`isRegExp should work for "Int32Array" 1`] = `false`;
+
+exports[`isRegExp should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isRegExp should work for "Map" 1`] = `false`;
+
+exports[`isRegExp should work for "NaN" 1`] = `false`;
+
+exports[`isRegExp should work for "Null" 1`] = `false`;
+
+exports[`isRegExp should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isRegExp should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isRegExp should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isRegExp should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isRegExp should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isRegExp should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isRegExp should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isRegExp should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isRegExp should work for "RegExp" 1`] = `true`;
+
+exports[`isRegExp should work for "Set" 1`] = `false`;
+
+exports[`isRegExp should work for "String (empty)" 1`] = `false`;
+
+exports[`isRegExp should work for "String (simple)" 1`] = `false`;
+
+exports[`isRegExp should work for "Symbol" 1`] = `false`;
+
+exports[`isRegExp should work for "True" 1`] = `false`;
+
+exports[`isRegExp should work for "Undefined" 1`] = `false`;
+
+exports[`isRegExp should work for "WeakMap" 1`] = `false`;
+
+exports[`isRegExp should work for "WeakSet" 1`] = `false`;
+
+exports[`isSet should work for "Array (empty)" 1`] = `false`;
+
+exports[`isSet should work for "Array (with values)" 1`] = `false`;
+
+exports[`isSet should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isSet should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isSet should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isSet should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isSet should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isSet should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isSet should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isSet should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isSet should work for "Date" 1`] = `false`;
+
+exports[`isSet should work for "Error" 1`] = `false`;
+
+exports[`isSet should work for "False" 1`] = `false`;
+
+exports[`isSet should work for "Function (async)" 1`] = `false`;
+
+exports[`isSet should work for "Function (generator)" 1`] = `false`;
+
+exports[`isSet should work for "Function (regular)" 1`] = `false`;
+
+exports[`isSet should work for "Generator object" 1`] = `false`;
+
+exports[`isSet should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isSet should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isSet should work for "Int8Array" 1`] = `false`;
+
+exports[`isSet should work for "Int16Array" 1`] = `false`;
+
+exports[`isSet should work for "Int32Array" 1`] = `false`;
+
+exports[`isSet should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isSet should work for "Map" 1`] = `false`;
+
+exports[`isSet should work for "NaN" 1`] = `false`;
+
+exports[`isSet should work for "Null" 1`] = `false`;
+
+exports[`isSet should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isSet should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isSet should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isSet should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isSet should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isSet should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isSet should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isSet should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isSet should work for "RegExp" 1`] = `false`;
+
+exports[`isSet should work for "Set" 1`] = `true`;
+
+exports[`isSet should work for "String (empty)" 1`] = `false`;
+
+exports[`isSet should work for "String (simple)" 1`] = `false`;
+
+exports[`isSet should work for "Symbol" 1`] = `false`;
+
+exports[`isSet should work for "True" 1`] = `false`;
+
+exports[`isSet should work for "Undefined" 1`] = `false`;
+
+exports[`isSet should work for "WeakMap" 1`] = `false`;
+
+exports[`isSet should work for "WeakSet" 1`] = `false`;
+
+exports[`isString should work for "Array (empty)" 1`] = `false`;
+
+exports[`isString should work for "Array (with values)" 1`] = `false`;
+
+exports[`isString should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isString should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isString should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isString should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isString should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isString should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isString should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isString should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isString should work for "Date" 1`] = `false`;
+
+exports[`isString should work for "Error" 1`] = `false`;
+
+exports[`isString should work for "False" 1`] = `false`;
+
+exports[`isString should work for "Function (async)" 1`] = `false`;
+
+exports[`isString should work for "Function (generator)" 1`] = `false`;
+
+exports[`isString should work for "Function (regular)" 1`] = `false`;
+
+exports[`isString should work for "Generator object" 1`] = `false`;
+
+exports[`isString should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isString should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isString should work for "Int8Array" 1`] = `false`;
+
+exports[`isString should work for "Int16Array" 1`] = `false`;
+
+exports[`isString should work for "Int32Array" 1`] = `false`;
+
+exports[`isString should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isString should work for "Map" 1`] = `false`;
+
+exports[`isString should work for "NaN" 1`] = `false`;
+
+exports[`isString should work for "Null" 1`] = `false`;
+
+exports[`isString should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isString should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isString should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isString should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isString should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isString should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isString should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isString should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isString should work for "RegExp" 1`] = `false`;
+
+exports[`isString should work for "Set" 1`] = `false`;
+
+exports[`isString should work for "String (empty)" 1`] = `true`;
+
+exports[`isString should work for "String (simple)" 1`] = `true`;
+
+exports[`isString should work for "Symbol" 1`] = `false`;
+
+exports[`isString should work for "True" 1`] = `false`;
+
+exports[`isString should work for "Undefined" 1`] = `false`;
+
+exports[`isString should work for "WeakMap" 1`] = `false`;
+
+exports[`isString should work for "WeakSet" 1`] = `false`;
+
+exports[`isSymbol should work for "Array (empty)" 1`] = `false`;
+
+exports[`isSymbol should work for "Array (with values)" 1`] = `false`;
+
+exports[`isSymbol should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isSymbol should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isSymbol should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isSymbol should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isSymbol should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isSymbol should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isSymbol should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isSymbol should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isSymbol should work for "Date" 1`] = `false`;
+
+exports[`isSymbol should work for "Error" 1`] = `false`;
+
+exports[`isSymbol should work for "False" 1`] = `false`;
+
+exports[`isSymbol should work for "Function (async)" 1`] = `false`;
+
+exports[`isSymbol should work for "Function (generator)" 1`] = `false`;
+
+exports[`isSymbol should work for "Function (regular)" 1`] = `false`;
+
+exports[`isSymbol should work for "Generator object" 1`] = `false`;
+
+exports[`isSymbol should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isSymbol should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isSymbol should work for "Int8Array" 1`] = `false`;
+
+exports[`isSymbol should work for "Int16Array" 1`] = `false`;
+
+exports[`isSymbol should work for "Int32Array" 1`] = `false`;
+
+exports[`isSymbol should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isSymbol should work for "Map" 1`] = `false`;
+
+exports[`isSymbol should work for "NaN" 1`] = `false`;
+
+exports[`isSymbol should work for "Null" 1`] = `false`;
+
+exports[`isSymbol should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isSymbol should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isSymbol should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isSymbol should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isSymbol should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isSymbol should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isSymbol should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isSymbol should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isSymbol should work for "RegExp" 1`] = `false`;
+
+exports[`isSymbol should work for "Set" 1`] = `false`;
+
+exports[`isSymbol should work for "String (empty)" 1`] = `false`;
+
+exports[`isSymbol should work for "String (simple)" 1`] = `false`;
+
+exports[`isSymbol should work for "Symbol" 1`] = `true`;
+
+exports[`isSymbol should work for "True" 1`] = `false`;
+
+exports[`isSymbol should work for "Undefined" 1`] = `false`;
+
+exports[`isSymbol should work for "WeakMap" 1`] = `false`;
+
+exports[`isSymbol should work for "WeakSet" 1`] = `false`;
+
+exports[`isTruthy should work for "Array (empty)" 1`] = `true`;
+
+exports[`isTruthy should work for "Array (with values)" 1`] = `true`;
+
+exports[`isTruthy should work for "ArrayBuffer" 1`] = `true`;
+
+exports[`isTruthy should work for "Class (Empty)" 1`] = `true`;
+
+exports[`isTruthy should work for "Class (instance of Empty)" 1`] = `true`;
+
+exports[`isTruthy should work for "Class (instance of User)" 1`] = `true`;
+
+exports[`isTruthy should work for "Coroutine (manual full)" 1`] = `true`;
+
+exports[`isTruthy should work for "Coroutine (manual next + close)" 1`] = `true`;
+
+exports[`isTruthy should work for "Coroutine (manual next + throw)" 1`] = `true`;
+
+exports[`isTruthy should work for "Coroutine (manual next only)" 1`] = `true`;
+
+exports[`isTruthy should work for "Date" 1`] = `true`;
+
+exports[`isTruthy should work for "Error" 1`] = `true`;
+
+exports[`isTruthy should work for "False" 1`] = `false`;
+
+exports[`isTruthy should work for "Function (async)" 1`] = `true`;
+
+exports[`isTruthy should work for "Function (generator)" 1`] = `true`;
+
+exports[`isTruthy should work for "Function (regular)" 1`] = `true`;
+
+exports[`isTruthy should work for "Generator object" 1`] = `true`;
+
+exports[`isTruthy should work for "Infinity (negative)" 1`] = `true`;
+
+exports[`isTruthy should work for "Infinity (positive)" 1`] = `true`;
+
+exports[`isTruthy should work for "Int8Array" 1`] = `true`;
+
+exports[`isTruthy should work for "Int16Array" 1`] = `true`;
+
+exports[`isTruthy should work for "Int32Array" 1`] = `true`;
+
+exports[`isTruthy should work for "Iterable (manual)" 1`] = `true`;
+
+exports[`isTruthy should work for "Map" 1`] = `true`;
+
+exports[`isTruthy should work for "NaN" 1`] = `false`;
+
+exports[`isTruthy should work for "Null" 1`] = `false`;
+
+exports[`isTruthy should work for "Number (fractional negative)" 1`] = `true`;
+
+exports[`isTruthy should work for "Number (fractional positive)" 1`] = `true`;
+
+exports[`isTruthy should work for "Number (integer negative)" 1`] = `true`;
+
+exports[`isTruthy should work for "Number (integer positive)" 1`] = `true`;
+
+exports[`isTruthy should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isTruthy should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isTruthy should work for "Object (plain empty)" 1`] = `true`;
+
+exports[`isTruthy should work for "Object (plain with props)" 1`] = `true`;
+
+exports[`isTruthy should work for "RegExp" 1`] = `true`;
+
+exports[`isTruthy should work for "Set" 1`] = `true`;
+
+exports[`isTruthy should work for "String (empty)" 1`] = `false`;
+
+exports[`isTruthy should work for "String (simple)" 1`] = `true`;
+
+exports[`isTruthy should work for "Symbol" 1`] = `true`;
+
+exports[`isTruthy should work for "True" 1`] = `true`;
+
+exports[`isTruthy should work for "Undefined" 1`] = `false`;
+
+exports[`isTruthy should work for "WeakMap" 1`] = `true`;
+
+exports[`isTruthy should work for "WeakSet" 1`] = `true`;
+
+exports[`isUndefined should work for "Array (empty)" 1`] = `false`;
+
+exports[`isUndefined should work for "Array (with values)" 1`] = `false`;
+
+exports[`isUndefined should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isUndefined should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isUndefined should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isUndefined should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isUndefined should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isUndefined should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isUndefined should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isUndefined should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isUndefined should work for "Date" 1`] = `false`;
+
+exports[`isUndefined should work for "Error" 1`] = `false`;
+
+exports[`isUndefined should work for "False" 1`] = `false`;
+
+exports[`isUndefined should work for "Function (async)" 1`] = `false`;
+
+exports[`isUndefined should work for "Function (generator)" 1`] = `false`;
+
+exports[`isUndefined should work for "Function (regular)" 1`] = `false`;
+
+exports[`isUndefined should work for "Generator object" 1`] = `false`;
+
+exports[`isUndefined should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isUndefined should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isUndefined should work for "Int8Array" 1`] = `false`;
+
+exports[`isUndefined should work for "Int16Array" 1`] = `false`;
+
+exports[`isUndefined should work for "Int32Array" 1`] = `false`;
+
+exports[`isUndefined should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isUndefined should work for "Map" 1`] = `false`;
+
+exports[`isUndefined should work for "NaN" 1`] = `false`;
+
+exports[`isUndefined should work for "Null" 1`] = `false`;
+
+exports[`isUndefined should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isUndefined should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isUndefined should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isUndefined should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isUndefined should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isUndefined should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isUndefined should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isUndefined should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isUndefined should work for "RegExp" 1`] = `false`;
+
+exports[`isUndefined should work for "Set" 1`] = `false`;
+
+exports[`isUndefined should work for "String (empty)" 1`] = `false`;
+
+exports[`isUndefined should work for "String (simple)" 1`] = `false`;
+
+exports[`isUndefined should work for "Symbol" 1`] = `false`;
+
+exports[`isUndefined should work for "True" 1`] = `false`;
+
+exports[`isUndefined should work for "Undefined" 1`] = `true`;
+
+exports[`isUndefined should work for "WeakMap" 1`] = `false`;
+
+exports[`isUndefined should work for "WeakSet" 1`] = `false`;
+
+exports[`isWeakMap should work for "Array (empty)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Array (with values)" 1`] = `false`;
+
+exports[`isWeakMap should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isWeakMap should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Date" 1`] = `false`;
+
+exports[`isWeakMap should work for "Error" 1`] = `false`;
+
+exports[`isWeakMap should work for "False" 1`] = `false`;
+
+exports[`isWeakMap should work for "Function (async)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Function (generator)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Function (regular)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Generator object" 1`] = `false`;
+
+exports[`isWeakMap should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Int8Array" 1`] = `false`;
+
+exports[`isWeakMap should work for "Int16Array" 1`] = `false`;
+
+exports[`isWeakMap should work for "Int32Array" 1`] = `false`;
+
+exports[`isWeakMap should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Map" 1`] = `false`;
+
+exports[`isWeakMap should work for "NaN" 1`] = `false`;
+
+exports[`isWeakMap should work for "Null" 1`] = `false`;
+
+exports[`isWeakMap should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isWeakMap should work for "RegExp" 1`] = `false`;
+
+exports[`isWeakMap should work for "Set" 1`] = `false`;
+
+exports[`isWeakMap should work for "String (empty)" 1`] = `false`;
+
+exports[`isWeakMap should work for "String (simple)" 1`] = `false`;
+
+exports[`isWeakMap should work for "Symbol" 1`] = `false`;
+
+exports[`isWeakMap should work for "True" 1`] = `false`;
+
+exports[`isWeakMap should work for "Undefined" 1`] = `false`;
+
+exports[`isWeakMap should work for "WeakMap" 1`] = `true`;
+
+exports[`isWeakMap should work for "WeakSet" 1`] = `false`;
+
+exports[`isWeakSet should work for "Array (empty)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Array (with values)" 1`] = `false`;
+
+exports[`isWeakSet should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isWeakSet should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Date" 1`] = `false`;
+
+exports[`isWeakSet should work for "Error" 1`] = `false`;
+
+exports[`isWeakSet should work for "False" 1`] = `false`;
+
+exports[`isWeakSet should work for "Function (async)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Function (generator)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Function (regular)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Generator object" 1`] = `false`;
+
+exports[`isWeakSet should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Int8Array" 1`] = `false`;
+
+exports[`isWeakSet should work for "Int16Array" 1`] = `false`;
+
+exports[`isWeakSet should work for "Int32Array" 1`] = `false`;
+
+exports[`isWeakSet should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Map" 1`] = `false`;
+
+exports[`isWeakSet should work for "NaN" 1`] = `false`;
+
+exports[`isWeakSet should work for "Null" 1`] = `false`;
+
+exports[`isWeakSet should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isWeakSet should work for "RegExp" 1`] = `false`;
+
+exports[`isWeakSet should work for "Set" 1`] = `false`;
+
+exports[`isWeakSet should work for "String (empty)" 1`] = `false`;
+
+exports[`isWeakSet should work for "String (simple)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Symbol" 1`] = `false`;
+
+exports[`isWeakSet should work for "True" 1`] = `false`;
+
+exports[`isWeakSet should work for "Undefined" 1`] = `false`;
+
+exports[`isWeakSet should work for "WeakMap" 1`] = `false`;
+
+exports[`isWeakSet should work for "WeakSet" 1`] = `true`;
