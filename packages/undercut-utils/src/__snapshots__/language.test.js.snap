@@ -68,6 +68,8 @@ exports[`getObjectType should work for "Object (plain empty)" 1`] = `"Object"`;
 
 exports[`getObjectType should work for "Object (plain with props)" 1`] = `"Object"`;
 
+exports[`getObjectType should work for "Promise" 1`] = `"Promise"`;
+
 exports[`getObjectType should work for "RegExp" 1`] = `"RegExp"`;
 
 exports[`getObjectType should work for "Set" 1`] = `"Set"`;
@@ -153,6 +155,8 @@ exports[`hasOwnProps should work for "Number (zero positive)" 1`] = `false`;
 exports[`hasOwnProps should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`hasOwnProps should work for "Object (plain with props)" 1`] = `true`;
+
+exports[`hasOwnProps should work for "Promise" 1`] = `false`;
 
 exports[`hasOwnProps should work for "RegExp" 1`] = `false`;
 
@@ -240,6 +244,8 @@ exports[`isArrayBuffer should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isArrayBuffer should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isArrayBuffer should work for "Promise" 1`] = `false`;
+
 exports[`isArrayBuffer should work for "RegExp" 1`] = `false`;
 
 exports[`isArrayBuffer should work for "Set" 1`] = `false`;
@@ -325,6 +331,8 @@ exports[`isBoolean should work for "Number (zero positive)" 1`] = `false`;
 exports[`isBoolean should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isBoolean should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isBoolean should work for "Promise" 1`] = `false`;
 
 exports[`isBoolean should work for "RegExp" 1`] = `false`;
 
@@ -412,6 +420,8 @@ exports[`isCoroutine should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isCoroutine should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isCoroutine should work for "Promise" 1`] = `false`;
+
 exports[`isCoroutine should work for "RegExp" 1`] = `false`;
 
 exports[`isCoroutine should work for "Set" 1`] = `false`;
@@ -497,6 +507,8 @@ exports[`isDate should work for "Number (zero positive)" 1`] = `false`;
 exports[`isDate should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isDate should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isDate should work for "Promise" 1`] = `false`;
 
 exports[`isDate should work for "RegExp" 1`] = `false`;
 
@@ -584,6 +596,8 @@ exports[`isDefined should work for "Object (plain empty)" 1`] = `true`;
 
 exports[`isDefined should work for "Object (plain with props)" 1`] = `true`;
 
+exports[`isDefined should work for "Promise" 1`] = `true`;
+
 exports[`isDefined should work for "RegExp" 1`] = `true`;
 
 exports[`isDefined should work for "Set" 1`] = `true`;
@@ -669,6 +683,8 @@ exports[`isError should work for "Number (zero positive)" 1`] = `false`;
 exports[`isError should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isError should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isError should work for "Promise" 1`] = `false`;
 
 exports[`isError should work for "RegExp" 1`] = `false`;
 
@@ -756,6 +772,8 @@ exports[`isFalsy should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isFalsy should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isFalsy should work for "Promise" 1`] = `false`;
+
 exports[`isFalsy should work for "RegExp" 1`] = `false`;
 
 exports[`isFalsy should work for "Set" 1`] = `false`;
@@ -841,6 +859,8 @@ exports[`isFunction should work for "Number (zero positive)" 1`] = `false`;
 exports[`isFunction should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isFunction should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isFunction should work for "Promise" 1`] = `false`;
 
 exports[`isFunction should work for "RegExp" 1`] = `false`;
 
@@ -928,6 +948,8 @@ exports[`isIterable should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isIterable should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isIterable should work for "Promise" 1`] = `false`;
+
 exports[`isIterable should work for "RegExp" 1`] = `false`;
 
 exports[`isIterable should work for "Set" 1`] = `true`;
@@ -1013,6 +1035,8 @@ exports[`isIterator should work for "Number (zero positive)" 1`] = `false`;
 exports[`isIterator should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isIterator should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isIterator should work for "Promise" 1`] = `false`;
 
 exports[`isIterator should work for "RegExp" 1`] = `false`;
 
@@ -1100,6 +1124,8 @@ exports[`isMap should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isMap should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isMap should work for "Promise" 1`] = `false`;
+
 exports[`isMap should work for "RegExp" 1`] = `false`;
 
 exports[`isMap should work for "Set" 1`] = `false`;
@@ -1185,6 +1211,8 @@ exports[`isNegative should work for "Number (zero positive)" 1`] = `false`;
 exports[`isNegative should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isNegative should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isNegative should work for "Promise" 1`] = `false`;
 
 exports[`isNegative should work for "RegExp" 1`] = `false`;
 
@@ -1272,6 +1300,8 @@ exports[`isNegativeOrZero should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isNegativeOrZero should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isNegativeOrZero should work for "Promise" 1`] = `false`;
+
 exports[`isNegativeOrZero should work for "RegExp" 1`] = `false`;
 
 exports[`isNegativeOrZero should work for "Set" 1`] = `false`;
@@ -1357,6 +1387,8 @@ exports[`isNull should work for "Number (zero positive)" 1`] = `false`;
 exports[`isNull should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isNull should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isNull should work for "Promise" 1`] = `false`;
 
 exports[`isNull should work for "RegExp" 1`] = `false`;
 
@@ -1444,6 +1476,8 @@ exports[`isNullish should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isNullish should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isNullish should work for "Promise" 1`] = `false`;
+
 exports[`isNullish should work for "RegExp" 1`] = `false`;
 
 exports[`isNullish should work for "Set" 1`] = `false`;
@@ -1529,6 +1563,8 @@ exports[`isNumber should work for "Number (zero positive)" 1`] = `true`;
 exports[`isNumber should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isNumber should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isNumber should work for "Promise" 1`] = `false`;
 
 exports[`isNumber should work for "RegExp" 1`] = `false`;
 
@@ -1616,6 +1652,8 @@ exports[`isNumberValue should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isNumberValue should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isNumberValue should work for "Promise" 1`] = `false`;
+
 exports[`isNumberValue should work for "RegExp" 1`] = `false`;
 
 exports[`isNumberValue should work for "Set" 1`] = `false`;
@@ -1701,6 +1739,8 @@ exports[`isObject should work for "Number (zero positive)" 1`] = `false`;
 exports[`isObject should work for "Object (plain empty)" 1`] = `true`;
 
 exports[`isObject should work for "Object (plain with props)" 1`] = `true`;
+
+exports[`isObject should work for "Promise" 1`] = `true`;
 
 exports[`isObject should work for "RegExp" 1`] = `true`;
 
@@ -1788,6 +1828,8 @@ exports[`isObjectValue should work for "Object (plain empty)" 1`] = `true`;
 
 exports[`isObjectValue should work for "Object (plain with props)" 1`] = `true`;
 
+exports[`isObjectValue should work for "Promise" 1`] = `true`;
+
 exports[`isObjectValue should work for "RegExp" 1`] = `true`;
 
 exports[`isObjectValue should work for "Set" 1`] = `true`;
@@ -1873,6 +1915,8 @@ exports[`isObserver should work for "Number (zero positive)" 1`] = `false`;
 exports[`isObserver should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isObserver should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isObserver should work for "Promise" 1`] = `false`;
 
 exports[`isObserver should work for "RegExp" 1`] = `false`;
 
@@ -1960,6 +2004,8 @@ exports[`isPlainObject should work for "Object (plain empty)" 1`] = `true`;
 
 exports[`isPlainObject should work for "Object (plain with props)" 1`] = `true`;
 
+exports[`isPlainObject should work for "Promise" 1`] = `false`;
+
 exports[`isPlainObject should work for "RegExp" 1`] = `false`;
 
 exports[`isPlainObject should work for "Set" 1`] = `false`;
@@ -2045,6 +2091,8 @@ exports[`isPositive should work for "Number (zero positive)" 1`] = `false`;
 exports[`isPositive should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isPositive should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isPositive should work for "Promise" 1`] = `false`;
 
 exports[`isPositive should work for "RegExp" 1`] = `false`;
 
@@ -2132,6 +2180,8 @@ exports[`isPositiveOrZero should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isPositiveOrZero should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isPositiveOrZero should work for "Promise" 1`] = `false`;
+
 exports[`isPositiveOrZero should work for "RegExp" 1`] = `false`;
 
 exports[`isPositiveOrZero should work for "Set" 1`] = `false`;
@@ -2149,6 +2199,94 @@ exports[`isPositiveOrZero should work for "Undefined" 1`] = `false`;
 exports[`isPositiveOrZero should work for "WeakMap" 1`] = `false`;
 
 exports[`isPositiveOrZero should work for "WeakSet" 1`] = `false`;
+
+exports[`isPromise should work for "Array (empty)" 1`] = `false`;
+
+exports[`isPromise should work for "Array (with values)" 1`] = `false`;
+
+exports[`isPromise should work for "ArrayBuffer" 1`] = `false`;
+
+exports[`isPromise should work for "Class (Empty)" 1`] = `false`;
+
+exports[`isPromise should work for "Class (instance of Empty)" 1`] = `false`;
+
+exports[`isPromise should work for "Class (instance of User)" 1`] = `false`;
+
+exports[`isPromise should work for "Coroutine (manual full)" 1`] = `false`;
+
+exports[`isPromise should work for "Coroutine (manual next + close)" 1`] = `false`;
+
+exports[`isPromise should work for "Coroutine (manual next + throw)" 1`] = `false`;
+
+exports[`isPromise should work for "Coroutine (manual next only)" 1`] = `false`;
+
+exports[`isPromise should work for "Date" 1`] = `false`;
+
+exports[`isPromise should work for "Error" 1`] = `false`;
+
+exports[`isPromise should work for "False" 1`] = `false`;
+
+exports[`isPromise should work for "Function (async)" 1`] = `false`;
+
+exports[`isPromise should work for "Function (generator)" 1`] = `false`;
+
+exports[`isPromise should work for "Function (regular)" 1`] = `false`;
+
+exports[`isPromise should work for "Generator object" 1`] = `false`;
+
+exports[`isPromise should work for "Infinity (negative)" 1`] = `false`;
+
+exports[`isPromise should work for "Infinity (positive)" 1`] = `false`;
+
+exports[`isPromise should work for "Int8Array" 1`] = `false`;
+
+exports[`isPromise should work for "Int16Array" 1`] = `false`;
+
+exports[`isPromise should work for "Int32Array" 1`] = `false`;
+
+exports[`isPromise should work for "Iterable (manual)" 1`] = `false`;
+
+exports[`isPromise should work for "Map" 1`] = `false`;
+
+exports[`isPromise should work for "NaN" 1`] = `false`;
+
+exports[`isPromise should work for "Null" 1`] = `false`;
+
+exports[`isPromise should work for "Number (fractional negative)" 1`] = `false`;
+
+exports[`isPromise should work for "Number (fractional positive)" 1`] = `false`;
+
+exports[`isPromise should work for "Number (integer negative)" 1`] = `false`;
+
+exports[`isPromise should work for "Number (integer positive)" 1`] = `false`;
+
+exports[`isPromise should work for "Number (zero negative)" 1`] = `false`;
+
+exports[`isPromise should work for "Number (zero positive)" 1`] = `false`;
+
+exports[`isPromise should work for "Object (plain empty)" 1`] = `false`;
+
+exports[`isPromise should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isPromise should work for "Promise" 1`] = `true`;
+
+exports[`isPromise should work for "RegExp" 1`] = `false`;
+
+exports[`isPromise should work for "Set" 1`] = `false`;
+
+exports[`isPromise should work for "String (empty)" 1`] = `false`;
+
+exports[`isPromise should work for "String (simple)" 1`] = `false`;
+
+exports[`isPromise should work for "Symbol" 1`] = `false`;
+
+exports[`isPromise should work for "True" 1`] = `false`;
+
+exports[`isPromise should work for "Undefined" 1`] = `false`;
+
+exports[`isPromise should work for "WeakMap" 1`] = `false`;
+
+exports[`isPromise should work for "WeakSet" 1`] = `false`;
 
 exports[`isRegExp should work for "Array (empty)" 1`] = `false`;
 
@@ -2217,6 +2355,8 @@ exports[`isRegExp should work for "Number (zero positive)" 1`] = `false`;
 exports[`isRegExp should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isRegExp should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isRegExp should work for "Promise" 1`] = `false`;
 
 exports[`isRegExp should work for "RegExp" 1`] = `true`;
 
@@ -2304,6 +2444,8 @@ exports[`isSet should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isSet should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isSet should work for "Promise" 1`] = `false`;
+
 exports[`isSet should work for "RegExp" 1`] = `false`;
 
 exports[`isSet should work for "Set" 1`] = `true`;
@@ -2389,6 +2531,8 @@ exports[`isString should work for "Number (zero positive)" 1`] = `false`;
 exports[`isString should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isString should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isString should work for "Promise" 1`] = `false`;
 
 exports[`isString should work for "RegExp" 1`] = `false`;
 
@@ -2476,6 +2620,8 @@ exports[`isSymbol should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isSymbol should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isSymbol should work for "Promise" 1`] = `false`;
+
 exports[`isSymbol should work for "RegExp" 1`] = `false`;
 
 exports[`isSymbol should work for "Set" 1`] = `false`;
@@ -2561,6 +2707,8 @@ exports[`isTruthy should work for "Number (zero positive)" 1`] = `false`;
 exports[`isTruthy should work for "Object (plain empty)" 1`] = `true`;
 
 exports[`isTruthy should work for "Object (plain with props)" 1`] = `true`;
+
+exports[`isTruthy should work for "Promise" 1`] = `true`;
 
 exports[`isTruthy should work for "RegExp" 1`] = `true`;
 
@@ -2648,6 +2796,8 @@ exports[`isUndefined should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isUndefined should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isUndefined should work for "Promise" 1`] = `false`;
+
 exports[`isUndefined should work for "RegExp" 1`] = `false`;
 
 exports[`isUndefined should work for "Set" 1`] = `false`;
@@ -2734,6 +2884,8 @@ exports[`isWeakMap should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isWeakMap should work for "Object (plain with props)" 1`] = `false`;
 
+exports[`isWeakMap should work for "Promise" 1`] = `false`;
+
 exports[`isWeakMap should work for "RegExp" 1`] = `false`;
 
 exports[`isWeakMap should work for "Set" 1`] = `false`;
@@ -2819,6 +2971,8 @@ exports[`isWeakSet should work for "Number (zero positive)" 1`] = `false`;
 exports[`isWeakSet should work for "Object (plain empty)" 1`] = `false`;
 
 exports[`isWeakSet should work for "Object (plain with props)" 1`] = `false`;
+
+exports[`isWeakSet should work for "Promise" 1`] = `false`;
 
 exports[`isWeakSet should work for "RegExp" 1`] = `false`;
 
