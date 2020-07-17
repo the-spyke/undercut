@@ -15,11 +15,34 @@ title: Iterable Utilities
 
 Makes an `Iterable` from a provided function. It could be a generator or a factory, but must return a new `Iterator` every time.
 
+```js
+const iterable = createIterable(function* () {
+    while (true) yield Math.random();
+});
+
+const [x, y] = iterable;
+const [z] = iterable;
+
+// x === 0.6486486024235587
+// y === 0.3952175724953333
+// z === 0.8863071830215743
+```
+
 ### getIterator
 
 `getIterator(iterable) => Iterator`
 
 Calls the `Symbol.iterator` method of the `iterable` for you.
+
+```js
+const iterator = getIterator(`undercut`);
+
+// Iterator {}
+
+iterator.next();
+
+// {value: "u", done: false}
+```
 
 ### getRecursiveMapper
 
