@@ -1,6 +1,6 @@
 import { assert } from "@undercut/utils/src/assert.js";
 import { abort, close } from "@undercut/utils/src/coroutine.js";
-import { peekIterable } from "@undercut/utils/src/iterable.js";
+import { head } from "@undercut/utils/src/iterable.js";
 import { isObserver } from "@undercut/utils/src/language.js";
 
 /**
@@ -86,5 +86,5 @@ export function toSet() {
  * @returns {<T>(iterable: Iterable<T>) => T | undefined}
  */
 export function toValue() {
-	return peekIterable;
+	return head;
 }

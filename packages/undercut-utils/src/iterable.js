@@ -24,14 +24,40 @@ export function createIterable(getIterator) {
 
 /**
  * Returns the first item of the `iterable` or `undefined`.
- * @type {<T>(iterable: Iterable<T>) => T | undefined }
+ * @type {<T>(iterable: Iterable<T>) => T | undefined}
  */
-export function peekIterable(iterable) {
+export function head(iterable) {
 	for (const item of iterable) {
 		return item;
 	}
 
 	return undefined;
+}
+
+/**
+ * Returns an object with the `head` (the first item, if it exists) and the `tail` (an iterator for remaining items, if there are some).
+ * Missing `tail` tells that the `iterable` is empty and there is no `head` value.
+ * @type {<T>(iterable: Iterable<T>) => { head: T, tail?: Iterator<T> }}
+ */
+export function headTail(iterable) {
+	const iterator = getIterator(iterable);
+	const { value, done } = iterator.next();
+
+	return {
+		head: value,
+		tail: done ? undefined : iterator,
+	};
+}
+
+/**
+ * Returns the `tail` (an iterator for remaining items) of the `iterable`. In case of an empty `iterable` returns `undefined`.
+ * @type {<T>(iterable: Iterable<T>) => Iterator<T> | undefined}
+ */
+export function tail(iterable) {
+	const iterator = getIterator(iterable);
+	const { done } = iterator.next();
+
+	return done ? undefined : iterator;
 }
 
 function* iterateMapTreeRec(predicate, mapper, item, index, depth) {
