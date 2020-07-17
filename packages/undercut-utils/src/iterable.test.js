@@ -1,10 +1,53 @@
-import { describe, expect, test } from "@jest/globals";
+import { describe, expect, jest, test } from "@jest/globals";
+
+import { isIterable, isIterator } from "./language.js";
 
 import {
+	createIterable,
+	getIterator,
 	head,
 	headTail,
 	tail,
 } from "./iterable.js";
+
+describe(`createIterable`, () => {
+	test(`should throw on no argument`, () => {
+		expect(() => createIterable()).toThrow();
+	});
+
+	test(`should return an iterable`, () => {
+		expect(isIterable(createIterable(() => []))).toBe(true);
+	});
+
+	test(`should use passed function for getting an iterator`, () => {
+		const makeIterator = jest.fn(() => 123);
+		const iterable = createIterable(makeIterator);
+
+		expect(makeIterator).not.toHaveBeenCalled();
+
+		const iterator = getIterator(iterable);
+
+		expect(makeIterator).toHaveBeenCalled();
+		expect(iterator).toBe(123);
+	});
+});
+
+describe(`getIterator`, () => {
+	test(`should throw on no argument`, () => {
+		expect(() => getIterator()).toThrow();
+	});
+
+	test(`should return an iterator`, () => {
+		expect(isIterator(getIterator([]))).toBe(true);
+
+		const makeIterator = jest.fn(() => 42);
+		const iterable = createIterable(makeIterator);
+		const iterator = getIterator(iterable);
+
+		expect(makeIterator).toHaveBeenCalled();
+		expect(iterator).toBe(42);
+	});
+});
 
 describe(`head`, () => {
 	test(`should throw on no argument`, () => {
