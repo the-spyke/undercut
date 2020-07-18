@@ -14,7 +14,6 @@ module.exports = {
 		`**/*.test.?(c|m)js`,
 	],
 	testPathIgnorePatterns: IGNORE_PATTERNS,
-	timers: `modern`,
 	transform: {
 		"\\.(c|m)?js$": `@undercut/config/jest/babel_jest_transformer.cjs`
 	},
