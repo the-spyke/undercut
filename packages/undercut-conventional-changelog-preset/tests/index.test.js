@@ -4,6 +4,7 @@ const path = require(`path`);
 
 const { afterEach, beforeEach, describe, expect, test } = require(`@jest/globals`);
 const conventionalChangelogCore = require(`conventional-changelog-core`);
+const { dirSync } = require(`tmp`);
 
 const gitDummyCommit = require(`git-dummy-commit`);
 const shell = require(`shelljs`);
@@ -50,24 +51,25 @@ async function getChangelog(presetOptions, coreOptions) {
 }
 
 describe(`Undercut Preset`, () => {
+	let temp = null;
+
 	beforeEach(() => {
+		temp = dirSync({ unsafeCleanup: true });
+
 		shell.config.resetForTesting();
-		shell.cd(__dirname);
-		shell.rm(`-rf`, `tmp`);
-		shell.mkdir(`tmp`);
-		shell.cd(`tmp`);
+		shell.cd(temp.name);
+		shell.cp(require.resolve(`../package.json`), temp.name);
 		shell.mkdir(`git-templates`);
 		shell.exec(`git init --template=./git-templates`);
 		shell.exec(`git config user.email "bot@example.com"`);
 		shell.exec(`git config user.name Bot`);
-		shell.exec(`git commit -m "chore: initial commit" --allow-empty --no-gpg-sign`);
 
 		setupBaseCommits();
 	});
 
 	afterEach(() => {
-		shell.cd(__dirname);
-		shell.rm(`-rf`, `tmp`);
+		temp.removeCallback();
+		temp = null;
 	});
 
 	test(`should work if there is no semver tag`, async () => {
