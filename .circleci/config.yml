@@ -41,6 +41,9 @@ commands:
       coverage:
         type: boolean
         default: false
+      script:
+        type: string
+        default: test
     steps:
       - run:
           name: Jest
@@ -48,7 +51,7 @@ commands:
             cd << parameters.path >>
             export JEST_JUNIT_OUTPUT_DIR="$ARTIFACTS/test_results/jest"
             mkdir -p $JEST_JUNIT_OUTPUT_DIR
-            yarn test --ci <<# parameters.coverage >>--coverage<</ parameters.coverage >> --reporters="default" --reporters="jest-junit" --runInBand
+            yarn << parameters.script >> --ci <<# parameters.coverage >>--coverage<</ parameters.coverage >> --reporters="default" --reporters="jest-junit" --runInBand
           environment:
             JEST_JUNIT_OUTPUT_NAME: jest.xml
       - when:
