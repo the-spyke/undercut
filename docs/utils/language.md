@@ -2,6 +2,7 @@
 title: Language Utilities
 ---
 
+- `getObjectType(value) => string` -- gets value's type from `Object.prototype.toString` method. For example, an async function will return `AsyncFunction`.
 - `hasOwnProps(value) => boolean` -- returns `true` if the `value` is an object having own properties, `false` otherwise.
 - `isArrayBuffer(value) => boolean` -- returns `true` if the `value` is an `ArrayBuffer`, `false` otherwise.
 - `isBoolean(value) => boolean` -- returns `true` if the `value` is of the boolean type, `false` otherwise.
@@ -26,6 +27,7 @@ title: Language Utilities
 - `isPlainObject(value) => boolean` -- returns `true` if the `value` is an object having no prototype or an Object.prototype, `false` otherwise.
 - `isPositive(value) => boolean` -- returns `true` if the `value` is a Number greater that zero, `false` otherwise.
 - `isPositiveOrZero(value) => boolean` -- returns `true` if the `value` is a Number equal or greater than zero, `false` otherwise.
+- `isPromise(value) => boolean` -- returns `true` if the `value` is a Promise instance, `false` otherwise.
 - `isRegExp(value) => boolean` -- returns `true` if the `value` is a `RegExp`, `false` otherwise.
 - `isSet(value) => boolean` -- returns `true` if the `value` is a `Set`, `false` otherwise.
 - `isString(value) => boolean` -- returns `true` if the `value` is of the String type, `false` otherwise.
