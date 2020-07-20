@@ -1,9 +1,6 @@
 "use strict";
 
-const nodeConfig = require(`@undercut/config/jest/jest.config.node.cjs`);
-
 module.exports = {
-	...nodeConfig,
 	projects: [
 		// `<rootDir>/packages/undercut-cli/`, -- Should be tested from a Node 10 environment.
 		// `<rootDir>/packages/undercut-config/`, -- Should have no tests.
