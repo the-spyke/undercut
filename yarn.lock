@@ -2419,10 +2419,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@spyke/eslint-config@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@spyke/eslint-config/-/eslint-config-1.0.0.tgz#ce0cc3ee81e8fd038f7d8089a045dfb3f8af6fff"
-  integrity sha512-ru/F3wV35J1Zapc4otr3jg70fjSYnhm2Hom1hW1LASf+aKY6LdcBDHxfL/AFnnFDriDlM7tTQ9bfYb96GDD9mQ==
+"@spyke/eslint-config@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@spyke/eslint-config/-/eslint-config-1.1.0.tgz#48d103bbd42f6acaeda6190c666065428640498f"
+  integrity sha512-20uWPY0QO6ImngVLmdBLgFU7HZz98KacrOb+n4j+miK0C3Ha4GDIyotXZ7Oj3yBM4F4VChck1UdoO/IseFhBKA==
 
 "@svgr/babel-plugin-add-jsx-attribute@^5.4.0":
   version "5.4.0"
