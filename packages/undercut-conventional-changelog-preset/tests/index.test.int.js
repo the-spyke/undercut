@@ -51,6 +51,8 @@ async function getChangelog(presetOptions, coreOptions) {
 }
 
 describe(`Undercut Preset`, () => {
+	const cwd = process.cwd();
+
 	let temp = null;
 
 	beforeEach(() => {
@@ -68,6 +70,7 @@ describe(`Undercut Preset`, () => {
 	});
 
 	afterEach(() => {
+		shell.cd(cwd);
 		temp.removeCallback();
 		temp = null;
 	});
