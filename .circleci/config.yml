@@ -80,7 +80,16 @@ commands:
             - yarn-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Install Node modules
-          command: yarn --frozen-lockfile
+          # "--frozen-lockfile" doesn't work, see https://github.com/yarnpkg/yarn/issues/5840
+          command: |
+            CKSUM_BEFORE=$(cksum yarn.lock)
+            yarn install
+            CKSUM_AFTER=$(cksum yarn.lock)
+
+            if [[ $CKSUM_BEFORE != $CKSUM_AFTER ]]; then
+              echo "yarn.lock is outdated"
+              exit 1
+            fi
       - save_cache:
           name: Save Yarn cache
           key: yarn-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
