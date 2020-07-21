@@ -35,6 +35,7 @@ module.exports = {
 			`utils/object`,
 			`utils/ordering`,
 			`utils/promise`,
+			`utils/random`,
 		],
 		CLI: [
 			`cli/overview`,

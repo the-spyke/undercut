@@ -8,3 +8,4 @@ export * from "./language.js";
 export * from "./object.js";
 export * from "./ordering.js";
 export * from "./promise.js";
+export * from "./random.js";
