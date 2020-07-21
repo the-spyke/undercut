@@ -1,6 +1,6 @@
 {
   "name": "@undercut/cli",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Process data with the Undercut and JavaScript in a shell",
   "author": "Anton Alexandrenok",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@undercut/node-10": "^0.5.1",
+    "@undercut/node-10": "^0.6.0",
     "core-js": "^3.6.5",
     "yargs": "^15.4.1"
   },
