@@ -14,8 +14,8 @@
     "test": "echo 'No tests'"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.3",
-    "@babel/preset-env": "^7.10.3",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
     "@undercut/pull": "^0.5.1",
     "@undercut/push": "^0.5.1",
     "@undercut/testing": "^1.0.0",
@@ -23,7 +23,7 @@
     "babel-jest": "^26.1.0",
     "benchmark": "^2.1.4",
     "core-js": "^3.6.5",
-    "eslint": "^7.3.1",
+    "eslint": "^7.5.0",
     "jest": "^26.1.0"
   }
 }

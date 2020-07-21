@@ -15,8 +15,8 @@
     "test": "jest --ci"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.3",
-    "@babel/preset-env": "^7.10.3",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
     "@jest/globals": "^26.1.0",
     "@undercut/config": "^1.0.0",
     "@undercut/pull": "^0.5.1",
@@ -25,7 +25,7 @@
     "babel-jest": "^26.1.0",
     "babel-loader": "^8.1.0",
     "core-js": "^3.6.5",
-    "eslint": "^7.3.1",
+    "eslint": "^7.5.0",
     "jest": "^26.1.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"

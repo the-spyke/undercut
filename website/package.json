@@ -24,9 +24,9 @@
   "devDependencies": {
     "@docusaurus/core": "^2.0.0-alpha.58",
     "@docusaurus/preset-classic": "^2.0.0-alpha.58",
-    "eslint": "^7.3.1",
-    "eslint-plugin-react": "^7.20.0",
-    "eslint-plugin-react-hooks": "^4.0.4"
+    "eslint": "^7.5.0",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8"
   },
   "browserslist": {
     "production": [
