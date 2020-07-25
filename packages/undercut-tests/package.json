@@ -17,7 +17,7 @@
   "devDependencies": {
     "@jest/globals": "^26.1.0",
     "@undercut/testing": "^1.0.0",
-    "@undercut/utils": "^0.6.0",
+    "@undercut/utils": "*",
     "eslint": "^7.5.0"
   }
 }
