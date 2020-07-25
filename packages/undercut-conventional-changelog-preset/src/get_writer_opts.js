@@ -58,7 +58,7 @@ function getTransform(config) {
 		addBangNotes(commit);
 
 		commit.notes.forEach(note => {
-			note.title = `BREAKING CHANGES`;
+			note.title = `BREAKING CHANGE`;
 		});
 
 		const commitType = typesLookup.get(typeKey);
