@@ -75,7 +75,7 @@ commands:
           name: Create Yarn cache directory
           command: |
             YARN_CACHE_FOLDER="$(pwd)/yarn_cache"
-            echo "export YARN_CACHE_FOLDER=\"YARN_CACHE_FOLDER\"" >> $BASH_ENV
+            echo "export YARN_CACHE_FOLDER=\"${YARN_CACHE_FOLDER}\"" >> $BASH_ENV
             mkdir $YARN_CACHE_FOLDER
       - restore_cache:
           name: Restore Yarn cache
