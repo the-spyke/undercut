@@ -133,9 +133,6 @@ commands:
       test:
         type: boolean
         default: false
-      coverage:
-        type: boolean
-        default: false
     steps:
       - initialize
       - run:
@@ -148,7 +145,6 @@ commands:
           steps:
             - test:
                 path: << parameters.path >>
-                coverage: << parameters.coverage >>
       - run:
           name: Dist
           command: |
