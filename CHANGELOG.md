@@ -5,7 +5,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [v0.6.0](https://github.com/the-spyke/undercut/compare/v0.5.1...v0.6.0) (2020-07-21)
 
-### :warning: BREAKING CHANGES
+### :warning: BREAKING CHANGE
 
 * **utils:** Add head/headTail/tail Iterable utils, replace peekIterable
 
