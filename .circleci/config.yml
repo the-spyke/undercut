@@ -80,7 +80,7 @@ commands:
       - restore_cache:
           name: Restore Yarn cache
           keys:
-            - yarn-v3-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-v4-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Install Node modules
           # "--frozen-lockfile" doesn't work, see https://github.com/yarnpkg/yarn/issues/5840
@@ -99,7 +99,7 @@ commands:
           steps:
             - save_cache:
                 name: Save Yarn cache
-                key: yarn-v3-{{ .Branch }}-{{ checksum "yarn.lock" }}
+                key: yarn-v4-{{ .Branch }}-{{ checksum "yarn.lock" }}
                 paths:
                   - yarn_cache
       - run:
