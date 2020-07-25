@@ -59,6 +59,10 @@ commands:
                 file: artifacts/coverage.json
   initialize:
     description: Initialize a JS project and create artifacts directory
+    parameters:
+      offline:
+        type: boolean
+        default: true
     steps:
       - checkout
       - run:
@@ -67,28 +71,36 @@ commands:
             node --version
             npm --version
             yarn --version
+      - run:
+          name: Create Yarn cache directory
+          command: |
+            echo "export YARN_CACHE_FOLDER=\"$(pwd)/yarn_cache\"" >> $BASH_ENV
+            mkdir $YARN_CACHE_FOLDER
       - restore_cache:
           name: Restore Yarn cache
           keys:
-            - yarn-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-v3-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Install Node modules
           # "--frozen-lockfile" doesn't work, see https://github.com/yarnpkg/yarn/issues/5840
           command: |
             CKSUM_BEFORE=$(cksum yarn.lock)
-            yarn install
+            yarn install <<# parameters.offline >>--offline<</ parameters.offline >>
             CKSUM_AFTER=$(cksum yarn.lock)
 
             if [[ $CKSUM_BEFORE != $CKSUM_AFTER ]]; then
               echo "yarn.lock is outdated"
               exit 1
             fi
-      - save_cache:
-          name: Save Yarn cache
-          key: yarn-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-            - /usr/local/share/.cache/yarn
+      - when:
+          condition:
+            not: << parameters.offline >>
+          steps:
+            - save_cache:
+                name: Save Yarn cache
+                key: yarn-v3-{{ .Branch }}-{{ checksum "yarn.lock" }}
+                paths:
+                  - yarn_cache
       - run:
           name: Setup artifacts directory
           command: |
@@ -147,6 +159,7 @@ commands:
 jobs:
   build_cli:
     executor: node_10
+    working_directory: /mnt/ramdisk
     steps:
       - build:
           path: packages/undercut-cli
@@ -154,6 +167,7 @@ jobs:
 
   build_node_10:
     executor: node_10
+    working_directory: /mnt/ramdisk
     steps:
       - build:
           path: packages/undercut-node-10
@@ -161,24 +175,28 @@ jobs:
 
   build_pull:
     executor: node
+    working_directory: /mnt/ramdisk
     steps:
       - build:
           path: packages/undercut-pull
 
   build_push:
     executor: node
+    working_directory: /mnt/ramdisk
     steps:
       - build:
           path: packages/undercut-push
 
   build_utils:
     executor: node
+    working_directory: /mnt/ramdisk
     steps:
       - build:
           path: packages/undercut-utils
 
   build_web_2019:
     executor: node
+    working_directory: /mnt/ramdisk
     steps:
       - build:
           path: packages/undercut-web-2019
@@ -186,14 +204,17 @@ jobs:
 
   build_website:
     executor: node
+    working_directory: /mnt/ramdisk
     steps:
       - build:
           path: website
 
   check_all:
     executor: node
+    working_directory: /mnt/ramdisk
     steps:
-      - initialize
+      - initialize:
+          offline: false
       - lint
       - test:
           coverage: true
@@ -202,6 +223,7 @@ jobs:
 
   packages:
     executor: node
+    working_directory: /mnt/ramdisk
     steps:
       - attach_workspace:
           at: packages
