@@ -11,13 +11,6 @@ executors:
 orbs:
   codecov: codecov/codecov@1.0.5
 
-aliases:
-  filter_gh_pages: &filter_gh_pages
-    filters:
-      branches:
-        ignore:
-          - gh-pages
-
 commands:
   lint:
     description: Run ESLint.
@@ -224,43 +217,34 @@ workflows:
   version: 2
   workflow:
     jobs:
-      - check_all:
-          <<: *filter_gh_pages
+      - check_all
       - build_pull:
           requires:
             - check_all
-          <<: *filter_gh_pages
       - build_push:
           requires:
             - check_all
-          <<: *filter_gh_pages
       - build_utils:
           requires:
             - check_all
-          <<: *filter_gh_pages
       - build_node_10:
           requires:
             - build_pull
             - build_push
             - build_utils
-          <<: *filter_gh_pages
       - build_cli:
           requires:
             - build_node_10
-          <<: *filter_gh_pages
       - build_web_2019:
           requires:
             - build_pull
             - build_push
             - build_utils
-          <<: *filter_gh_pages
       - build_website:
           requires:
             - check_all
-          <<: *filter_gh_pages
       - packages:
           requires:
             - build_cli
             - build_web_2019
             - build_website
-          <<: *filter_gh_pages
