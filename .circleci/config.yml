@@ -206,7 +206,7 @@ jobs:
       - build:
           path: website
 
-  check_all:
+  test_all:
     executor: node
     working_directory: /mnt/ramdisk
     steps:
@@ -218,17 +218,17 @@ jobs:
       - finalize:
           persist: false
 
-  packages:
+  release:
     executor: node
     working_directory: /mnt/ramdisk
     steps:
       - attach_workspace:
-          at: packages
+          at: undercut
       - run:
           name: Pack all
           command: |
             mkdir artifacts
-            tar -cv -f artifacts/packages.tar packages
+            tar -cv -f artifacts/undercut.tar undercut
       - store_artifacts:
           path: artifacts
 
@@ -236,16 +236,16 @@ workflows:
   version: 2
   workflow:
     jobs:
-      - check_all
+      - test_all
       - build_pull:
           requires:
-            - check_all
+            - test_all
       - build_push:
           requires:
-            - check_all
+            - test_all
       - build_utils:
           requires:
-            - check_all
+            - test_all
       - build_node_10:
           requires:
             - build_pull
@@ -261,9 +261,12 @@ workflows:
             - build_utils
       - build_website:
           requires:
-            - check_all
-      - packages:
+            - test_all
+      - release:
           requires:
+            - build_pull
+            - build_push
+            - build_utils
             - build_cli
             - build_web_2019
             - build_website
