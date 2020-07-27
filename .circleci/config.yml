@@ -130,81 +130,88 @@ commands:
     parameters:
       path:
         type: string
-      test:
-        type: boolean
-        default: false
     steps:
-      - initialize
       - run:
           name: Build
           command: |
             cd << parameters.path >>
             yarn build
-      - when:
-          condition: << parameters.test >>
-          steps:
-            - test:
-                path: << parameters.path >>
       - run:
           name: Dist
           command: |
             cd << parameters.path >>
             yarn dist
             cp -v dist/* $ARTIFACTS
-      - finalize
 
 jobs:
   build_cli:
     executor: node_10
     working_directory: /mnt/ramdisk
     steps:
+      - initialize
+      - test:
+          path: packages/undercut-cli
       - build:
           path: packages/undercut-cli
-          test: true
+      - finalize
 
   build_node_10:
     executor: node_10
     working_directory: /mnt/ramdisk
     steps:
+      - initialize
+      - test:
+          path: packages/undercut-node-10
       - build:
           path: packages/undercut-node-10
-          test: true
+      - finalize
 
   build_pull:
     executor: node
     working_directory: /mnt/ramdisk
     steps:
+      - initialize
       - build:
           path: packages/undercut-pull
+      - finalize
 
   build_push:
     executor: node
     working_directory: /mnt/ramdisk
     steps:
+      - initialize
       - build:
           path: packages/undercut-push
+      - finalize
 
   build_utils:
     executor: node
     working_directory: /mnt/ramdisk
     steps:
+      - initialize
       - build:
           path: packages/undercut-utils
+      - finalize
 
   build_web_2019:
     executor: node
     working_directory: /mnt/ramdisk
     steps:
+      - initialize
+      - test:
+          path: packages/undercut-web-2019
       - build:
           path: packages/undercut-web-2019
-          test: true
+      - finalize
 
   build_website:
     executor: node
     working_directory: /mnt/ramdisk
     steps:
+      - initialize
       - build:
           path: website
+      - finalize
 
   test_all:
     executor: node
