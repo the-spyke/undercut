@@ -12,19 +12,6 @@ orbs:
   codecov: codecov/codecov@1.1.1
 
 commands:
-  lint:
-    description: Run ESLint.
-    parameters:
-      path:
-        type: string
-        default: .
-    steps:
-      - run:
-          name: ESLint
-          command: |
-            cd << parameters.path >>
-            mkdir -p $ARTIFACTS/test_results/eslint
-            yarn lint --format="junit" --output-file="$ARTIFACTS/test_results/eslint/eslint.xml"
   test:
     description: Run Jest.
     parameters:
@@ -65,6 +52,8 @@ commands:
         default: false
     steps:
       - checkout
+      - attach_workspace:
+          at: workspace
       - run:
           name: Node.js version
           command: |
@@ -108,6 +97,23 @@ commands:
                 key: yarn-v5-{{ .Branch }}-{{ checksum "yarn.lock" }}
                 paths:
                   - yarn_cache
+            - run:
+                name: Compute release version
+                command: |
+                  RELEASE_VERSION="$(./node_modules/.bin/json version < lerna.json)"
+
+                  if [[ -z "<< pipeline.git.tag >>" ]]; then
+                    RELEASE_VERSION="${RELEASE_VERSION}-next.${CIRCLE_BUILD_NUM}+${CIRCLE_SHA1:0:7}"
+                  else
+                    RELEASE_VERSION="${RELEASE_VERSION}+${CIRCLE_SHA1:0:7}"
+                  fi
+
+                  echo "Release version is: $RELEASE_VERSION"
+                  echo "$RELEASE_VERSION" > ./workspace/version
+            - persist_to_workspace:
+                root: workspace
+                paths:
+                  - version
       - run:
           name: Setup artifacts directory
           command: |
@@ -117,18 +123,12 @@ commands:
       - run:
           name: Set release version
           command: |
-            RELEASE_VERSION="$(./node_modules/.bin/json version < lerna.json)"
-
-            if [[ -z "<< pipeline.git.tag >>" ]]; then
-              RELEASE_VERSION="${RELEASE_VERSION}+${CIRCLE_BUILD_NUM}.${CIRCLE_SHA1:0:7}"
-              echo "<$RELEASE_VERSION>"
-              yarn lerna version --ignore-scripts --no-git-tag-version --no-private --no-push --yes "$RELEASE_VERSION"
-            else
-              RELEASE_VERSION="${RELEASE_VERSION}-next.${CIRCLE_BUILD_NUM}+${CIRCLE_SHA1:0:7}"
-            fi
-
+            RELEASE_VERSION="$(cat ./workspace/version)"
             echo "export RELEASE_VERSION=\"${RELEASE_VERSION}\"" >> $BASH_ENV
 
+            if [[ -z "<< pipeline.git.tag >>" ]]; then
+              yarn lerna version --ignore-scripts --no-git-tag-version --no-private --no-push --yes "${RELEASE_VERSION}"
+            fi
   finalize:
     description: Finalize a JS project build and upload its artifacts.
     parameters:
@@ -240,7 +240,11 @@ jobs:
     steps:
       - initialize:
           online: true
-      - lint
+      - run:
+          name: ESLint
+          command: |
+            mkdir -p $ARTIFACTS/test_results/eslint
+            yarn lint --format="junit" --output-file="$ARTIFACTS/test_results/eslint/eslint.xml"
       - test:
           coverage: true
       - finalize:
@@ -251,12 +255,12 @@ jobs:
     working_directory: /mnt/ramdisk
     steps:
       - attach_workspace:
-          at: undercut
+          at: workspace
       - run:
-          name: Pack all
+          name: Compose release tarball
           command: |
             mkdir artifacts
-            tar -cv -f artifacts/undercut-${RELEASE_VERSION}.tar undercut
+            tar -cv -f artifacts/undercut-${RELEASE_VERSION}.tar workspace
       - store_artifacts:
           path: artifacts
 
