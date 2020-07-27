@@ -114,6 +114,20 @@ commands:
             ARTIFACTS="$(pwd)/artifacts"
             echo "export ARTIFACTS=\"${ARTIFACTS}\"" >> $BASH_ENV
             mkdir -p $ARTIFACTS
+      - run:
+          name: Set release version
+          command: |
+            RELEASE_VERSION="$(yarn json version < lerna.json)"
+
+            if [[ -z "<< pipeline.git.tag >>" ]]; then
+              RELEASE_VERSION="${RELEASE_VERSION}+${CIRCLE_BUILD_NUM}.${CIRCLE_SHA1:0:7}"
+              yarn lerna version --ignore-scripts --no-git-tag-version --no-private --no-push --yes "$RELEASE_VERSION"
+            else
+              RELEASE_VERSION="${RELEASE_VERSION}-next.${CIRCLE_BUILD_NUM}+${CIRCLE_SHA1:0:7}"
+            fi
+
+            echo "export RELEASE_VERSION=\"${RELEASE_VERSION}\"" >> $BASH_ENV
+
   finalize:
     description: Finalize a JS project build and upload its artifacts.
     parameters:
@@ -132,7 +146,7 @@ commands:
                 root: artifacts
                 paths: "*.tgz"
   build:
-    description: Build a JS project, run tests, compose a package, and do all other stuff.
+    description: Run build and dist scripts.
     parameters:
       path:
         type: string
@@ -241,7 +255,7 @@ jobs:
           name: Pack all
           command: |
             mkdir artifacts
-            tar -cv -f artifacts/undercut.tar undercut
+            tar -cv -f artifacts/undercut-${RELEASE_VERSION}.tar undercut
       - store_artifacts:
           path: artifacts
 
