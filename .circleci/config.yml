@@ -117,10 +117,11 @@ commands:
       - run:
           name: Set release version
           command: |
-            RELEASE_VERSION="$(yarn json version < lerna.json)"
+            RELEASE_VERSION="$(./node_modules/.bin/json version < lerna.json)"
 
             if [[ -z "<< pipeline.git.tag >>" ]]; then
               RELEASE_VERSION="${RELEASE_VERSION}+${CIRCLE_BUILD_NUM}.${CIRCLE_SHA1:0:7}"
+              echo "<$RELEASE_VERSION>"
               yarn lerna version --ignore-scripts --no-git-tag-version --no-private --no-push --yes "$RELEASE_VERSION"
             else
               RELEASE_VERSION="${RELEASE_VERSION}-next.${CIRCLE_BUILD_NUM}+${CIRCLE_SHA1:0:7}"
