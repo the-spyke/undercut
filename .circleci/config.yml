@@ -60,9 +60,9 @@ commands:
   initialize:
     description: Initialize a JS project and create artifacts directory
     parameters:
-      offline:
+      online:
         type: boolean
-        default: true
+        default: false
     steps:
       - checkout
       - run:
@@ -72,21 +72,28 @@ commands:
             npm --version
             yarn --version
       - run:
-          name: Create Yarn cache directory
+          name: Define Yarn cache directory
           command: |
             YARN_CACHE_FOLDER="$(pwd)/yarn_cache"
             echo "export YARN_CACHE_FOLDER=\"${YARN_CACHE_FOLDER}\"" >> $BASH_ENV
-            mkdir $YARN_CACHE_FOLDER
       - restore_cache:
           name: Restore Yarn cache
           keys:
-            - yarn-v4-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-v5-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Install Node modules
           # "--frozen-lockfile" doesn't work, see https://github.com/yarnpkg/yarn/issues/5840
           command: |
             CKSUM_BEFORE=$(cksum yarn.lock)
-            yarn install <<# parameters.offline >>--offline<</ parameters.offline >>
+            ONLINE=<< parameters.online >>
+
+            if [[ "$ONLINE" = true && ! -d "$YARN_CACHE_FOLDER" ]]; then
+              mkdir -p $YARN_CACHE_FOLDER
+              yarn install
+            else
+              yarn install --offline
+            fi
+
             CKSUM_AFTER=$(cksum yarn.lock)
 
             if [[ $CKSUM_BEFORE != $CKSUM_AFTER ]]; then
@@ -94,12 +101,11 @@ commands:
               exit 1
             fi
       - when:
-          condition:
-            not: << parameters.offline >>
+          condition: << parameters.online >>
           steps:
             - save_cache:
                 name: Save Yarn cache
-                key: yarn-v4-{{ .Branch }}-{{ checksum "yarn.lock" }}
+                key: yarn-v5-{{ .Branch }}-{{ checksum "yarn.lock" }}
                 paths:
                   - yarn_cache
       - run:
@@ -218,7 +224,7 @@ jobs:
     working_directory: /mnt/ramdisk
     steps:
       - initialize:
-          offline: false
+          online: true
       - lint
       - test:
           coverage: true
