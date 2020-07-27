@@ -255,12 +255,12 @@ jobs:
     working_directory: /mnt/ramdisk
     steps:
       - attach_workspace:
-          at: workspace
+          at: undercut
       - run:
-          name: Compose release tarball
+          name: Compose release package
           command: |
             mkdir artifacts
-            tar -cv -f artifacts/undercut-${RELEASE_VERSION}.tar workspace
+            tar -cv -f "artifacts/undercut-$(cat ./undercut/version).tar" undercut
       - store_artifacts:
           path: artifacts
 
