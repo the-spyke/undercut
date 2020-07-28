@@ -1,5 +1,5 @@
 ---
-title: Operations List
+title: Operations
 ---
 
 Currently all operations exist in both `pull` and `push` versions:
