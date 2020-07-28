@@ -2,7 +2,17 @@
 title: Core Push Functions
 ---
 
-### `composeOperations(operations) => PushOperation`
+Core functions to create and run Push Lines.
+
+- [composeOperations](#composeoperations)
+- [push](#push)
+- [pushArray](#pusharray)
+- [pushLine](#pushline)
+- [pushValue](#pushvalue)
+
+### composeOperations
+
+`composeOperations(operations) => PushOperation`
 
 Composes several existing operations into a new one.
 
@@ -28,7 +38,9 @@ const result = pushArray(pipeline, source);
 console.log(result); // [1, 2, 3, 4, 5, 6]
 ```
 
-### `push(target, pipeline, source) => target`
+### push
+
+`push(target, pipeline, source) => target`
 
 Executes the pipeline by pushing items from an iterable source to the target and returns the target back.
 
@@ -49,7 +61,9 @@ const target2 = push(target, pipeline, source); // target2 === target
 console.log(target.values); // [8, 10, 14]
 ```
 
-### `pushArray(pipeline, source) => Array`
+### pushArray
+
+`pushArray(pipeline, source) => Array`
 
 Same as `push`, but target is implicitly set to `toArray()` and its `values` property is returned.
 
@@ -68,7 +82,9 @@ const result = pushArray(pipeline, source);
 console.log(result); // [8, 10, 14]
 ```
 
-### `pushLine(pipeline, target) => Observer`
+### pushLine
+
+`pushLine(pipeline, target) => Observer`
 
 Creates a `Push Line`.
 
@@ -91,6 +107,25 @@ const numbersObserver = pushLine(pipeline, target); // No evaluation happens at 
 numbersObserver.return(); // Close the observer.
 
 console.log(target.values); // [3, 4, 5]
+```
 
-useClosable(pushLine(pipeline, target), o => [1, 2, 3].forEach(x => o.next(x)));
+### pushValue
+
+`pushValue(pipeline, source) => item`
+
+Same as `push`, but target is implicitly set to `toValue()`, which result value it returns.
+
+```js
+import { pushValue, filter, map, skip } from "@undercut/push";
+
+const source = [1, 2, 3, 4, 5, 6, 7];
+const pipeline = [
+    skip(2),
+    filter(x => x % 3),
+    map(x => x * 2)
+];
+
+const result = pushValue(pipeline, source);
+
+console.log(result); // 8
 ```
