@@ -30,7 +30,6 @@ module.exports = {
 					label: `Try it out`,
 					position: `left`,
 				},
-				{ to: `support`, label: `Support`, position: `right` },
 				{
 					href: `https://github.com/the-spyke/undercut`,
 					label: `GitHub`,
