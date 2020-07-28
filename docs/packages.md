@@ -6,6 +6,12 @@ title: Precompiled Packages
 
 Provides a command line interface for processing data with JavaScript and `Undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. This package works on Node.js 10.13 and upwards.
 
+```bash
+$ cat strings.txt | undercut 'map(s => s.trim())' 'filter(s => s.length > 10)'
+Hello world!
+A very long string...
+```
+
 [Full documentation.](cli/overview)
 
 ### `@undercut/node-10`
