@@ -18,7 +18,7 @@ We use Undercut on our personal projects, but don't know any sufficiently large 
 
 Not measured yet, but we're planning to do automatic benchmarking later.
 
-### Why ESNext instead of precompiled version?
+### Why ESNext instead of a precompiled version?
 
 Because your target environment may be better than a generic ES5. In this case you will loose some efficiency and run a double-compiled code. Most web apps these days use Babel anyway, so why not to give you best possible code? Moreover, new syntax is sometimes shorter than older one. Also our ESM is compatible with the spec and Node loader out ouf the box (`.js` extensions in imports, etc.) and gives you a nice tree shaking.
 
@@ -35,7 +35,3 @@ It depends... Node.js and Chrome were quite good lately in catching up with ES r
 ### Can I contibute?
 
 Yes, you can! Start with a GitHub Issue describing what you're going to do. In case of already existing issue just mention there that you want to work on it.
-
-### Do you need a cool logo?
-
-Definitely!
