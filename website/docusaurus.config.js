@@ -2,7 +2,7 @@
 
 module.exports = {
 	title: `Undercut`,
-	tagline: `JavaScript data processing pipelines and utilities`,
+	tagline: `JavaScript lazy data processing pipelines and utilities`,
 	url: `https://undercut.js.org`,
 	baseUrl: `/`,
 	favicon: `img/favicon.ico`,
@@ -13,7 +13,7 @@ module.exports = {
 				alt: `logo`,
 				src: `img/logo-192x192.png`,
 			},
-			links: [
+			items: [
 				{ to: `docs/introduction`, label: `Docs`, position: `left` },
 				{
 					href: `https://dev.to/t/undercutjs/latest`,
