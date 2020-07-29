@@ -2,7 +2,7 @@
 title: Pull Overview
 ---
 
-`Pull Lines` are bases on `Iterables`:
+`Pull Lines` are bases on native ECMAScript `Iterables`:
 
 ```typescript
 interface Iterable<T> {

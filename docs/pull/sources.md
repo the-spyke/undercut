@@ -2,7 +2,9 @@
 title: Pull Sources
 ---
 
-- [range](range)
+Pull sources are just iterables.
+
+- [range](#range)
 
 ### range
 
