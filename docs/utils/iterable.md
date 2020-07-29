@@ -2,6 +2,8 @@
 title: Iterable Utilities
 ---
 
+Functions to work with Iterables.
+
 - [createIterable](#createiterable)
 - [getIterator](#getiterator)
 - [getRecursiveMapper](#getrecursivemapper)
