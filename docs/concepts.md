@@ -31,7 +31,7 @@ const pipeline = [
 const iterable = pullLine(pipeline, source);
 ```
 
-Read more about [pull](pull/overview).
+Read more about [pull](docs/pull/overview).
 
 ### Push
 
@@ -53,4 +53,4 @@ const observer = pushLine(pipeline, target);
 
 Of course, you can process synchronous items with `Push Lines` too, but `Pull Lines` are easier to operate and write operations for.
 
-Read more about [push](push/overview).
+Read more about [push](docs/push/overview).

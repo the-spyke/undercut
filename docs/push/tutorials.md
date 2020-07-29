@@ -45,4 +45,4 @@ console.log(result); // [1, 4, 9]
 10. You will get here in case of both cancellation and `end-of-sequence` signal.
 11. It is a good place to clean up your resources. You must also signal remaining observers in the chain by calling `observer.return()`.
 
-In case more advanced operations like grouping, where you need to look at all available items first before you can proceed, you can do this in `finally`. Make yourself a flag to skip computation in case of catching a cancellation, and pass items before closing the observer ([see the groupBy operation](packages/undercut-push/src/operations/group_by.js)).
+In case more advanced operations like grouping, where you need to look at all available items first before you can proceed, you can do this in `finally`. Make yourself a flag to skip computation in case of catching a cancellation, and pass items before closing the observer ([see the groupBy operation](https://github.com/the-spyke/undercut/tree/master/packages/undercut-push/src/operations/group_by.js)).
