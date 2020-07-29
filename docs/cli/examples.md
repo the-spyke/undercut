@@ -31,7 +31,7 @@ $ undercut -i 'pad::left-pad' -s 'range(0, 3)' 'map(x => pad(x, 3))'
 Results will be printed to `stdout` after you signal the end of input with `Ctrl + D`:
 
 ```bash
-$ undercut 'map(s => s.toUpperCase(s))'
+$ undercut 'map(s => s.toUpperCase())'
 Tom
 Sam
 # Ctrl + D to finish the input.
