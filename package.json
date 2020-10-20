@@ -31,7 +31,8 @@
     "lerna": "^3.22.1"
   },
   "resolutions": {
-    "**/shelljs": "^0.8.4"
+    "**/shelljs": "^0.8.4",
+    "**/terser-webpack-plugin": "^1.4.3"
   },
   "workspaces": [
     "packages/*",
