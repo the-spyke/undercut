@@ -12,7 +12,7 @@ Hello world!
 A very long string...
 ```
 
-[Full documentation.](docs/cli/overview)
+[Full documentation.](cli/overview)
 
 ### `@undercut/node-10`
 

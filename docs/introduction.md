@@ -35,9 +35,9 @@ console.log(result); // [8, 10, 14]
 
 There are 3 main packages:
 
-- [@undercut/pull](docs/pull/overview) -- Pull Lines (Iterables).
-- [@undercut/push](docs/push/overview) -- Push Lines (Observers).
-- [@undercut/utils](docs/utils/overview) -- Various JavaScript language utilities.
+- [@undercut/pull](pull/overview) -- Pull Lines (Iterables).
+- [@undercut/push](push/overview) -- Push Lines (Observers).
+- [@undercut/utils](utils/overview) -- Various JavaScript language utilities.
 
 These packages are the intended way to use `Undercut` and carry `stable ES Next` code in the `ESM` format. It is very convenient for apps using Webpack/Babel/etc, and helps to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in their codebase. The code itself is universal and may be used in Node/Browser/Microwave. Your environment may require `core-js@3` or similar polyfill to use them raw.
 
@@ -53,11 +53,11 @@ yarn add @undercut/pull
 
 ### Additional packages
 
-Several [precompiled packages](docs/packages) are available too:
+Several [precompiled packages](packages) are available too:
 
-- [@undercut/cli](docs/cli/overview) -- A command line interface for processing data with JavaScript and `Undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. Works on Node.js 10.13 and upwards.
-- [@undercut/node-10](docs/packages#undercutnode-10) -- A precompiled CommonJS version for Node.js 10.13 and upwards. Requires stable polyfills from `core-js@3`.
-- [@undercut/web-2019](docs/packages#undercutweb-2019) -- A precompiled version for web browsers not older than `2019-01-01`. Creates `undercut` variable in the global scope, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
+- [@undercut/cli](cli/overview) -- A command line interface for processing data with JavaScript and `Undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. Works on Node.js 10.13 and upwards.
+- [@undercut/node-10](packages#undercutnode-10) -- A precompiled CommonJS version for Node.js 10.13 and upwards. Requires stable polyfills from `core-js@3`.
+- [@undercut/web-2019](packages#undercutweb-2019) -- A precompiled version for web browsers not older than `2019-01-01`. Creates `undercut` variable in the global scope, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
 
 ### Updating
 
