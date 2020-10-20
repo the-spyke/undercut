@@ -23,6 +23,7 @@
     "react-dom": "^16.14.0"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.12.1",
     "@docusaurus/core": "^2.0.0-alpha.66",
     "@docusaurus/preset-classic": "^2.0.0-alpha.66",
     "eslint": "^7.11.0",

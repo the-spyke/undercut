@@ -5,6 +5,7 @@ const { IS_TEST_ENV } = require(`@undercut/config`);
 module.exports = {
 	babelrcRoots: [
 		`packages/*/`,
+		`website/`,
 	],
 	presets: [
 		[
