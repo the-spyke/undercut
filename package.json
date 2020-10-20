@@ -17,9 +17,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
+    "@babel/eslint-parser": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@spyke/eslint-config": "^1.1.0",
-    "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.0",
     "core-js": "^3.6.5",
     "eslint": "^7.11.0",
