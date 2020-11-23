@@ -3,10 +3,16 @@ version: 2.1
 executors:
   node:
     docker:
-      - image: node:14-buster
+      - image: node:15-buster
   node_10:
     docker:
       - image: node:10-buster
+  node_12:
+    docker:
+      - image: node:12-buster
+  node_14:
+    docker:
+      - image: node:14-buster
 
 orbs:
   codecov: codecov/codecov@1.1.1
@@ -234,7 +240,7 @@ jobs:
           path: website
       - finalize
 
-  test_all:
+  setup:
     executor: node
     working_directory: /mnt/ramdisk
     steps:
@@ -245,6 +251,17 @@ jobs:
           command: |
             mkdir -p $ARTIFACTS/test_results/eslint
             yarn lint --format="junit" --output-file="$ARTIFACTS/test_results/eslint/eslint.xml"
+      - finalize:
+          persist: false
+
+  test_all:
+    parameters:
+      executor:
+        type: executor
+    executor: << parameters.executor >>
+    working_directory: /mnt/ramdisk
+    steps:
+      - initialize
       - test:
           coverage: true
       - finalize:
@@ -268,7 +285,13 @@ workflows:
   version: 2
   workflow:
     jobs:
-      - test_all
+      - setup
+      - test_all:
+          matrix:
+            parameters:
+              executor: [node_12, node_14, node]
+          requires:
+            - setup
       - build_pull:
           requires:
             - test_all
