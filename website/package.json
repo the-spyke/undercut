@@ -17,18 +17,18 @@
   },
   "dependencies": {
     "clsx": "^1.1.1",
-    "@mdx-js/react": "^1.6.18",
+    "@mdx-js/react": "^1.6.21",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.12.1",
-    "@docusaurus/core": "^2.0.0-alpha.66",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.66",
-    "eslint": "^7.11.0",
+    "@docusaurus/core": "^2.0.0-alpha.68",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.68",
+    "eslint": "^7.14.0",
     "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.1.2"
+    "eslint-plugin-react-hooks": "^4.2.0"
   },
   "browserslist": {
     "production": [

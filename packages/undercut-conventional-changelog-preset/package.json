@@ -21,16 +21,16 @@
     "compare-func": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1",
-    "@jest/globals": "^26.6.0",
+    "@babel/core": "^7.12.7",
+    "@babel/preset-env": "^7.12.7",
+    "@jest/globals": "^26.6.2",
     "@undercut/config": "^1.0.0",
-    "babel-jest": "^26.6.0",
+    "babel-jest": "^26.6.3",
     "conventional-changelog-core": "^4.2.0",
-    "core-js": "^3.6.5",
-    "eslint": "^7.11.0",
+    "core-js": "^3.7.0",
+    "eslint": "^7.14.0",
     "git-dummy-commit": "^1.3.0",
-    "jest": "^26.6.0",
+    "jest": "^26.6.3",
     "shelljs": "^0.8.4",
     "tmp": "^0.2.1"
   },
