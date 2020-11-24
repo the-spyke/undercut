@@ -15,7 +15,7 @@ executors:
       - image: node:15-buster
 
 orbs:
-  codecov: codecov/codecov@1.1.1
+  codecov: codecov/codecov@1.1.2
 
 commands:
   test:
@@ -265,10 +265,7 @@ jobs:
           persist: false
 
   test_core:
-    parameters:
-      executor:
-        type: executor
-    executor: << parameters.executor >>
+    executor: node_15
     working_directory: /mnt/ramdisk
     steps:
       - initialize
@@ -296,11 +293,10 @@ workflows:
   workflow:
     jobs:
       - setup
-      - test_changelog
+      - test_changelog:
+          requires:
+            - setup
       - test_core:
-          matrix:
-            parameters:
-              executor: [node_12, node_14, node]
           requires:
             - setup
       - build_pull:
