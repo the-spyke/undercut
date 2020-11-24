@@ -254,7 +254,17 @@ jobs:
       - finalize:
           persist: false
 
-  test_all:
+  test_changelog:
+    executor: node_15
+    working_directory: /mnt/ramdisk
+    steps:
+      - initialize
+      - test:
+          path: packages/undercut-conventional-changelog-preset
+      - finalize:
+          persist: false
+
+  test_core:
     parameters:
       executor:
         type: executor
@@ -286,7 +296,8 @@ workflows:
   workflow:
     jobs:
       - setup
-      - test_all:
+      - test_changelog
+      - test_core:
           matrix:
             parameters:
               executor: [node_12, node_14, node]
@@ -294,13 +305,13 @@ workflows:
             - setup
       - build_pull:
           requires:
-            - test_all
+            - test_core
       - build_push:
           requires:
-            - test_all
+            - test_core
       - build_utils:
           requires:
-            - test_all
+            - test_core
       - build_node_10:
           requires:
             - build_pull
@@ -316,7 +327,7 @@ workflows:
             - build_utils
       - build_website:
           requires:
-            - test_all
+            - setup
       - release:
           requires:
             - build_pull
@@ -325,3 +336,4 @@ workflows:
             - build_cli
             - build_web_2019
             - build_website
+            - test_changelog
