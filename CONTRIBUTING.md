@@ -65,7 +65,7 @@ Types:
 
 Additional scopes:
 
-- Package related: `cli`, `pull`, `push`, `utils`.
+- Package related: `cli`, `collections`, `pull`, `push`, `utils`.
 - `ci` -- continious integration and build servers related.
 - `deps` -- adding/updating/removing package dependencies.
 - `release` -- a commit related to a release, usually includes version bumps, changelog updates and has a version tag.

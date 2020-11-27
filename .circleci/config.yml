@@ -182,6 +182,15 @@ jobs:
           path: packages/undercut-cli
       - finalize
 
+  build_collections:
+    executor: node_15
+    working_directory: /mnt/ramdisk
+    steps:
+      - initialize
+      - build:
+          path: packages/undercut-collections
+      - finalize
+
   build_node_10:
     executor: node_10
     working_directory: /mnt/ramdisk
@@ -299,6 +308,9 @@ workflows:
       - test_core:
           requires:
             - setup
+      - build_collections:
+          requires:
+            - test_core
       - build_pull:
           requires:
             - test_core
@@ -326,10 +338,11 @@ workflows:
             - setup
       - release:
           requires:
+            - build_cli
+            - build_collections
             - build_pull
             - build_push
             - build_utils
-            - build_cli
             - build_web_2019
             - build_website
             - test_changelog

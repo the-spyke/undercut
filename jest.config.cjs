@@ -3,6 +3,7 @@
 module.exports = {
 	projects: [
 		// `<rootDir>/packages/undercut-cli/`, -- Should be tested from a Node 10 environment.
+		`<rootDir>/packages/undercut-collections/`,
 		// `<rootDir>/packages/undercut-config/`, -- Should have no tests.
 		// `<rootDir>/packages/undercut-conventional-changelog-preset/`, -- Test as a separate job or test:changelog script.
 		// `<rootDir>/packages/undercut-node-10/`, -- Should be tested from a Node 10 environment.
