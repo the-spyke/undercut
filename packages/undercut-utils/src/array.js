@@ -22,3 +22,22 @@ export function filterInPlace(array, predicate) {
 
 	array.length -= holeLength;
 }
+
+/**
+ * Defines maximum possible length of an Array.
+*/
+export const MAX_LENGTH = Math.pow(2, 32) - 1;
+
+/**
+ * Modifies the `array` by swapping elements at specified indexes.
+ * @param {Array} array
+ * @param {Number} indexA
+ * @param {Number} indexB
+ * @returns {void}
+ */
+export function swapElements(array, indexA, indexB) {
+	const temp = array[indexA];
+
+	array[indexA] = array[indexB];
+	array[indexB] = temp;
+}
