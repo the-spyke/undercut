@@ -43,7 +43,7 @@ These packages are the intended way to use `Undercut` and carry `stable ES Next`
 
 Checkout our [CodeSandbox demo](https://codesandbox.io/s/undercut-demo-1up46?fontsize=14&hidenavigation=1&moduleview=1&theme=dark&previewwindow=console) on how easy it is to use.
 
-Package main entry points are stable, so any export removal/renaming is as a breaking change.
+Package main entry points are stable, so any export removal/renaming is a breaking change.
 
 ```bash
 npm install @undercut/pull
