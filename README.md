@@ -44,7 +44,7 @@ There are 3 main packages:
 - [@undercut/push](https://www.npmjs.com/package/@undercut/push) -- Push Lines (Observers).
 - [@undercut/utils](https://www.npmjs.com/package/@undercut/utils) -- Various JavaScript language utilities.
 
-These packages are the intended way to use `Undercut` and carry `stable ES Next` code in the `ESM` format. It is very convenient for apps using Webpack/Babel/etc, and helps to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in their codebase. The code itself is universal and may be used in Node/Browser/Microwave. Your environment may require `core-js@3` or similar polyfill to use them raw.
+These packages are the intended way to use `Undercut` and comply with the [Raw Module Specification](https://github.com/the-spyke/rms). It means providing original modern JavaScript code in the `ESM` format. It is very convenient for apps using Webpack/Babel/etc, and helps to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in the codebase. The code itself is universal and may be used in Node/Browser/Microwave. Your environment may require `core-js@3` or similar polyfill.
 
 Checkout our [CodeSandbox demo](https://codesandbox.io/s/undercut-demo-1up46?fontsize=14&hidenavigation=1&moduleview=1&theme=dark&previewwindow=console) on how easy it is to use.
 
@@ -66,7 +66,7 @@ Several precompiled packages are available:
 
 ### Updating
 
-If you're upgrading `Undercut` to a newer version, please upgrade `@babel/preset-env` and `core-js` packages to the latest versions too.
+The process is as descibed in `RMS`: before upgrading the `Undercut` to a newer version, please upgrade `@babel/preset-env` and `core-js` packages to their latest versions too.
 
 ## Concepts
 

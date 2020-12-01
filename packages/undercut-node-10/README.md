@@ -47,7 +47,7 @@ require("core-js/es");
 
 ### Updating
 
-If you're upgrading `Undercut` to a newer version, please upgrade `core-js` to the latest versions too.
+If you're upgrading `@undercut/node-10` to a newer version, please upgrade `core-js` to the latest versions too.
 
 ## License
 

@@ -70,7 +70,7 @@ You need to import `core-js@3` (or another similar polyfill) before you import `
 
 ### Updating
 
-If you're upgrading `Undercut` to a newer version, please upgrade `core-js` to the latest versions too.
+If you're upgrading `@undercut/web-2019` to a newer version, please upgrade `core-js` to the latest versions too.
 
 ## License
 
