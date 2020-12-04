@@ -8,24 +8,13 @@ const EMPTY_ITEM = {};
 /**
  * @template T
  */
-class Heap {
-	/**
-	 * @param {(a: T, b: T) => number} comparator
-	*/
-	constructor(comparator) {
-		assertFunctor(comparator, `comparator`);
-
-		/** @type {Array<T>} */
-		this.$items = [];
-		this.$comparator = comparator;
-	}
-
+export class Heap {
 	/**
 	 * @param {number} index
 	 * @returns {number}
 	*/
 	static getParentIndex(index) {
-		return Math.trunc((index - 1) / 2);
+		return index < 1 ? -1 : Math.trunc((index - 1) / 2);
 	}
 
 	/**
@@ -42,6 +31,17 @@ class Heap {
 	*/
 	static getRightChildIndex(index) {
 		return 2 * index + 2;
+	}
+
+	/**
+	 * @param {(a: T, b: T) => number} comparator
+	*/
+	constructor(comparator) {
+		assertFunctor(comparator, `comparator`);
+
+		/** @type {Array<T>} */
+		this.$items = [];
+		this.$comparator = comparator;
 	}
 
 	get isEmpty() {
