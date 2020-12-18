@@ -17,6 +17,7 @@ Lazy data processing and pipelines built around native JS Generators and Observe
 - Tree shaking friendliness
 - No external dependencies
 - TypeScript in JSDoc
+- [RMS 0.3.0](https://github.com/the-spyke/rms)
 
 Please visit [undercut.js.org](https://undercut.js.org) for broader overview and documentation.
 

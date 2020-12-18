@@ -7,7 +7,7 @@
 [![netlify](https://api.netlify.com/api/v1/badges/61838e27-0d07-49d4-a295-2d1ab2d91c4d/deploy-status)](https://app.netlify.com/sites/undercut/deploys)
 [![license](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
 
-JavaScript lazy data processing, pipelines, and language utilities built around native JS features and protocols.
+Undercut has started as a JavaScript library for lazy data processing and building pipelines. It also provides various language utilities, CLI, and more. The goal is to grow into a Standard Library one day. The code is universal and works in Node/browser/microwave.
 
 - Based on existing JS protocols and language features
 - Balanced API: not too imperative, not too functional
@@ -19,6 +19,7 @@ JavaScript lazy data processing, pipelines, and language utilities built around 
 - Tree shaking friendliness
 - No external dependencies
 - TypeScript in JSDoc
+- [RMS 0.3.0](https://github.com/the-spyke/rms)
 
 Please visit [undercut.js.org](https://undercut.js.org) for broader overview and documentation.
 

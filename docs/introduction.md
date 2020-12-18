@@ -2,7 +2,7 @@
 title: Introduction
 ---
 
-JavaScript lazy data processing, pipelines, and language utilities built around native JS features and protocols.
+Undercut has started as a JavaScript library for lazy data processing and building pipelines. It also provides various language utilities, CLI, and more. The goal is to grow into a Standard Library one day. The code is universal and works in Node/browser/microwave.
 
 - Based on existing JS protocols and language features
 - Balanced API: not too imperative, not too functional
@@ -14,6 +14,7 @@ JavaScript lazy data processing, pipelines, and language utilities built around 
 - Tree shaking friendliness
 - No external dependencies
 - TypeScript in JSDoc
+- [RMS 0.3.0](https://github.com/the-spyke/rms)
 
 ## Usage
 
