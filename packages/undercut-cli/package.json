@@ -22,19 +22,19 @@
   },
   "dependencies": {
     "@undercut/node-10": "^0.6.0",
-    "core-js": "^3.7.0",
-    "yargs": "^16.1.1"
+    "core-js": "^3.8.1",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.7",
-    "@babel/core": "^7.12.7",
-    "@babel/preset-env": "^7.12.7",
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "@jest/globals": "^26.6.2",
     "@undercut/config": "^1.0.0",
     "babel-jest": "^26.6.3",
-    "eslint": "^7.14.0",
+    "eslint": "^7.15.0",
     "jest": "^26.6.3",
-    "semver": "^7.3.2"
+    "semver": "^7.3.4"
   },
   "homepage": "https://undercut.js.org",
   "repository": {

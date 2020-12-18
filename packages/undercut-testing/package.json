@@ -16,13 +16,13 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.7",
-    "@babel/preset-env": "^7.12.7",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "@jest/globals": "^26.6.2",
     "@undercut/config": "^1.0.0",
     "babel-jest": "^26.6.3",
-    "core-js": "^3.7.0",
-    "eslint": "^7.14.0",
+    "core-js": "^3.8.1",
+    "eslint": "^7.15.0",
     "jest": "^26.6.3"
   }
 }
