@@ -2,6 +2,7 @@
 
 exports[`Collections exports of the main entry should be stable 1`] = `
 Array [
+  "Heap",
   "MaxHeap",
   "MinHeap",
 ]
