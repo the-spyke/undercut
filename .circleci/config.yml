@@ -301,41 +301,64 @@ workflows:
   version: 2
   workflow:
     jobs:
-      - setup
+      - setup:
+          filters: &filters-release
+            tags:
+              only: /^v.*/
       - test_changelog:
           requires:
             - setup
+          filters:
+            <<: *filters-release
       - test_core:
           requires:
             - setup
+          filters:
+            <<: *filters-release
       - build_collections:
           requires:
             - test_core
+          filters:
+            <<: *filters-release
       - build_pull:
           requires:
             - test_core
+          filters:
+            <<: *filters-release
       - build_push:
           requires:
             - test_core
+          filters:
+            <<: *filters-release
       - build_utils:
           requires:
             - test_core
+          filters:
+            <<: *filters-release
       - build_node_10:
           requires:
             - build_pull
             - build_push
             - build_utils
+          filters:
+            <<: *filters-release
       - build_cli:
           requires:
             - build_node_10
+          filters:
+            <<: *filters-release
       - build_web_2019:
           requires:
             - build_pull
             - build_push
             - build_utils
+          filters:
+            <<: *filters-release
       - build_website:
           requires:
             - setup
+          filters:
+            <<: *filters-release
       - release:
           requires:
             - build_cli
@@ -346,3 +369,5 @@ workflows:
             - build_web_2019
             - build_website
             - test_changelog
+          filters:
+            <<: *filters-release
