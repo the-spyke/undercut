@@ -1,8 +1,24 @@
 # @undercut/web-2019
 
+[![downloads](https://img.shields.io/npm/dm/@undercut/web-2019)](https://www.npmjs.com/package/@undercut/web-2019)
+[![circleci](https://circleci.com/gh/the-spyke/undercut.svg?style=shield)](https://circleci.com/gh/the-spyke/undercut)
+[![codecov](https://codecov.io/gh/the-spyke/undercut/branch/master/graph/badge.svg)](https://codecov.io/gh/the-spyke/undercut)
+[![license](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
+
 A precompiled version of the [Undercut](https://github.com/the-spyke/undercut) packages for [web browsers not older than 2019-01-01](https://browserl.ist/?q=since+2019%2C+edge+>%3D+18%2C+not+android+>+0). Contains `pull`, `push`, and `utils` entries. An easy way to try `Undercut` when your project has no build step or you're doing a quick experiment.
 
-Please visit [undercut.js.org](https://undercut.js.org) for overview and documentation.
+Lazy data processing, pipelines, and language utilities built around native JS features and protocols.
+
+- Based on existing JS protocols and language features
+- Balanced API: not too imperative, not too functional
+- Various language utilities to use as a Standard Library
+- Composability and extensibility by design
+- Custom operations in a couple of lines
+- Lazy evaluation when possible
+- No external dependencies
+- TypeScript in JSDoc
+
+Please visit [undercut.js.org](https://undercut.js.org) for broader overview and documentation.
 
 ## Usage
 
@@ -35,6 +51,21 @@ const result = pullArray([
 console.log(result); // [8, 10, 14]
 ```
 
+```js
+console.log(isNumberValue(123)); // true
+console.log(isNumberValue("hello")); // false
+console.log(isNumberValue(NaN)); // false
+```
+
+## Prerequisites
+
+You need to import `core-js@3` (or another similar polyfill) before you import `Undercut`:
+
+```html
+<!-- index.html -->
+<script src="https://unpkg.com/core-js-bundle@^3/minified.js"></script>
+```
+
 ## Installation
 
 Install the `npm` package if you're using some kind of a bundler:
@@ -59,18 +90,9 @@ You may also try [Yarn aliases](https://yarnpkg.com/en/docs/cli/add#toc-yarn-add
 yarn add undercut@npm:@undercut/web-2019
 ```
 
-### Prerequisites
+## Updating
 
-You need to import `core-js@3` (or another similar polyfill) before you import `Undercut`:
-
-```html
-<!-- index.html -->
-<script src="https://unpkg.com/core-js-bundle@^3/minified.js"></script>
-```
-
-### Updating
-
-If you're upgrading `@undercut/web-2019` to a newer version, please upgrade `core-js` to the latest versions too.
+If you're upgrading `@undercut/web-2019` to a newer version, please upgrade `core-js` to the latest version too.
 
 ## License
 

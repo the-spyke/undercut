@@ -2,11 +2,7 @@
 title: Promise Utilities
 ---
 
-Function creating promises or making their use more convenient.
-
-- [delay](#delay)
-- [unwrapPromise](#unwrappromise)
-- [wait](#wait)
+Functions for creating promises or making their usage more convenient.
 
 ### delay
 

@@ -4,11 +4,6 @@ title: Push Targets
 
 Push targets are just observers.
 
-- [toArray](#toarray)
-- [toConsumer](#toconsumer)
-- [toNull](#tonull)
-- [toValue](#tovalue)
-
 ### toArray
 
 `toArray() => Observer`

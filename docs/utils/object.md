@@ -2,11 +2,7 @@
 title: Object Utilities
 ---
 
-- [collectProps](#collectprops)
-- [filterProps](#filterprops)
-- [mapKeys](#mapkeys)
-- [mapValues](#mapvalues)
-- [reduceProps](#reduceprops)
+Functions for working with object keys, values, and props.
 
 ### collectProps
 

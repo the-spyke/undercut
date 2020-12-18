@@ -1,7 +1,7 @@
 {
   "name": "@undercut/utils",
   "version": "0.6.0",
-  "description": "Undercut utilities",
+  "description": "Utilities for type checking, arrays, comparison, common functions, iterables, objects, promises, randomization, etc.",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
@@ -40,10 +40,18 @@
     "README.md"
   ],
   "keywords": [
+    "array",
+    "es6",
     "esm",
+    "esnext",
+    "generator",
+    "iterable",
+    "iterator",
+    "itertools",
     "lodash",
-    "undercut",
+    "observer",
+    "stdlib",
     "underscore",
-    "util"
+    "utils"
   ]
 }

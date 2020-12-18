@@ -1,16 +1,22 @@
 # @undercut/cli
 
-`@undercut/cli` is a command line utility for data processing using `Undercut`'s Push Lines and any valid JavaScript expressions. It is a part of the larger [undercut](https://github.com/the-spyke/undercut) project.
+[![downloads](https://img.shields.io/npm/dm/@undercut/cli)](https://www.npmjs.com/package/@undercut/cli)
+[![circleci](https://circleci.com/gh/the-spyke/undercut.svg?style=shield)](https://circleci.com/gh/the-spyke/undercut)
+[![codecov](https://codecov.io/gh/the-spyke/undercut/branch/master/graph/badge.svg)](https://codecov.io/gh/the-spyke/undercut)
+[![license](https://img.shields.io/npm/l/undercut.svg)](https://github.com/the-spyke/undercut/blob/master/LICENSE)
 
-Please visit [undercut.js.org](https://undercut.js.org) for overview and documentation.
+A command line utility for lazy data processing in a shell using operations from Undercut and any valid JavaScript expression including loading your custom libraries.
 
-## Quicklinks
+- Based on existing JS protocols and language features
+- Balanced API: not too imperative, not too functional
+- Composability and extensibility by design
+- Custom operations in a couple of lines
+- Pure ES Modules with Node 14 loader compliance
+- Lazy evaluation when possible
+- No external dependencies
+- TypeScript in JSDoc
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Examples](#examples)
-- [Options](#options)
-- [License](#license)
+Please visit [undercut.js.org](https://undercut.js.org) for broader overview and documentation.
 
 ## Installation
 
@@ -24,19 +30,21 @@ You may also install it locally.
 
 ## Usage
 
-The name of the installed command is `Undercut`. You may also import the `run` function from the `@undercut/cli` to call it programmatically.
+The name of the installed command is `undercut`. You may also import the `run` function from the `@undercut/cli` to call it programmatically.
 
 ```sh
 undercut [...options] [...operations]
 ```
 
-You're building a `Push Line` where the source is `stdin` and the target is `stdout`. Operations should be quoted (prevents parsing by the shell) and separated by spaces. You can use everything that is available in the global context of Node.js. `Undercut`'s packages are available too under their names: `pull`, `push`, and `utils`.
+[List of available operations.](https://undercut.js.org/docs/operations/overview)
+
+You're building a `Push Line` where the source is `stdin` and the target is `stdout`. Operations should be single quoted (prevents parsing by the shell) and separated by spaces. You can use everything that is available in the global context of Node.js. There're predefined variables with imports from Undercut packages: `pull`, `push`, and `utils`.
 
 ```sh
 undercut 'map(s => parseInt(s, 10))' 'filter(utils.isNumberValue)'
 ```
 
-If your expression starts with a call to a `push` exported function, you may omit `"push."` prefix there:
+If your expression starts with a call to a `push` function, you may omit the `"push."` prefix there:
 
 ```sh
 undercut 'composeOperations([push.sortStrings(utils.desc)])'
@@ -52,7 +60,7 @@ undercut 'observer => observer' # Does nothing useful, but works.
 
 ## Examples
 
-Pipe data through like you usually do in a shell:
+Pipe data like you usually do in a shell:
 
 ```sh
 $ cat strings.txt | undercut 'map(s => s.trim())' 'filter(s => s.length > 10)'
@@ -63,7 +71,7 @@ A very long string...
 Use an Iterable as a `source` instead of `stdin`:
 
 ```sh
-$ undercut -s 'range(0, 5)' 'map(Math.sqrt)' 'sum()'
+$ undercut -s 'pull.range(0, 5)' 'map(Math.sqrt)' 'sum()'
 6.146264369941973
 ```
 
@@ -125,6 +133,8 @@ const {green,blue} = require("chalk");
 ### `-s`, `--source=EXPRESSION`
 
 Specify a JavaScript expression of an Iterable to read input values from. In this case `stdin` will be ignored.
+
+You can skip the `"pull."` prefix for a function from the `pull` package.
 
 ```sh
 $ undercut -s 'range(0, 5)' 'sum()'

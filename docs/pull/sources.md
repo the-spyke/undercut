@@ -4,8 +4,6 @@ title: Pull Sources
 
 Pull sources are just iterables.
 
-- [range](#range)
-
 ### range
 
 `range(start, end, step = 1) => Iterable`

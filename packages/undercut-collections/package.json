@@ -1,7 +1,7 @@
 {
   "name": "@undercut/collections",
   "version": "0.6.0",
-  "description": "JavaScript data collections and structures",
+  "description": "Useful collections and data structures.",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "private": true,
@@ -42,11 +42,11 @@
   ],
   "keywords": [
     "collection",
-    "data",
+    "es6",
     "esm",
-    "iterable",
-    "map",
-    "structure",
-    "undercut"
+    "esnext",
+    "data structure",
+    "heap",
+    "stdlib"
   ]
 }

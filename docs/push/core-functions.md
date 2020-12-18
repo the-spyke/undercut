@@ -4,12 +4,6 @@ title: Core Push Functions
 
 Core functions to create and run Push Lines.
 
-- [composeOperations](#composeoperations)
-- [push](#push)
-- [pushArray](#pusharray)
-- [pushLine](#pushline)
-- [pushValue](#pushvalue)
-
 ### composeOperations
 
 `composeOperations(operations) => PushOperation`

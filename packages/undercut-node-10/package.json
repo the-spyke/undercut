@@ -1,7 +1,7 @@
 {
   "name": "@undercut/node-10",
   "version": "0.6.0",
-  "description": "Precompiled version of the Undercut library for Node.js >= 10.13",
+  "description": "Lazy data processing, pipelines, and language utilities built around native JS features and protocols. Precompiled for Node.js >= 10.13.",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
@@ -58,8 +58,7 @@
   "keywords": [
     "array",
     "collection",
-    "data",
-    "deep",
+    "data structure",
     "filter",
     "generator",
     "iterable",
@@ -69,11 +68,11 @@
     "linq",
     "lodash",
     "map",
+    "node",
     "observer",
-    "pipe",
     "pipeline",
     "reduce",
-    "undercut",
+    "stdlib",
     "underscore"
   ]
 }

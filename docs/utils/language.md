@@ -2,40 +2,7 @@
 title: Language Utilities
 ---
 
-- [getObjectType](#getobjecttype)
-- [hasOwnProps](#hasownprops)
-- [isArrayBuffer](#isarraybuffer)
-- [isBoolean](#isboolean)
-- [isCoroutine](#iscoroutine)
-- [isDate](#isdate)
-- [isDefined](#isdefined)
-- [isError](#iserror)
-- [isFalsy](#isfalsy)
-- [isFunction](#isfunction)
-- [isIterable](#isiterable)
-- [isIterator](#isiterator)
-- [isMap](#ismap)
-- [isNegative](#isnegative)
-- [isNegativeOrZero](#isnegativeorzero)
-- [isNull](#isnull)
-- [isNullish](#isnullish)
-- [isNumber](#isnumber)
-- [isNumberValue](#isnumbervalue)
-- [isObject](#isobject)
-- [isObjectValue](#isobjectvalue)
-- [isObserver](#isobserver)
-- [isPlainObject](#isplainobject)
-- [isPositive](#ispositive)
-- [isPositiveOrZero](#ispositiveorzero)
-- [isPromise](#ispromise)
-- [isRegExp](#isregexp)
-- [isSet](#isset)
-- [isString](#isstring)
-- [isSymbol](#issymbol)
-- [isTruthy](#istruthy)
-- [isUndefined](#isundefined)
-- [isWeakMap](#isweakmap)
-- [isWeakSet](#isweakset)
+Mostly type or instance checking.
 
 ### getObjectType
 

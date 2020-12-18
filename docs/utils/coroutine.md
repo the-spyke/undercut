@@ -4,12 +4,6 @@ title: Coroutine Utilities
 
 Corutines are processes with an API of a Generator Object. So, an Observer is a Coroutine. The point is that the process is controllable with `next` and `return` methods to `start` and `stop` Coroutines respectively.
 
-- [abort](#abort)
-- [asObserver](#asobserver)
-- [asUnclosable](#asunclosable)
-- [close](#close)
-- [Cohort](#cohort)
-
 ### abort
 
 `abort(coroutine, error) => never`

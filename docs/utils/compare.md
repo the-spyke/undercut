@@ -4,8 +4,6 @@ title: Comparison Utilities
 
 Functions to compare values for sorting.
 
-- [compare](#compare)
-
 ### compare
 
 - `compare` -- a set of predefined comparators for sorting: numbers, strings, classic (convert all to strings).

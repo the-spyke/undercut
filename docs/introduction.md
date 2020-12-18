@@ -2,16 +2,18 @@
 title: Introduction
 ---
 
-JavaScript data processing pipelines and utilities. Use native JS features without framework overhead.
+JavaScript lazy data processing, pipelines, and language utilities built around native JS features and protocols.
 
 - Based on existing JS protocols and language features
 - Balanced API: not too imperative, not too functional
-- Various language utilities to use instead of Lodash
-- Easy operation extensibility and composability
+- Various language utilities to use as a Standard Library
+- Composability and extensibility by design
+- Custom operations in a couple of lines
 - Pure ES Modules with Node 14 loader compliance
-- Raw code in the packages + precompiled versions
 - Lazy evaluation when possible
 - Tree shaking friendliness
+- No external dependencies
+- TypeScript in JSDoc
 
 ## Usage
 
@@ -31,34 +33,54 @@ const result = pullArray([
 console.log(result); // [8, 10, 14]
 ```
 
+```js
+import { isNumberValue } from "@undercut/utils";
+
+console.log(isNumberValue(123)); // true
+console.log(isNumberValue("hello")); // false
+console.log(isNumberValue(NaN)); // false
+```
+
 ## Installation
 
-There are 3 main packages:
+Undercut is split into packages by functionality. `pull` and `push` provide pipelines for data processing, language utilities are in `utils`. `cli` allows to use Undercut in a shell.
 
-- [@undercut/pull](pull/overview) -- Pull Lines (Iterables).
-- [@undercut/push](push/overview) -- Push Lines (Observers).
-- [@undercut/utils](utils/overview) -- Various JavaScript language utilities.
+- [@undercut/pull](pull/overview) -- Pipelines on Iterables.
+- [@undercut/push](push/overview) -- Pipelines on Observers.
+- [@undercut/utils](utils/overview) -- Generic utilities for type checking, common functions, iterables, objects, promises, randomization, etc.
 
-These packages are the intended way to use `Undercut` and comply with the [Raw Module Specification](https://github.com/the-spyke/rms). It means providing original modern JavaScript code in the `ESM` format. It is very convenient for apps using Webpack/Babel/etc, and helps to avoid double compilation and deoptimization. Only [finished proposals (Stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) may be used in the codebase. The code itself is universal and may be used in Node/Browser/Microwave. Your environment may require `core-js@3` or similar polyfill.
+These packages are the intended way to use `Undercut`. They are compliant with the [Raw Module Specification 0.3.0](https://github.com/the-spyke/rms) and provide original modern JavaScript code in the `ESM` format.
 
-Checkout our [CodeSandbox demo](https://codesandbox.io/s/undercut-demo-1up46?fontsize=14&hidenavigation=1&moduleview=1&theme=dark&previewwindow=console) on how easy it is to use.
+[Precompiled packages are available too.](#precompiled-packages)
+
+You may need to compile the code and/or load polyfills depending on your environment. Look for exact minimum versions of `@babel/preset-env` and `core-js` in the `package.json`.
+
+Most modern apps already have such infrastructure or use similar tools. So most likely you don't have to do anything. If not, just add [Babel](https://babeljs.io/setup) to your build step.
+
+Checkout our [CodeSandbox demo](https://codesandbox.io/s/undercut-demo-1up46?fontsize=14&hidenavigation=1&moduleview=1&theme=dark&previewwindow=console) on how easy it is.
 
 Package main entry points are stable, so any export removal/renaming is a breaking change.
 
-```bash
+```sh
 npm install @undercut/pull
 # or
 yarn add @undercut/pull
 ```
 
-### Additional packages
+## CLI
 
-Several [precompiled packages](packages) are available too:
+[@undercut/cli](cli/overview) package provides a command line interface for processing data with JavaScript and operations from Undercut in a shell. It allows you to pass strings from `stdin`, get results in `stdout`, and much more. Works on Node.js 10.13 and upwards.
 
-- [@undercut/cli](cli/overview) -- A command line interface for processing data with JavaScript and `Undercut` in a shell. Accepts string items from `stdin` and puts results as strings into `stdout`. Works on Node.js 10.13 and upwards.
+```sh
+$ cat strings.txt | undercut 'map(s => s.trim())' 'filter(s => s.length > 10)'
+Hello world!
+A very long string...
+
+$ undercut -s 'range(0, 5)' 'map(Math.sqrt)' 'sum()'
+6.146264369941973
+```
+
+## Precompiled packages
+
 - [@undercut/node-10](packages#undercutnode-10) -- A precompiled CommonJS version for Node.js 10.13 and upwards. Requires stable polyfills from `core-js@3`.
 - [@undercut/web-2019](packages#undercutweb-2019) -- A precompiled version for web browsers not older than `2019-01-01`. Creates `undercut` variable in the global scope, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.
-
-### Updating
-
-If you're updating `Undercut` to a newer version, please update `@babel/preset-env` and `core-js` packages to the latest versions too.

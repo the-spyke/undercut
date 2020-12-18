@@ -18,6 +18,14 @@ module.exports = {
 		},
 		{
 			type: `category`,
+			label: `CLI`,
+			items: [
+				`cli/overview`,
+				`cli/examples`,
+			],
+		},
+		{
+			type: `category`,
 			label: `Pull`,
 			items: [
 				`pull/overview`,
@@ -62,14 +70,6 @@ module.exports = {
 						`utils/random`,
 					],
 				},
-			],
-		},
-		{
-			type: `category`,
-			label: `CLI`,
-			items: [
-				`cli/overview`,
-				`cli/examples`,
 			],
 		},
 	],

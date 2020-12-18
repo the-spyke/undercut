@@ -2,20 +2,13 @@
 title: Function Utilities
 ---
 
-Functions implementing common logic.
-
-- [getDoneItem](#getdoneitem)
-- [identity](#identity)
-- [negate](#negate)
-- [noop](#noop)
-- [not](#not)
-- [rethrow](#rethrow)
+Functions implementing common logic like `noop()`.
 
 ### getDoneItem
 
 `getDoneItem(value) => IteratorResult`
 
-Returns an IteratorResult with `done` set to `true`.
+Returns an `IteratorResult` with `done` set to `true`.
 
 ### identity
 

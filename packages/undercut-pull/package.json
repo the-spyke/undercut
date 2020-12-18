@@ -1,7 +1,7 @@
 {
   "name": "@undercut/pull",
   "version": "0.6.0",
-  "description": "Undercut pull pipelines",
+  "description": "Lazy data processing and pipelines built around native JS Iterators and Generators.",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
@@ -45,10 +45,9 @@
   ],
   "keywords": [
     "array",
-    "collection",
-    "data",
-    "deep",
+    "es6",
     "esm",
+    "esnext",
     "filter",
     "generator",
     "iterable",
@@ -58,10 +57,9 @@
     "linq",
     "lodash",
     "map",
-    "pipe",
     "pipeline",
     "reduce",
-    "undercut",
+    "stdlib",
     "underscore"
   ]
 }

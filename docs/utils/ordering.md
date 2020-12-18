@@ -2,11 +2,7 @@
 title: Ordering Utilities
 ---
 
-Functions creating comparators used in `sort` and `groupBy`, but comparators are universal `(a, b) => number`.
-
-- [asc](#asc)
-- [composeComparators](#composecomparators)
-- [desc](#desc)
+Functions for creating comparators used in `sort` and `groupBy`. Comparators are universal `(a, b) => number`.
 
 ### asc
 

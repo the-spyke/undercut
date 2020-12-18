@@ -4,13 +4,6 @@ title: Pull Targets
 
 Pull targets are functions taking iterables and returning some values.
 
-- [toArray](#toarray)
-- [toConsumer](#toconsumer)
-- [toMap](#tomap)
-- [toObject](#toobject)
-- [toObserver](#toobserver)
-- [toValue](#tovalue)
-
 ### toArray
 
 `toArray() => PullTarget`

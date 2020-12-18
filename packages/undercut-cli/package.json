@@ -1,7 +1,7 @@
 {
   "name": "@undercut/cli",
   "version": "0.6.0",
-  "description": "Process data with the Undercut and JavaScript in a shell",
+  "description": "A CLI for lazy data processing in a shell using operations from Undercut and any valid JavaScript expression.",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
@@ -54,15 +54,16 @@
   "keywords": [
     "cli",
     "console",
-    "data",
     "filter",
+    "lodash",
     "map",
     "pipe",
     "reduce",
     "shell",
     "stdin",
+    "stdlib",
     "stdout",
     "termial",
-    "undercut"
+    "underscore"
   ]
 }

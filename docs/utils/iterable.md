@@ -4,13 +4,6 @@ title: Iterable Utilities
 
 Functions to work with Iterables.
 
-- [createIterable](#createiterable)
-- [getIterator](#getiterator)
-- [getRecursiveMapper](#getrecursivemapper)
-- [head](#head)
-- [headTail](#headtail)
-- [tail](#tail)
-
 ### createIterable
 
 `createIterable(function) => Iterable`

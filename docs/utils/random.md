@@ -4,12 +4,6 @@ title: Random Utilities
 
 Random utilities use `Math.random()` under the hood, so they shouldn't be used for security related tasks. Use Cryto API for that instead.
 
-- [randomBoolean](#randomboolean)
-- [randomDecimal](#randomdecimal)
-- [randomFrom](#randomfrom)
-- [randomIndex](#randomindex)
-- [randomInteger](#randominteger)
-
 ### randomBoolean
 
 `randomBoolean() => boolean`

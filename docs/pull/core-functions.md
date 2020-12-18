@@ -4,12 +4,6 @@ title: Core Pull Functions
 
 Core functions to create and run Pull Lines.
 
-- [composeOperations](#composeoperations)
-- [pull](#pull)
-- [pullArray](#pullarray)
-- [pullLine](#pullline)
-- [pullValue](#pullvalue)
-
 ### composeOperations
 
 `composeOperations(operations) => PullOperation`

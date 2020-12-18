@@ -1,7 +1,7 @@
 {
   "name": "@undercut/push",
   "version": "0.6.0",
-  "description": "Undercut push pipelines",
+  "description": "Lazy data processing and pipelines built around native JS Generators and Observers.",
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
@@ -45,10 +45,9 @@
   ],
   "keywords": [
     "array",
-    "collection",
-    "data",
-    "deep",
+    "es6",
     "esm",
+    "esnext",
     "filter",
     "generator",
     "iterable",
@@ -59,10 +58,9 @@
     "lodash",
     "map",
     "observer",
-    "pipe",
     "pipeline",
     "reduce",
-    "undercut",
+    "stdlib",
     "underscore"
   ]
 }

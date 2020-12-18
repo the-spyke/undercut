@@ -4,7 +4,7 @@ title: FAQ
 
 ### Is it a replacement for Lodash and Underscore?
 
-Kind of. Undercut provides Pull Lines, which are a good replacement for `Lodash.chain` (without loading entire library), and various utilities for objects/functions/etc. Right now Lodash has more functionality, but Undercut should gain parity with time. The difference is that Undercut is ESM focused and provides only what is missing in the modern language like `Array.isArray` vs. `isArray` utility. Undercut also has more advanced features like Push Lines and supports tree shaking natively.
+Kind of. Undercut provides Pull Lines, which are a good replacement for `Lodash.chain` (without loading the entire library), and various utilities for objects/functions/etc. Right now Lodash has more functionality, but Undercut should gain parity with time. The difference is that Undercut is ESM focused and provides only what is missing in the modern language like `Array.isArray` vs. `isArray` utility. Undercut also has more advanced features like Push Lines and supports tree shaking natively. The broader goal is to become a Standard Library.
 
 ### Why it isn't 1.0 yet?
 
@@ -16,7 +16,7 @@ We use Undercut on our personal projects, but don't know any sufficiently large 
 
 ### What about performance?
 
-Not measured yet, but we're planning to do automatic benchmarking later.
+We're planning to do automatic benchmarking later.
 
 ### Why ESNext instead of a precompiled version?
 
@@ -30,7 +30,7 @@ Most likely not. Checkout our [CodeSandbox demo](https://codesandbox.io/s/underc
 
 ### Do I really need "core-js"?
 
-It depends... Node.js and Chrome were quite good lately in catching up with ES releases, so it may run for you without issues. If your environment has something missing, you'll get an error during runtime. Test your code and if everything is fine, I may omit the `core-js`.
+It depends... Node.js and Chrome were quite good lately in catching up with ES releases, so it may run for you without issues. If your environment has something missing, you'll get an error during runtime. Test your code and if everything is fine, you may omit the `core-js`.
 
 ### Can I contibute?
 
