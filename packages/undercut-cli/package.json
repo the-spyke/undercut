@@ -1,6 +1,6 @@
 {
   "name": "@undercut/cli",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A CLI for lazy data processing in a shell using operations from Undercut and any valid JavaScript expression.",
   "author": "Anton Alexandrenok",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@undercut/node-10": "^0.6.0",
+    "@undercut/node-10": "^0.6.1",
     "core-js": "^3.8.1",
     "yargs": "^16.2.0"
   },

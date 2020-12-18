@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [v0.6.1](https://github.com/the-spyke/undercut/compare/v0.6.0...v0.6.1) (2020-12-18)
+
+### :rocket: New Feature
+
+* **collections:** Add Heap collection ([98231ed](https://github.com/the-spyke/undercut/commit/98231ed610735fe1e9e357a648c3ca748b14047c))
+* **utils:** Add "swapElements" array utility ([07ca299](https://github.com/the-spyke/undercut/commit/07ca2994075b41ce90fd746cacfa8e30c6f955e5))
+
+### :nail_care: Polish
+
+* Move static methods to the top ([584401b](https://github.com/the-spyke/undercut/commit/584401b788e34a997603b5375055c9babce420f1))
+* Simplify Heap interface, add types ([a2e3b2d](https://github.com/the-spyke/undercut/commit/a2e3b2d278fa89668cb655cee4fa202dcf3450e9))
+
+### :memo: Documentation
+
+* Add CLI example to packages page ([11851a3](https://github.com/the-spyke/undercut/commit/11851a3ed4bf1882b318f96590cb4a5b2be37a63))
+* Fix broken links ([61b3bd0](https://github.com/the-spyke/undercut/commit/61b3bd07fe5c2f23a7f620ed01dd0a4f2926a1dc))
+* Fix broken links ([e338c07](https://github.com/the-spyke/undercut/commit/e338c07c934367b90c5530e1bacb32d3f0992f98))
+* Improve pull docs ([f81366a](https://github.com/the-spyke/undercut/commit/f81366a572869244414300e81b063b3973a79270))
+* Improve pull sources docs ([bf14786](https://github.com/the-spyke/undercut/commit/bf147860ddbac7c275cb5f55fdee16f631e3ba4c))
+* Improve push docs ([52fd5e2](https://github.com/the-spyke/undercut/commit/52fd5e2d29e9b5d17a628fb15a60cbb64403c5a1))
+* Improve utils docs ([bfd18b0](https://github.com/the-spyke/undercut/commit/bfd18b0ec6f26cdbd981d996b3646575cd82ebb2))
+* Mention blog in tutorials ([31893ca](https://github.com/the-spyke/undercut/commit/31893cac96a0f4e998595d43d8abe5fd345ae4c3))
+* Remove excess variable in CLI examples ([7a15716](https://github.com/the-spyke/undercut/commit/7a15716a7c4d089a07a48521ff468e8d06310330))
+* Remove excess word ([f60ae74](https://github.com/the-spyke/undercut/commit/f60ae74a377f44ac9f786476ff28746c87e2202b))
+* Remove question about logo from faq ([c005a28](https://github.com/the-spyke/undercut/commit/c005a286b0ac064b1e56d2b01541d956a354c871))
+* Rewrite all package descriptions and readmes ([c38ff1a](https://github.com/the-spyke/undercut/commit/c38ff1adb3d336468b0bb303668bdb14c9e39d72))
+* Update core functions docs ([4e06f8e](https://github.com/the-spyke/undercut/commit/4e06f8ec94b3f2573b5608ecb63361dcc04fa8ba))
+* Update package descriptions ([11ef1b1](https://github.com/the-spyke/undercut/commit/11ef1b1de4fee0aded57b05944a13c6a2711189d))
+* Update text about package format and mention RMS ([715b82e](https://github.com/the-spyke/undercut/commit/715b82ead80bef53ec33dde5d802ac0ccc2dfaa5))
+
+### :house: Internal
+
+* **ci:** Add build matrix for tests step ([6a0dd5f](https://github.com/the-spyke/undercut/commit/6a0dd5f5681574a2b685d4bf7d077c2db7f00cb3))
+* **ci:** Add version to build artifacts ([80185d6](https://github.com/the-spyke/undercut/commit/80185d65c6734a09348c309786cefe1cd7be5d0e))
+* **ci:** Allow online for Yarn only if there is no cache ([ef289c1](https://github.com/the-spyke/undercut/commit/ef289c167d0333e07c731b3f20ff07c33e12f4a9))
+* **ci:** Bump cache version ([d336858](https://github.com/the-spyke/undercut/commit/d33685864a56cc0b63573d54b250d64269a2c1a3))
+* **ci:** Extract changelog tests into a separate job ([1e2976e](https://github.com/the-spyke/undercut/commit/1e2976eef25ca7ad1f5316e3e632a559405c8aad))
+* **ci:** Fix build and remove build matrix ([c8290bc](https://github.com/the-spyke/undercut/commit/c8290bced0a1b6cce9cf9ffc47897bbc2ae4ec8f))
+* **ci:** Fix env variable for cache ([ef642e0](https://github.com/the-spyke/undercut/commit/ef642e0e1b60d47960f67ccea11cd9ba5c48bb25))
+* **ci:** Fix mising env variable interpolation ([76fb528](https://github.com/the-spyke/undercut/commit/76fb52897e8b9316985000485d0cce5b4ffd4834))
+* **ci:** Fix release package name ([be28c4c](https://github.com/the-spyke/undercut/commit/be28c4cb8c50eb917804df067d00e8341788229e))
+* **ci:** Fix release version generation ([bff11f9](https://github.com/the-spyke/undercut/commit/bff11f94a6194c5acecbd200c76b5d52a69fe724))
+* **ci:** Label all node executors ([1a124a5](https://github.com/the-spyke/undercut/commit/1a124a5077c038acb3c14caa40c82463ea49a4ee))
+* **ci:** Remove gh-pages filter ([09ac4d8](https://github.com/the-spyke/undercut/commit/09ac4d879077ce99394d11ad09d0b7cdc4aaf8b0))
+* **ci:** Remove test step from build command ([1f5e156](https://github.com/the-spyke/undercut/commit/1f5e1569faa113397078d649bc51189c139f4f54))
+* **ci:** Remove unused coverage parameter from build job ([43cece6](https://github.com/the-spyke/undercut/commit/43cece6b6ee68429bd13e0d42b91910a6aec1c9d))
+* **ci:** Rename check_all and packages job ([0d1d316](https://github.com/the-spyke/undercut/commit/0d1d316d3129f8caf4261cfc756f18e5577ad83a))
+* **ci:** Update Codecov orb to 1.1.1 ([b8d4315](https://github.com/the-spyke/undercut/commit/b8d43158adec47aeb44869aefb94b5af2a001d14))
+* **ci:** Use RAM disk for jobs ([6d14ad0](https://github.com/the-spyke/undercut/commit/6d14ad0fd1ccc2e49cb1607014eeda712cb17922))
+* **ci:** Use workspace for storing release version ([b588d0e](https://github.com/the-spyke/undercut/commit/b588d0e26c168ce89414866574f6217c55ec3aa3))
+* **collections:** Fix entry exports test ([d35774a](https://github.com/the-spyke/undercut/commit/d35774a5ab20acf647342f69f19d601a10002561))
+* **deps:** Add json to root deps ([4c5caaf](https://github.com/the-spyke/undercut/commit/4c5caaf5b35963f5b57fee3facdf5d0d13cd8dbe))
+* **deps:** Fix Terser issues with Docusaurus ([aa5069c](https://github.com/the-spyke/undercut/commit/aa5069c509e760526c316fe7d2c74bd153ca76d8))
+* **deps:** Replace "babel-eslint" with "@babel/eslint-parser" ([f682ddb](https://github.com/the-spyke/undercut/commit/f682ddbded31b86648d832bed545b64fffab7680))
+* **deps:** Update all deps ([49e94aa](https://github.com/the-spyke/undercut/commit/49e94aa91052ff2af9456486c4abf4ec5be60d43))
+* **deps:** Update deps ([9c4019d](https://github.com/the-spyke/undercut/commit/9c4019d2574b183b812b3391d0b31822b2278dad))
+* **deps:** Update primary dependencies ([f9c2640](https://github.com/the-spyke/undercut/commit/f9c26407ee642bc34aba23ee1b36f9b3a391ab70))
+* **eslint:** Fix JSX parsing for website ([c5483b3](https://github.com/the-spyke/undercut/commit/c5483b37d356e2ffa803f454d4853e0ccda21341))
+* **website:** Add Babel config just in case ([9d53d19](https://github.com/the-spyke/undercut/commit/9d53d190fe8a29d2a1e2ffe5aadd56606b1392e1))
+* **website:** Reformat sidebar ([d0b27c5](https://github.com/the-spyke/undercut/commit/d0b27c5499de8a1b36e7468079c88034252ed68a))
+* **website:** Remove support page ([e15b706](https://github.com/the-spyke/undercut/commit/e15b706bfb45cdffa65b4a7ae2aa14bb5d306c2d))
+* **website:** Update Docusaurus to 2.0.0-alpha.59 ([73573d5](https://github.com/the-spyke/undercut/commit/73573d58e6df7f79b49b4f28bd851b54a14cc5db))
+* Add RMS Compliant badge ([15f07de](https://github.com/the-spyke/undercut/commit/15f07decd590b77168e675d3f687ba459dcf1482))
+* Clear dep version specifiers in private packages ([e61241c](https://github.com/the-spyke/undercut/commit/e61241c6da33dc94f98eb0e932aead48b90860d7))
+* Remove S from broken change title in changelog ([38826b8](https://github.com/the-spyke/undercut/commit/38826b804408b6b405d9dee50c85982e06a8d28a))
+* Update license date ([a94eec0](https://github.com/the-spyke/undercut/commit/a94eec06ba9b40ec5beceebc9b262bfa7686d03b))
+
 ## [v0.6.0](https://github.com/the-spyke/undercut/compare/v0.5.1...v0.6.0) (2020-07-21)
 
 ### :warning: BREAKING CHANGE

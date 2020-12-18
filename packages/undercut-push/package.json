@@ -1,6 +1,6 @@
 {
   "name": "@undercut/push",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Lazy data processing and pipelines built around native JS Generators and Observers.",
   "author": "Anton Alexandrenok",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@undercut/utils": "^0.6.0"
+    "@undercut/utils": "^0.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

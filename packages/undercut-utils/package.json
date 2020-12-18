@@ -1,6 +1,6 @@
 {
   "name": "@undercut/utils",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Utilities for type checking, arrays, comparison, common functions, iterables, objects, promises, randomization, etc.",
   "author": "Anton Alexandrenok",
   "license": "MIT",
