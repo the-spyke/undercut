@@ -2711,6 +2711,13 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@spyke/conventional-changelog-preset@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@spyke/conventional-changelog-preset/-/conventional-changelog-preset-1.0.2.tgz#02b04754ae105c3ef154a3e5278ac536a7b7a256"
+  integrity sha512-IueH3CHegdlPrb5OLgQWKr1e8hl9KLHksmSzhpAfOszU88pP08kyXjrMgvm8AWMi3ylkYRkr8m2brEImaxw7lg==
+  dependencies:
+    compare-func "^2.0.0"
+
 "@spyke/eslint-config@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@spyke/eslint-config/-/eslint-config-1.1.0.tgz#48d103bbd42f6acaeda6190c666065428640498f"
@@ -3323,11 +3330,6 @@ acorn@^7.1.1, acorn@^7.4.0:
   version "7.4.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
   integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
-
-add-stream@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/add-stream/-/add-stream-1.0.0.tgz#6a7990437ca736d5e1288db92bd3266d5f5cb2aa"
-  integrity sha1-anmQQ3ynNtXhKI25K9MmbV9csqo=
 
 address@1.1.2, address@^1.0.1:
   version "1.1.2"
@@ -4979,33 +4981,12 @@ conventional-changelog-core@^3.1.6:
     read-pkg-up "^3.0.0"
     through2 "^3.0.0"
 
-conventional-changelog-core@^4.2.0:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-core/-/conventional-changelog-core-4.2.1.tgz#f811ad98ab2ff080becafc61407509420c9b447d"
-  integrity sha512-8cH8/DEoD3e5Q6aeogdR5oaaKs0+mG6+f+Om0ZYt3PNv7Zo0sQhu4bMDRsqAF+UTekTAtP1W/C41jH/fkm8Jtw==
-  dependencies:
-    add-stream "^1.0.0"
-    conventional-changelog-writer "^4.0.18"
-    conventional-commits-parser "^3.2.0"
-    dateformat "^3.0.0"
-    get-pkg-repo "^1.0.0"
-    git-raw-commits "2.0.0"
-    git-remote-origin-url "^2.0.0"
-    git-semver-tags "^4.1.1"
-    lodash "^4.17.15"
-    normalize-package-data "^3.0.0"
-    q "^1.5.1"
-    read-pkg "^3.0.0"
-    read-pkg-up "^3.0.0"
-    shelljs "^0.8.3"
-    through2 "^4.0.0"
-
 conventional-changelog-preset-loader@^2.1.1:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/conventional-changelog-preset-loader/-/conventional-changelog-preset-loader-2.3.4.tgz#14a855abbffd59027fd602581f1f34d9862ea44c"
   integrity sha512-GEKRWkrSAZeTq5+YjUZOYxdHq+ci4dNwHvpaBC3+ENalzFWuCWa9EZXSuZBpkr72sMdKB+1fyDV4takK1Lf58g==
 
-conventional-changelog-writer@^4.0.18, conventional-changelog-writer@^4.0.6:
+conventional-changelog-writer@^4.0.6:
   version "4.0.18"
   resolved "https://registry.yarnpkg.com/conventional-changelog-writer/-/conventional-changelog-writer-4.0.18.tgz#10b73baa59c7befc69b360562f8b9cd19e63daf8"
   integrity sha512-mAQDCKyB9HsE8Ko5cCM1Jn1AWxXPYV0v8dFPabZRkvsiWUul2YyAqbIaoMKF88Zf2ffnOPSvKhboLf3fnjo5/A==
@@ -5029,7 +5010,7 @@ conventional-commits-filter@^2.0.2, conventional-commits-filter@^2.0.7:
     lodash.ismatch "^4.4.0"
     modify-values "^1.0.0"
 
-conventional-commits-parser@^3.0.3, conventional-commits-parser@^3.2.0:
+conventional-commits-parser@^3.0.3:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/conventional-commits-parser/-/conventional-commits-parser-3.2.0.tgz#9e261b139ca4b7b29bcebbc54460da36894004ca"
   integrity sha512-XmJiXPxsF0JhAKyfA2Nn+rZwYKJ60nanlbSWwwkGwLQFbugsc0gv1rzc7VbbUWAzJfR1qR87/pNgv9NgmxtBMQ==
@@ -7107,14 +7088,6 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-git-dummy-commit@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/git-dummy-commit/-/git-dummy-commit-1.3.0.tgz#b098cd300818eb28aa40c49fffcc6da47292a2e8"
-  integrity sha1-sJjNMAgY6yiqQMSf/8xtpHKSoug=
-  dependencies:
-    meow "^3.6.0"
-    shelljs "^0.7.3"
-
 git-raw-commits@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/git-raw-commits/-/git-raw-commits-2.0.0.tgz#d92addf74440c14bcc5c83ecce3fb7f8a79118b5"
@@ -7140,14 +7113,6 @@ git-semver-tags@^2.0.3:
   integrity sha512-tj4FD4ww2RX2ae//jSrXZzrocla9db5h0V7ikPl1P/WwoZar9epdUhwR7XHXSgc+ZkNq72BEEerqQuicoEQfzA==
   dependencies:
     meow "^4.0.0"
-    semver "^6.0.0"
-
-git-semver-tags@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/git-semver-tags/-/git-semver-tags-4.1.1.tgz#63191bcd809b0ec3e151ba4751c16c444e5b5780"
-  integrity sha512-OWyMt5zBe7xFs8vglMmhM9lRQzCWL3WjHtxNNfJTMngGym7pC1kh8sP6jevfydJ6LP3ZvGxfb6ABYgPUM0mtsA==
-  dependencies:
-    meow "^8.0.0"
     semver "^6.0.0"
 
 git-up@^4.0.0:
@@ -9790,7 +9755,7 @@ memory-fs@^0.5.0:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
-meow@^3.3.0, meow@^3.6.0:
+meow@^3.3.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/meow/-/meow-3.7.0.tgz#72cb668b425228290abbfa856892587308a801fb"
   integrity sha1-cstmi0JSKCkKu/qFaJJYcwioAfs=
@@ -13301,7 +13266,7 @@ shell-quote@1.7.2:
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.2.tgz#67a7d02c76c9da24f99d20808fcaded0e0e04be2"
   integrity sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==
 
-shelljs@^0.7.3, shelljs@^0.8.3, shelljs@^0.8.4:
+shelljs@^0.8.4:
   version "0.8.4"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.8.4.tgz#de7684feeb767f8716b326078a8a00875890e3c2"
   integrity sha512-7gk3UZ9kOfPLIAbslLzyWeGiEqx9e3rxwZM0KE6EL8GlGwjym9Mrlx5/p33bWTu9YG6vcS4MBxYZDHYr5lr8BQ==
@@ -14182,13 +14147,6 @@ tmp@^0.0.33:
   integrity sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==
   dependencies:
     os-tmpdir "~1.0.2"
-
-tmp@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.2.1.tgz#8457fc3037dcf4719c251367a1af6500ee1ccf14"
-  integrity sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==
-  dependencies:
-    rimraf "^3.0.0"
 
 tmpl@1.0.x:
   version "1.0.4"

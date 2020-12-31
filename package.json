@@ -11,13 +11,13 @@
     "lerna": "lerna",
     "lint": "./scripts/lint.sh",
     "release": "lerna version --no-git-tag-version --no-private --no-push --conventional-commits",
-    "test": "jest",
-    "test:changelog": "cd ./packages/undercut-conventional-changelog-preset/ && yarn test"
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/eslint-parser": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
+    "@spyke/conventional-changelog-preset": "^1.0.2",
     "@spyke/eslint-config": "^1.1.0",
     "babel-jest": "^26.6.3",
     "core-js": "^3.8.1",
