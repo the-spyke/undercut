@@ -4,12 +4,15 @@ import "./polyfills.js";
 
 import { EOL } from "os";
 
-import yargs from "yargs";
+import yargsFactory from "yargs";
+import { hideBin } from "yargs/helpers";
 
 import { run } from "./index.js";
 
 const GROUP_OPTIONS = `Options:`;
 const GROUP_OTHER = `Other:`;
+
+const yargs = yargsFactory(hideBin(process.argv));
 
 const argv = yargs
 	.scriptName(`undercut`)
@@ -41,7 +44,7 @@ const argv = yargs
 		group: GROUP_OPTIONS,
 		describe: `Import a Node.js module in the following format "name::id".`,
 		requiresArg: true,
-		type: `array`,
+		type: `string`,
 	})
 	.option(`s`, {
 		alias: `source`,
@@ -61,4 +64,8 @@ const argv = yargs
 	.wrap(yargs.terminalWidth())
 	.argv;
 
-run(argv.import, argv.source, argv._);
+run(
+	typeof argv.import === `string` ? [argv.import] : argv.import,
+	argv.source,
+	argv._,
+);
