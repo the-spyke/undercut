@@ -13,18 +13,20 @@ A very long string...
 Use an Iterable as a `source` instead of `stdin`:
 
 ```bash
-$ undercut -s 'range(0, 5)' 'map(Math.sqrt)' 'sum()'
+$ undercut -p -s 'pull.range(0, 5)' 'map(Math.sqrt)' 'sum()'
 6.146264369941973
 ```
 
 ### Import an installed `npm` package and use it
 
 ```bash
-$ undercut -i 'pad::left-pad' -s 'range(0, 3)' 'map(x => pad(x, 3))'
+$ undercut -i 'pad::left-pad' -p -s 'range(0, 3)' 'map(x => pad(x, 3))'
 000
 001
 002
 ```
+
+You can import more than one package/module.
 
 ### Enter text data from keyboard by skipping a source
 
