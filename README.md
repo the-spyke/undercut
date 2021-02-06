@@ -77,14 +77,14 @@ yarn add @undercut/pull
 
 ## CLI
 
-[@undercut/cli](https://www.npmjs.com/package/@undercut/cli) package provides a command line interface for processing data with JavaScript and operations from Undercut in a shell. It allows you to pass strings from `stdin`, get results in `stdout`, and much more. Works on Node.js 10.13 and upwards.
+[@undercut/cli](https://www.npmjs.com/package/@undercut/cli) package provides a command line interface for processing data with JavaScript and operations from Undercut in a shell. It allows you to pass strings from `stdin`, get results in `stdout`, and much more. Works on Node.js 12.17 and upwards.
 
 ```sh
 $ cat strings.txt | undercut 'map(s => s.trim())' 'filter(s => s.length > 10)'
 Hello world!
 A very long string...
 
-$ undercut -s 'range(0, 5)' 'map(Math.sqrt)' 'sum()'
+$ undercut -p -s 'pull.range(0, 5)' 'map(Math.sqrt)' 'sum()'
 6.146264369941973
 ```
 

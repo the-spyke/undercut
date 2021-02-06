@@ -20,10 +20,11 @@ const argv = yargs
 		EOL +
 		`$0 [...options] [...operations]` + EOL + EOL +
 		`"@undercut/cli" is designed around Push Lines.` + EOL +
-		`Specify operations as quoted strings separated by spaces: 'op1' 'op2' 'opN'.` + EOL +
+		`Specify operations as quoted strings separated by spaces: 'map(x => x + 1)' 'filter(x => x > 2)' ...` + EOL +
 		`Quotes are required to stop the shell from parsing the expressions.` + EOL +
-		`Besides usual Node.js globals 3 "undercut" packages are available under their names: pull, push, utils.` + EOL +
-		`You may omit 'push.' on the top level for operations: 'sortStrings(push.asc)' vs. 'push.sortStrings(push.asc)'.` + EOL +
+		`Besides usual Node.js globals all "@undercut/push" exports are loaded by default.` + EOL +
+		`Push exports are also available as a namespace by the global name "push".` + EOL +
+		`You may quickly import "@undercut/pull" and "@undercut/utils" by using -p and -u keys.` + EOL +
 		`An operation could be any valid JS expression resulting into a PushOperation: 'observer => observer'.`
 	)
 	.strict()
@@ -32,19 +33,28 @@ const argv = yargs
 		`Pipe in a text file line-by-line, trim each line, filter lines longer than 10 symbols, save into "output.txt".`
 	)
 	.example(
-		`$ $0 -s 'range(1, 9)' 'sum()'`,
+		`$ $0 -p -s 'pull.range(1, 9)' 'sum()'`,
 		`Generate a range of numbers and calculate their sum. The result will be outputed as a string.`
 	)
 	.example(
-		`$ $0 -i 'c::chalk' -s 'range(1, 9)' 'map(x => c.green(x))'`,
-		`Import the 'chalk' npm package (should be installed) and make output numbers green.`
+		`$ cat file.txt | $0 -i 'chalk' 'map(s => chalk.green(s))'`,
+		`Import the 'chalk' npm package (should be installed) and make lines green.`
 	)
 	.option(`i`, {
 		alias: [`import`],
 		group: GROUP_OPTIONS,
 		describe: `Import a Node.js module in the following format "name::id".`,
+		nargs: 1,
 		requiresArg: true,
 		type: `string`,
+	})
+	.option(`p`, {
+		alias: [`pull`],
+		group: GROUP_OPTIONS,
+		default: false,
+		describe: `A shortcut for importing "@undercut/pull" under the name "pull".`,
+		requiresArg: false,
+		type: `boolean`,
 	})
 	.option(`s`, {
 		alias: `source`,
@@ -55,17 +65,33 @@ const argv = yargs
 		requiresArg: true,
 		type: `string`,
 	})
+	.option(`u`, {
+		alias: [`utils`],
+		group: GROUP_OPTIONS,
+		default: false,
+		describe: `A shortcut for importing "@undercut/utils" under the name "utils".`,
+		requiresArg: false,
+		type: `boolean`,
+	})
+	.check(args => {
+		return Array.isArray(args.source) ? `You can specify "--source" only once.` : true;
+	})
 	.help()
 	.group(`help`, GROUP_OTHER)
 	.showHelpOnFail(false, `Specify --help for available options.`)
 	.version()
 	.group(`version`, GROUP_OTHER)
-	.epilogue(`For more information, please visit https://github.com/the-spyke/undercut`)
+	.epilogue(`For more information, please visit https://undercut.js.org/`)
 	.wrap(yargs.terminalWidth())
 	.argv;
 
-run(
-	typeof argv.import === `string` ? [argv.import] : argv.import,
-	argv.source,
-	argv._,
-);
+if (!argv.import) argv.import = [];
+if (typeof argv.import === `string`) argv.import = [argv.import];
+
+if (argv.pull) argv.import.push(`pull::@undercut/pull`);
+if (argv.utils) argv.import.push(`utils::@undercut/utils`);
+
+run(argv._, {
+	imports: argv.import,
+	source: argv.source,
+});

@@ -3,10 +3,9 @@
 import { EOL } from "os";
 import { resolve } from "path";
 import { createInterface } from "readline";
+import { createContext, runInContext } from "vm";
 
-import * as pull from "@undercut/node-10/pull";
-import * as push from "@undercut/node-10/push";
-import { asObserver, isObserver, isPlainObject, isString } from "@undercut/node-10/utils";
+import { asObserver, isObserver, isString } from "@undercut/utils";
 
 /**
  * @param {ReadableStream<string>} stream
@@ -48,85 +47,45 @@ export const toStream = asObserver(function* (/** @type {WritableStream<string>}
 	}
 });
 
-function extractDefaultExport(exp) {
-	if (
-		typeof require === `undefined` &&
-		isPlainObject(exp) &&
-		`default` in exp &&
-		Object.getOwnPropertyNames(exp).length === 1
-	) {
-		return exp.default;
-	}
-
-	return exp;
-}
-
-function isFromContext(expr, context) {
-	const match = expr.match(/^(\w+)\(/i);
-
-	if (match) {
-		return match[1] in context;
-	}
-
-	return false;
-}
-
-function buildConstants(expressions) {
-	return expressions.map((expr, index) => `  const ${expr} = __imports[${index}];`).join(`\n`);
-}
-
-function buildGetSource(constants, source) {
-	return new Function(`__imports`, `
-		"use strict";
-		${constants}
-		return ${isFromContext(source, pull) ? `pull.` : ``}${source};
-	`);
-}
-
-function buildGetPipeline(constants, operations) {
-	return new Function(`__imports`, `
-		"use strict";
-		${constants}
-		return [
-			${operations.map(o => isFromContext(o, push) ? `push.${o}` : o).join(`,\n`)}
-		];
-	`);
-}
-
 function fixRelativePath(id) {
 	return id.startsWith(`.`) ? resolve(id) : id;
 }
 
-function runCore(imports, source, operations) {
-	const constants = buildConstants(imports.map(entry => entry[0]));
-	const getPipeline = buildGetPipeline(constants, operations);
-	const getSource = source && buildGetSource(constants, source);
-	const target = toStream(process.stdout, () => process.exit(0));
+async function runCore(imports, source, operations) {
+	try {
+		const importsPromise = Promise.all(imports.map(imp => import(imp[1])));
+		const pushPromise = import(`@undercut/push`);
 
-	Promise.all(imports.map(entry => import(fixRelativePath(entry[1]))))
-		.then(imports => imports.map(extractDefaultExport))
-		.then(imports => {
-			const pipeline = getPipeline(imports);
+		const code = `
+			((__imports, __pushFromIterable) => {
+				${imports.map((imp, i) => `const ${imp[0]} = __imports[${i}];\n`).join(``)}
 
-			if (process.stdin.isTTY) {
-				pipeline.push(push.bufferAll());
-			}
+				__pushFromIterable([
+					${operations.join(`,\n`)}
+					${process.stdin.isTTY ? `,bufferAll()` : ``}
+				], ${source});
+			});
+		`;
 
-			const observer = push.pushLine(pipeline, target);
-
-			if (getSource) {
-				const iterable = getSource(imports);
-
-				pull.toObserver(observer)(iterable);
-			} else {
-				pushFromStream(process.stdin, observer);
-			}
-		})
-		.catch(error => {
-			console.error(error); // eslint-disable-line no-console
-
-			process.exit(1);
+		const target = toStream(process.stdout, () => process.exit(0));
+		const push = await pushPromise;
+		const context = createContext({
+			...push,
+			push,
 		});
+		const runPipeline = runInContext(code, context);
+
+		runPipeline(
+			await importsPromise,
+			source
+				? (pipeline, iterable) => push.push(target, pipeline, iterable)
+				: pipeline => pushFromStream(process.stdin, push.pushLine(pipeline, target))
+		);
+	} catch (error) {
+		console.error(error); // eslint-disable-line no-console
+
+		process.exit(1);
+	}
 }
 
 export function parseImport(str) {
@@ -155,12 +114,7 @@ export function parseImport(str) {
 function parseImports(imports = []) {
 	if (!Array.isArray(imports) || !imports.every(isString)) throw new Error(`"imports" must be undefined or an array of strings.`);
 
-	return [
-		[`pull`, `@undercut/node-10/pull`],
-		[`push`, `@undercut/node-10/push`],
-		[`utils`, `@undercut/node-10/utils`],
-		...imports.map(parseImport),
-	];
+	return imports.map(parseImport).map(imp => [imp[0], fixRelativePath(imp[1])]);
 }
 
 function parseSource(source) {
@@ -180,15 +134,14 @@ function parseOperations(operations = []) {
 }
 
 /**
- * @param {string[]} imports
- * @param {string} source
  * @param {string[]} operations
+ * @param {object} options
  * @returns {void}
 */
-export function run(imports, source, operations) {
+export function run(operations, options = {}) {
 	runCore(
-		parseImports(imports),
-		parseSource(source),
+		parseImports(options.imports),
+		parseSource(options.source),
 		parseOperations(operations),
 	);
 }
