@@ -7,5 +7,6 @@ modifyJsonFile(json => {
 		"./pull": `./pull/index.js`,
 		"./push": `./push/index.js`,
 		"./utils": `./utils/index.js`,
+		"./package.json": `./package.json`,
 	};
 });
