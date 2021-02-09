@@ -16,7 +16,7 @@ node scripts/fix_package_json.js package.json $BUILD/package.json
 NODE_BUILD_TARGET="rms" yarn build:babel --source-maps=false --out-dir $BUILD/src
 
 export NODE_BUILD_TARGET="12.17"
-export BABEL_CONFIG="$CWD/babel.config.js"
+export BABEL_CONFIG="$CWD/babel.config.cjs"
 
 # Build `src` for Node LTS
 yarn build:babel --out-dir $BUILD/node

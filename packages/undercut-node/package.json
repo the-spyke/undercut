@@ -17,13 +17,13 @@
     "node": ">=12.17"
   },
   "scripts": {
-    "build": "source scripts/build.sh",
+    "build": ". scripts/build.sh",
     "build:babel": "babel src --source-maps --ignore \"src/**/*.test.js\",\"src/**/*.test.*.js\"",
     "clear": "rm -rf build dist",
-    "dist": "source scripts/dist.sh",
+    "dist": ". scripts/dist.sh",
     "lint": "eslint --format='unix' '**/*.?(c|m)js'",
     "prepack": "test ! -d scripts",
-    "test": "node --experimental-vm-modules ./node_modules/.bin/jest"
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",

@@ -1,8 +1,8 @@
-import { IS_TEST_ENV, NODE_BUILD_TARGET, RMS } from "@undercut/config";
+const { IS_TEST_ENV, NODE_BUILD_TARGET, RMS } = require(`@undercut/config`);
 
 console.log(`----> NODE_BUILD_TARGET=${NODE_BUILD_TARGET}`);
 
-export default {
+module.exports = {
 	plugins: [
 		!IS_TEST_ENV && [
 			`babel-plugin-module-resolver`,
@@ -20,8 +20,7 @@ export default {
 			{
 				corejs: 3,
 				// Jest doesn't support ES Modules because of custom `require()` hooks.
-				// modules: IS_TEST_ENV ? `commonjs` : false,
-				modules: false,
+				modules: IS_TEST_ENV ? `commonjs` : false,
 				targets: {
 					node: NODE_BUILD_TARGET
 				},
