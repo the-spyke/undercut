@@ -21,9 +21,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@undercut/pull": "^0.6.1",
-    "@undercut/push": "^0.6.1",
-    "@undercut/utils": "^0.6.1",
+    "@undercut/node": "^0.6.1",
     "core-js": "^3.8.1",
     "yargs": "^16.2.0"
   },

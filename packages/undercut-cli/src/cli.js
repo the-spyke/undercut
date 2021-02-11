@@ -88,8 +88,8 @@ const argv = yargs
 if (!argv.import) argv.import = [];
 if (typeof argv.import === `string`) argv.import = [argv.import];
 
-if (argv.pull) argv.import.push(`pull::@undercut/pull`);
-if (argv.utils) argv.import.push(`utils::@undercut/utils`);
+if (argv.pull) argv.import.push(`pull::@undercut/node/pull`);
+if (argv.utils) argv.import.push(`utils::@undercut/node/utils`);
 
 run(argv._, {
 	imports: argv.import,
