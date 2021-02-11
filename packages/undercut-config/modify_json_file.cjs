@@ -21,5 +21,5 @@ module.exports = async function modifyJsonFile(action) {
 
 	await writeFile(target, targetText, `utf8`);
 
-	console.log(`----> Sucessfully applied ${source === target ? `inplace` : `at '${target}'`}`); // eslint-disable-line no-console
+	console.log(`----> Sucessfully applied ${source === target ? `inplace` : `to a copy at '${target}'`}`); // eslint-disable-line no-console
 };
