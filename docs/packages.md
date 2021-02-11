@@ -2,16 +2,16 @@
 title: Precompiled packages
 ---
 
-## `@undercut/node-10`
+## `@undercut/node`
 
-A precompiled CommonJS version of the [Undercut](https://github.com/the-spyke/undercut) packages for Node.js 10 LTS and upward. Contains `pull`, `push`, and `utils` entries. An easy way to try `Undercut` when your project has no build step or you're doing a quick experiment.
+A precompiled version of the [Undercut](https://github.com/the-spyke/undercut) packages for Node.js 12.17 LTS and upward. Contains `pull`, `push`, and `utils` entries. An easy way to try `Undercut` when your project has no build step or you're doing a quick experiment.
 
 ### Usage
 
 Usage is similar to the original `ESM` packages.
 
 ```js
-const { pullArray, filter, map, skip } = require("@undercut/node-10/pull");
+const { pullArray, filter, map, skip } = require("@undercut/node/pull");
 
 const source = [1, 2, 3, 4, 5, 6, 7];
 
@@ -25,7 +25,7 @@ console.log(result); // [8, 10, 14]
 ```
 
 ```js
-const { isNumberValue } = require("@undercut/node-10/utils");
+const { isNumberValue } = require("@undercut/node/utils");
 
 console.log(isNumberValue(123)); // true
 console.log(isNumberValue("hello")); // false
@@ -44,20 +44,20 @@ require("core-js/es");
 ### Installation
 
 ```sh
-npm install @undercut/node-10
+npm install @undercut/node
 # or
-yarn add @undercut/node-10
+yarn add @undercut/node
 ```
 
 You may also try [Yarn aliases](https://yarnpkg.com/en/docs/cli/add#toc-yarn-add-alias) for convenience:
 
 ```sh
-yarn add undercut@npm:@undercut/node-10
+yarn add undercut@npm:@undercut/node
 ```
 
 ### Updating
 
-If you're upgrading `@undercut/node-10` to a newer version, please upgrade `core-js` to the latest version too.
+If you're upgrading `@undercut/node` to a newer version, please upgrade `core-js` to the latest version too.
 
 ## `@undercut/web-2019`
 
