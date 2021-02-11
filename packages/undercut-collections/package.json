@@ -10,6 +10,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "echo 'Empty build step'",
+    "build:babel": "babel src --root-mode upward --ignore \"src/**/*.test.js\",\"src/**/*.test.*.js\"",
     "clear": "rm -rf build dist",
     "dist": "rm -rf dist && mkdir dist && cd dist && npm pack ../",
     "lint": "eslint --format='unix' '**/*.?(c|m)js'",
