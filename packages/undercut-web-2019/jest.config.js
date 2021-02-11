@@ -1,10 +1,8 @@
 /* eslint-env node */
 
-"use strict";
+import webConfig from "@undercut/config/jest/jest.config.web.cjs";
 
-const webConfig = require(`@undercut/config/jest/jest.config.web.cjs`);
-
-module.exports = {
+export default {
 	...webConfig,
 	projects: [
 		`.`,
