@@ -11,9 +11,9 @@ module.exports = async function modifyJsonFile(action) {
 	console.log(`----> Applying JSON modification to '${source}'`); // eslint-disable-line no-console
 
 	const sourceText = await readFile(source, `utf8`);
-	const json = JSON.parse(sourceText);
+	const obj = JSON.parse(sourceText);
 
-	const result = action(json) ?? json;
+	const result = action(obj) || obj;
 
 	const targetText = JSON.stringify(result, null, 2) + `\n`;
 
