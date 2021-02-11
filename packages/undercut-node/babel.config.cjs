@@ -1,9 +1,13 @@
-const { IS_TEST_ENV, NODE_BUILD_TARGET, RMS } = require(`@undercut/config`);
+"use strict";
 
-console.log(`----> NODE_BUILD_TARGET=${NODE_BUILD_TARGET}`);
+const { IS_TEST_ENV } = require(`@undercut/config`);
+const baseConfig = require(`@undercut/config/babel.config.base.cjs`);
 
 module.exports = {
+	...baseConfig,
+	babelrcRoots: [`../*/`],
 	plugins: [
+		...(baseConfig.plugins || []),
 		!IS_TEST_ENV && [
 			`babel-plugin-module-resolver`,
 			{
@@ -12,20 +16,6 @@ module.exports = {
 				},
 				loglevel: `silent`,
 			}
-		]
-	].filter(Boolean),
-	presets: [
-		NODE_BUILD_TARGET !== RMS && [
-			`@babel/preset-env`,
-			{
-				corejs: 3,
-				// Jest doesn't support ES Modules because of custom `require()` hooks.
-				modules: IS_TEST_ENV ? `commonjs` : false,
-				targets: {
-					node: NODE_BUILD_TARGET
-				},
-				useBuiltIns: `entry`,
-			}
-		]
+		],
 	].filter(Boolean),
 };
