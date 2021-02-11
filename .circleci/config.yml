@@ -1,9 +1,6 @@
 version: 2.1
 
 executors:
-  node_10:
-    docker:
-      - image: node:10-buster
   node_12:
     docker:
       - image: node:12-buster
@@ -151,7 +148,7 @@ commands:
           steps:
             - persist_to_workspace:
                 root: artifacts
-                paths: "*.tgz"
+                paths: ["*.tgz"]
   build:
     description: Run build and dist scripts.
     parameters:
@@ -172,7 +169,7 @@ commands:
 
 jobs:
   build_cli:
-    executor: node_10
+    executor: node_12
     working_directory: /mnt/ramdisk
     steps:
       - initialize
@@ -191,15 +188,15 @@ jobs:
           path: packages/undercut-collections
       - finalize
 
-  build_node_10:
-    executor: node_10
+  build_node:
+    executor: node_12
     working_directory: /mnt/ramdisk
     steps:
       - initialize
       - test:
-          path: packages/undercut-node-10
+          path: packages/undercut-node
       - build:
-          path: packages/undercut-node-10
+          path: packages/undercut-node
       - finalize
 
   build_pull:
@@ -320,7 +317,7 @@ workflows:
             - test_core
           filters:
             <<: *filters-release
-      - build_node_10:
+      - build_node:
           requires:
             - build_pull
             - build_push
@@ -329,7 +326,7 @@ workflows:
             <<: *filters-release
       - build_cli:
           requires:
-            - build_node_10
+            - build_node
           filters:
             <<: *filters-release
       - build_web_2019:

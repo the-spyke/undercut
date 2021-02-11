@@ -83,5 +83,5 @@ $ undercut -p -s 'pull.range(0, 5)' 'map(Math.sqrt)' 'sum()'
 
 ## Precompiled packages
 
-- [@undercut/node-10](packages#undercutnode-10) -- A precompiled CommonJS version for Node.js 10.13 and upwards. Requires stable polyfills from `core-js@3`.
+- [@undercut/node](packages#undercutnode) -- A precompiled version for Node.js 12.17 and upwards. Requires stable polyfills from `core-js@3`.
 - [@undercut/web-2019](packages#undercutweb-2019) -- A precompiled version for web browsers not older than `2019-01-01`. Creates `undercut` variable in the global scope, may also be used by CJS/AMD loaders. Requires stable polyfills from `core-js@3`.

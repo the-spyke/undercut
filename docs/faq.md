@@ -22,7 +22,7 @@ We're planning to do automatic benchmarking later.
 
 Because your target environment may be better than a generic ES5. In this case you will loose some efficiency and run a double-compiled code. Most web apps these days use Babel anyway, so why not to give you best possible code? Moreover, new syntax is sometimes shorter than older one. Also our ESM is compatible with the spec and Node loader out ouf the box (`.js` extensions in imports, etc.) and gives you a nice tree shaking.
 
-BTW, we have precompiled versions: `@undercut/node-10` and `@undercut/web-2019`.
+BTW, we have precompiled versions: `@undercut/node` and `@undercut/web-2019`.
 
 ### Is it hard to use Undercut in my project because of ESNext and ESM?
 
