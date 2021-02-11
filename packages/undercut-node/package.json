@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build": ". scripts/build.sh",
-    "build:babel": "babel src --source-maps --ignore \"src/**/*.test.js\",\"src/**/*.test.*.js\"",
+    "build:babel": "babel src --ignore \"src/**/*.test.js\",\"src/**/*.test.*.js\"",
     "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
     "lint": "eslint --format='unix' '**/*.?(c|m)js'",
