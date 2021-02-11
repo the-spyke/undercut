@@ -25,7 +25,7 @@
     "dist": ". scripts/dist.sh",
     "lint": "eslint --format='unix' '**/*.?(c|m)js'",
     "prepack": "test ! -d scripts",
-    "test": "jest"
+    "test": "jest --config ./jest.config.full.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
