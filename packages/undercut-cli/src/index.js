@@ -5,7 +5,7 @@ import { resolve } from "path";
 import { createInterface } from "readline";
 import { createContext, runInContext } from "vm";
 
-import { asObserver, isObserver, isString } from "@undercut/utils";
+import { asObserver, isObserver, isString } from "@undercut/node/utils";
 
 /**
  * @param {ReadableStream<string>} stream
@@ -54,7 +54,7 @@ function fixRelativePath(id) {
 async function runCore(imports, source, operations) {
 	try {
 		const importsPromise = Promise.all(imports.map(imp => import(imp[1])));
-		const pushPromise = import(`@undercut/push`);
+		const pushPromise = import(`@undercut/node/push`);
 
 		const code = `
 			((__imports, __pushFromIterable) => {
@@ -62,7 +62,7 @@ async function runCore(imports, source, operations) {
 
 				__pushFromIterable([
 					${operations.join(`,\n`)}
-					${process.stdin.isTTY ? `,bufferAll()` : ``}
+					${process.stdin.isTTY ? `${operations.length ? `,` : ``}bufferAll()` : ``}
 				], ${source});
 			});
 		`;
