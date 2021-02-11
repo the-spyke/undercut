@@ -12,16 +12,20 @@ mkdir $BUILD
 cp -v LICENSE README.md $BUILD
 node scripts/fix_package_json.js package.json $BUILD/package.json
 
-# Build `src` without `preset-env` for RMS
-NODE_BUILD_TARGET="rms" yarn build:babel --source-maps=false --out-dir $BUILD/src
+export NODE_BUILD_TARGET="rms"
+
+echo "----> Build 'node' package for '${NODE_BUILD_TARGET}'"
+yarn build:babel --out-dir $BUILD/src --source-maps
 
 export NODE_BUILD_TARGET="12.17"
-export BABEL_CONFIG="$CWD/babel.config.cjs"
 
-# Build `src` for Node LTS
-yarn build:babel --out-dir $BUILD/node
+echo "----> Build 'node' package for '${NODE_BUILD_TARGET}'"
+yarn build:babel --out-dir $BUILD/node --source-maps
+
+export BABEL_CONFIG="$CWD/babel.config.cjs"
 
 for PACKAGE in pull push utils
 do
-	( cd ../undercut-$PACKAGE && yarn build:babel --out-dir $BUILD/$PACKAGE --config-file $BABEL_CONFIG )
+	echo "----> Build '$PACKAGE' package for '${NODE_BUILD_TARGET}'"
+	( cd ../undercut-$PACKAGE && yarn build:babel --out-dir $BUILD/$PACKAGE --config-file $BABEL_CONFIG --source-maps )
 done
