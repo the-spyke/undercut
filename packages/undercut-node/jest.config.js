@@ -1,8 +1,6 @@
-"use strict";
+import nodeConfig from "@undercut/config/jest/jest.config.node.cjs";
 
-const nodeConfig = require(`@undercut/config/jest/jest.config.node.cjs`);
-
-module.exports = {
+export default {
 	...nodeConfig,
 	// projects: [
 	// 	`.`,
