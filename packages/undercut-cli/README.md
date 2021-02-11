@@ -137,6 +137,15 @@ $ undercut -p -s 'pull.range(0, 5)' 'sum()'
 10
 ```
 
+To use a string as an input you need to put it into multiple quotes. For example, `'""asd""'` will be parsed as `"asd"`:
+
+```sh
+$ undercut -s '""asd""'
+a
+s
+d
+```
+
 ### `--help`
 
 Shows help information.
