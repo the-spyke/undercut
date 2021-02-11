@@ -15,7 +15,8 @@
     "test": "echo 'No tests'"
   },
   "devDependencies": {
-    "eslint": "^7.14.0"
+    "eslint": "^7.14.0",
+    "jest-diff": "^26.6.2"
   },
   "repository": {
     "type": "git",
