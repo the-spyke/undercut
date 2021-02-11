@@ -1,7 +1,8 @@
 import { expect, test } from "@jest/globals";
-
 import semver from "semver";
 
-test(`Node.js version should be at least 12.17`, () => {
-	expect(semver.satisfies(process.version, `>=12.17`)).toBe(true);
+import { NODE_LTS_VERSION } from "@undercut/config";
+
+test(`Node.js version should be at least ${NODE_LTS_VERSION}`, () => {
+	expect(semver.satisfies(process.version, `>=${NODE_LTS_VERSION}`)).toBe(true);
 });

@@ -1,6 +1,6 @@
 export default {
 	projects: [
-		// `<rootDir>/packages/undercut-cli/`, -- Should be tested from a Node 12 environment.
+		`<rootDir>/packages/undercut-cli/`,
 		`<rootDir>/packages/undercut-collections/`,
 		// `<rootDir>/packages/undercut-config/`, -- Should have no tests.
 		`<rootDir>/packages/undercut-node/`,
