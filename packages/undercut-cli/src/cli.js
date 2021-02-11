@@ -40,6 +40,12 @@ const argv = yargs
 		`$ cat file.txt | $0 -i 'chalk' 'map(s => chalk.green(s))'`,
 		`Import the 'chalk' npm package (should be installed) and make lines green.`
 	)
+	.option(`debug`, {
+		describe: `Output parsed arguments to help with debugging errors.`,
+		default: false,
+		requiresArg: false,
+		type: `boolean`,
+	})
 	.option(`i`, {
 		alias: [`import`],
 		group: GROUP_OPTIONS,
@@ -90,6 +96,10 @@ if (typeof argv.import === `string`) argv.import = [argv.import];
 
 if (argv.pull) argv.import.push(`pull::@undercut/node/pull`);
 if (argv.utils) argv.import.push(`utils::@undercut/node/utils`);
+
+if (argv.debug) {
+	console.log(argv); // eslint-disable-line no-console
+}
 
 run(argv._, {
 	imports: argv.import,
