@@ -11,7 +11,9 @@
     "lerna": "lerna",
     "lint": "./scripts/lint.sh",
     "release": "lerna version --no-git-tag-version --no-private --no-push --conventional-commits",
-    "test": "jest"
+    "test": "jest --testPathPattern='\\.test\\.js$'",
+    "test:all": "jest",
+    "test:int": "jest --testPathPattern='\\.test\\.int\\.js$'"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
