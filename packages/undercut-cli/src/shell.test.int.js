@@ -1,12 +1,15 @@
 import { EOL } from "os";
+import { resolve } from "path";
 
 import { describe, expect, test } from "@jest/globals";
 import shell from "shelljs";
 
 describe(`Undercut command in a shell`, () => {
 	const echo = text => shell.exec(`echo ${text}`, { silent: true });
+	// HACK: As Jest tests are converted to CJS we can't use import.meta for resolving paths.
+	const cliPath = resolve(__dirname, `cli.js`);
 	const undercut = (command, pipe = shell) => {
-		const result = pipe.exec(`./src/cli.js ${command}`, { silent: true });
+		const result = pipe.exec(`${cliPath} ${command}`, { silent: true });
 
 		if (result.code !== 0) {
 			throw new Error(result.stderr);
@@ -26,7 +29,7 @@ describe(`Undercut command in a shell`, () => {
 		expect(undercut(`-s '["asd.txt"]' -i "p::path" 'map(f => p.extname(f))'`)).toEqual(`.txt`);
 		expect(undercut(`-s '["asd.txt"]' -i "{extname}::path" 'map(f => extname(f))'`)).toEqual(`.txt`);
 		expect(undercut(`-s '["asd.txt"]' -i "{extname:ext}::path" 'map(f => ext(f))'`)).toEqual(`.txt`);
-		expect(undercut(`-s '["path"]' -i "{parseImport}::./src/index.js" 'map(i => parseImport(i))'`)).toEqual(`path,path`);
+		expect(undercut(`-s '["path"]' -i "{parseImport}::${resolve(__dirname, `index.js`)}" 'map(i => parseImport(i))'`)).toEqual(`path,path`);
 		expect(undercut(`-s '["asd.txt"]' -i path 'map(f => path.extname(f))' --import os`)).toEqual(`.txt`);
 	});
 
