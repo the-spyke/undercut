@@ -3,7 +3,16 @@
 const { IS_TEST_ENV, NODE_BUILD_TARGET, RMS } = require(`./index.cjs`);
 
 module.exports = {
+	plugins: [
+		!IS_TEST_ENV && [
+			`babel-plugin-add-import-extension`,
+			{
+				extension: `js`,
+			}
+		],
+	].filter(Boolean),
 	presets: [
+		`@babel/preset-typescript`,
 		NODE_BUILD_TARGET !== RMS && [
 			`@babel/preset-env`,
 			{
@@ -15,6 +24,7 @@ module.exports = {
 				},
 				useBuiltIns: `entry`,
 			}
-		]
+		],
+
 	].filter(Boolean),
 };

@@ -13,23 +13,28 @@
     "release": "lerna version --no-git-tag-version --no-private --no-push --conventional-commits",
     "test": "jest --testPathPattern='\\.test\\.js$'",
     "test:all": "jest",
-    "test:int": "jest --testPathPattern='\\.test\\.int\\.js$'"
+    "test:int": "jest --testPathPattern='\\.test\\.int\\.js$'",
+    "ts": "tsc --noEmit"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/eslint-parser": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.16",
     "@spyke/conventional-changelog-preset": "^1.0.2",
     "@spyke/eslint-config": "^1.1.0",
     "babel-jest": "^26.6.3",
+    "babel-plugin-add-import-extension": "^1.4.3",
     "core-js": "^3.8.1",
     "eslint": "^7.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.3",
     "jest": "^26.6.3",
+    "jest-circus": "^26.6.3",
     "jest-junit": "^12.0.0",
     "json": "^10.0.0",
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "typescript": "^4.1.5"
   },
   "resolutions": {
     "**/core-js": "^3.8.1",

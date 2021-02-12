@@ -3,52 +3,36 @@ import { swapElements } from "@undercut/utils/src/array.js";
 import { assertFunctor } from "@undercut/utils/src/assert.js";
 import { numbers as numbersComparator } from "@undercut/utils/src/compare.js";
 
-const EMPTY_ITEM = {};
+type Comparator<T> = (a: T, b: T) => number;
 
-/**
- * @template T
- */
-export class Heap {
-	/**
-	 * @param {number} index
-	 * @returns {number}
-	*/
-	static getParentIndex(index) {
+export class Heap<T> {
+	static getParentIndex(index: number): number {
 		return index < 1 ? -1 : Math.trunc((index - 1) / 2);
 	}
 
-	/**
-	 * @param {number} index
-	 * @returns {number}
-	*/
-	static getLeftChildIndex(index) {
+	static getLeftChildIndex(index: number):number {
 		return 2 * index + 1;
 	}
 
-	/**
-	 * @param {number} index
-	 * @returns {number}
-	*/
-	static getRightChildIndex(index) {
+	static getRightChildIndex(index: number): number {
 		return 2 * index + 2;
 	}
 
-	/**
-	 * @param {(a: T, b: T) => number} comparator
-	*/
-	constructor(comparator) {
+	$items: Array<T> = null;
+	$comparator: Comparator<T> = null;
+
+	constructor(comparator: Comparator<T>) {
 		assertFunctor(comparator, `comparator`);
 
-		/** @type {Array<T>} */
 		this.$items = [];
 		this.$comparator = comparator;
 	}
 
-	get isEmpty() {
+	get isEmpty(): boolean {
 		return this.size === 0;
 	}
 
-	get size() {
+	get size(): number {
 		return this.$items.length;
 	}
 
@@ -56,11 +40,7 @@ export class Heap {
 		return this.$items.values();
 	}
 
-	/**
-	 * @param {T} value
-	 * @returns {void}
-	*/
-	add(value) {
+	add(value: T) {
 		this.$checkItemType(value);
 
 		this.$items.push(value);
@@ -68,29 +48,21 @@ export class Heap {
 		this.$heapifyUpAt(this.size - 1);
 	}
 
-	peek() {
+	peek(): T | undefined {
 		return this.$items[0];
 	}
 
-	pop() {
+	pop(): T | undefined {
 		return this.$deleteAt(0);
 	}
 
-	/**
-	 * @param {unknown} item
-	 * @returns {void}
-	*/
-	$checkItemType(item) {
+	$checkItemType(item: unknown): void {
 		if (!isNumberValue(item)) {
 			throw new Error(`Heap can contain only valid Number values, got: ${item}`);
 		}
 	}
 
-	/**
-	 * @param {number} index
-	 * @returns {T}
-	*/
-	$deleteAt(index) {
+	$deleteAt(index: number): T {
 		if (index === this.size - 1) {
 			return this.$items.pop();
 		}
@@ -98,8 +70,7 @@ export class Heap {
 		const value = this.$items[index];
 
 		if (index > 0) {
-			this.$items[index] = EMPTY_ITEM;
-			this.$heapifyUpAt(index);
+			this.$heapifyUpAt(index, true);
 		}
 
 		this.$items[0] = this.$items.pop();
@@ -109,10 +80,9 @@ export class Heap {
 	}
 
 	/**
-	 * @param {number} index
-	 * @returns {number} The index of the item after heapify operation.
+	 * @returns The index of the item after heapify operation.
 	*/
-	$heapifyDownAt(index) {
+	$heapifyDownAt(index: number): number {
 		while (true) { // eslint-disable-line no-constant-condition
 			const leftChildIndex = Heap.getLeftChildIndex(index);
 			const rightChildIndex = Heap.getRightChildIndex(index);
@@ -137,13 +107,13 @@ export class Heap {
 	}
 
 	/**
-	 * @param {number} index
-	 * @returns {number} The index of the item after heapify operation.
+	 * @param force Don't compare, just force item to the top.
+	 * @returns The index of the item after heapify operation.
 	*/
-	$heapifyUpAt(index) {
+	$heapifyUpAt(index: number, force: boolean = false): number {
 		let parentIndex = Heap.getParentIndex(index);
 
-		while (index > 0 && (this.$items[index] === EMPTY_ITEM || this.$comparator(this.$items[index], this.$items[parentIndex]) < 0)) {
+		while (index > 0 && (force || this.$comparator(this.$items[index], this.$items[parentIndex]) < 0)) {
 			swapElements(this.$items, index, parentIndex);
 
 			index = parentIndex;
@@ -153,12 +123,7 @@ export class Heap {
 		return index;
 	}
 
-	/**
-	 * @param {number} index
-	 * @param {T} value
-	 * @returns {T} The original value at the specified index.
-	*/
-	$replaceAt(index, value) {
+	$replaceAt(index: number, value: T): T {
 		const originalValue = this.$items[index];
 
 		if (value !== originalValue) {
@@ -175,10 +140,7 @@ export class Heap {
 	}
 }
 
-/**
- * @type {<T, H extends Heap<T>>(Heap: new () => H, iterable: Iterable<T>) => H}
- */
-function fromIterable(Heap, iterable) {
+function fromIterable<T, H extends Heap<T>>(Heap: new () => H, iterable: Iterable<T>): H {
 	const heap = new Heap();
 
 	for (const item of iterable) {
@@ -188,23 +150,12 @@ function fromIterable(Heap, iterable) {
 	return heap;
 }
 
-/**
- * @extends {Heap<number>}
- */
-export class MaxHeap extends Heap {
-	/**
-	 * @param {Iterable<number>} iterable
-	 * @returns {MaxHeap}
-	 */
-	static from(iterable) {
+export class MaxHeap extends Heap<number> {
+	static from(iterable: Iterable<number>): MaxHeap {
 		return fromIterable(this, iterable);
 	}
 
-	/**
-	 * @param {...number} values
-	 * @returns {MaxHeap}
-	 */
-	static of(...values) {
+	static of(...values: Array<number>): MaxHeap {
 		return this.from(values);
 	}
 
@@ -213,23 +164,12 @@ export class MaxHeap extends Heap {
 	}
 }
 
-/**
- * @extends {Heap<number>}
- */
-export class MinHeap extends Heap {
-	/**
-	 * @param {Iterable<number>} iterable
-	 * @returns {MinHeap}
-	 */
-	static from(iterable) {
+export class MinHeap extends Heap<number> {
+	static from(iterable: Iterable<number>): MinHeap {
 		return fromIterable(this, iterable);
 	}
 
-	/**
-	 * @param {...number} values
-	 * @returns {MinHeap}
-	 */
-	static of(...values) {
+	static of(...values: Array<number>): MinHeap {
 		return this.from(values);
 	}
 

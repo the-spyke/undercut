@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { Heap, MaxHeap, MinHeap } from "./heap.js";
+import { Heap, MaxHeap, MinHeap } from "./heap";
 
 describe(`Heap`, () => {
 	test(`getParentIndex should return a valid index`, () => {
