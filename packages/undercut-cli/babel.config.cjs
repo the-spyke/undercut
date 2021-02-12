@@ -1,6 +1,6 @@
 "use strict";
 
-const { IS_TEST_ENV, NODE_LTS_VERSION } = require(`@undercut/config`);
+const { IS_TEST_ENV, NODE_LTS_VERSION } = require(`@undercut/config/index.cjs`);
 
 module.exports = {
 	presets: [

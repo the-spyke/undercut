@@ -1,8 +1,6 @@
-/* eslint-env node */
-
 "use strict";
 
-const { IS_TEST_ENV } = require(`@undercut/config`);
+const { IS_TEST_ENV } = require(`@undercut/config/index.cjs`);
 
 module.exports = {
 	presets: [

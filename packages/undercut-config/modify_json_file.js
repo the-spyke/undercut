@@ -1,11 +1,13 @@
-"use strict";
+/* eslint-env node */
 
-const { readFile, writeFile } = require(`fs`).promises;
+import { readFile, writeFile } from "fs/promises";
 
-const { diffStringsUnified } = require(`jest-diff`);
-const yargs = require(`yargs`);
+import { diffStringsUnified } from "jest-diff";
+import yargsFactory from "yargs";
+import { hideBin } from "yargs/helpers";
 
-module.exports = async function modifyJsonFile(action) {
+export async function modifyJsonFile(action) {
+	const yargs = yargsFactory(hideBin(process.argv));
 	const [source, target = source] = yargs.argv._;
 
 	console.log(`----> Applying JSON modification to '${source}'`); // eslint-disable-line no-console
