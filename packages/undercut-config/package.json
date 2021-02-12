@@ -5,8 +5,8 @@
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "private": true,
-  "type": "commonjs",
-  "main": "index.cjs",
+  "type": "module",
+  "main": "./index.js",
   "scripts": {
     "build": "echo 'Empty build step'",
     "clear": "rm -rf build dist",
@@ -14,9 +14,12 @@
     "lint": "eslint --format='unix' '**/*.?(c|m)js'",
     "test": "echo 'No tests'"
   },
+  "dependencies": {
+    "jest-diff": "^26.6.2",
+    "yargs": "^16.2.0"
+  },
   "devDependencies": {
-    "eslint": "^7.14.0",
-    "jest-diff": "^26.6.2"
+    "eslint": "^7.14.0"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,4 @@
-"use strict";
-
-const modifyJsonFile = require(`@undercut/config/modify_json_file.cjs`);
+import { modifyJsonFile } from "@undercut/config/modify_json_file.js";
 
 modifyJsonFile(json => {
 	json.type = `commonjs`;

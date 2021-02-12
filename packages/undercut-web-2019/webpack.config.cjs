@@ -4,7 +4,7 @@
 
 const path = require(`path`);
 
-const { PROD } = require(`@undercut/config`);
+const { PROD } = require(`@undercut/config/index.cjs`);
 
 const BUILD_DIR = path.join(__dirname, `build`);
 

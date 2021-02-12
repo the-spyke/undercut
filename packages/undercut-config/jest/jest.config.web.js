@@ -1,8 +1,6 @@
-"use strict";
+import baseConfig from "./jest.config.base.js";
 
-const baseConfig = require(`./jest.config.base.cjs`);
-
-module.exports = {
+export default {
 	...baseConfig,
 	setupFiles: [
 		`@undercut/config/jest/jest.setup.web.js`,

@@ -1,5 +1,5 @@
 import { NODE_LTS_VERSION } from "@undercut/config";
-import modifyJsonFile from "@undercut/config/modify_json_file.cjs";
+import { modifyJsonFile } from "@undercut/config/modify_json_file.js";
 
 modifyJsonFile(json => {
 	if (json.engines.node !== `>=${NODE_LTS_VERSION}`) throw new Error(`Outdated node version in package.json`);

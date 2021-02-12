@@ -1,6 +1,4 @@
-/* eslint-env node */
-
-import webConfig from "@undercut/config/jest/jest.config.web.cjs";
+import webConfig from "@undercut/config/jest/jest.config.web.js";
 
 export default {
 	...webConfig,

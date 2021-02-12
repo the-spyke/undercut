@@ -1,6 +1,6 @@
 "use strict";
 
-const { IS_TEST_ENV } = require(`@undercut/config`);
+const { IS_TEST_ENV } = require(`@undercut/config/index.cjs`);
 const baseConfig = require(`@undercut/config/babel.config.base.cjs`);
 
 module.exports = {
