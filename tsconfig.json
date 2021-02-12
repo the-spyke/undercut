@@ -1,0 +1,37 @@
+{
+	"compilerOptions": {
+		"alwaysStrict": true,
+		"declaration": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		// "lib": [
+		// 	"ESNext"
+		// ],
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"skipLibCheck": true,
+		// "strict": true,
+		"target": "ESNext",
+	},
+	"exclude": [
+		"**/build/",
+		"**/coverage/",
+		"**/dist/",
+		"**/node_modules/",
+		"**/*.test.*.ts",
+		"**/*.test.ts",
+	],
+	"files": [],
+	// "paths": {
+	// 	"@undercut/*/": [
+	// 		"./packages/*/src/"
+	// 	],
+	// },
+	// "references": [
+	// 	{
+	// 		"path": "packages/undercut-collections"
+	// 	}
+	// ]
+}

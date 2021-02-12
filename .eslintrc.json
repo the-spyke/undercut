@@ -1,15 +1,10 @@
 {
 	"env": {
-		"es2020": true,
-		"shared-node-browser": true
+		"es2021": true
 	},
 	"extends": [
 		"@spyke/eslint-config"
 	],
-	"globals": {
-		"Atomics": "readonly",
-		"SharedArrayBuffer": "readonly"
-	},
 	"ignorePatterns": [
 		"**/__snapshots__/",
 		"**/build/",
@@ -49,7 +44,7 @@
 	],
 	"parser": "@babel/eslint-parser",
 	"parserOptions": {
-		"ecmaVersion": 2020,
+		"ecmaVersion": 2021,
 		"sourceType": "module"
 	},
 	"root": true,
@@ -57,6 +52,29 @@
 		"quotes": [
 			"error",
 			"backtick"
+		],
+		"import/extensions": [
+			"error",
+			"always",
+			{
+				"ts": "never"
+			}
 		]
+	},
+	"settings": {
+		"import/extensions": [
+			".cjs",
+			".js",
+			".ts"
+		],
+		"import/resolver": {
+			"node": {
+				"extensions": [
+					".cjs",
+					".js",
+					".ts"
+				]
+			}
+		}
 	}
 }

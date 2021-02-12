@@ -1,1 +1,1 @@
-export * from "./heap.js";
+export * from "./heap";

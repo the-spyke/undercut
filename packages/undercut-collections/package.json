@@ -6,15 +6,18 @@
   "license": "MIT",
   "private": true,
   "type": "module",
-  "main": "src/index.js",
+  "main": "./src/index.ts",
+  "types": "./src/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "echo 'Empty build step'",
+    "build": ". scripts/build.sh",
     "build:babel": "babel src --root-mode upward --ignore \"src/**/*.test.js\",\"src/**/*.test.*.js\"",
+    "build:types": "tsc --emitDeclarationOnly",
     "clear": "rm -rf build dist",
-    "dist": "rm -rf dist && mkdir dist && cd dist && npm pack ../",
-    "lint": "eslint --format='unix' '**/*.?(c|m)js'",
-    "test": "jest"
+    "dist": ". scripts/dist.sh",
+    "lint": "eslint --format='unix' '**/*.@(cjs|mjs|js|ts)'",
+    "test": "jest",
+    "ts": "tsc --noEmit"
   },
   "dependencies": {
     "@undercut/utils": "^0.6.0"
@@ -22,14 +25,17 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.16",
     "@jest/globals": "^26.6.2",
     "@undercut/config": "^1.0.0",
     "@undercut/testing": "^1.0.0",
     "babel-jest": "^26.6.3",
+    "babel-plugin-add-import-extension": "^1.4.3",
     "core-js": "^3.8.1",
     "eslint": "^7.15.0",
     "jest": "^26.6.3",
-    "jest-circus": "^26.6.3"
+    "jest-circus": "^26.6.3",
+    "typescript": "^4.1.5"
   },
   "homepage": "https://undercut.js.org",
   "repository": {
