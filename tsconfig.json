@@ -24,14 +24,17 @@
 		"**/*.test.ts",
 	],
 	"files": [],
-	// "paths": {
-	// 	"@undercut/*/": [
-	// 		"./packages/*/src/"
-	// 	],
-	// },
-	// "references": [
-	// 	{
-	// 		"path": "packages/undercut-collections"
-	// 	}
-	// ]
+	"paths": {
+		"@undercut/*/": [
+			"./packages/*/"
+		],
+	},
+	"references": [
+		{
+			"path": "packages/undercut-collections"
+		},
+		{
+			"path": "packages/undercut-types"
+		},
+	]
 }
