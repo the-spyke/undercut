@@ -1,8 +1,8 @@
 import { expect, test } from "@jest/globals";
 
-import * as compare from "./compare.js";
+import * as compare from "./compare";
 
-import { asc, desc } from "./ordering.js";
+import { asc, desc } from "./ordering";
 
 test(`asc`, () => {
 	expect(() => asc()).toThrow();

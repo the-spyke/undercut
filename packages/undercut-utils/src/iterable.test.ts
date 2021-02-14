@@ -1,6 +1,6 @@
 import { describe, expect, jest, test } from "@jest/globals";
 
-import { isIterable, isIterator } from "./language.js";
+import { isIterable, isIterator } from "./language";
 
 import {
 	createIterable,
@@ -8,7 +8,7 @@ import {
 	head,
 	headTail,
 	tail,
-} from "./iterable.js";
+} from "./iterable";
 
 describe(`createIterable`, () => {
 	test(`should throw on no argument`, () => {

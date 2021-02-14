@@ -14,6 +14,7 @@
     "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
     "lint": "eslint --format='unix' '**/*.@(cjs|mjs|js|ts)'",
+    "test": "jest",
     "ts": "tsc --noEmit"
   },
   "devDependencies": {

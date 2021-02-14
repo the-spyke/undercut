@@ -3,10 +3,10 @@ import { expect, jest, test } from "@jest/globals";
 import {
 	close,
 	asUnclosable,
-} from "./coroutine.js";
+} from "./coroutine";
 
 test(`asUnclosable`, () => {
-	let observer = {
+	let observer: any = {
 		next: jest.fn(),
 	};
 
@@ -37,7 +37,7 @@ test(`asUnclosable`, () => {
 
 	expect(observer.next.mock.calls).toEqual([[123], [54]]);
 
-	expect(() => unclosable.throw()).toThrow();
+	expect(() => unclosable.throw(new Error())).toThrow();
 
 	unclosable.next(28);
 

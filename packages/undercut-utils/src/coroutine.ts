@@ -1,13 +1,10 @@
-import { assert } from "./assert.js";
-import { getDoneItem, rethrow } from "./function.js";
-import { isFunction } from "./language.js";
+import { assert } from "./assert";
+import { getDoneItem, rethrow } from "./function";
+import { isFunction } from "./language";
 
-/**
- * @param {Coroutine} coroutine
- * @param {Error} error
- * @returns {never}
- */
-export function abort(coroutine, error) {
+type Coroutine = any;
+
+export function abort(coroutine: Coroutine, error: Error): never {
 	if (isFunction(coroutine.throw)) {
 		coroutine.throw(error);
 	}
@@ -15,11 +12,8 @@ export function abort(coroutine, error) {
 	throw error;
 }
 
-/**
- * @type {<T extends Function>(generator: T) => T}
-*/
-export function asObserver(generator) {
-	return function (...args) {
+export function asObserver(generator: GeneratorFunction) {
+	return function (...args: Array<any>) {
 		const observer = generator(...args);
 
 		observer.next();
@@ -28,7 +22,7 @@ export function asObserver(generator) {
 	};
 }
 
-export function asUnclosable(coroutine) {
+export function asUnclosable(coroutine: Coroutine) {
 	return {
 		next: coroutine.next.bind(coroutine),
 		return: getDoneItem,
@@ -36,10 +30,7 @@ export function asUnclosable(coroutine) {
 	};
 }
 
-/**
- * @type {<T, R>(coroutine: T, tryBeforeClosing?: (coroutine: T) => R) => R)}
- */
-export function close(coroutine, tryBeforeClosing) {
+export function close<R>(coroutine: Coroutine, tryBeforeClosing?: (coroutine: Coroutine) => R): R | undefined {
 	assert(coroutine, `"coroutine" is required.`);
 
 	try {
@@ -49,11 +40,7 @@ export function close(coroutine, tryBeforeClosing) {
 
 		return undefined;
 	} catch (error) {
-		if (isFunction(coroutine.throw)) {
-			coroutine.throw(error);
-		}
-
-		throw error;
+		abort(coroutine, error);
 	} finally {
 		if (isFunction(coroutine.return)) {
 			coroutine.return();
@@ -62,19 +49,19 @@ export function close(coroutine, tryBeforeClosing) {
 }
 
 export class Cohort {
-	/** @type {(coroutines: Array<Coroutine>) => Cohort} */
-	static from(coroutines) {
+	static from(coroutines: Array<Coroutine>): Cohort {
 		return new Cohort(coroutines);
 	}
 
-	static of(...coroutines) {
+	static of(...coroutines: Array<Coroutine>) {
 		return new Cohort(coroutines);
 	}
 
-	/**
-	 * @param {Array<Coroutine>} coroutines
-	 */
-	constructor(coroutines) {
+	coroutines: Array<Coroutine>;
+	errors: Array<Error>;
+	isClosed: boolean;
+
+	constructor(coroutines: Array<Coroutine>) {
 		assert(Array.isArray(coroutines), `"coroutines" is required and must be an array of coroutines.`);
 
 		this.coroutines = coroutines;
@@ -98,7 +85,7 @@ export class Cohort {
 		return this.coroutines.values();
 	}
 
-	next(coroutine) {
+	next(coroutine: Coroutine) {
 		assert(!this.isClosed, `Trying to add a coroutine to a closed trap.`);
 
 		this.coroutines.push(coroutine);
@@ -112,7 +99,7 @@ export class Cohort {
 		this.$close();
 	}
 
-	throw(error) {
+	throw(error: Error) {
 		if (this.isClosed) {
 			throw error;
 		}
@@ -142,12 +129,10 @@ export class Cohort {
 
 		if (errors.length === 1) {
 			throw errors[0];
-		} else if (errors.length > 1) {
-			const error = new Error(`Multiple errors.`);
+		}
 
-			error.errors = errors;
-
-			throw error;
+		if (errors.length > 1) {
+			throw new AggregateError(errors, `Multiple errors in a coroutine cohort.`);
 		}
 	}
 }

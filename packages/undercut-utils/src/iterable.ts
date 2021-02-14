@@ -1,20 +1,14 @@
-import { assert, assertFunctor } from "./assert.js";
-import { isFunction } from "./language.js";
+import { assert, assertFunctor } from "./assert";
+import { isFunction } from "./language";
 
-/**
- * @param {Iterable} iterable
- * @returns {Iterator}
- */
-export function getIterator(iterable) {
+export function getIterator<T>(iterable: Iterable<T>) {
 	return iterable[Symbol.iterator]();
 }
 
 /**
  * A helper for generators to make them reiterable.
- * @param {Function} getIterator
- * @returns {Iterable}
  */
-export function createIterable(getIterator) {
+export function createIterable<T, TReturn = any, TNext = undefined>(getIterator: () => Iterator<T, TReturn, TNext>) {
 	assertFunctor(getIterator, `getIterator`);
 
 	return {
@@ -24,9 +18,8 @@ export function createIterable(getIterator) {
 
 /**
  * Returns the first item of the `iterable` or `undefined`.
- * @type {<T>(iterable: Iterable<T>) => T | undefined}
  */
-export function head(iterable) {
+export function head<T>(iterable: Iterable<T>) {
 	for (const item of iterable) {
 		return item;
 	}
@@ -37,9 +30,8 @@ export function head(iterable) {
 /**
  * Returns an object with the `head` (the first item, if it exists) and the `tail` (an iterator for remaining items, if there are some).
  * Missing `tail` tells that the `iterable` is empty and there is no `head` value.
- * @type {<T>(iterable: Iterable<T>) => { head: T, tail?: Iterator<T> }}
  */
-export function headTail(iterable) {
+export function headTail<T>(iterable: Iterable<T>) {
 	const iterator = getIterator(iterable);
 	const { value, done } = iterator.next();
 
@@ -51,43 +43,51 @@ export function headTail(iterable) {
 
 /**
  * Returns the `tail` (an iterator for remaining items) of the `iterable`. In case of an empty `iterable` returns `undefined`.
- * @type {<T>(iterable: Iterable<T>) => Iterator<T> | undefined}
  */
-export function tail(iterable) {
+export function tail<T>(iterable: Iterable<T>) {
 	const iterator = getIterator(iterable);
 	const { done } = iterator.next();
 
 	return done ? undefined : iterator;
 }
 
-function* iterateMapTreeRec(predicate, mapper, item, index, depth) {
-	const mappedItem = mapper ? mapper(item, index, depth) : item;
+export type RecIteratorMapper<T, R> = (item: T, index: number, depth: number) => R;
+export type RecIteratorPredicate<T, R> = (item: T | Iterable<R>, index: number, depth: number) => item is Iterable<R>;
+
+export function* iterateMapRec<T, R, TReturn extends Iterable<T> | R>(
+	predicate: RecIteratorPredicate<R, T>,
+	mapper: RecIteratorMapper<T, TReturn> | undefined,
+	item: T,
+	index: number,
+	depth: number
+): Generator<TReturn> {
+	const mappedItem = (mapper ? mapper(item, index, depth) : item) as TReturn;
 
 	if (predicate(mappedItem, index, depth)) {
 		let childIndex = 0;
 
 		for (const childItem of mappedItem) {
-			yield* iterateMapTreeRec(predicate, mapper, childItem, childIndex, depth + 1);
+			yield* iterateMapRec(predicate, mapper, childItem, childIndex, depth + 1);
 
 			childIndex++;
 		}
 	} else {
-		yield mappedItem;
+		yield (mappedItem as TReturn);
 	}
+
+	// @ts-ignore
+	return undefined;
 }
 
 /**
  * Returns a function for using with the `map` operation: maps an item and its sub-items into an iterator.
  * With it you can walk down a tree or another nested structure, map it and flatten it later.
- * @param {(item: T, index: number, depth: number) => boolean} predicate
- * @param {(item: T, index: number, depth: number) => any} [mapper]
- * @returns {<T, R>(item: T, index: number) => Iterator<R>}
 */
-export function getRecursiveMapper(predicate, mapper) {
+export function getRecursiveMapper<T, R>(predicate: RecIteratorPredicate<R, T>, mapper?: RecIteratorMapper<T, R | Iterable<T>>) {
 	assertFunctor(predicate, `predicate`);
 	assert(mapper === undefined || isFunction(mapper), `"mapper" should be a function or undefined.`);
 
-	return function recursiveMapper(item, index) {
-		return iterateMapTreeRec(predicate, mapper, item, index, 0);
+	return function recursiveMapper(item: T, index: number) {
+		return iterateMapRec(predicate, mapper, item, index, 0);
 	};
 }
