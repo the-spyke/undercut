@@ -12,7 +12,6 @@ module.exports = {
 		],
 	].filter(Boolean),
 	presets: [
-		`@babel/preset-typescript`,
 		NODE_BUILD_TARGET !== RMS && [
 			`@babel/preset-env`,
 			{
@@ -25,6 +24,6 @@ module.exports = {
 				useBuiltIns: `entry`,
 			}
 		],
-
+		`@babel/preset-typescript`,
 	].filter(Boolean),
 };
