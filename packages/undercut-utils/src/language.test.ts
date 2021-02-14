@@ -1,13 +1,13 @@
 import { describe, expect, test } from "@jest/globals";
 
-import * as language from "./language.js";
+import * as language from "./language";
 
 describe.each(Object.entries(language))(`%s`, (name, operation) => {
 	test.each([
 		/* eslint-disable brace-style */
 		[`Array (empty)`, []],
 		[`Array (with values)`, [1, 2, 3]],
-		[`ArrayBuffer`, new ArrayBuffer()],
+		[`ArrayBuffer`, new ArrayBuffer(8)],
 		[`Date`, new Date()],
 		[`Class (Empty)`, class Empty { }],
 		[`Class (instance of Empty)`, getInstance(class Empty { })],

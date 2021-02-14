@@ -5,7 +5,7 @@ import {
 	delay,
 	unwrapPromise,
 	wait,
-} from "./promise.js";
+} from "./promise";
 
 describe(`delay`, () => {
 	beforeEach(() => {

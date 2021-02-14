@@ -1,7 +1,9 @@
-import { assert, assertFunctor } from "./assert.js";
-import { isFunction } from "./language.js";
+import type { Comparator, Selector } from "@undercut/types";
 
-export function composeComparators(comparators) {
+import { assert, assertFunctor } from "./assert";
+import { isFunction } from "./language";
+
+export function composeComparators<T>(comparators: Array<Comparator<T>>): Comparator<T> {
 	assert(Array.isArray(comparators), `"comparators" must be an array of Comparator.`);
 	comparators.forEach((comparator, index) => assert(isFunction(comparator), `#${index} comparator is invalid.`));
 
@@ -18,32 +20,26 @@ export function composeComparators(comparators) {
 	};
 }
 
-/**
- * @typedef {<T>(a: T, b: T) => number} Comparator
- * @param {Comparator} comparator
- * @param {(value: any) => any} [selector]
- * @returns {Comparator}
-*/
-export function asc(comparator, selector) {
+function asc<T>(comparator: Comparator<T>): Comparator<T>;
+function asc<T, R>(comparator: Comparator<T>, selector: Selector<R, T>): Comparator<R>;
+function asc<T, R>(comparator: Comparator<T>, selector?: Selector<R, T>): Comparator<R> {
 	assertFunctor(comparator, `comparator`);
 	assert(!selector || isFunction(selector), `"selector" should be undefined or a function.`);
 
 	return selector
 		? (a, b) => comparator(selector(a), selector(b))
-		: comparator;
+		: ((comparator as unknown) as Comparator<R>);
 }
 
-/**
- * @typedef {<T>(a: T, b: T) => number} Comparator
- * @param {Comparator} comparator
- * @param {(value: any) => any} [selector]
- * @returns {Comparator}
-*/
-export function desc(comparator, selector) {
+function desc<T>(comparator: Comparator<T>): Comparator<T>;
+function desc<T, R>(comparator: Comparator<T>, selector: Selector<R, T>): Comparator<R>;
+function desc<T, R>(comparator: Comparator<T>, selector?: Selector<R, T>): Comparator<R> {
 	assertFunctor(comparator, `comparator`);
 	assert(!selector || isFunction(selector), `"selector" should be undefined or a function.`);
 
 	return selector
 		? (a, b) => -comparator(selector(a), selector(b))
-		: (a, b) => -comparator(a, b);
+		: (a, b) => -((comparator as unknown) as Comparator<R>)(a, b);
 }
+
+export { asc, desc };

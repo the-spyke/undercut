@@ -5,7 +5,7 @@ import {
 	negate,
 	noop,
 	not,
-} from "./function.js";
+} from "./function";
 
 test(`identity`, () => {
 	expect(identity(65)).toBe(65);

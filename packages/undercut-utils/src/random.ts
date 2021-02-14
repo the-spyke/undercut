@@ -1,19 +1,11 @@
-import { assert } from "./assert.js";
-import { isNumberValue, isPositive } from "./language.js";
+import { assert } from "./assert";
+import { isNumberValue, isPositive } from "./language";
 
-/**
- * @returns {boolean}
- */
-export function randomBoolean() {
+export function randomBoolean(): boolean {
 	return Math.random() < 0.5;
 }
 
-/**
- * @param {number} min
- * @param {number} max
- * @returns {number}
- */
-export function randomDecimal(min, max) {
+export function randomDecimal(min: number, max: number): number {
 	assert(isNumberValue(min), `"from" should be a number.`);
 	assert(isNumberValue(max), `"to" should be a number.`);
 	assert(min < max, `"from" should be less than "to".`);
@@ -21,29 +13,21 @@ export function randomDecimal(min, max) {
 	return Math.random() * (max - min) + min;
 }
 
-/**
- * @type {(source: Array | string) => any}
- */
-export function randomFrom(source) {
+function randomFrom(source: string): string;
+function randomFrom<T>(source: Array<T>): T;
+function randomFrom<T>(source: string | Array<T>): string | T {
 	return source[randomIndex(source)];
 }
 
-/**
- * @param {Array | string} source
- * @returns {number}
- */
-export function randomIndex(source) {
+export { randomFrom };
+
+export function randomIndex(source: { length: number }): number {
 	assert(source && isPositive(source.length), `"source" should be an array or a string and have a length greater than 0.`);
 
 	return randomInteger(0, source.length);
 }
 
-/**
- * @param {number} min
- * @param {number} max
- * @returns {number}
- */
-export function randomInteger(min, max) {
+export function randomInteger(min: number, max: number): number {
 	assert(isNumberValue(min), `"from" should be a number.`);
 	assert(isNumberValue(max), `"to" should be a number.`);
 	assert(min < max, `"from" should be less than "to".`);

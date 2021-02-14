@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { isBoolean, isNumberValue } from "./language.js";
+import { isBoolean, isNumberValue } from "./language";
 
 import {
 	randomBoolean,
@@ -8,7 +8,7 @@ import {
 	randomFrom,
 	randomIndex,
 	randomInteger,
-} from "./random.js";
+} from "./random";
 
 describe(`randomBoolean`, () => {
 	test(`should return boolean values`, () => {

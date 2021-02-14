@@ -6,7 +6,7 @@ import {
 	mapKeys,
 	mapValues,
 	reduceProps,
-} from "./object.js";
+} from "./object";
 
 describe(`collectProps`, () => {
 	test(`should fail on invalid arguments`, () => {

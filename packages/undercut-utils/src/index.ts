@@ -1,11 +1,9 @@
-import * as compare from "./compare.js";
-
-export { compare };
-export * from "./coroutine.js";
-export * from "./function.js";
-export * from "./iterable.js";
-export * from "./language.js";
-export * from "./object.js";
-export * from "./ordering.js";
-export * from "./promise.js";
-export * from "./random.js";
+export * as compare from "./compare";
+export * from "./coroutine";
+export * from "./function";
+export * from "./iterable";
+export * from "./language";
+export * from "./object";
+export * from "./ordering";
+export * from "./promise";
+export * from "./random";

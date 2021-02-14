@@ -1,10 +1,10 @@
+import type { Predicate } from "@undercut/types";
+
 /**
  * Like `Array.prototype.filter()`, but works in place by mutating the array.
- * @param {Array} array
- * @param {Function} predicate
- * @returns {void}
+ * @returns The same array that was passed as the argument.
  */
-export function filterInPlace(array, predicate) {
+export function filterInPlace<T>(array: Array<T>, predicate: Predicate<T>): Array<T> {
 	let holeStart = 0;
 	let holeLength = 0;
 
@@ -21,6 +21,8 @@ export function filterInPlace(array, predicate) {
 	}
 
 	array.length -= holeLength;
+
+	return array;
 }
 
 /**
@@ -30,14 +32,13 @@ export const MAX_LENGTH = Math.pow(2, 32) - 1;
 
 /**
  * Modifies the `array` by swapping elements at specified indexes.
- * @param {Array} array
- * @param {Number} indexA
- * @param {Number} indexB
- * @returns {void}
+ * @returns The same array that was passed as the argument.
  */
-export function swapElements(array, indexA, indexB) {
+export function swapElements<T>(array: Array<T>, indexA: number, indexB: number): Array<T> {
 	const temp = array[indexA];
 
 	array[indexA] = array[indexB];
 	array[indexB] = temp;
+
+	return array;
 }
