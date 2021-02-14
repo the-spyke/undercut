@@ -1,16 +1,16 @@
+import type { Comparator } from "@undercut/types";
+
 import { desc, isNumberValue } from "@undercut/utils";
 import { swapElements } from "@undercut/utils/src/array.js";
 import { assertFunctor } from "@undercut/utils/src/assert.js";
 import { numbers as numbersComparator } from "@undercut/utils/src/compare.js";
-
-type Comparator<T> = (a: T, b: T) => number;
 
 export class Heap<T> {
 	static getParentIndex(index: number): number {
 		return index < 1 ? -1 : Math.trunc((index - 1) / 2);
 	}
 
-	static getLeftChildIndex(index: number):number {
+	static getLeftChildIndex(index: number): number {
 		return 2 * index + 1;
 	}
 
