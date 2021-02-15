@@ -1,5 +1,5 @@
-import { createBySpecFactory, testOperation } from "./test_operation.js";
-import { abort, asObserver, close, getArrayObserver } from "./utils.js";
+import { createBySpecFactory, testOperation } from "./test_operation";
+import { abort, asObserver, close, getArrayObserver } from "./utils";
 
 export function simulatePull(operation, source) {
 	return [...operation(source)];
