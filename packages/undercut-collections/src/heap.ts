@@ -1,25 +1,24 @@
 import type { Comparator } from "@undercut/types";
 
-import { desc, isNumberValue } from "@undercut/utils";
-import { swapElements } from "@undercut/utils/src/array.js";
-import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { numbers as numbersComparator } from "@undercut/utils/src/compare.js";
+import { compare, desc } from "@undercut/utils";
+import { swapElements } from "@undercut/utils/array";
+import { assertFunctor } from "@undercut/utils/assert";
+
+export function getParentIndex(index: number): number {
+	return index < 1 ? -1 : Math.trunc((index - 1) / 2);
+}
+
+export function getLeftChildIndex(index: number): number {
+	return 2 * index + 1;
+}
+
+export function getRightChildIndex(index: number): number {
+	return 2 * index + 2;
+}
 
 export class Heap<T> {
-	static getParentIndex(index: number): number {
-		return index < 1 ? -1 : Math.trunc((index - 1) / 2);
-	}
-
-	static getLeftChildIndex(index: number): number {
-		return 2 * index + 1;
-	}
-
-	static getRightChildIndex(index: number): number {
-		return 2 * index + 2;
-	}
-
-	$items: Array<T> = null;
-	$comparator: Comparator<T> = null;
+	$items: Array<T>;
+	$comparator: Comparator<T>;
 
 	constructor(comparator: Comparator<T>) {
 		assertFunctor(comparator, `comparator`);
@@ -41,8 +40,6 @@ export class Heap<T> {
 	}
 
 	add(value: T) {
-		this.$checkItemType(value);
-
 		this.$items.push(value);
 
 		this.$heapifyUpAt(this.size - 1);
@@ -53,18 +50,27 @@ export class Heap<T> {
 	}
 
 	pop(): T | undefined {
+		if (this.size < 1) {
+			return undefined;
+		}
+
 		return this.$deleteAt(0);
 	}
 
-	$checkItemType(item: unknown): void {
-		if (!isNumberValue(item)) {
-			throw new Error(`Heap can contain only valid Number values, got: ${item}`);
+	$guardIndex(index: number): void {
+		if (index < 0 || index >= this.size) {
+			throw new RangeError(`Index out of bound`);
 		}
 	}
 
+	/**
+	 * @returns The deleted item.
+	*/
 	$deleteAt(index: number): T {
+		this.$guardIndex(index);
+
 		if (index === this.size - 1) {
-			return this.$items.pop();
+			return this.$items.pop() as T;
 		}
 
 		const value = this.$items[index];
@@ -73,7 +79,7 @@ export class Heap<T> {
 			this.$heapifyUpAt(index, true);
 		}
 
-		this.$items[0] = this.$items.pop();
+		this.$items[0] = this.$items.pop() as T;
 		this.$heapifyDownAt(0);
 
 		return value;
@@ -83,9 +89,11 @@ export class Heap<T> {
 	 * @returns The index of the item after heapify operation.
 	*/
 	$heapifyDownAt(index: number): number {
+		this.$guardIndex(index);
+
 		while (true) { // eslint-disable-line no-constant-condition
-			const leftChildIndex = Heap.getLeftChildIndex(index);
-			const rightChildIndex = Heap.getRightChildIndex(index);
+			const leftChildIndex = getLeftChildIndex(index);
+			const rightChildIndex = getRightChildIndex(index);
 
 			let nextIndex = index;
 
@@ -111,19 +119,26 @@ export class Heap<T> {
 	 * @returns The index of the item after heapify operation.
 	*/
 	$heapifyUpAt(index: number, force: boolean = false): number {
-		let parentIndex = Heap.getParentIndex(index);
+		this.$guardIndex(index);
+
+		let parentIndex = getParentIndex(index);
 
 		while (index > 0 && (force || this.$comparator(this.$items[index], this.$items[parentIndex]) < 0)) {
 			swapElements(this.$items, index, parentIndex);
 
 			index = parentIndex;
-			parentIndex = Heap.getParentIndex(index);
+			parentIndex = getParentIndex(index);
 		}
 
 		return index;
 	}
 
+	/**
+	 * @returns The replaced item.
+	*/
 	$replaceAt(index: number, value: T): T {
+		this.$guardIndex(index);
+
 		const originalValue = this.$items[index];
 
 		if (value !== originalValue) {
@@ -160,7 +175,7 @@ export class MaxHeap extends Heap<number> {
 	}
 
 	constructor() {
-		super(desc(numbersComparator));
+		super(desc(compare.numbers));
 	}
 }
 
@@ -174,6 +189,6 @@ export class MinHeap extends Heap<number> {
 	}
 
 	constructor() {
-		super(numbersComparator);
+		super(compare.numbers);
 	}
 }
