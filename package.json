@@ -23,6 +23,7 @@
     "@babel/preset-typescript": "^7.12.16",
     "@spyke/conventional-changelog-preset": "^1.0.2",
     "@spyke/eslint-config": "^1.1.0",
+    "@undercut/config": "^1.0.0",
     "babel-jest": "^26.6.3",
     "babel-plugin-add-import-extension": "^1.4.3",
     "core-js": "^3.8.1",

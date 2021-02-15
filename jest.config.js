@@ -1,4 +1,7 @@
+import baseConfig from "@undercut/config/jest/jest.config.base.js";
+
 export default {
+	...baseConfig,
 	projects: [
 		`<rootDir>/packages/undercut-cli/`,
 		`<rootDir>/packages/undercut-collections/`,
