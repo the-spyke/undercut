@@ -1,5 +1,5 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { composeComparators } from "@undercut/utils/src/ordering.js";
+import { assert } from "@undercut/utils/assert";
+import { composeComparators } from "@undercut/utils";
 
 import { sort } from "./sort.js";
 

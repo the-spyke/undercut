@@ -1,6 +1,5 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { identity } from "@undercut/utils/src/function.js";
-import { isFunction } from "@undercut/utils/src/language.js";
+import { assert } from "@undercut/utils/assert";
+import { identity, isFunction } from "@undercut/utils";
 
 export function unzip() {
 	return unzipWith(identity);

@@ -1,5 +1,5 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { createIterable } from "@undercut/utils/src/iterable.js";
+import { assert } from "@undercut/utils/assert";
+import { createIterable } from "@undercut/utils";
 
 function* rangeGen(start, end, step) {
 	if (start < end) {

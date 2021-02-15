@@ -1,8 +1,7 @@
-import { assert, assertFunctor } from "@undercut/utils/src/assert.js";
-import { identity } from "@undercut/utils/src/function.js";
-import { isIterable, isPositiveOrZero } from "@undercut/utils/src/language.js";
+import { assert, assertFunctor } from "@undercut/utils/assert";
+import { identity, isIterable, isPositiveOrZero } from "@undercut/utils";
 
-import { flatMap } from "./flat_map.js";
+import { flatMap } from "./flat_map";
 
 export function flatten(predicate, depth = 1) {
 	assert(isPositiveOrZero(depth), `"depth" is required, must be a number >= 0.`);

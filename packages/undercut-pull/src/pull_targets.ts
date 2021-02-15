@@ -1,7 +1,5 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { abort, close } from "@undercut/utils/src/coroutine.js";
-import { head } from "@undercut/utils/src/iterable.js";
-import { isObserver } from "@undercut/utils/src/language.js";
+import { assert } from "@undercut/utils/assert";
+import { abort, close, head, isObserver } from "@undercut/utils";
 
 /**
  * @returns {Array}

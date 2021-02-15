@@ -9,7 +9,7 @@ import {
 	toObserver,
 	toSet,
 	toValue,
-} from "./pull_targets.js";
+} from "./pull_targets";
 
 test(`toArray`, () => {
 	expect(toArray()([])).toEqual([]);

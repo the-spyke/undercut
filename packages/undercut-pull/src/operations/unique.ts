@@ -1,7 +1,7 @@
-import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { identity } from "@undercut/utils/src/function.js";
+import { assertFunctor } from "@undercut/utils/assert";
+import { identity } from "@undercut/utils";
 
-import { unionBy } from "./union.js";
+import { unionBy } from "./union";
 
 /**
  * Multisets are not supported.

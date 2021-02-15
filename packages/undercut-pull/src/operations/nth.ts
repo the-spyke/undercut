@@ -1,5 +1,5 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { isPositiveOrZero } from "@undercut/utils/src/language.js";
+import { assert } from "@undercut/utils/assert";
+import { isPositiveOrZero } from "@undercut/utils";
 
 export function nth(n) {
 	assert(isPositiveOrZero(n), `"n" is required, must be a number >= 0.`);

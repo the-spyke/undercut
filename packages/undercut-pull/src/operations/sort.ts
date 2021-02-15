@@ -1,22 +1,21 @@
-import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { numbers, strings } from "@undercut/utils/src/compare.js";
-import { asc } from "@undercut/utils/src/ordering.js";
+import { assertFunctor } from "@undercut/utils/assert";
+import { asc, compare  } from "@undercut/utils";
 
 export function sort(comparator, order = asc) {
 	assertFunctor(comparator, `comparator`);
 	assertFunctor(order, `order`);
 
-	const compare = order(comparator);
+	const orderedComparator = order(comparator);
 
 	return function* (iterable) {
-		yield* [...iterable].sort(compare);
+		yield* [...iterable].sort(orderedComparator);
 	};
 }
 
 export function sortNumbers(order = asc) {
-	return sort(numbers, order);
+	return sort(compare.numbers, order);
 }
 
 export function sortStrings(order = asc) {
-	return sort(strings, order);
+	return sort(compare.strings, order);
 }

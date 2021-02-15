@@ -1,5 +1,5 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { isPositive } from "@undercut/utils/src/language.js";
+import { assert } from "@undercut/utils/assert";
+import { isPositive } from "@undercut/utils";
 
 export function chunk(size) {
 	assert(isPositive(size) && size >= 1, `"size" is required, must be a number >= 1.`);

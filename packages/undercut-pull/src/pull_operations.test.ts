@@ -2,7 +2,7 @@ import { expect, describe, test } from "@jest/globals";
 
 import * as tests from "@undercut/tests";
 
-import * as operations from "./pull_operations.js";
+import * as operations from "./pull_operations";
 
 describe(`Pull Operations`, () => {
 	test(`all operations should be covered by tests`, () => {
