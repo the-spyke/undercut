@@ -10,7 +10,7 @@ export default {
 	moduleFileExtensions: [`js`, `cjs`, `mjs`, `json`, `jsx`, `ts`, `tsx`, `node`],
 	resolver: `@undercut/config/jest/resolver.cjs`,
 	testMatch: [
-		`**/*.test?(.*).(js|ts)`,
+		`<rootDir>/src/**/*.test?(.*).(js|ts)`,
 	],
 	testPathIgnorePatterns: IGNORE_PATTERNS,
 	testRunner: `jest-circus/runner`,
