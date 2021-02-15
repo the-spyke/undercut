@@ -1,5 +1,4 @@
-import { close, Cohort } from "@undercut/utils/src/coroutine.js";
-import { getIterator } from "@undercut/utils/src/iterable.js";
+import { close, Cohort, getIterator } from "@undercut/utils";
 
 export function interleave(...sources) {
 	return function* (iterable) {

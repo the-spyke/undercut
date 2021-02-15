@@ -1,4 +1,4 @@
-import { concatStart } from "./concat.js";
+import { concatStart } from "./concat";
 
 export function prepend(...items) {
 	return concatStart(items);

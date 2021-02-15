@@ -1,4 +1,4 @@
-import { concatEnd } from "./concat.js";
+import { concatEnd } from "./concat";
 
 export function append(...items) {
 	return concatEnd(items);

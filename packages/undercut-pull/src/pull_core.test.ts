@@ -2,12 +2,12 @@ import { expect, test } from "@jest/globals";
 
 import { simulatePull } from "@undercut/testing";
 
-import { identity } from "@undercut/utils/src/function.js";
+import { identity } from "@undercut/utils";
 
-import { first } from "./operations/first.js";
-import { flattenArrays } from "./operations/flatten.js";
-import { map } from "./operations/map.js";
-import { zip } from "./operations/zip.js";
+import { first } from "./operations/first";
+import { flattenArrays } from "./operations/flatten";
+import { map } from "./operations/map";
+import { zip } from "./operations/zip";
 
 import {
 	composeOperations,

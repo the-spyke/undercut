@@ -1,6 +1,6 @@
-import { isTruthy } from "@undercut/utils/src/language.js";
+import { isTruthy } from "@undercut/utils";
 
-import { filter } from "./filter.js";
+import { filter } from "./filter";
 
 export function compact() {
 	return filter(isTruthy);

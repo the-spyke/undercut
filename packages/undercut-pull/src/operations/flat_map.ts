@@ -1,4 +1,4 @@
-import { getRecursiveMapper } from "@undercut/utils/src/iterable.js";
+import { getRecursiveMapper } from "@undercut/utils";
 
 export function flatMap(predicate, mapper) {
 	const recursiveMapper = getRecursiveMapper(predicate, mapper);

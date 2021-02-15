@@ -1,4 +1,4 @@
-import { assertSource } from "@undercut/utils/src/assert.js";
+import { assertSource } from "@undercut/utils/assert";
 
 export function concatStart(source) {
 	assertSource(source);

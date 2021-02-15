@@ -1,6 +1,5 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { identity } from "@undercut/utils/src/function.js";
-import { isPositiveOrZero } from "@undercut/utils/src/language.js";
+import { assert } from "@undercut/utils/assert";
+import { identity, isPositiveOrZero } from "@undercut/utils";
 
 export function buffer(size) {
 	assert(isPositiveOrZero(size), `"size" is required, must be a number >= 0.`);

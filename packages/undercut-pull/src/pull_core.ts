@@ -1,6 +1,5 @@
-import { assert, assertPipeline, assertSource } from "@undercut/utils/src/assert.js";
-import { createIterable, getIterator, head } from "@undercut/utils/src/iterable.js";
-import { isFunction, isIterable, isIterator } from "@undercut/utils/src/language.js";
+import { assert, assertPipeline, assertSource } from "@undercut/utils/assert";
+import { createIterable, getIterator, head, isFunction, isIterable, isIterator } from "@undercut/utils";
 
 const operationErrorMessage = `An operation must be a function taking and returning an Iterable.`;
 

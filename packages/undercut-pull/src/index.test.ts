@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import * as exports from "./index.js";
+import * as mainExports from "./index";
 
 import {
 	pull, pullLine,
@@ -11,7 +11,7 @@ import {
 
 describe(`Pull`, () => {
 	test(`exports of the main "pull" entry should be stable`, () => {
-		expect(Object.keys(exports).sort()).toMatchSnapshot();
+		expect(Object.keys(mainExports).sort()).toMatchSnapshot();
 	});
 
 	test(`simple pull scenarios`, () => {

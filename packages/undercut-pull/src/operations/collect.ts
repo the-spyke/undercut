@@ -1,4 +1,4 @@
-import { assertFunctor } from "@undercut/utils/src/assert.js";
+import { assertFunctor } from "@undercut/utils/assert";
 
 export function collect(collector, factory) {
 	assertFunctor(collector, `collector`);

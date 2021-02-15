@@ -1,6 +1,6 @@
 import { expect, test } from "@jest/globals";
 
-import { range } from "./pull_sources.js";
+import { range } from "./pull_sources";
 
 test(`range`, () => {
 	expect(() => range()).toThrow();

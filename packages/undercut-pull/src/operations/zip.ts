@@ -1,8 +1,5 @@
-import { assert, assertSources } from "@undercut/utils/src/assert.js";
-import { close, Cohort } from "@undercut/utils/src/coroutine.js";
-import { identity } from "@undercut/utils/src/function.js";
-import { getIterator } from "@undercut/utils/src/iterable.js";
-import { isFunction } from "@undercut/utils/src/language.js";
+import { assert, assertSources } from "@undercut/utils/assert";
+import { close, Cohort, getIterator, identity, isFunction } from "@undercut/utils";
 
 export function zip(...sources) {
 	return zipCore(identity, sources);

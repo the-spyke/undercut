@@ -1,5 +1,5 @@
-import { assert, assertFunctor } from "@undercut/utils/src/assert.js";
-import { isPositiveOrZero } from "@undercut/utils/src/language.js";
+import { assert, assertFunctor } from "@undercut/utils/assert";
+import { isPositiveOrZero } from "@undercut/utils";
 
 export function take(count) {
 	assert(isPositiveOrZero(count), `"count" is required, must be a number >= 0.`);
