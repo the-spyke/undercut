@@ -6,13 +6,13 @@
 		"forceConsistentCasingInFileNames": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
-		// "lib": [
-		// 	"ESNext"
-		// ],
+		"lib": [
+			"ESNext"
+		],
 		"module": "ESNext",
 		"moduleResolution": "node",
 		"skipLibCheck": true,
-		// "strict": true,
+		"strict": true,
 		"target": "ESNext",
 	},
 	"exclude": [
@@ -35,6 +35,9 @@
 		},
 		{
 			"path": "packages/undercut-types"
+		},
+		{
+			"path": "packages/undercut-utils"
 		},
 	]
 }
