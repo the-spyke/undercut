@@ -15,7 +15,7 @@
   "sideEffects": false,
   "scripts": {
     "build": ". scripts/build.sh",
-    "build:babel": "babel src --root-mode upward --ignore \"src/**/*.test.js\",\"src/**/*.test.*.js\"",
+    "build:babel": "babel src --extensions '.js','.ts' --root-mode upward --ignore \"src/**/*.test.ts\",\"src/**/*.test.*.ts\"",
     "build:types": "tsc --emitDeclarationOnly",
     "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
