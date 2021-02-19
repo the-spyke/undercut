@@ -1,4 +1,6 @@
-export function reverse() {
+import type { PullOperation } from "@undercut/types";
+
+export function reverse<T>(): PullOperation<T> {
 	return function* (iterable) {
 		const items = [...iterable];
 

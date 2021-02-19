@@ -1,4 +1,6 @@
-export function min() {
+import type { PullOperation } from "@undercut/types";
+
+export function min(): PullOperation<number> {
 	return function* (iterable) {
 		let min = null;
 
@@ -8,10 +10,8 @@ export function min() {
 			}
 		}
 
-		if (min === null) {
-			return;
+		if (min !== null) {
+			yield min;
 		}
-
-		yield min;
 	};
 }

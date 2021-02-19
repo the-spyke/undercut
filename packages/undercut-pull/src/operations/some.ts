@@ -1,6 +1,8 @@
+import type { Predicate, PullOperation } from "@undercut/types";
+
 import { assertFunctor } from "@undercut/utils/assert";
 
-export function some(predicate) {
+export function some<T>(predicate: Predicate<T>): PullOperation<T, boolean> {
 	assertFunctor(predicate, `predicate`);
 
 	return function* (iterable) {

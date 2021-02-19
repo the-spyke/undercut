@@ -1,7 +1,9 @@
+import type { Predicate, PullOperation } from "@undercut/types";
+
 import { assert, assertFunctor } from "@undercut/utils/assert";
 import { isPositiveOrZero } from "@undercut/utils";
 
-export function take(count) {
+export function take<T>(count: number): PullOperation<T> {
 	assert(isPositiveOrZero(count), `"count" is required, must be a number >= 0.`);
 
 	count = Math.trunc(count);
@@ -24,7 +26,7 @@ export function take(count) {
 	};
 }
 
-export function takeWhile(predicate) {
+export function takeWhile<T>(predicate: Predicate<T>): PullOperation<T> {
 	assertFunctor(predicate, `predicate`);
 
 	return function* (iterable) {

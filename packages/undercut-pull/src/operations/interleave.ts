@@ -1,13 +1,15 @@
+import type { PullOperation } from "@undercut/types";
+
 import { close, Cohort, getIterator } from "@undercut/utils";
 
-export function interleave(...sources) {
+export function interleave<T>(...sources: Array<Iterable<T>>): PullOperation<T> {
 	return function* (iterable) {
 		const cohort = Cohort.of(getIterator(iterable));
 
 		try {
 			sources.forEach(source => cohort.next(getIterator(source)));
 
-			const iterators = cohort.coroutines.slice();
+			const iterators = cohort.coroutines.slice() as Array<Iterator<T>>;
 
 			while (iterators.length > 0) {
 				let holeStart = 0;
@@ -22,7 +24,7 @@ export function interleave(...sources) {
 
 						holeLength++;
 					} else {
-						yield value;
+						yield value as T;
 
 						iterators[holeStart] = iterator;
 						holeStart++;

@@ -13,11 +13,11 @@ export const difference = differenceBy.bind(undefined, identity) as <T>(...sourc
 /**
  * Multisets are not supported.
  */
-export function differenceBy<T, R>(selector: Selector<T, R>, ...sources: Array<Iterable<T>>): PullOperation<T> {
+export function differenceBy<T, K>(selector: Selector<T, K>, ...sources: Array<Iterable<T>>): PullOperation<T> {
 	assertFunctor(selector, `selector`);
 
 	return function* (iterable) {
-		const keys = new Set<R>();
+		const keys = new Set<K>();
 
 		for (const source of sources) {
 			scanToSet(keys, selector, source);
@@ -41,11 +41,11 @@ export const symmetricDifference = symmetricDifferenceBy.bind(undefined, identit
 /**
  * Multisets are not supported.
  */
-export function symmetricDifferenceBy<T, R>(selector: Selector<T, R>, ...sources: Array<Iterable<T>>): PullOperation<T> {
+export function symmetricDifferenceBy<T, K>(selector: Selector<T, K>, ...sources: Array<Iterable<T>>): PullOperation<T> {
 	assertFunctor(selector, `selector`);
 
 	return function* (iterable) {
-		const keyInfos = new Map<R, KeyInfo<T>>();
+		const keyInfos = new Map<K, KeyInfo<T>>();
 
 		scanToMap(keyInfos, selector, iterable);
 

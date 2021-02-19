@@ -1,6 +1,10 @@
+import type { Narrower, Predicate, PullOperation } from "@undercut/types";
+
 import { assertFunctor } from "@undercut/utils/assert";
 
-export function remove(predicate) {
+function remove<T, R extends T>(predicate: Narrower<T, R>): PullOperation<T, Exclude<T, R>>;
+function remove<T>(predicate: Predicate<T>): PullOperation<T>;
+function remove<T, R extends T>(predicate: Narrower<T, R> | Predicate<T>): PullOperation<T, Exclude<T, R>> {
 	assertFunctor(predicate, `predicate`);
 
 	return function* (iterable) {
@@ -8,10 +12,12 @@ export function remove(predicate) {
 
 		for (const item of iterable) {
 			if (!predicate(item, index)) {
-				yield item;
+				yield item as Exclude<T, R>;
 			}
 
 			index++;
 		}
 	};
 }
+
+export { remove };
