@@ -1,6 +1,8 @@
+import type { Predicate, PullOperation } from "@undercut/types";
+
 import { assertFunctor } from "@undercut/utils/assert";
 
-function findCore(predicate, isIndex) {
+function findCore<T>(predicate: Predicate<T>, isIndex: boolean): PullOperation<T, T | number> {
 	assertFunctor(predicate, `predicate`);
 
 	return function* (iterable) {
@@ -18,10 +20,10 @@ function findCore(predicate, isIndex) {
 	};
 }
 
-export function find(predicate) {
-	return findCore(predicate, false);
+export function find<T>(predicate: Predicate<T>) {
+	return findCore(predicate, false) as PullOperation<T>;
 }
 
-export function findIndex(predicate) {
-	return findCore(predicate, true);
+export function findIndex<T>(predicate: Predicate<T>) {
+	return findCore(predicate, true) as PullOperation<T, number>;
 }

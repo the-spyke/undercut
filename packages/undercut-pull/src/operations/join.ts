@@ -1,19 +1,23 @@
-export function join(separator = `,`) {
+import type { PullOperation } from "@undercut/types";
+
+export function join<T>(separator: string = `,`): PullOperation<T, string> {
 	separator = String(separator);
 
 	return function* (iterable) {
-		let result = null;
+		let result = ``;
+		let separate = false;
 
 		for (const item of iterable) {
 			const value = item != null ? String(item) : ``;
 
-			if (result !== null) {
+			if (separate) {
 				result += `${separator}${value}`;
 			} else {
-				result = value;
+				result += value;
+				separate = true;
 			}
 		}
 
-		yield result || ``;
+		yield result;
 	};
 }

@@ -1,7 +1,9 @@
+import type { PullOperation } from "@undercut/types";
+
 import { assert } from "@undercut/utils/assert";
 import { identity, isPositiveOrZero } from "@undercut/utils";
 
-export function buffer(size) {
+export function buffer<T>(size: number): PullOperation<T> {
 	assert(isPositiveOrZero(size), `"size" is required, must be a number >= 0.`);
 
 	size = Math.trunc(size);
@@ -11,7 +13,7 @@ export function buffer(size) {
 	}
 
 	return function* (iterable) {
-		const buffer = new Array(size);
+		const buffer = new Array<T>(size);
 
 		let count = 0;
 
@@ -36,7 +38,7 @@ export function buffer(size) {
 	};
 }
 
-export function bufferAll() {
+export function bufferAll<T>(): PullOperation<T> {
 	return function* (iterable) {
 		const buffer = [...iterable];
 

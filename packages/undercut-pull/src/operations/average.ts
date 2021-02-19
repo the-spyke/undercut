@@ -1,4 +1,6 @@
-export function average() {
+import type { PullOperation } from "@undercut/types";
+
+export function average(): PullOperation<number> {
 	return function* (iterable) {
 		let sum = 0;
 		let count = 0;

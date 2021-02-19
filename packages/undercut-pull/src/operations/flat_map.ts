@@ -1,6 +1,8 @@
+import type { PullOperation, RecMapper, RecPredicate } from "@undercut/types";
+
 import { getRecursiveMapper } from "@undercut/utils";
 
-export function flatMap(predicate, mapper) {
+export function flatMap<T, R>(predicate: RecPredicate<R, T>, mapper?: RecMapper<T, R>): PullOperation<T, R> {
 	const recursiveMapper = getRecursiveMapper(predicate, mapper);
 
 	return function* (iterable) {

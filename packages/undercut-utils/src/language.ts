@@ -1,7 +1,6 @@
-import type { Nullish } from "@undercut/types";
+import type { Defined, Falsy, Nullish } from "@undercut/types";
 
-
-const objectPrototype = Object.getPrototypeOf({});
+const objectPrototype: Object = Object.getPrototypeOf({});
 
 /**
  * Gets value's type from "Object.prototype.toString" method. For example, an async function will return "AsyncFunction".
@@ -25,17 +24,15 @@ export function isBoolean(value: unknown): value is boolean {
 	return typeof value === `boolean`;
 }
 
-// TODO:
 export function isCoroutine(value: unknown): value is { next: Function } {
-	return isObjectValue(value) && isFunction(value.next);
+	return isObjectValue(value) && isFunction((value as any).next);
 }
 
 export function isDate(value: unknown): value is Date {
 	return value instanceof Date;
 }
 
-// TODO:
-export function isDefined(value: unknown) {
+export function isDefined(value: unknown): value is Defined {
 	return value !== undefined;
 }
 
@@ -43,7 +40,7 @@ export function isError(value: unknown): value is Error {
 	return value instanceof Error;
 }
 
-export function isFalsy(value: unknown): boolean {
+export function isFalsy<T>(value: T | Falsy): value is Falsy {
 	return !value;
 }
 
@@ -51,9 +48,8 @@ export function isFunction(value: unknown): value is Function {
 	return typeof value === `function`;
 }
 
-// TODO:
 export function isIterable(value: unknown): boolean {
-	return isObjectValue(value) ? isFunction(value[Symbol.iterator]) : isString(value);
+	return isObjectValue(value) ? isFunction((value as any)[Symbol.iterator]) : isString(value);
 }
 
 export { isCoroutine as isIterator };
@@ -87,27 +83,25 @@ export function isNumber(value: unknown): value is Number {
 
 /**
  * Checks if the `value` is a number, but not `NaN`.
- * TODO:
  */
 export function isNumberValue(value: unknown): value is number {
 	return isNumber(value) && !Number.isNaN(value);
 }
 
-export function isObject(value: unknown): value is Object {
+export function isObject(value: unknown): value is object | null {
 	return typeof value === `object`;
 }
 
 /**
  * Checks if the `value` is an object, but not `null`.
- * TODO:
  */
-export function isObjectValue(value: unknown): value is Object {
+export function isObjectValue(value: unknown): value is object {
 	return isObject(value) && value !== null;
 }
 
 export { isCoroutine as isObserver };
 
-export function isPlainObject(value: unknown): value is Object {
+export function isPlainObject(value: unknown): value is object {
 	if (!isObjectValue(value)) {
 		return false;
 	}
@@ -141,11 +135,11 @@ export function isString(value: unknown): value is string {
 	return typeof value === `string`;
 }
 
-export function isSymbol(value: unknown): value is Symbol {
+export function isSymbol(value: unknown): value is symbol {
 	return typeof value === `symbol`;
 }
 
-export function isTruthy(value: unknown): boolean {
+export function isTruthy<T>(value: T | Falsy): value is T {
 	return Boolean(value);
 }
 

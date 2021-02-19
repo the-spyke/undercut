@@ -1,3 +1,5 @@
+import type { RecMapper, RecPredicate } from "@undercut/types";
+
 import { assert, assertFunctor } from "./assert";
 import { isFunction } from "./language";
 
@@ -51,12 +53,9 @@ export function tail<T>(iterable: Iterable<T>) {
 	return done ? undefined : iterator;
 }
 
-export type RecIteratorMapper<T, R> = (item: T, index: number, depth: number) => R;
-export type RecIteratorPredicate<T, R> = (item: T | Iterable<R>, index: number, depth: number) => item is Iterable<R>;
-
 export function* iterateMapRec<T, R, TReturn extends Iterable<T> | R>(
-	predicate: RecIteratorPredicate<R, T>,
-	mapper: RecIteratorMapper<T, TReturn> | undefined,
+	predicate: RecPredicate<R, T>,
+	mapper: RecMapper<T, TReturn> | undefined,
 	item: T,
 	index: number,
 	depth: number
@@ -83,11 +82,11 @@ export function* iterateMapRec<T, R, TReturn extends Iterable<T> | R>(
  * Returns a function for using with the `map` operation: maps an item and its sub-items into an iterator.
  * With it you can walk down a tree or another nested structure, map it and flatten it later.
 */
-export function getRecursiveMapper<T, R>(predicate: RecIteratorPredicate<R, T>, mapper?: RecIteratorMapper<T, R | Iterable<T>>) {
+export function getRecursiveMapper<T, R>(predicate: RecPredicate<R, T>, mapper?: RecMapper<T, R | Iterable<T>>) {
 	assertFunctor(predicate, `predicate`);
 	assert(mapper === undefined || isFunction(mapper), `"mapper" should be a function or undefined.`);
 
 	return function recursiveMapper(item: T, index: number) {
-		return iterateMapRec(predicate, mapper, item, index, 0);
+		return iterateMapRec(predicate, mapper, item, index, 0) as Iterable<R>;
 	};
 }

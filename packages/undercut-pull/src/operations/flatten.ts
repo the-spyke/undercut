@@ -1,9 +1,11 @@
+import type { RecPredicate, PullOperation } from "@undercut/types";
+
 import { assert, assertFunctor } from "@undercut/utils/assert";
 import { identity, isIterable, isPositiveOrZero } from "@undercut/utils";
 
 import { flatMap } from "./flat_map";
 
-export function flatten(predicate, depth = 1) {
+export function flatten<T, R>(predicate: RecPredicate<R, T>, depth = 1): PullOperation<T, R> {
 	assert(isPositiveOrZero(depth), `"depth" is required, must be a number >= 0.`);
 
 	depth = Math.trunc(depth);
@@ -23,8 +25,8 @@ export function flattenArrays(depth = 1) {
 	return flatten(Array.isArray, depth);
 }
 
-export function flattenIterables(depth = 1) {
-	return flatten(isIterable, depth);
+export function flattenIterables<T>(depth = 1) {
+	return flatten<Iterable<T> | T, T>(isIterable as RecPredicate<Iterable<T> | T, T>, depth);
 }
 
 function flatten1(predicate) {
