@@ -1,4 +1,6 @@
-export function max() {
+import type { PullOperation } from "@undercut/types";
+
+export function max(): PullOperation<number> {
 	return function* (iterable) {
 		let max = null;
 
@@ -8,10 +10,8 @@ export function max() {
 			}
 		}
 
-		if (max === null) {
-			return;
+		if (max !== null) {
+			yield max;
 		}
-
-		yield max;
 	};
 }

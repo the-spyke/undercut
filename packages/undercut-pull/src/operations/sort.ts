@@ -1,7 +1,9 @@
-import { assertFunctor } from "@undercut/utils/assert";
-import { asc, compare  } from "@undercut/utils";
+import type { Comparator, PullOperation } from "@undercut/types";
 
-export function sort(comparator, order = asc) {
+import { assertFunctor } from "@undercut/utils/assert";
+import { asc, compare } from "@undercut/utils";
+
+export function sort<T>(comparator: Comparator<T>, order: any = asc): PullOperation<T> {
 	assertFunctor(comparator, `comparator`);
 	assertFunctor(order, `order`);
 
@@ -12,10 +14,10 @@ export function sort(comparator, order = asc) {
 	};
 }
 
-export function sortNumbers(order = asc) {
+export function sortNumbers(order = asc): PullOperation<number> {
 	return sort(compare.numbers, order);
 }
 
-export function sortStrings(order = asc) {
+export function sortStrings(order = asc): PullOperation<string> {
 	return sort(compare.strings, order);
 }

@@ -1,15 +1,17 @@
+import type { PullOperation, Selector } from "@undercut/types";
+
 import { assertFunctor } from "@undercut/utils/assert";
 import { identity } from "@undercut/utils";
 
 /**
  * Multisets are not supported.
  */
-export const intersection = intersectionBy.bind(undefined, identity);
+export const intersection = intersectionBy.bind(undefined, identity) as <T>(...sources: Array<Iterable<T>>) => PullOperation<T>;
 
 /**
  * Multisets are not supported.
  */
-export function intersectionBy(selector, ...sources) {
+export function intersectionBy<T, K>(selector: Selector<T, K>, ...sources: Array<Iterable<T>>): PullOperation<T> {
 	assertFunctor(selector, `selector`);
 
 	return function* (iterable) {
@@ -17,7 +19,7 @@ export function intersectionBy(selector, ...sources) {
 			return;
 		}
 
-		const keyCounts = new Map();
+		const keyCounts = new Map<K, number>();
 
 		for (const item of sources[0]) {
 			const key = selector(item);

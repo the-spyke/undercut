@@ -2,7 +2,7 @@ import type { PullOperation } from "@undercut/types";
 
 import { assertSource } from "@undercut/utils/assert";
 
-export function concatStart<T, R = T>(source: Iterable<R>): PullOperation<T, T | R> {
+export function concatStart<T>(source: Iterable<T>): PullOperation<T> {
 	assertSource(source);
 
 	return function* (iterable) {
@@ -11,7 +11,7 @@ export function concatStart<T, R = T>(source: Iterable<R>): PullOperation<T, T |
 	};
 }
 
-export function concatEnd<T, R = T>(source: Iterable<R>): PullOperation<T, T | R> {
+export function concatEnd<T>(source: Iterable<T>): PullOperation<T> {
 	assertSource(source);
 
 	return function* (iterable) {

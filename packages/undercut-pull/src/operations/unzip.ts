@@ -1,15 +1,17 @@
+import type { Mapper, PullOperation } from "@undercut/types";
+
 import { assert } from "@undercut/utils/assert";
 import { identity, isFunction } from "@undercut/utils";
 
-export function unzip() {
+export function unzip<T>(): PullOperation<Array<T>, Array<T>> {
 	return unzipWith(identity);
 }
 
-export function unzipWith(itemsExtractor) {
+export function unzipWith<T, R>(itemsExtractor: Mapper<T, Array<R>>): PullOperation<T, Array<R>> {
 	assert(isFunction(itemsExtractor), `"itemsExtractor" is required, must be a function.`);
 
 	return function* (iterable) {
-		const results = [];
+		const results = [] as Array<Array<R>>;
 
 		let index = 0;
 

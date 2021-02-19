@@ -1,19 +1,21 @@
+import type { PullOperation, Selector } from "@undercut/types";
+
 import { assertFunctor } from "@undercut/utils/assert";
 import { identity } from "@undercut/utils";
 
 /**
  * Multisets are not supported.
  */
-export const union = unionBy.bind(undefined, identity);
+export const union = unionBy.bind(undefined, identity) as <T>(...sources: Array<Iterable<T>>) => PullOperation<T>;
 
 /**
  * Multisets are not supported.
  */
-export function unionBy(selector, ...sources) {
+export function unionBy<T, K>(selector: Selector<T, K>, ...sources: Array<Iterable<T>>): PullOperation<T> {
 	assertFunctor(selector, `selector`);
 
 	return function* (iterable) {
-		const keys = new Set();
+		const keys = new Set<K>();
 
 		yield* scanSource(keys, selector, iterable);
 
@@ -23,7 +25,7 @@ export function unionBy(selector, ...sources) {
 	};
 }
 
-function* scanSource(keys, selector, source) {
+function* scanSource<T, K>(keys: Set<K>, selector: Selector<T, K>, source: Iterable<T>): Iterable<T> {
 	for (const item of source) {
 		const key = selector(item);
 
