@@ -1,19 +1,23 @@
+import type { Action, PullOperation, Selector } from "@undercut/types";
+
 import { assertFunctor } from "@undercut/utils/assert";
 import { identity } from "@undercut/utils";
 
-/**
- * Multisets are not supported.
- */
-export const difference = differenceBy.bind(undefined, identity);
+type KeyInfo<T> = { count: number, item: T };
 
 /**
  * Multisets are not supported.
  */
-export function differenceBy(selector, ...sources) {
+export const difference = differenceBy.bind(undefined, identity) as <T>(...sources: Array<Iterable<T>>) => PullOperation<T>;
+
+/**
+ * Multisets are not supported.
+ */
+export function differenceBy<T, R>(selector: Selector<T, R>, ...sources: Array<Iterable<T>>): PullOperation<T> {
 	assertFunctor(selector, `selector`);
 
 	return function* (iterable) {
-		const keys = new Set();
+		const keys = new Set<R>();
 
 		for (const source of sources) {
 			scanToSet(keys, selector, source);
@@ -32,16 +36,16 @@ export function differenceBy(selector, ...sources) {
 /**
  * Multisets are not supported.
  */
-export const symmetricDifference = symmetricDifferenceBy.bind(undefined, identity);
+export const symmetricDifference = symmetricDifferenceBy.bind(undefined, identity) as <T>(...sources: Array<Iterable<T>>) => PullOperation<T>;
 
 /**
  * Multisets are not supported.
  */
-export function symmetricDifferenceBy(selector, ...sources) {
+export function symmetricDifferenceBy<T, R>(selector: Selector<T, R>, ...sources: Array<Iterable<T>>): PullOperation<T> {
 	assertFunctor(selector, `selector`);
 
 	return function* (iterable) {
-		const keyInfos = new Map();
+		const keyInfos = new Map<R, KeyInfo<T>>();
 
 		scanToMap(keyInfos, selector, iterable);
 
@@ -57,7 +61,7 @@ export function symmetricDifferenceBy(selector, ...sources) {
 	};
 }
 
-function scanToSet(keys, selector, source) {
+function scanToSet<T, R>(keys: Set<R>, selector: Selector<T, R>, source: Iterable<T>): void {
 	for (const item of source) {
 		const key = selector(item);
 
@@ -67,7 +71,7 @@ function scanToSet(keys, selector, source) {
 	}
 }
 
-function scanToMap(keyInfos, selector, source) {
+function scanToMap<T, R>(keyInfos: Map<R, KeyInfo<T>>, selector: Selector<T, R>, source: Iterable<T>): void {
 	for (const item of source) {
 		const key = selector(item);
 		const info = keyInfos.get(key);

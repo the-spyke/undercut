@@ -1,6 +1,8 @@
+import type { PullOperation, Reducer } from "@undercut/types";
+
 import { assertFunctor } from "@undercut/utils/assert";
 
-export function reduce(reducer, initial) {
+export function reduce<T, R>(reducer: Reducer<T, R>, initial: R): PullOperation<T, R> {
 	assertFunctor(reducer, `reducer`);
 
 	return function* (iterable) {

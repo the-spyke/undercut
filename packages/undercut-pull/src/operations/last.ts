@@ -1,4 +1,6 @@
-export function last() {
+import type { PullOperation } from "@undercut/types";
+
+export function last<T>(): PullOperation<T>  {
 	return function* (iterable) {
 		let lastItem = undefined;
 		let hasItems = false;
@@ -9,7 +11,7 @@ export function last() {
 		}
 
 		if (hasItems) {
-			yield lastItem;
+			yield lastItem as T;
 		}
 	};
 }
