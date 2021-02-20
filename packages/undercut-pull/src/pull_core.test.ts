@@ -15,16 +15,16 @@ import {
 	pullArray,
 	pullLine,
 	pullValue,
-} from "./pull_core.js";
+} from "./pull_core";
 
 test(`composeOperations`, () => {
-	function interleave(...sources) {
+	function interleave<T>(...sources: Array<Iterable<T>>) {
 		return composeOperations([zip(...sources), flattenArrays()]);
 	}
 
 	expect(simulatePull(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
 
-	function interleaveDynamic(...sources) {
+	function interleaveDynamic<T>(...sources: Array<Iterable<T>>) {
 		return composeOperations(() => [zip(...sources), flattenArrays()]);
 	}
 
@@ -46,9 +46,13 @@ test(`composeOperations`, () => {
 });
 
 test(`pullLine`, () => {
+	// @ts-ignore For error test.
 	expect(() => pullLine()).toThrow();
+	// @ts-ignore For error test.
 	expect(() => pullLine([])).toThrow();
+	// @ts-ignore For error test.
 	expect(() => pullLine(1, [])).toThrow();
+	// @ts-ignore For error test.
 	expect(() => pullLine(1, 2)).toThrow();
 
 	expect([...pullLine([], [])]).toEqual([]);
@@ -63,11 +67,17 @@ test(`pullLine`, () => {
 });
 
 test(`pull`, () => {
+	// @ts-ignore For error test.
 	expect(() => pull()).toThrow();
+	// @ts-ignore For error test.
 	expect(() => pull(Array.from)).toThrow();
+	// @ts-ignore For error test.
 	expect(() => pull(Array.from, [])).toThrow();
+	// @ts-ignore For error test.
 	expect(() => pull(1, [], [])).toThrow();
+	// @ts-ignore For error test.
 	expect(() => pull(Array.from, 2, [])).toThrow();
+	// @ts-ignore For error test.
 	expect(() => pull(Array.from, [], 3)).toThrow();
 
 	expect(pull(Array.from, [], [])).toEqual([]);
@@ -77,9 +87,13 @@ test(`pull`, () => {
 });
 
 test(`pullArray`, () => {
+	// @ts-ignore For error test.
 	expect(() => pullArray()).toThrow();
+	// @ts-ignore For error test.
 	expect(() => pullArray([])).toThrow();
+	// @ts-ignore For error test.
 	expect(() => pullArray(2, [])).toThrow();
+	// @ts-ignore For error test.
 	expect(() => pullArray([], 3)).toThrow();
 
 	expect(pullArray([], [])).toEqual([]);

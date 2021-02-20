@@ -1,7 +1,7 @@
 import { assert } from "@undercut/utils/assert";
 import { createIterable } from "@undercut/utils";
 
-function* rangeGen(start, end, step) {
+function* rangeGen(start: number, end: number, step: number): Iterator<number> {
 	if (start < end) {
 		for (let i = start; i < end; i += step) {
 			yield i;
@@ -14,13 +14,9 @@ function* rangeGen(start, end, step) {
 }
 
 /**
- * Creates an iterable of numbers in range `[start, end)` with optional step.
- * @param {Number} start
- * @param {Number} end
- * @param {Number} [step=1]
- * @returns {Iterable<Number>}
+ * Creates an iterable of numbers in range `[start, end)` with an optional step.
  */
-export function range(start, end, step = 1) {
+export function range(start: number, end: number, step: number = 1): Iterable<number> {
 	assert(Number.isFinite(start), `"start" is required, must be a number.`);
 	assert(Number.isFinite(end), `"end" is required, must be a number.`);
 	assert(Number.isFinite(step) && step > 0, `"step" must be an absolute non-zero number.`);

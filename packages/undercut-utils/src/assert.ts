@@ -1,6 +1,6 @@
 import { isFunction, isIterable, isIterator } from "./language";
 
-export function assert(condition: boolean, message: string): void {
+export function assert(condition: unknown, message: string): void {
 	if (!condition) {
 		throw new Error(message);
 	}

@@ -1,3 +1,5 @@
+import type { Observer } from "packages/undercut-types";
+
 import { assert } from "./assert";
 import { getDoneItem, rethrow } from "./function";
 import { isFunction } from "./language";
@@ -12,8 +14,8 @@ export function abort(coroutine: Coroutine, error: Error): never {
 	throw error;
 }
 
-export function asObserver(generator: GeneratorFunction) {
-	return function (...args: Array<any>) {
+export function asObserver<T, A = unknown>(generator: (...args: Array<A>) => Observer<T>) {
+	return function (...args: Array<A>) {
 		const observer = generator(...args);
 
 		observer.next();
@@ -22,12 +24,13 @@ export function asObserver(generator: GeneratorFunction) {
 	};
 }
 
-export function asUnclosable(coroutine: Coroutine) {
+export function asUnclosable<T, R, N>(coroutine: Generator<T, R, N>): Generator<T, R, N> {
 	return {
 		next: coroutine.next.bind(coroutine),
 		return: getDoneItem,
 		throw: rethrow,
-	};
+		[Symbol.iterator]() { return this as Generator<T, R, N>; },
+	} as Generator<T, R, N>;
 }
 
 export function close<R>(coroutine: Coroutine, tryBeforeClosing?: (coroutine: Coroutine) => R): R | undefined {

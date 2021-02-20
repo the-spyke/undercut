@@ -1,5 +1,7 @@
 import { expect, jest, test } from "@jest/globals";
 
+import { asObserver } from "@undercut/utils";
+
 import {
 	toArray,
 	toConsumer,
@@ -32,8 +34,9 @@ test(`toConsumer`, () => {
 
 test(`toMap`, () => {
 	expect(toMap()([])).toEqual(new Map());
+
 	expect(toMap()(
-		(function* gen() {
+		(function* gen(): Iterable<[number | null, number]> {
 			yield [1, 1];
 			yield [null, 3];
 			yield [1, 2];
@@ -61,7 +64,7 @@ test(`toNull`, () => {
 test(`toObject`, () => {
 	expect(toObject()([])).toEqual({});
 	expect(toObject()(
-		(function* gen() {
+		(function* gen(): Iterable<[string, number]> {
 			yield [`a`, 2];
 			yield [`b`, 3];
 			yield [`c`, 5];
@@ -70,26 +73,28 @@ test(`toObject`, () => {
 });
 
 test(`toObserver`, () => {
+	// @ts-ignore For error test.
 	expect(() => toObserver()).toThrow();
-	expect(() => toObserver(1)).toThrow();
+	expect(() => toObserver(1 as any)).toThrow();
 
-	const pushLine1 = {
-		next(value) {
-			this.values.push(value);
-		},
-		return() { /* Empty. */ },
-		throw: e => {
-			throw e;
-		},
-		values: [],
-	};
+	const values: Array<number> = [];
+	const getObserver = asObserver<number>(function* () {
+		while (true) values.push(yield);
+	});
+
+	let pushLine1 = getObserver();
 
 	expect(toObserver(pushLine1)).toEqual(expect.any(Function));
+
+	pushLine1 = getObserver();
+
 	expect(toObserver(pushLine1)([])).toBe(pushLine1);
+
+	pushLine1 = getObserver();
 
 	toObserver(pushLine1)([1, 5, 3]);
 
-	expect(pushLine1.values).toEqual([1, 5, 3]);
+	expect(values).toEqual([1, 5, 3]);
 });
 
 test(`toSet`, () => {

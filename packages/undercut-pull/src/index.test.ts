@@ -7,7 +7,7 @@ import {
 	range,
 	filter, map, min, skip, sum, take,
 	toArray, toObject, toValue
-} from "./index.js";
+} from "./index";
 
 describe(`Pull`, () => {
 	test(`exports of the main "pull" entry should be stable`, () => {
@@ -17,11 +17,11 @@ describe(`Pull`, () => {
 	test(`simple pull scenarios`, () => {
 		const data1 = [1, 2, 3, 4, 5, 6, 7];
 		const pipeline1 = [
-			map(x => x + 3),
-			skip(1),
-			take(100),
-			map(x => x - 3),
-			filter(x => x !== 4),
+			map<number>(x => x + 3),
+			skip<number>(1),
+			take<number>(100),
+			map<number>(x => x - 3),
+			filter<number>(x => x !== 4),
 		];
 
 		expect(
