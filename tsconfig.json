@@ -43,16 +43,4 @@
 		"**/dist/",
 		"**/node_modules/",
 	],
-	// "files": [],
-	// "references": [
-	// 	{
-	// 		"path": "./packages/undercut-collections"
-	// 	},
-	// 	{
-	// 		"path": "./packages/undercut-types"
-	// 	},
-	// 	{
-	// 		"path": "./packages/undercut-utils"
-	// 	},
-	// ],
 }
