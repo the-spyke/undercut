@@ -3,14 +3,14 @@ import type { RecMapper, RecPredicate } from "@undercut/types";
 import { assert, assertFunctor } from "./assert";
 import { isFunction } from "./language";
 
-export function getIterator<T>(iterable: Iterable<T>) {
+export function getIterator<T>(iterable: Iterable<T>): Iterator<T> {
 	return iterable[Symbol.iterator]();
 }
 
 /**
  * A helper for generators to make them reiterable.
  */
-export function createIterable<T, TReturn = any, TNext = undefined>(getIterator: () => Iterator<T, TReturn, TNext>) {
+export function createIterable<T>(getIterator: () => Iterator<T>): Iterable<T> {
 	assertFunctor(getIterator, `getIterator`);
 
 	return {
@@ -21,7 +21,7 @@ export function createIterable<T, TReturn = any, TNext = undefined>(getIterator:
 /**
  * Returns the first item of the `iterable` or `undefined`.
  */
-export function head<T>(iterable: Iterable<T>) {
+export function head<T>(iterable: Iterable<T>): T | undefined {
 	for (const item of iterable) {
 		return item;
 	}

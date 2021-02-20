@@ -16,9 +16,13 @@ export type Predicate<T> = (value: T, index: number) => boolean;
 
 export type Narrower<T, R extends T> = (value: T, index: number) => value is R;
 
+export type Observer<T> = Generator<void, void, T>;
+
 export type Primitive = bigint | boolean | number | string | symbol | undefined;
 
 export type PullOperation<T, R = T> = (iterable: Iterable<T>) => Iterable<R>;
+
+export type PullTarget<T, R = T> = (iterable: Iterable<T>) => R;
 
 export type RecMapper<T, R> = (item: T, index: number, depth: number) => R;
 

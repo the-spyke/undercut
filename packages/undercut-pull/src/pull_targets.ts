@@ -1,17 +1,13 @@
+import type { Action, Observer, PullTarget } from "@undercut/types";
+
 import { assert } from "@undercut/utils/assert";
 import { abort, close, head, isObserver } from "@undercut/utils";
 
-/**
- * @returns {Array}
- */
-export function toArray() {
+export function toArray<T>(): PullTarget<T, Array<T>> {
 	return Array.from;
 }
 
-/**
- * @type {<T>(consumer: (T, number) => void) => (Iterable<T>) => void}
- */
-export function toConsumer(consumer) {
+export function toConsumer<T>(consumer: Action<T>): PullTarget<T, void> {
 	return function (iterable) {
 		let index = 0;
 
@@ -22,19 +18,13 @@ export function toConsumer(consumer) {
 	};
 }
 
-/**
- * @returns {<T>(iterable: Iterable<T>) => Map<T>}
- */
-export function toMap() {
+export function toMap<K = any, V = any, T extends [K, V] = [K, V]>(): PullTarget<T, Map<K, V>> {
 	return function (iterable) {
 		return new Map(iterable);
 	};
 }
 
-/**
- * @returns {<T>(iterable: Iterable<T>) => void}
- */
-export function toNull() {
+export function toNull(): PullTarget<unknown, void> {
 	return function (iterable) {
 		for (const item of iterable) { // eslint-disable-line no-unused-vars
 			// Do nothing.
@@ -42,18 +32,11 @@ export function toNull() {
 	};
 }
 
-/**
- * @returns {Object}
- */
-export function toObject() {
+export function toObject<T extends [PropertyKey, V], O extends { [k: string]: V } = {}, V = any>(): PullTarget<T, O> {
 	return Object.fromEntries;
 }
 
-/**
- * @param {Observer} observer
- * @returns {Function}
- */
-export function toObserver(observer) {
+export function toObserver<T>(observer: Observer<T>): PullTarget<T, Observer<T>> {
 	assert(isObserver(observer), `"observer" is required and must be an Observable.`);
 
 	return function (iterable) {
@@ -71,18 +54,12 @@ export function toObserver(observer) {
 	};
 }
 
-/**
- * @returns {<T>(iterable: Iterable<T>) => Set<T>}
- */
-export function toSet() {
+export function toSet<T>(): PullTarget<T, Set<T>> {
 	return function (iterable) {
 		return new Set(iterable);
 	};
 }
 
-/**
- * @returns {<T>(iterable: Iterable<T>) => T | undefined}
- */
-export function toValue() {
+export function toValue<T>(): PullTarget<T | undefined> {
 	return head;
 }

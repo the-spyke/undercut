@@ -3,9 +3,11 @@ import { expect, test } from "@jest/globals";
 import { range } from "./pull_sources";
 
 test(`range`, () => {
+	// @ts-ignore For error test.
 	expect(() => range()).toThrow();
+	// @ts-ignore For error test.
 	expect(() => range(1)).toThrow();
-	expect(() => range(undefined, 2)).toThrow();
+	expect(() => range(undefined as any, 2)).toThrow();
 	expect(() => range(Infinity, 23)).toThrow();
 	expect(() => range(23, NaN)).toThrow();
 	expect(() => range(1, 5, -5)).toThrow();

@@ -13,5 +13,5 @@ describe(`Pull Operations`, () => {
 	});
 
 	// eslint-disable-next-line import/namespace
-	describe.each(Object.entries(operations))(`%s`, (name, operation) => tests[name](`pull`, operation));
+	describe.each(Object.entries(operations))(`%s`, (name, operation) => (tests as any)[name](`pull`, operation));
 });

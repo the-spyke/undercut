@@ -24,7 +24,7 @@ export function isBoolean(value: unknown): value is boolean {
 	return typeof value === `boolean`;
 }
 
-export function isCoroutine(value: unknown): value is { next: Function } {
+export function isCoroutine<T = unknown>(value: T | unknown): value is Iterator<T> {
 	return isObjectValue(value) && isFunction((value as any).next);
 }
 
