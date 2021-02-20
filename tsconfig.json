@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
-		"baseUrl": ".",
 		"alwaysStrict": true,
+		"baseUrl": ".",
 		"declaration": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
@@ -34,6 +34,7 @@
 		},
 		"skipLibCheck": true,
 		"strict": true,
+		"strictNullChecks": true,
 		"target": "ESNext",
 	},
 	"exclude": [
@@ -41,19 +42,17 @@
 		"**/coverage/",
 		"**/dist/",
 		"**/node_modules/",
-		"**/*.test.*.ts",
-		"**/*.test.ts",
 	],
-	"files": [],
-	"references": [
-		{
-			"path": "packages/undercut-collections"
-		},
-		{
-			"path": "packages/undercut-types"
-		},
-		{
-			"path": "packages/undercut-utils"
-		},
-	],
+	// "files": [],
+	// "references": [
+	// 	{
+	// 		"path": "./packages/undercut-collections"
+	// 	},
+	// 	{
+	// 		"path": "./packages/undercut-types"
+	// 	},
+	// 	{
+	// 		"path": "./packages/undercut-utils"
+	// 	},
+	// ],
 }
