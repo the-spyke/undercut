@@ -53,40 +53,37 @@ export function tail<T>(iterable: Iterable<T>) {
 	return done ? undefined : iterator;
 }
 
-export function* iterateMapRec<T, R, TReturn extends Iterable<T> | R>(
-	predicate: RecPredicate<R, T>,
-	mapper: RecMapper<T, TReturn> | undefined,
+function* mapFilterRec<T, R = T>(
+	predicate: RecPredicate<T, R>,
+	mapper: RecMapper<T, R> | undefined,
 	item: T,
 	index: number,
 	depth: number
-): Generator<TReturn> {
-	const mappedItem = (mapper ? mapper(item, index, depth) : item) as TReturn;
+): Iterable<R> {
+	const mappedItem = (mapper ? mapper(item, index, depth) : item) as R;
 
 	if (predicate(mappedItem, index, depth)) {
 		let childIndex = 0;
 
 		for (const childItem of mappedItem) {
-			yield* iterateMapRec(predicate, mapper, childItem, childIndex, depth + 1);
+			yield* mapFilterRec(predicate, mapper, childItem, childIndex, depth + 1);
 
 			childIndex++;
 		}
 	} else {
-		yield (mappedItem as TReturn);
+		yield mappedItem;
 	}
-
-	// @ts-ignore
-	return undefined;
 }
 
 /**
  * Returns a function for using with the `map` operation: maps an item and its sub-items into an iterator.
- * With it you can walk down a tree or another nested structure, map it and flatten it later.
+ * With it you can walk down a tree or another nested structure: map first and flatten later.
 */
-export function getRecursiveMapper<T, R>(predicate: RecPredicate<R, T>, mapper?: RecMapper<T, R | Iterable<T>>) {
+export function getRecursiveMapper<T, R = T>(predicate: RecPredicate<T, R>, mapper?: RecMapper<T, R>) {
 	assertFunctor(predicate, `predicate`);
 	assert(mapper === undefined || isFunction(mapper), `"mapper" should be a function or undefined.`);
 
 	return function recursiveMapper(item: T, index: number) {
-		return iterateMapRec(predicate, mapper, item, index, 0) as Iterable<R>;
+		return mapFilterRec(predicate, mapper, item, index, 0) as Iterable<R>;
 	};
 }

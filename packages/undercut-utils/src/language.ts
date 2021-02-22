@@ -48,7 +48,7 @@ export function isFunction(value: unknown): value is Function {
 	return typeof value === `function`;
 }
 
-export function isIterable(value: unknown): boolean {
+export function isIterable<T>(value: unknown): value is Iterable<T> {
 	return isObjectValue(value) ? isFunction((value as any)[Symbol.iterator]) : isString(value);
 }
 
