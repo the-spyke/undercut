@@ -24,9 +24,9 @@ export type PullOperation<T, R = T> = (iterable: Iterable<T>) => Iterable<R>;
 
 export type PullTarget<T, R = T> = (iterable: Iterable<T>) => R;
 
-export type RecMapper<T, R> = (item: T, index: number, depth: number) => R;
+export type RecMapper<T, R = T> = (item: T, index: number, depth: number) => R;
 
-export type RecPredicate<T, R> = (item: T | Iterable<R>, index: number, depth: number) => item is Iterable<R>;
+export type RecPredicate<T, R = T> = (item: R | Iterable<T>, index: number, depth: number) => item is Iterable<T>;
 
 export type Reducer<T, R> = (accumulator: R, value: T, index: number) => R;
 
