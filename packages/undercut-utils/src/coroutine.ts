@@ -1,12 +1,10 @@
-import type { Observer } from "packages/undercut-types";
+import type { Coroutine, Observer } from "@undercut/types";
 
 import { assert } from "./assert";
 import { getDoneItem, rethrow } from "./function";
 import { isFunction } from "./language";
 
-type Coroutine = any;
-
-export function abort(coroutine: Coroutine, error: Error): never {
+export function abort<I, O>(coroutine: Coroutine<I, O>, error: Error): never {
 	if (isFunction(coroutine.throw)) {
 		coroutine.throw(error);
 	}
@@ -14,34 +12,34 @@ export function abort(coroutine: Coroutine, error: Error): never {
 	throw error;
 }
 
-export function asObserver<T, A = unknown>(generator: (...args: Array<A>) => Observer<T>) {
-	return function (...args: Array<A>) {
+export function asObserver<T, A = unknown>(generator: (...args: Array<A>) => Iterator<T>) {
+	return function (...args: Array<A>): Observer<T> {
 		const observer = generator(...args);
 
 		observer.next();
 
-		return observer;
+		return observer as Observer<T>;
 	};
 }
 
-export function asUnclosable<T, R, N>(coroutine: Generator<T, R, N>): Generator<T, R, N> {
+export function asUnclosable<I, O>(coroutine: Coroutine<I, O>): Coroutine<I, O> {
 	return {
 		next: coroutine.next.bind(coroutine),
 		return: getDoneItem,
 		throw: rethrow,
-		[Symbol.iterator]() { return this as Generator<T, R, N>; },
-	} as Generator<T, R, N>;
+		[Symbol.iterator]() {
+			return this;
+		},
+	} as Coroutine<I, O>;
 }
 
-export function close<R>(coroutine: Coroutine, tryBeforeClosing?: (coroutine: Coroutine) => R): R | undefined {
+export function close<I, O, R>(coroutine: Coroutine<I, O>, tryBeforeClosing?: (coroutine: Coroutine<I, O>) => R): R | undefined {
 	assert(coroutine, `"coroutine" is required.`);
 
 	try {
 		if (tryBeforeClosing) {
 			return tryBeforeClosing(coroutine);
 		}
-
-		return undefined;
 	} catch (error) {
 		abort(coroutine, error);
 	} finally {
@@ -49,14 +47,16 @@ export function close<R>(coroutine: Coroutine, tryBeforeClosing?: (coroutine: Co
 			coroutine.return();
 		}
 	}
+
+	return undefined;
 }
 
-export class Cohort {
+export class Cohort implements Observer<Coroutine> {
 	static from(coroutines: Array<Coroutine>): Cohort {
 		return new Cohort(coroutines);
 	}
 
-	static of(...coroutines: Array<Coroutine>) {
+	static of(...coroutines: Array<Coroutine>): Cohort {
 		return new Cohort(coroutines);
 	}
 
@@ -72,19 +72,19 @@ export class Cohort {
 		this.isClosed = false;
 	}
 
-	get hasErrors() {
+	get hasErrors(): boolean {
 		return !this.errors.length;
 	}
 
-	get isFine() {
+	get isFine(): boolean {
 		return !this.isClosed && !this.errors.length;
 	}
 
-	get length() {
+	get length(): number {
 		return this.coroutines.length;
 	}
 
-	[Symbol.iterator]() {
+	[Symbol.iterator](): Iterator<Coroutine, void, void> {
 		return this.coroutines.values();
 	}
 
@@ -92,23 +92,31 @@ export class Cohort {
 		assert(!this.isClosed, `Trying to add a coroutine to a closed trap.`);
 
 		this.coroutines.push(coroutine);
+
+		return { value: undefined, done: false };
 	}
 
 	return() {
+		const result = { value: undefined, done: true };
+
 		if (this.isClosed) {
-			return;
+			return result;
 		}
 
 		this.$close();
+
+		return result;
 	}
 
-	throw(error: Error) {
+	throw(error: Error): never {
 		if (this.isClosed) {
 			throw error;
 		}
 
 		this.errors.push(error);
 		this.$close();
+
+		throw error;
 	}
 
 	$close() {

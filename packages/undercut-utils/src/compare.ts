@@ -20,11 +20,11 @@ export const strings: Comparator<string> = (a, b) => {
  */
 export const numbers: Comparator<number> = (a, b) => {
 	return a - b;
-}
+};
 
 /**
  * A comparator for any values, converts arguments to strings as in `Array.prototype.sort()`.
  */
 export const classic: Comparator<unknown> = (a, b) => {
 	return strings(String(a), String(b));
-}
+};

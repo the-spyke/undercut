@@ -1,4 +1,4 @@
-export function getDoneItem<T>(value?: T) {
+export function getDoneItem<T>(value: T): IteratorReturnResult<T> {
 	return { value, done: true };
 }
 

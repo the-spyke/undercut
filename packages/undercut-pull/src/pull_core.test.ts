@@ -46,13 +46,13 @@ test(`composeOperations`, () => {
 });
 
 test(`pullLine`, () => {
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pullLine()).toThrow();
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pullLine([])).toThrow();
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pullLine(1, [])).toThrow();
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pullLine(1, 2)).toThrow();
 
 	expect([...pullLine([], [])]).toEqual([]);
@@ -67,17 +67,17 @@ test(`pullLine`, () => {
 });
 
 test(`pull`, () => {
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pull()).toThrow();
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pull(Array.from)).toThrow();
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pull(Array.from, [])).toThrow();
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pull(1, [], [])).toThrow();
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pull(Array.from, 2, [])).toThrow();
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pull(Array.from, [], 3)).toThrow();
 
 	expect(pull(Array.from, [], [])).toEqual([]);
@@ -87,13 +87,13 @@ test(`pull`, () => {
 });
 
 test(`pullArray`, () => {
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pullArray()).toThrow();
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pullArray([])).toThrow();
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pullArray(2, [])).toThrow();
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => pullArray([], 3)).toThrow();
 
 	expect(pullArray([], [])).toEqual([]);
