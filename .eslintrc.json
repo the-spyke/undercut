@@ -14,6 +14,23 @@
 	],
 	"overrides": [
 		{
+			"extends": [
+				"plugin:@typescript-eslint/recommended"
+			],
+			"files": [
+				"**/*.ts"
+			],
+			"parser": "@typescript-eslint/parser",
+			"plugins": [
+				"@typescript-eslint"
+			],
+			"rules": {
+				"@typescript-eslint/ban-ts-comment": "off", // We-re using ts-ignore and ts-expect-error
+				"@typescript-eslint/explicit-module-boundary-types": "off", // Temporary
+				"@typescript-eslint/no-explicit-any": "off" // We're using any
+			}
+		},
+		{
 			"env": {
 				// Disable jest globals to use it only from imports.
 				"jest": false,
@@ -23,8 +40,8 @@
 				"plugin:jest/recommended"
 			],
 			"files": [
-				"**/*.test.*.js",
-				"**/*.test.js"
+				"**/*.test.*.@(js|ts)",
+				"**/*.test.@(js|ts)"
 			],
 			"plugins": [
 				"jest"
@@ -44,9 +61,15 @@
 	],
 	"parser": "@babel/eslint-parser",
 	"parserOptions": {
+		"babelOptions": {
+			"rootMode": "upward"
+		},
 		"ecmaVersion": 2021,
 		"sourceType": "module"
 	},
+	"plugins": [
+		"@babel/eslint-plugin"
+	],
 	"root": true,
 	"rules": {
 		"quotes": [

@@ -5,7 +5,7 @@ export function delay<T>(promise: Promise<T>, time?: number): Promise<T> {
 }
 
 export function wait(time?: number): Promise<undefined> {
-	return new Promise(res => void setTimeout(res, time));
+	return new Promise(res => void setTimeout(res, time as number)); // eslint-disable-line no-void
 }
 
 export function unwrapPromise<T>() {

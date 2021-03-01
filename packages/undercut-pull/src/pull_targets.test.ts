@@ -73,7 +73,7 @@ test(`toObject`, () => {
 });
 
 test(`toObserver`, () => {
-	// @ts-ignore For error test.
+	// @ts-expect-error
 	expect(() => toObserver()).toThrow();
 	expect(() => toObserver(1 as any)).toThrow();
 

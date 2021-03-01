@@ -19,10 +19,13 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/eslint-parser": "^7.12.1",
+    "@babel/eslint-plugin": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-typescript": "^7.12.16",
     "@spyke/conventional-changelog-preset": "^1.0.2",
     "@spyke/eslint-config": "^1.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
     "@undercut/config": "^1.0.0",
     "babel-jest": "^26.6.3",
     "babel-plugin-add-import-extension": "^1.4.3",

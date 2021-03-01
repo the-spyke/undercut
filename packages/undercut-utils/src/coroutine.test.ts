@@ -45,6 +45,7 @@ test(`asUnclosable`, () => {
 });
 
 test(`close`, () => {
+	// @ts-expect-error
 	expect(() => close()).toThrow();
 
 	const coroutine = {
