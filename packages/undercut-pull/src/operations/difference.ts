@@ -1,4 +1,4 @@
-import type { Action, PullOperation, Selector } from "@undercut/types";
+import type { PullOperation, Selector } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
 import { identity } from "@undercut/utils";

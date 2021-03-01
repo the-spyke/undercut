@@ -1,8 +1,8 @@
-import type { KeyGroup, PullOperation, Selector } from "@undercut/types";
+import type { KeyGroup, Mapper, PullOperation } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
 
-export function groupBy<T, K>(keySelector: Selector<T, K>): PullOperation<T, KeyGroup<K, T>> {
+export function groupBy<T, K>(keySelector: Mapper<T, K>): PullOperation<T, KeyGroup<K, T>> {
 	assertFunctor(keySelector, `keySelector`);
 
 	return function* (iterable) {
