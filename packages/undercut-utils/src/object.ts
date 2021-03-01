@@ -1,29 +1,26 @@
 import { assert, assertFunctor } from "./assert";
 import { isObjectValue } from "./language";
 
-type SomeObject = { [key: string]: any; };
 type Collector<C, K, V> = (collection: C, key: K, value: V, index: number) => void;
 type Predicate<K, V> = (key: K, value: V, index: number) => boolean;
 type Mapper<K, V, R> = (key: K, value: V, index: number) => R;
-type Reducer<K, V, R> = (previous: R, key: K, value: V, index: number) => R;
+type Reducer<R, K, V> = (previous: R, key: K, value: V, index: number) => R;
 
 /**
  * Helps to fill the `collection` with data from the provided `object`. The process is manual, and done by the `collector` function getting key and value a time.
  */
-function collectProps<T extends SomeObject, K extends keyof T, R>(object: T, collector: Collector<R, K, T[K]>, collection: R = {}): R {
+export function collectProps<T extends object, R = any>(object: T, collector: Collector<R, keyof T, T[keyof T]>, collection: R = {} as any): R {
 	assert(isObjectValue(object), `"object" is required, must be a not a null.`);
 
-	Object.keys(object).forEach((key, index) => collector(collection, key, object[key], index));
+	(Object.keys(object) as Array<keyof T>).forEach((key, index) => collector(collection, key, object[key], index));
 
 	return collection;
 }
 
-export { collectProps };
-
 /**
  * Creates a new object based on the provided `object` with properties copied over, but filtered by the `mapper` function.
  */
-export function filterProps<T extends SomeObject, K extends keyof T>(object: T, predicate: Predicate<K, T[K]>): { [P in K]: T[P]; } {
+export function filterProps<T extends object>(object: T, predicate: Predicate<keyof T, T[keyof T]>): any {
 	assertFunctor(predicate, `predicate`);
 
 	return collectProps(object, (c, k, v, i) => {
@@ -36,7 +33,7 @@ export function filterProps<T extends SomeObject, K extends keyof T>(object: T, 
 /**
  * Creates a new object based on the provided `object` with its keys passed through the `mapper` function and values copied over.
  */
-export function mapKeys<T extends SomeObject, K extends keyof T, R>(object: T, mapper: Mapper<K, T[K], string>): R {
+export function mapKeys<T extends object, K extends PropertyKey>(object: T, mapper: Mapper<keyof T, T[keyof T], K>): { [P in K]: any } {
 	assertFunctor(mapper, `mapper`);
 
 	return collectProps(object, (c, k, v, i) => (c[mapper(k, v, i)] = v));
@@ -45,7 +42,7 @@ export function mapKeys<T extends SomeObject, K extends keyof T, R>(object: T, m
 /**
  * Creates a new object based on the provided `object` with its keys copied over and values passed through the `mapper` function.
  */
-export function mapValues<T extends SomeObject, K extends keyof T, R>(object: T, mapper: Mapper<K, T[K], R>): T {
+export function mapValues<T extends object, R>(object: T, mapper: Mapper<keyof T, T[keyof T], R>): { [P in keyof T]: R } {
 	assertFunctor(mapper, `mapper`);
 
 	return collectProps(object, (c, k, v, i) => (c[k] = mapper(k, v, i)));
@@ -54,10 +51,8 @@ export function mapValues<T extends SomeObject, K extends keyof T, R>(object: T,
 /**
  * Helps to reduce provided `object` into some value by passing its keys and values through the the `reducer`.
  */
-export function reduceProps<T extends SomeObject, K extends keyof T, R>(object: T, reducer: Reducer<K, T[K], R>, initial: R): R {
+export function reduceProps<T extends object, R>(object: T, reducer: Reducer<R, keyof T, T[keyof T]>, initial: R): R {
 	assert(isObjectValue(object), `"object" is required, must be a not a null.`);
 
-	Object.keys(object).forEach((key, index) => (initial = reducer(initial, key, object[key], index)));
-
-	return initial;
+	return (Object.keys(object) as Array<keyof T>).reduce((acc, key, index) => reducer(acc, key, object[key], index), initial);
 }

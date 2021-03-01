@@ -55,7 +55,6 @@ Array [
   "isUndefined",
   "isWeakMap",
   "isWeakSet",
-  "iterateMapRec",
   "mapKeys",
   "mapValues",
   "negate",

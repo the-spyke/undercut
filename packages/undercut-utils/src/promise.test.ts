@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, jest, test } from "@jest/globals";
+// @ts-expect-error
 import PromiseMock from "promise-mock";
 
 import {
@@ -6,6 +7,12 @@ import {
 	unwrapPromise,
 	wait,
 } from "./promise";
+
+declare global {
+	interface PromiseConstructor {
+		runAll(): void;
+	}
+}
 
 describe(`delay`, () => {
 	beforeEach(() => {
@@ -19,6 +26,7 @@ describe(`delay`, () => {
 	});
 
 	test(`should throw on no arguments`, () => {
+		// @ts-expect-error
 		expect(() => delay()).toThrow();
 	});
 

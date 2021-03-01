@@ -118,12 +118,12 @@ export class Heap<T> {
 	 * @param force Don't compare, just force item to the top.
 	 * @returns The index of the item after heapify operation.
 	*/
-	$heapifyUpAt(index: number, force: boolean = false): number {
+	$heapifyUpAt(index: number, force = false): number {
 		this.$guardIndex(index);
 
 		let parentIndex = getParentIndex(index);
 
-		while (index > 0 && (force || this.$comparator(this.$items[index], this.$items[parentIndex]) < 0)) {
+		while (index > 0 && (force || this.$comparator(this.$items[index], this.$items[parentIndex]) < 0)) { // eslint-disable-line no-unmodified-loop-condition
 			swapElements(this.$items, index, parentIndex);
 
 			index = parentIndex;
