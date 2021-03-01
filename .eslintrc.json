@@ -37,6 +37,20 @@
 				],
 				"@typescript-eslint/explicit-module-boundary-types": "off", // Temporary.
 				"@typescript-eslint/no-explicit-any": "off" // We're using any.
+			},
+			"settings": {
+				"import/parsers": {
+					"@typescript-eslint/parser": [
+						".ts",
+						".tsx"
+					]
+				},
+				"import/resolver": {
+					"typescript": {
+						"alwaysTryTypes": true,
+						"project": "packages/*/tsconfig.json"
+					}
+				}
 			}
 		},
 		{
@@ -96,15 +110,13 @@
 	"settings": {
 		"import/extensions": [
 			".cjs",
-			".js",
-			".ts"
+			".js"
 		],
 		"import/resolver": {
 			"node": {
 				"extensions": [
 					".cjs",
-					".js",
-					".ts"
+					".js"
 				]
 			}
 		}
