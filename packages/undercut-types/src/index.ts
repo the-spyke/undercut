@@ -32,6 +32,4 @@ export type RecPredicate<T, R = T> = (item: R | Iterable<T>, index: number, dept
 
 export type Reducer<T, R> = (accumulator: R, value: T, index: number) => R;
 
-
-// TODO: Make index mandatory
-export type Selector<T, R> = (value: T, index?: number) => R;
+export type Selector<T, R> = (value: T) => R;

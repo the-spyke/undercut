@@ -25,9 +25,18 @@
 				"@typescript-eslint"
 			],
 			"rules": {
-				"@typescript-eslint/ban-ts-comment": "off", // We-re using ts-ignore and ts-expect-error
-				"@typescript-eslint/explicit-module-boundary-types": "off", // Temporary
-				"@typescript-eslint/no-explicit-any": "off" // We're using any
+				"@typescript-eslint/ban-ts-comment": "off", // We-re using ts-ignore and ts-expect-error.
+				"@typescript-eslint/ban-types": [
+					"error",
+					{
+						"extendDefaults": true,
+						"types": {
+							"object": false
+						}
+					}
+				],
+				"@typescript-eslint/explicit-module-boundary-types": "off", // Temporary.
+				"@typescript-eslint/no-explicit-any": "off" // We're using any.
 			}
 		},
 		{
