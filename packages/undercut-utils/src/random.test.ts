@@ -27,12 +27,18 @@ describe(`randomBoolean`, () => {
 
 describe(`randomDecimal`, () => {
 	test(`should throw on invalid arguments`, () => {
+		// @ts-expect-error
 		expect(() => randomDecimal()).toThrow();
+		// @ts-expect-error
 		expect(() => randomDecimal(false)).toThrow();
+		// @ts-expect-error
 		expect(() => randomDecimal(NaN)).toThrow();
+		// @ts-expect-error
 		expect(() => randomDecimal(`1`)).toThrow();
+		// @ts-expect-error
 		expect(() => randomDecimal(1, true)).toThrow();
 		expect(() => randomDecimal(1, NaN)).toThrow();
+		// @ts-expect-error
 		expect(() => randomDecimal(1, `1`)).toThrow();
 		expect(() => randomDecimal(7, 3)).toThrow();
 	});
@@ -69,8 +75,11 @@ describe(`randomDecimal`, () => {
 
 describe(`randomFrom`, () => {
 	test(`should throw on invalid arguments`, () => {
+		// @ts-expect-error
 		expect(() => randomFrom()).toThrow();
+		// @ts-expect-error
 		expect(() => randomFrom({})).toThrow();
+		// @ts-expect-error
 		expect(() => randomFrom({ length: -3 })).toThrow();
 	});
 
@@ -97,7 +106,9 @@ describe(`randomFrom`, () => {
 
 describe(`randomIndex`, () => {
 	test(`should throw on invalid arguments`, () => {
+		// @ts-expect-error
 		expect(() => randomIndex()).toThrow();
+		// @ts-expect-error
 		expect(() => randomIndex({})).toThrow();
 		expect(() => randomIndex({ length: -3 })).toThrow();
 	});
@@ -133,12 +144,18 @@ describe(`randomIndex`, () => {
 
 describe(`randomInteger`, () => {
 	test(`should throw on invalid arguments`, () => {
+		// @ts-expect-error
 		expect(() => randomInteger()).toThrow();
+		// @ts-expect-error
 		expect(() => randomInteger(false)).toThrow();
+		// @ts-expect-error
 		expect(() => randomInteger(NaN)).toThrow();
+		// @ts-expect-error
 		expect(() => randomInteger(`1`)).toThrow();
+		// @ts-expect-error
 		expect(() => randomInteger(1, true)).toThrow();
 		expect(() => randomInteger(1, NaN)).toThrow();
+		// @ts-expect-error
 		expect(() => randomInteger(1, `1`)).toThrow();
 		expect(() => randomInteger(7, 3)).toThrow();
 	});
@@ -173,7 +190,7 @@ describe(`randomInteger`, () => {
 	});
 });
 
-function tryMany(action) {
+function tryMany(action: (i: number) => any) {
 	const results = [];
 
 	for (let i = 0; i < 10; i++) {
@@ -183,6 +200,6 @@ function tryMany(action) {
 	return results;
 }
 
-function areSame(items) {
+function areSame(items: Array<any>) {
 	return (new Set(items)).size === 1;
 }

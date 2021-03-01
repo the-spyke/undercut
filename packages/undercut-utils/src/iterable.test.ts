@@ -12,16 +12,17 @@ import {
 
 describe(`createIterable`, () => {
 	test(`should throw on no argument`, () => {
+		// @ts-expect-error
 		expect(() => createIterable()).toThrow();
 	});
 
 	test(`should return an iterable`, () => {
-		expect(isIterable(createIterable(() => []))).toBe(true);
+		expect(isIterable(createIterable(() => [] as any))).toBe(true);
 	});
 
 	test(`should use passed function for getting an iterator`, () => {
 		const makeIterator = jest.fn(() => 123);
-		const iterable = createIterable(makeIterator);
+		const iterable = createIterable(makeIterator as any);
 
 		expect(makeIterator).not.toHaveBeenCalled();
 
@@ -34,6 +35,7 @@ describe(`createIterable`, () => {
 
 describe(`getIterator`, () => {
 	test(`should throw on no argument`, () => {
+		// @ts-expect-error
 		expect(() => getIterator()).toThrow();
 	});
 
@@ -41,7 +43,7 @@ describe(`getIterator`, () => {
 		expect(isIterator(getIterator([]))).toBe(true);
 
 		const makeIterator = jest.fn(() => 42);
-		const iterable = createIterable(makeIterator);
+		const iterable = createIterable(makeIterator as any);
 		const iterator = getIterator(iterable);
 
 		expect(makeIterator).toHaveBeenCalled();
@@ -51,6 +53,7 @@ describe(`getIterator`, () => {
 
 describe(`head`, () => {
 	test(`should throw on no argument`, () => {
+		// @ts-expect-error
 		expect(() => head()).toThrow();
 	});
 
@@ -75,6 +78,7 @@ describe(`head`, () => {
 
 describe(`headTail`, () => {
 	test(`should throw on no argument`, () => {
+		// @ts-expect-error
 		expect(() => headTail()).toThrow();
 	});
 
@@ -86,6 +90,7 @@ describe(`headTail`, () => {
 
 	test(`should return an iterator as the tail`, () => {
 		expect(headTail([1, 2, 3]).tail).toEqual(expect.objectContaining({ next: expect.any(Function) }));
+		// @ts-expect-error
 		expect(headTail([1, 2, 3]).tail.next()).toEqual({ value: 2, done: false });
 	});
 
@@ -104,6 +109,7 @@ describe(`headTail`, () => {
 
 describe(`tail`, () => {
 	test(`should throw on no argument`, () => {
+		// @ts-expect-error
 		expect(() => tail()).toThrow();
 	});
 
@@ -115,6 +121,7 @@ describe(`tail`, () => {
 
 	test(`should return an iterator`, () => {
 		expect(tail([1, 2, 3])).toEqual(expect.objectContaining({ next: expect.any(Function) }));
+		// @ts-expect-error
 		expect(tail([1, 2, 3]).next()).toEqual({ value: 2, done: false });
 	});
 

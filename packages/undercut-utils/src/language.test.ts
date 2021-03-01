@@ -15,7 +15,7 @@ describe.each(Object.entries(language))(`%s`, (name, operation) => {
 		[`Coroutine (manual full)`, {
 			next() { return { value: 40, done: false }; },
 			close() { /* Empty. */ },
-			throw(e) { throw e; },
+			throw(e: any) { throw e; },
 		}],
 		[`Coroutine (manual next only)`, {
 			next() { return { value: 36, done: false }; }
@@ -26,7 +26,7 @@ describe.each(Object.entries(language))(`%s`, (name, operation) => {
 		}],
 		[`Coroutine (manual next + throw)`, {
 			next() { return { value: 39, done: false }; },
-			throw(e) { throw e; },
+			throw(e: any) { throw e; },
 		}],
 		[`Error`, new Error(`Error message`)],
 		[`False`, false],
@@ -73,6 +73,6 @@ describe.each(Object.entries(language))(`%s`, (name, operation) => {
 	});
 });
 
-function getInstance(Class) {
+function getInstance(Class: new () => any) {
 	return new Class();
 }
