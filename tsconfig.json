@@ -12,26 +12,6 @@
 		],
 		"module": "ESNext",
 		"moduleResolution": "node",
-		"paths": {
-			"@undercut/node/node": [
-				"./packages/undercut-node/src/index",
-			],
-			"@undercut/node/pull": [
-				"./packages/undercut-pull/src/index",
-			],
-			"@undercut/node/push": [
-				"./packages/undercut-push/src/index",
-			],
-			"@undercut/node/utils": [
-				"./packages/undercut-utils/src/index",
-			],
-			"@undercut/utils/array": [
-				"./packages/undercut-utils/src/array",
-			],
-			"@undercut/utils/assert": [
-				"./packages/undercut-utils/src/assert",
-			],
-		},
 		"skipLibCheck": true,
 		"strict": true,
 		"strictNullChecks": true,

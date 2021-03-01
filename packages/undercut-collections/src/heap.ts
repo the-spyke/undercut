@@ -1,6 +1,7 @@
 import type { Comparator } from "@undercut/types";
 
-import { compare, desc } from "@undercut/utils";
+import { compare, desc } from "@undercut/utils"; // eslint-disable-line import/named
+
 import { swapElements } from "@undercut/utils/array";
 import { assertFunctor } from "@undercut/utils/assert";
 
