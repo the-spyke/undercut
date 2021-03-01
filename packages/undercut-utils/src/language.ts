@@ -1,6 +1,6 @@
 import type { Defined, Falsy, Nullish } from "@undercut/types";
 
-const objectPrototype: Object = Object.getPrototypeOf({});
+const objectPrototype: Object = Object.getPrototypeOf({}); // eslint-disable-line @typescript-eslint/ban-types
 
 /**
  * Gets value's type from "Object.prototype.toString" method. For example, an async function will return "AsyncFunction".
@@ -44,7 +44,7 @@ export function isFalsy<T>(value: T | Falsy): value is Falsy {
 	return !value;
 }
 
-export function isFunction(value: unknown): value is Function {
+export function isFunction(value: unknown): value is Function { // eslint-disable-line @typescript-eslint/ban-types
 	return typeof value === `function`;
 }
 
@@ -77,7 +77,7 @@ export function isNullish(value: unknown): value is Nullish {
 	return value == null;
 }
 
-export function isNumber(value: unknown): value is Number {
+export function isNumber(value: unknown): value is number {
 	return typeof value === `number`;
 }
 
@@ -147,10 +147,10 @@ export function isUndefined(value: unknown): value is undefined {
 	return value === undefined;
 }
 
-export function isWeakMap<K extends object = {}, V = unknown>(value: unknown): value is WeakMap<K, V> {
+export function isWeakMap<K extends object, V = unknown>(value: unknown): value is WeakMap<K, V> {
 	return value instanceof WeakMap;
 }
 
-export function isWeakSet<T extends object = {}>(value: unknown): value is WeakSet<T> {
+export function isWeakSet<T extends object>(value: unknown): value is WeakSet<T> {
 	return value instanceof WeakSet;
 }
