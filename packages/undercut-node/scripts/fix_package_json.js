@@ -10,6 +10,8 @@ modifyJsonFile(json => {
 		"./pull": `./pull/index.js`,
 		"./push": `./push/index.js`,
 		"./utils": `./utils/index.js`,
+		"./utils/array": `./utils/src/array.js`,
+		"./utils/assert": `./utils/src/assert.js`,
 		"./package.json": `./package.json`,
 	};
 });

@@ -5,7 +5,7 @@ import "./polyfills.js";
 import { EOL } from "os";
 
 import yargsFactory from "yargs";
-import { hideBin } from "yargs/helpers";
+import { hideBin } from "yargs/helpers"; // eslint-disable-line import/extensions
 
 import { run } from "./index.js";
 
