@@ -52,7 +52,7 @@ test(`close`, () => {
 		return: jest.fn(),
 	};
 
-	close(coroutine);
+	close(coroutine as any);
 
 	expect(coroutine.return.mock.calls).toEqual([[]]);
 
@@ -60,7 +60,7 @@ test(`close`, () => {
 
 	expect(coroutine.return.mock.calls).toEqual([]);
 
-	expect(close(coroutine, c => {
+	expect(close(coroutine as any, c => {
 		expect(c).toBe(coroutine);
 
 		expect(coroutine.return.mock.calls).toEqual([]);

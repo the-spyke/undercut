@@ -22,7 +22,7 @@ export function asObserver<T, A = unknown>(generator: (...args: Array<A>) => Ite
 	};
 }
 
-export function asUnclosable<I, O>(coroutine: Coroutine<I, O>): Coroutine<I, O> {
+export function asUnclosable<I, O>(coroutine: Coroutine<I, O>): Generator<O, void, I> {
 	return {
 		next: coroutine.next.bind(coroutine),
 		return: getDoneItem,
@@ -30,7 +30,7 @@ export function asUnclosable<I, O>(coroutine: Coroutine<I, O>): Coroutine<I, O> 
 		[Symbol.iterator]() {
 			return this;
 		},
-	} as Coroutine<I, O>;
+	} as Generator<O, void, I>;
 }
 
 export function close<I, O, R>(coroutine: Coroutine<I, O>, tryBeforeClosing?: (coroutine: Coroutine<I, O>) => R): R | undefined {
