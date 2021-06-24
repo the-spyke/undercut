@@ -5,7 +5,7 @@ import {
 	reduce
 } from "@undercut/push";
 import { isIterable } from "@undercut/utils";
-import { assertFunctor } from "@undercut/utils/src/assert.js";
+import { assertFunctor } from "@undercut/utils/assert";
 
 import { runPerfSuite } from "../perf.js";
 
