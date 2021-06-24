@@ -1,6 +1,27 @@
+import type { PullOperation, PushOperation } from "@undercut/types";
+
 import { expect, jest } from "@jest/globals";
 
-function getOperationSpy(operationFactory, factoryArgs = null, callbackArgs = null, callbackPosition = 0) {
+export type SomeOperation<T, R> = PullOperation<T, R> | PushOperation<T, R>;
+
+export type OperationFactory<T = any, R = T> = (...args: Array<any>) => SomeOperation<T, R>;
+
+export type Simulate<T = any, R = T> = (op: SomeOperation<T, R>, source: Iterable<T>) => Array<R>;
+
+export interface TestOperationOptions {
+	args?: Array<any>,
+	source: any,
+	target: any,
+	callbackPosition?: number,
+	callbackArgs?: Array<any>,
+}
+
+function getOperationSpy(
+	operationFactory: OperationFactory,
+	factoryArgs?: Array<any>,
+	callbackArgs?: Array<any>,
+	callbackPosition = 0
+) {
 	if (!Array.isArray(factoryArgs)) {
 		return { operation: operationFactory() };
 	}
@@ -17,7 +38,11 @@ function getOperationSpy(operationFactory, factoryArgs = null, callbackArgs = nu
 	return { operation: operationFactory(...args), spy };
 }
 
-export function testOperation(simulate, operationFactory, { args, source, target, callbackPosition, callbackArgs }) {
+export function testOperation(
+	simulate: Simulate,
+	operationFactory: OperationFactory,
+	{ args, source, target, callbackPosition, callbackArgs }: TestOperationOptions
+) {
 	const { operation, spy } = getOperationSpy(operationFactory, args, callbackArgs, callbackPosition);
 	const result = simulate(operation, source);
 
@@ -28,17 +53,38 @@ export function testOperation(simulate, operationFactory, { args, source, target
 	}
 }
 
-function callbackTester({ simulate }, operationFactory, { args, source, callbackPosition, callbackArgs }) {
+export interface CallbackTesterOptions {
+	args: Array<any>,
+	source: any,
+	callbackPosition?: number,
+	callbackArgs: Array<any>,
+}
+
+function callbackTester(
+	{ simulate }: { simulate: Simulate; },
+	operationFactory: OperationFactory,
+	{ args, source, callbackPosition, callbackArgs }: CallbackTesterOptions
+) {
 	const { operation, spy } = getOperationSpy(operationFactory, args, callbackArgs, callbackPosition);
 
 	simulate(operation, source);
 
-	expect(spy.mock.calls).toEqual(callbackArgs);
+	expect((spy as any).mock.calls).toEqual(callbackArgs);
 }
 
 callbackTester.specProps = [`callbackArgs`, `callbackPosition`];
 
-function limitTester({ simulate, asLimitedOp }, operationFactory, { args = [], source, limit }) {
+export interface LimitTesterOptions {
+	args?: Array<any>,
+	source: any,
+	limit: any,
+}
+
+function limitTester(
+	{ simulate, asLimitedOp }: { simulate: Simulate, asLimitedOp: <T, R>(operation: SomeOperation<T, R>, limit: any) => SomeOperation<T, R>; },
+	operationFactory: OperationFactory,
+	{ args = [], source, limit }: LimitTesterOptions
+) {
 	const operation = operationFactory(...args);
 	const limitedOperation = asLimitedOp(operation, limit);
 
@@ -47,7 +93,17 @@ function limitTester({ simulate, asLimitedOp }, operationFactory, { args = [], s
 
 limitTester.specProps = [`limit`];
 
-function targetTester({ simulate }, operationFactory, { args = [], source, target }) {
+export interface TargetTesterOptions {
+	args?: Array<any>,
+	source: any,
+	target: any,
+}
+
+function targetTester(
+	{ simulate }: { simulate: Simulate; },
+	operationFactory: OperationFactory,
+	{ args = [], source, target }: TargetTesterOptions
+) {
 	const operation = operationFactory(...args);
 	const result = simulate(operation, source);
 
@@ -62,7 +118,9 @@ const testers = [
 	targetTester,
 ];
 
-function findTesterForSpec(testSpec) {
+export type TesterSpec = CallbackTesterOptions | LimitTesterOptions | TargetTesterOptions;
+
+function findTesterForSpec(testSpec: TesterSpec): Function {
 	if (!testSpec) throw new Error(`"testSpec" is required`);
 
 	const tester = testers.find(t => t.specProps.some(p => p in testSpec));
@@ -84,14 +142,14 @@ function findTesterForSpec(testSpec) {
 	return tester;
 }
 
-export function createBySpecFactory(helpers) {
+export function createBySpecFactory(helpers: { pull: any, push: any; }) {
 	if (!helpers) throw new Error(`"helpers" is required`);
 
-	return function createBySpec(/** @type {"pull" | "push"} */ type, operationFactory) {
+	return function createBySpec(type: `pull` | `push`, operationFactory: Function) {
 		if (!(type in helpers)) throw new Error(`Unknown test type: ${type}`);
 		if (!operationFactory) throw new Error(`"operationFactory" is required`);
 
-		return function bySpec(testSpec) {
+		return function bySpec(testSpec: TesterSpec) {
 			const tester = findTesterForSpec(testSpec);
 
 			tester(helpers[type], operationFactory, testSpec);

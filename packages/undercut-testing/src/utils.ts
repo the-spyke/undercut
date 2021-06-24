@@ -1,37 +1,15 @@
-export function getArrayObserver(array) {
+import type { Observer } from "@undercut/types";
+
+export function getArrayObserver<T>(array: Array<T>): Observer<T> {
 	return {
 		next(value) {
 			array.push(value);
 		},
-		return() {
-			// Empty.
+		return(value: any) {
+			return { value, done: true };
 		},
 		throw(error) {
 			throw error;
 		},
 	};
-}
-
-export function abort(coroutine, error) {
-	if (coroutine.throw) {
-		coroutine.throw(error);
-	}
-
-	throw error;
-}
-
-export function asObserver(generator) {
-	return function (...args) {
-		const observer = generator(...args);
-
-		observer.next();
-
-		return observer;
-	};
-}
-
-export function close(coroutine) {
-	if (coroutine.return) {
-		coroutine.return();
-	}
 }
