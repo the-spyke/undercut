@@ -32,7 +32,7 @@ export function toNull(): PullTarget<unknown, void> {
 	};
 }
 
-export function toObject<T extends [PropertyKey, V], O extends { [k: string]: V } = {}, V = any>(): PullTarget<T, O> {
+export function toObject<T extends [PropertyKey, V], V = any, O extends { [k: string]: V } = Record<string, V>>(): PullTarget<T, O> {
 	return Object.fromEntries;
 }
 

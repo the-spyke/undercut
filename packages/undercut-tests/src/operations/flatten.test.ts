@@ -94,7 +94,7 @@ export function flatten(type, flatten) {
 	test(`should flatten maps when predicate = isMap`, () => {
 		bySpec({
 			args: [isMap],
-			source: [[0], 2, 4, [6, 9], 1, [false, []], new Map([[1, 11], [2, `test`]]), `test`],
+			source: [[0], 2, 4, [6, 9], 1, [false, []], new Map<number, number | string>([[1, 11], [2, `test`]]), `test`],
 			target: [[0], 2, 4, [6, 9], 1, [false, []], [1, 11], [2, `test`], `test`],
 		});
 	});

@@ -1,17 +1,16 @@
-import { createBySpecFactory, testOperation } from "./test_operation";
-import { abort, asObserver, close, getArrayObserver } from "./utils";
+import type { Observer, PullOperation, PushOperation } from "@undercut/types";
 
-export function simulatePull(operation, source) {
+import { abort, asObserver, close } from "@undercut/utils";
+
+import { createBySpecFactory, testOperation } from "./test_operation";
+import { getArrayObserver } from "./utils";
+
+export function simulatePull<T, R = T>(operation: PullOperation<T, R>, source: Iterable<T>): Array<R> {
 	return [...operation(source)];
 }
 
-/**
- * @param {Generator} operation
- * @param {Iterable} source
- * @returns {Array}
- */
-export function simulatePush(operation, source) {
-	const result = [];
+export function simulatePush<T, R = T>(operation: PushOperation<T, R>, source: Iterable<T>): Array<R> {
+	const result: Array<R> = [];
 	const observer = operation(getArrayObserver(result));
 
 	try {
@@ -19,18 +18,18 @@ export function simulatePush(operation, source) {
 			observer.next(item);
 		}
 	} catch (error) {
-		observer.throw(error);
+		observer.throw?.(error);
 	} finally {
-		observer.return();
+		observer.return?.();
 	}
 
 	return result;
 }
 
-export const testOperationPull = testOperation.bind(undefined, simulatePull);
-export const testOperationPush = testOperation.bind(undefined, simulatePush);
+export const testOperationPull = testOperation.bind(undefined, simulatePull as any);
+export const testOperationPush = testOperation.bind(undefined, simulatePush as any);
 
-export function createTestOperation(type) {
+export function createTestOperation(type: `pull` | `push`) {
 	if (type === `pull`) return testOperationPull;
 	if (type === `push`) return testOperationPush;
 
@@ -48,7 +47,7 @@ export const createBySpec = createBySpecFactory({
 	}
 });
 
-export function getIntegerSource(n) {
+export function getIntegerSource(n: number) {
 	return {
 		[Symbol.iterator]: function* () {
 			for (let index = 0; index < n; index++) {
@@ -58,10 +57,7 @@ export function getIntegerSource(n) {
 	};
 }
 
-/**
- * @type {<T>(iterable: Iterable<T>, limit: number) => Iterable<T>}
- */
-export function asLimitedSource(iterable, limit) {
+export function asLimitedSource<T>(iterable: Iterable<T>, limit: number): Iterable<T> {
 	return {
 		[Symbol.iterator]: function* () {
 			if (!limit) {
@@ -82,23 +78,17 @@ export function asLimitedSource(iterable, limit) {
 	};
 }
 
-/**
- * @type {<T extends Function>(operation: T, limit: number) => T}
- */
-export function asLimitedPullOp(operation, limit) {
+export function asLimitedPullOp<T, R = T>(operation: PullOperation<T, R>, limit: number): PullOperation<T, R> {
 	return function (iterable) {
 		return operation(asLimitedSource(iterable, limit));
 	};
 }
 
-/**
- * @type {<T extends Function>(operation: T, limit: number) => T}
- */
-export function asLimitedPushOp(operation, limit) {
+export function asLimitedPushOp<T, R = T>(operation: PushOperation<T, R>, limit: number): PushOperation<T, R> {
 	return function (observer) {
 		let isOpen = true;
 
-		const opBefore = asObserver(function* (observer) {
+		const opBefore = asObserver(function* (observer: Observer<T>): Generator<any, void, T> {
 			try {
 				if (!limit && isOpen) {
 					throw new Error(`Observer wasn't closed on initialization in case of 0 items`);
@@ -121,7 +111,7 @@ export function asLimitedPushOp(operation, limit) {
 			}
 		});
 
-		const opAfter = asObserver(function* (observer) {
+		const opAfter = asObserver(function* (observer: Observer<R>): Generator<any, void, R> {
 			try {
 				while (true) {
 					observer.next(yield);

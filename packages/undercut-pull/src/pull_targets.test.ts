@@ -77,9 +77,13 @@ test(`toObserver`, () => {
 	expect(() => toObserver()).toThrow();
 	expect(() => toObserver(1 as any)).toThrow();
 
-	const values: Array<number> = [];
-	const getObserver = asObserver<number>(function* () {
-		while (true) values.push(yield);
+	const values: number[] = [];
+	const getObserver = asObserver(function* () {
+		while (true) {
+			const x: number = yield;
+
+			values.push(x);
+		}
 	});
 
 	let pushLine1 = getObserver();

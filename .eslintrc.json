@@ -31,6 +31,7 @@
 					{
 						"extendDefaults": true,
 						"types": {
+							"Function": false,
 							"object": false
 						}
 					}
