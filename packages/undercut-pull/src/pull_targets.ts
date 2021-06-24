@@ -26,7 +26,7 @@ export function toMap<K = any, V = any, T extends [K, V] = [K, V]>(): PullTarget
 
 export function toNull(): PullTarget<unknown, void> {
 	return function (iterable) {
-		for (const item of iterable) { // eslint-disable-line no-unused-vars
+		for (const item of iterable) { // eslint-disable-line @typescript-eslint/no-unused-vars
 			// Do nothing.
 		}
 	};
