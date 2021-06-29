@@ -24,7 +24,7 @@ export function isBoolean(value: unknown): value is boolean {
 	return typeof value === `boolean`;
 }
 
-export function isCoroutine<T = unknown>(value: T | unknown): value is Iterator<T> {
+export function isCoroutine<T>(value: unknown): value is Iterator<T> {
 	return isObjectValue(value) && isFunction((value as any).next);
 }
 
@@ -139,7 +139,7 @@ export function isSymbol(value: unknown): value is symbol {
 	return typeof value === `symbol`;
 }
 
-export function isTruthy<T>(value: T | Falsy): value is T {
+export function isTruthy<T, R extends Exclude<T, Falsy>>(value: T): value is R {
 	return Boolean(value);
 }
 
