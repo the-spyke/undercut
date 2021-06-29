@@ -43,6 +43,8 @@ export type PushOperation<T, R = T> = (observer: Observer<R>) => Observer<T>;
 
 export type RecMapper<T, R = T> = (item: T, index: number, depth: number) => R;
 
+export type RecNarrower<T> = (item: T | Iterable<T>, index: number, depth: number) => item is Iterable<T>;
+
 export type RecPredicate<T> = (item: T, index: number, depth: number) => boolean;
 
 export type Reducer<T, R> = (accumulator: R, value: T, index: number) => R;
