@@ -1,4 +1,4 @@
-import type { RecMapper, RecPredicate } from "@undercut/types";
+import type { RecMapper, RecNarrower } from "@undercut/types";
 
 import { assert, assertFunctor } from "./assert";
 import { isFunction } from "./language";
@@ -53,8 +53,8 @@ export function tail<T>(iterable: Iterable<T>) {
 	return done ? undefined : iterator;
 }
 
-function* mapFilterRec<T, R = T>(
-	predicate: RecPredicate<T, R>,
+function* mapFilterRec<T, R extends T = T>(
+	predicate: RecNarrower<R>,
 	mapper: RecMapper<T, R> | undefined,
 	item: T,
 	index: number,
@@ -79,7 +79,7 @@ function* mapFilterRec<T, R = T>(
  * Returns a function for using with the `map` operation: maps an item and its sub-items into an iterator.
  * With it you can walk down a tree or another nested structure: map first and flatten later.
 */
-export function getRecursiveMapper<T, R = T>(predicate: RecPredicate<T, R>, mapper?: RecMapper<T, R>) {
+export function getRecursiveMapper<T, R extends T = T>(predicate: RecNarrower<R>, mapper?: RecMapper<T, R>) {
 	assertFunctor(predicate, `predicate`);
 	assert(mapper === undefined || isFunction(mapper), `"mapper" should be a function or undefined.`);
 
