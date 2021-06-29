@@ -12,14 +12,14 @@ export function abort(coroutine: Coroutine, error: Error): never {
 	throw error;
 }
 
-export type ObserverGenerator<T = any, A extends any[] = any[]> = (...args: A) => Generator<void, void, T>;
-export type ExtractObserverType<T> = T extends ObserverGenerator<infer X, any[]> ? X : never;
+type ObserverGenerator<T = any, A extends any[] = any[]> = (...args: A) => Observer<T>;
+type ExtractObserverType<T> = T extends ObserverGenerator<infer X, any[]> ? X : never;
 
 export function asObserver<Gen extends ObserverGenerator<T>, T = ExtractObserverType<Gen>>(generator: Gen) {
 	return function (...args: Parameters<Gen>): Observer<T> {
 		const observer = generator(...args);
 
-		observer.next();
+		(observer as any).next();
 
 		return observer;
 	};
@@ -97,11 +97,11 @@ export class Cohort implements Observer<Coroutine> {
 		return this.coroutines.length;
 	}
 
-	[Symbol.iterator](): Iterator<Coroutine, void, void> {
+	[Symbol.iterator](): Iterator<Coroutine> {
 		return this.coroutines.values();
 	}
 
-	next(coroutine: FullCoroutine) {
+	next(coroutine: Coroutine) {
 		assert(!this.isClosed, `Trying to add a coroutine to a closed trap.`);
 
 		this.coroutines.push(coroutine);
