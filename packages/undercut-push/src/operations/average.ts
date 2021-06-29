@@ -1,7 +1,9 @@
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
+import type { Observer, PushOperation } from "@undercut/types";
 
-export function average() {
-	return asObserver(function* (observer) {
+import { abort, asObserver, close, Cohort } from "@undercut/utils";
+
+export function average(): PushOperation<number> {
+	return asObserver(function* (observer: Observer<number>) {
 		const cohort = Cohort.of(observer);
 
 		let sum = 0;

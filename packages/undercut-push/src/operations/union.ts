@@ -1,21 +1,22 @@
-import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
-import { identity } from "@undercut/utils/src/function.js";
+import type { Observer, PushOperation, Selector } from "@undercut/types";
+
+import { assertFunctor } from "@undercut/utils/assert";
+import { abort, asObserver, close, Cohort, identity } from "@undercut/utils";
 
 /**
  * Multisets are not supported.
  */
-export const union = unionBy.bind(undefined, identity);
+export const union: <T>(...sources: Iterable<T>[]) => PushOperation<T> = unionBy.bind(undefined, identity);
 
 /**
  * Multisets are not supported.
  */
-export function unionBy(selector, ...sources) {
+export function unionBy<T, K>(selector: Selector<T, K>, ...sources: Iterable<T>[]): PushOperation<T> {
 	assertFunctor(selector, `selector`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T>) {
 		const cohort = Cohort.of(observer);
-		const keys = new Set();
+		const keys = new Set<K>();
 
 		try {
 			while (true) {
@@ -37,7 +38,7 @@ export function unionBy(selector, ...sources) {
 	});
 }
 
-function addPassItem(keys, observer, selector, item) {
+function addPassItem<T, K>(keys: Set<K>, observer: Observer<T>, selector: Selector<T, K>, item: T): void {
 	const key = selector(item);
 
 	if (!keys.has(key)) {

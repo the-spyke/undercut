@@ -1,9 +1,9 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
-import { identity } from "@undercut/utils/src/function.js";
-import { isPositiveOrZero } from "@undercut/utils/src/language.js";
+import type { Observer, PushOperation } from "@undercut/types";
 
-export function buffer(size) {
+import { assert } from "@undercut/utils/assert";
+import { abort, asObserver, close, Cohort, identity, isPositiveOrZero } from "@undercut/utils";
+
+export function buffer<T>(size: number): PushOperation<T> {
 	assert(isPositiveOrZero(size), `"size" is required, must be a number >= 0.`);
 
 	size = Math.trunc(size);
@@ -12,9 +12,9 @@ export function buffer(size) {
 		return identity;
 	}
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T>) {
 		const cohort = Cohort.of(observer);
-		const buffer = new Array(size);
+		const buffer = new Array<T>(size);
 
 		let count = 0;
 
@@ -47,10 +47,10 @@ export function buffer(size) {
 	});
 }
 
-export function bufferAll() {
-	return asObserver(function* (observer) {
+export function bufferAll<T>(): PushOperation<T> {
+	return asObserver(function* (observer: Observer<T>) {
 		const cohort = Cohort.of(observer);
-		const buffer = [];
+		const buffer: T[] = [];
 
 		try {
 			while (true) {

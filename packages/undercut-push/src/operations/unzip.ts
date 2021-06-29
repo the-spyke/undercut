@@ -1,24 +1,24 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
-import { identity } from "@undercut/utils/src/function.js";
-import { isFunction } from "@undercut/utils/src/language.js";
+import type { Mapper, Observer, PushOperation } from "@undercut/types";
 
-export function unzip() {
+import { assert } from "@undercut/utils/assert";
+import { abort, asObserver, close, Cohort, identity, isFunction } from "@undercut/utils";
+
+export function unzip<T>(): PushOperation<T[]> {
 	return unzipWith(identity);
 }
 
-export function unzipWith(itemsExtractor) {
+export function unzipWith<T, R>(itemsExtractor: Mapper<T, R[]>): PushOperation<T, R[]> {
 	assert(isFunction(itemsExtractor), `"itemsExtractor" is required, must be a function.`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<R[]>) {
 		const cohort = Cohort.of(observer);
-		const results = [];
+		const results: R[][] = [];
 
 		try {
 			let index = 0;
 
 			while (true) {
-				const item = yield;
+				const item: T = yield;
 				const values = itemsExtractor(item, index);
 
 				if (results.length === 0) {

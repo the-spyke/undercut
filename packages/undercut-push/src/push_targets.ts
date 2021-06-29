@@ -1,18 +1,16 @@
-import { assert, assertFunctor } from "@undercut/utils/src/assert.js";
-import { asObserver } from "@undercut/utils/src/coroutine.js";
-import { rethrow } from "@undercut/utils/src/function.js";
-import { isUndefined, isFunction } from "@undercut/utils/src/language.js";
+import { Action, Observer } from "@undercut/types";
 
-export function toArray() {
+import { assert, assertFunctor } from "@undercut/utils/assert";
+import { asObserver, isFunction, isUndefined, noop, rethrow } from "@undercut/utils";
+
+export function toArray<T = unknown>() {
 	return {
-		next(value) {
+		next(value: T) {
 			this.values.push(value);
 		},
-		return() {
-			// Empty.
-		},
+		return: noop,
 		throw: rethrow,
-		values: [],
+		values: [] as T[],
 	};
 }
 
@@ -35,51 +33,32 @@ const consumerTarget = asObserver(function* (consumer, finalizer) {
 	}
 });
 
-/**
- * @param {Function} consumer
- * @param {Function} [finalizer]
- * @returns {Observer}
- */
-export function toConsumer(consumer, finalizer) {
+export function toConsumer<T = unknown>(consumer: Action<T>, finalizer?: (error: Error, index: number) => void): Observer<T> {
 	assertFunctor(consumer, `consumer`);
 	assert(isUndefined(finalizer) || isFunction(finalizer), `"finalizer" is optional, could be a function.`);
 
 	return consumerTarget(consumer, finalizer);
 }
 
-/**
- * @returns {Observer}
- */
-export function toNull() {
+export function toNull(): Observer<any> {
 	return {
-		next() {
-			// Empty.
-		},
-		return() {
-			// Empty.
-		},
-		throw(e) {
-			throw e;
-		}
+		next: noop,
+		return: noop,
+		throw: rethrow,
 	};
 }
 
-/**
- * @returns {Observer}
- */
-export function toValue() {
+export function toValue<T = unknown>() {
 	return {
-		next(value) {
+		next(value: T) {
 			if (!this.hasValue) {
 				this.value = value;
 				this.hasValue = true;
 			}
 		},
-		return() {
-			// Empty.
-		},
+		return: noop,
 		throw: rethrow,
-		value: undefined,
+		value: undefined as T | undefined,
 		hasValue: false,
 	};
 }

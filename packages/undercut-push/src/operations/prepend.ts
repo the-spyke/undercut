@@ -1,5 +1,7 @@
-import { concatStart } from "./concat.js";
+import type { PushOperation } from "@undercut/types";
 
-export function prepend(...items) {
+import { concatStart } from "./concat";
+
+export function prepend<T>(...items: T[]): PushOperation<T> {
 	return concatStart(items);
 }

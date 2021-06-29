@@ -1,19 +1,20 @@
-import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close } from "@undercut/utils/src/coroutine.js";
-import { identity } from "@undercut/utils/src/function.js";
+import type { Observer, PushOperation, Selector } from "@undercut/types";
+
+import { assertFunctor } from "@undercut/utils/assert";
+import { abort, asObserver, close, identity } from "@undercut/utils";
 
 /**
  * Multisets are not supported.
  */
-export const intersection = intersectionBy.bind(undefined, identity);
+export const intersection: <T>(...sources: Iterable<T>[]) => PushOperation<T> = intersectionBy.bind(undefined, identity);
 
 /**
  * Multisets are not supported.
  */
-export function intersectionBy(selector, ...sources) {
+export function intersectionBy<T, K>(selector: Selector<T, K>, ...sources: Iterable<T>[]): PushOperation<T> {
 	assertFunctor(selector, `selector`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T>) {
 		try {
 			if (!sources.length) {
 				return;
@@ -21,10 +22,10 @@ export function intersectionBy(selector, ...sources) {
 
 			const expectedCount = sources.length;
 
-			let keyCounts = null;
+			let keyCounts: Map<K, number> | null = null;
 
 			while (true) {
-				const item = yield;
+				const item: T = yield;
 				const key = selector(item);
 
 				if (!keyCounts) {
@@ -47,8 +48,8 @@ export function intersectionBy(selector, ...sources) {
 	});
 }
 
-function countKeys(sources, selector) {
-	const keyCounts = new Map();
+function countKeys<T, K>(sources: Iterable<T>[], selector: Selector<T, K>): Map<K, number> {
+	const keyCounts = new Map<K, number>();
 
 	for (const item of sources[0]) {
 		const key = selector(item);

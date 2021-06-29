@@ -1,5 +1,7 @@
-import { concatEnd } from "./concat.js";
+import type { PushOperation } from "@undercut/types";
 
-export function append(...items) {
+import { concatEnd } from "./concat";
+
+export function append<T>(...items: T[]): PushOperation<T> {
 	return concatEnd(items);
 }

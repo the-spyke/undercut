@@ -1,16 +1,17 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close } from "@undercut/utils/src/coroutine.js";
-import { isFunction } from "@undercut/utils/src/language.js";
+import type { Action, Observer, PushOperation } from "@undercut/types";
 
-export function forEach(action) {
+import { assert } from "@undercut/utils/assert";
+import { abort, asObserver, close, isFunction } from "@undercut/utils";
+
+export function forEach<T>(action: Action<T>): PushOperation<T> {
 	assert(isFunction(action), `"action" is required, must be a function.`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T>) {
 		try {
 			let index = 0;
 
 			while (true) {
-				const item = yield;
+				const item: T = yield;
 
 				action(item, index);
 				observer.next(item);

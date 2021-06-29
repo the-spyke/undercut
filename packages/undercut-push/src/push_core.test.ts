@@ -2,12 +2,12 @@ import { expect, test } from "@jest/globals";
 
 import { simulatePush } from "@undercut/testing";
 
-import { first } from "./operations/first.js";
-import { flattenArrays } from "./operations/flatten.js";
-import { map } from "./operations/map.js";
-import { zip } from "./operations/zip.js";
+import { first } from "./operations/first";
+import { flattenArrays } from "./operations/flatten";
+import { map } from "./operations/map";
+import { zip } from "./operations/zip";
 
-import { toArray } from "./push_targets.js";
+import { toArray } from "./push_targets";
 
 import {
 	composeOperations,
@@ -15,10 +15,10 @@ import {
 	pushArray,
 	pushLine,
 	pushValue,
-} from "./push_core.js";
+} from "./push_core";
 
 test(`composeOperations`, () => {
-	function interleave(...sources) {
+	function interleave(...sources: any[]) {
 		return composeOperations([
 			zip(...sources),
 			flattenArrays()
@@ -27,7 +27,7 @@ test(`composeOperations`, () => {
 
 	expect(simulatePush(interleave([2, 4]), [1, 3])).toEqual([1, 2, 3, 4]);
 
-	function interleaveDynamic(...sources) {
+	function interleaveDynamic(...sources: any[]) {
 		return composeOperations(() => [
 			zip(...sources),
 			flattenArrays()
@@ -38,30 +38,35 @@ test(`composeOperations`, () => {
 });
 
 test(`pushLine`, () => {
-	function simulatePushLine(pushLineFactory, source) {
+	function simulatePushLine(pipeline: any[], source: any[]) {
 		const target = toArray();
-		const observer = pushLineFactory(target);
+		const observer = pushLine(pipeline, target);
 
 		try {
 			source.forEach(item => observer.next(item));
 		} finally {
-			observer.return();
+			(observer as any).return();
 		}
 
 		return target.values;
 	}
 
+	// @ts-expect-error
 	expect(() => pushLine()).toThrow();
+	// @ts-expect-error
 	expect(() => pushLine([])).toThrow();
+	// @ts-expect-error
 	expect(() => pushLine(1, [])).toThrow();
+	// @ts-expect-error
 	expect(() => pushLine([], 1)).toThrow();
+	// @ts-expect-error
 	expect(() => pushLine(1, 2)).toThrow();
 
-	expect(simulatePushLine(t => pushLine([], t), [])).toEqual([]);
-	expect(simulatePushLine(t => pushLine([], t), [2, 3])).toEqual([2, 3]);
+	expect(simulatePushLine([], [])).toEqual([]);
+	expect(simulatePushLine([], [2, 3])).toEqual([2, 3]);
 
 	let target = toArray();
-	let pushLine1 = pushLine([
+	let pushLine1: any = pushLine([
 		map(x => x * 2)
 	], target);
 
@@ -85,11 +90,17 @@ test(`pushLine`, () => {
 });
 
 test(`push`, () => {
+	// @ts-expect-error
 	expect(() => push()).toThrow();
+	// @ts-expect-error
 	expect(() => push(toArray())).toThrow();
+	// @ts-expect-error
 	expect(() => push(toArray(), [])).toThrow();
+	// @ts-expect-error
 	expect(() => push(1, [], [])).toThrow();
+	// @ts-expect-error
 	expect(() => push(toArray(), 2, [])).toThrow();
+	// @ts-expect-error
 	expect(() => push(toArray(), [], 3)).toThrow();
 
 	let target;
@@ -111,9 +122,13 @@ test(`push`, () => {
 });
 
 test(`pushArray`, () => {
+	// @ts-expect-error
 	expect(() => pushArray()).toThrow();
+	// @ts-expect-error
 	expect(() => pushArray([])).toThrow();
+	// @ts-expect-error
 	expect(() => pushArray(2, [])).toThrow();
+	// @ts-expect-error
 	expect(() => pushArray([], 3)).toThrow();
 
 	expect(pushArray([], [])).toEqual([]);
