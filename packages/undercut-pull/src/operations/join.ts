@@ -1,6 +1,6 @@
 import type { PullOperation } from "@undercut/types";
 
-export function join<T>(separator: string = `,`): PullOperation<T, string> {
+export function join<T>(separator = `,`): PullOperation<T, string> {
 	separator = String(separator);
 
 	return function* (iterable) {
