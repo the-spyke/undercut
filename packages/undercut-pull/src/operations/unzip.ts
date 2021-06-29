@@ -3,7 +3,7 @@ import type { Mapper, PullOperation } from "@undercut/types";
 import { assert } from "@undercut/utils/assert";
 import { identity, isFunction } from "@undercut/utils";
 
-export function unzip<T>(): PullOperation<Array<T>, Array<T>> {
+export function unzip<T>(): PullOperation<Array<T>> {
 	return unzipWith(identity);
 }
 

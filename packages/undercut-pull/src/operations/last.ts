@@ -1,6 +1,6 @@
 import type { PullOperation } from "@undercut/types";
 
-export function last<T>(): PullOperation<T>  {
+export function last<T>(): PullOperation<T> {
 	return function* (iterable) {
 		let lastItem = undefined;
 		let hasItems = false;

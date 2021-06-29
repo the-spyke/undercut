@@ -1,4 +1,4 @@
-import type { PullOperation } from "@undercut/types";
+import type { AnyObject, PullOperation } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
 
@@ -28,7 +28,7 @@ export function collectMap<T extends [K, V], K = any, V = any>(): PullOperation<
 	return collect((map, [key, value]) => map.set(key, value), () => new Map<K, V>());
 }
 
-export function collectObject<T extends [PropertyKey, V], O extends { [k: string]: V } = {}, V = any>(): PullOperation<T, O> {
+export function collectObject<T extends [PropertyKey, V], V = unknown, O extends AnyObject<V> = AnyObject<V>>(): PullOperation<T, O> {
 	return collect((obj, [key, value]) => ((obj as any)[key] = value), () => ({} as O));
 }
 

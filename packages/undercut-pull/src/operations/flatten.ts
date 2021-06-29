@@ -1,11 +1,11 @@
-import type { RecPredicate, PullOperation, Predicate } from "@undercut/types";
+import type { PullOperation, RecNarrower } from "@undercut/types";
 
 import { assert, assertFunctor } from "@undercut/utils/assert";
 import { identity, isIterable, isPositiveOrZero } from "@undercut/utils";
 
 import { flatMap } from "./flat_map";
 
-export function flatten<T>(predicate: RecPredicate<T>, depth = 1): PullOperation<T> {
+export function flatten<T>(predicate: RecNarrower<T>, depth = 1): PullOperation<T> {
 	assert(isPositiveOrZero(depth), `"depth" is required, must be a number >= 0.`);
 
 	depth = Math.trunc(depth);
@@ -18,18 +18,18 @@ export function flatten<T>(predicate: RecPredicate<T>, depth = 1): PullOperation
 		return flatten1(predicate);
 	}
 
-	return flatMap<T>((item, index, itemDepth): item is Iterable<T> => itemDepth < depth && predicate(item, index, itemDepth));
+	return flatMap((item, index, itemDepth): item is Iterable<T> => itemDepth < depth && predicate(item, index, itemDepth));
 }
 
-export function flattenArrays(depth = 1) {
+export function flattenArrays<T>(depth = 1): PullOperation<T> {
 	return flatten(Array.isArray, depth);
 }
 
-export function flattenIterables(depth = 1) {
+export function flattenIterables<T>(depth = 1): PullOperation<T> {
 	return flatten(isIterable, depth);
 }
 
-function flatten1<T>(predicate: RecPredicate<T>): PullOperation<T> {
+function flatten1<T>(predicate: RecNarrower<T>): PullOperation<T> {
 	assertFunctor(predicate, `predicate`);
 
 	return function* (iterable) {
