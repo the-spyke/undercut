@@ -1,36 +1,35 @@
-import { assert, assertSources } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
-import { identity } from "@undercut/utils/src/function.js";
-import { getIterator } from "@undercut/utils/src/iterable.js";
-import { isFunction } from "@undercut/utils/src/language.js";
+import type { Mapper, Observer, PushOperation } from "@undercut/types";
 
-export function zip(...sources) {
+import { assert, assertSources } from "@undercut/utils/assert";
+import { abort, asObserver, close, Cohort, getIterator, identity, isFunction } from "@undercut/utils";
+
+export function zip<T>(...sources: Iterable<T>[]): PushOperation<T, Array<T | undefined>> {
 	return zipCore(identity, sources);
 }
 
-export function zipWith(itemFactory, ...sources) {
+export function zipWith<T, R>(itemFactory: Mapper<Array<T | undefined>, R>, ...sources: Iterable<T>[]): PushOperation<T, R> {
 	return zipCore(itemFactory, sources);
 }
 
-function zipCore(itemFactory, sources) {
+function zipCore<T, R>(itemFactory: Mapper<Array<T | undefined>, R>, sources: Iterable<T>[]): PushOperation<T, R> {
 	assert(isFunction(itemFactory), `"itemFactory" is required, must be a function.`);
 	assertSources(sources);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<R>) {
 		const cohort = Cohort.of(observer);
 
 		let index = 0;
-		let iterators = [];
+		let iterators: Array<Iterator<T> | null> = [];
 
 		try {
 			sources.forEach(source => cohort.next(getIterator(source)));
 
-			iterators = cohort.coroutines.slice();
+			iterators = cohort.coroutines.slice() as Iterator<T>[];
 			iterators[0] = null;
 
 			while (true) {
-				const item = yield;
-				const values = iterators.map((iterator, index) => {
+				const item: T = yield;
+				const values = iterators.map((iterator, index): T | undefined => {
 					if (!iterator) {
 						return undefined;
 					}
@@ -59,7 +58,7 @@ function zipCore(itemFactory, sources) {
 					while (true) { // eslint-disable-line no-constant-condition
 						let allDone = true;
 
-						const values = iterators.map((iterator, index) => {
+						const values = iterators.map((iterator, index): T | undefined => {
 							if (!iterator) {
 								return undefined;
 							}

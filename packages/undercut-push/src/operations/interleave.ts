@@ -1,12 +1,13 @@
-import { filterInPlace } from "@undercut/utils/src/array.js";
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
-import { getIterator } from "@undercut/utils/src/iterable.js";
+import type { Observer, PushOperation } from "@undercut/types";
 
-export function interleave(...sources) {
-	return asObserver(function* (observer) {
+import { filterInPlace } from "@undercut/utils/array";
+import { abort, asObserver, close, Cohort, getIterator } from "@undercut/utils";
+
+export function interleave<T>(...sources: Array<Iterable<T>>): PushOperation<T> {
+	return asObserver(function* (observer: Observer<T>) {
 		const cohort = Cohort.of(observer);
-		const iterators = [];
-		const readIterator = iterator => {
+		const iterators: Iterator<T>[] = [];
+		const readIterator = (iterator: Iterator<T>) => {
 			const { value, done } = iterator.next();
 
 			if (done) {

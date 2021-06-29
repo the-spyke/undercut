@@ -1,11 +1,12 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close } from "@undercut/utils/src/coroutine.js";
-import { isFunction } from "@undercut/utils/src/language.js";
+import type { Mapper, Observer, PushOperation } from "@undercut/types";
 
-export function map(mapper) {
+import { assert } from "@undercut/utils/assert";
+import { abort, asObserver, close, isFunction } from "@undercut/utils";
+
+export function map<T, R = T>(mapper: Mapper<T, R>): PushOperation<T, R> {
 	assert(isFunction(mapper), `"mapper" is required, must be a function.`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<R>) {
 		try {
 			let index = 0;
 

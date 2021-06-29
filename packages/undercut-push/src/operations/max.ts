@@ -1,14 +1,16 @@
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
+import type { Observer, PushOperation } from "@undercut/types";
 
-export function max() {
-	return asObserver(function* (observer) {
+import { abort, asObserver, close, Cohort } from "@undercut/utils";
+
+export function max(): PushOperation<number> {
+	return asObserver(function* (observer: Observer<number>) {
 		const cohort = Cohort.of(observer);
 
-		let max = null;
+		let max: number | null = null;
 
 		try {
 			while (true) {
-				const item = yield;
+				const item: number = yield;
 
 				if (max === null || item > max) {
 					max = item;

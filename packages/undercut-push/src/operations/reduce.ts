@@ -1,13 +1,15 @@
-import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
+import { Observer, PushOperation, Reducer } from "@undercut/types";
 
-export function reduce(reducer, initial) {
+import { assertFunctor } from "@undercut/utils/assert";
+import { abort, asObserver, close, Cohort } from "@undercut/utils";
+
+export function reduce<T, R>(reducer: Reducer<T, R>, initial: R): PushOperation<T, R> {
 	assertFunctor(reducer, `predicate`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<R>) {
 		const cohort = Cohort.of(observer);
 
-		let acc = initial;
+		let acc: R = initial;
 
 		try {
 			let index = 0;

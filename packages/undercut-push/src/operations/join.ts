@@ -1,16 +1,18 @@
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
+import type { Observer, PushOperation } from "@undercut/types";
 
-export function join(separator = `,`) {
+import { abort, asObserver, close, Cohort } from "@undercut/utils";
+
+export function join<T>(separator = `,`): PushOperation<T, string> {
 	separator = String(separator);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<string>) {
 		const cohort = Cohort.of(observer);
 
-		let result = null;
+		let result: string | null = null;
 
 		try {
 			while (true) {
-				const item = yield;
+				const item: T = yield;
 				const value = item != null ? String(item) : ``;
 
 				if (result !== null) {

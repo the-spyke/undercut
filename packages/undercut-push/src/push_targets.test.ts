@@ -1,13 +1,13 @@
 import { expect, jest, test } from "@jest/globals";
 
-import { noop } from "@undercut/utils/src/function.js";
+import { noop } from "@undercut/utils";
 
 import {
 	toArray,
 	toConsumer,
 	toNull,
 	toValue,
-} from "./push_targets.js";
+} from "./push_targets";
 
 test(`toArray`, () => {
 	expect(toArray()).toEqual(expect.objectContaining({
@@ -27,12 +27,15 @@ test(`toArray`, () => {
 });
 
 test(`toConsumer`, () => {
+	// @ts-expect-error
 	expect(() => toConsumer()).toThrow();
+	// @ts-expect-error
 	expect(() => toConsumer(123)).toThrow();
+	// @ts-expect-error
 	expect(() => toConsumer(noop, 123)).toThrow();
 
 	let consumer = jest.fn();
-	let target = toConsumer(consumer);
+	let target = toConsumer(consumer) as any;
 
 	expect(target).toEqual(expect.objectContaining({
 		next: expect.any(Function),

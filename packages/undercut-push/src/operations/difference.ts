@@ -1,28 +1,31 @@
-import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
-import { identity } from "@undercut/utils/src/function.js";
+import type { Observer, PushOperation, Selector } from "@undercut/types";
+
+import { assertFunctor } from "@undercut/utils/assert";
+import { abort, asObserver, close, Cohort, identity } from "@undercut/utils";
+
+type KeyInfo<T> = { count: number, item: T };
 
 /**
  * Multisets are not supported.
  */
-export const difference = differenceBy.bind(undefined, identity);
+export const difference: <T>(...sources: Iterable<T>[]) => PushOperation<T> = differenceBy.bind(undefined, identity);
 
 /**
  * Multisets are not supported.
  */
-export function differenceBy(selector, ...sources) {
+export function differenceBy<T, K>(selector: Selector<T, K>, ...sources: Iterable<T>[]): PushOperation<T> {
 	assertFunctor(selector, `selector`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T>) {
 		try {
 			let keys = null;
 
 			while (true) {
-				const item = yield;
-				const key = selector(item);
+				const item: T = yield;
+				const key: K = selector(item);
 
 				if (!keys) {
-					keys = new Set();
+					keys = new Set<K>();
 
 					for (const source of sources) {
 						scanToSet(keys, selector, source);
@@ -44,17 +47,17 @@ export function differenceBy(selector, ...sources) {
 /**
  * Multisets are not supported.
  */
-export const symmetricDifference = symmetricDifferenceBy.bind(undefined, identity);
+export const symmetricDifference: <T>(...sources: Iterable<T>[]) => PushOperation<T> = symmetricDifferenceBy.bind(undefined, identity);
 
 /**
  * Multisets are not supported.
  */
-export function symmetricDifferenceBy(selector, ...sources) {
+export function symmetricDifferenceBy<T, K>(selector: Selector<T, K>, ...sources: Iterable<T>[]): PushOperation<T> {
 	assertFunctor(selector, `selector`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T>) {
 		const cohort = Cohort.of(observer);
-		const keyInfos = new Map();
+		const keyInfos = new Map<K, KeyInfo<T>>();
 
 		try {
 			while (true) {
@@ -82,7 +85,7 @@ export function symmetricDifferenceBy(selector, ...sources) {
 	});
 }
 
-function scanToSet(keys, selector, source) {
+function scanToSet<T, K>(keys: Set<K>, selector: Selector<T, K>, source: Iterable<T>): void {
 	for (const item of source) {
 		const key = selector(item);
 
@@ -92,7 +95,7 @@ function scanToSet(keys, selector, source) {
 	}
 }
 
-function updateKeyInfos(keyInfos, selector, item) {
+function updateKeyInfos<T, K>(keyInfos: Map<K, KeyInfo<T>>, selector: Selector<T, K>, item: T): void {
 	const key = selector(item);
 	const info = keyInfos.get(key);
 

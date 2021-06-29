@@ -1,7 +1,9 @@
-import { isTruthy } from "@undercut/utils/src/language.js";
+import type { Falsy, PushOperation } from "@undercut/types";
 
-import { filter } from "./filter.js";
+import { isTruthy } from "@undercut/utils";
 
-export function compact() {
+import { filter } from "./filter";
+
+export function compact<T>(): PushOperation<T, Exclude<T, Falsy>> {
 	return filter(isTruthy);
 }

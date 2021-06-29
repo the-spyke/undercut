@@ -1,16 +1,18 @@
-import { assertSource } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
+import type { Observer, PushOperation } from "@undercut/types";
 
-export function concatStart(source) {
+import { assertSource } from "@undercut/utils/assert";
+import { abort, asObserver, close, Cohort } from "@undercut/utils";
+
+export function concatStart<T, S = T>(source: Iterable<S>): PushOperation<T, T | S> {
 	assertSource(source);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T | S>) {
 		const cohort = Cohort.of(observer);
 
 		let hasItems = false;
 
 		try {
-			const firstItem = yield;
+			const firstItem: T = yield;
 
 			hasItems = true;
 
@@ -37,10 +39,10 @@ export function concatStart(source) {
 	});
 }
 
-export function concatEnd(source) {
+export function concatEnd<T, S = T>(source: Iterable<S>): PushOperation<T, T | S> {
 	assertSource(source);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T | S>) {
 		const cohort = Cohort.of(observer);
 
 		try {

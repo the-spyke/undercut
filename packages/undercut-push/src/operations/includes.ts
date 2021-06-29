@@ -1,7 +1,9 @@
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
+import type { Observer, PushOperation } from "@undercut/types";
 
-export function includes(value) {
-	return asObserver(function* (observer) {
+import { abort, asObserver, close, Cohort } from "@undercut/utils";
+
+export function includes<T>(value: T): PushOperation<T, boolean> {
+	return asObserver(function* (observer: Observer<boolean>) {
 		const cohort = Cohort.of(observer);
 
 		let hasValue = false;

@@ -1,25 +1,26 @@
-import { assert, assertFunctor } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close } from "@undercut/utils/src/coroutine.js";
-import { isPositiveOrZero } from "@undercut/utils/src/language.js";
+import type { Observer, Predicate, PushOperation } from "@undercut/types";
 
-export function skip(count) {
+import { assert, assertFunctor } from "@undercut/utils/assert";
+import { abort, asObserver, close, isPositiveOrZero } from "@undercut/utils";
+
+export function skip<T>(count: number): PushOperation<T> {
 	assert(isPositiveOrZero(count), `"count" is required, must be a number >= 0.`);
 
 	count = Math.trunc(count);
 
-	return skipWhile((_, i) => i < count);
+	return skipWhile((_: unknown, i: number) => i < count);
 }
 
-export function skipWhile(predicate) {
+export function skipWhile<T>(predicate: Predicate<T>): PushOperation<T> {
 	assertFunctor(predicate, `predicate`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T>) {
 		try {
 			let skip = true;
 			let index = 0;
 
 			while (true) {
-				const item = yield;
+				const item: T = yield;
 
 				if (skip) {
 					skip = predicate(item, index);

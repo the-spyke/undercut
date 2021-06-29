@@ -1,10 +1,12 @@
-import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
+import type { Observer, Predicate, PushOperation } from "@undercut/types";
 
-export function every(predicate) {
+import { assertFunctor } from "@undercut/utils/assert";
+import { abort, asObserver, close, Cohort } from "@undercut/utils";
+
+export function every<T>(predicate: Predicate<T>): PushOperation<T, boolean> {
 	assertFunctor(predicate, `predicate`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<boolean>) {
 		const cohort = Cohort.of(observer);
 
 		let result = true;

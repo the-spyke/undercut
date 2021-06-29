@@ -1,15 +1,19 @@
-import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close } from "@undercut/utils/src/coroutine.js";
+import type { Observer, Predicate, PushOperation } from "@undercut/types";
 
-function findCore(predicate, isIndex) {
+import { assertFunctor } from "@undercut/utils/assert";
+import { abort, asObserver, close } from "@undercut/utils";
+
+function findCore<T>(predicate: Predicate<T>, isIndex: true): PushOperation<T, number>;
+function findCore<T>(predicate: Predicate<T>, isIndex: false): PushOperation<T, T>;
+function findCore<T>(predicate: Predicate<T>, isIndex: boolean): PushOperation<T, T | number> {
 	assertFunctor(predicate, `predicate`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T | number>) {
 		try {
 			let index = 0;
 
 			while (true) {
-				const item = yield;
+				const item: T = yield;
 
 				if (predicate(item, index)) {
 					observer.next(isIndex ? index : item);
@@ -27,10 +31,10 @@ function findCore(predicate, isIndex) {
 	});
 }
 
-export function find(predicate) {
+export function find<T>(predicate: Predicate<T>): PushOperation<T> {
 	return findCore(predicate, false);
 }
 
-export function findIndex(predicate) {
+export function findIndex<T>(predicate: Predicate<T>): PushOperation<T, number> {
 	return findCore(predicate, true);
 }

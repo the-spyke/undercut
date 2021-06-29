@@ -1,17 +1,17 @@
-import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { numbers, strings } from "@undercut/utils/src/compare.js";
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
-import { asc } from "@undercut/utils/src/ordering.js";
+import type { Comparator, Observer, PushOperation } from "@undercut/types";
 
-export function sort(comparator, order = asc) {
+import { assertFunctor } from "@undercut/utils/assert";
+import { abort, asObserver, asc, close, Cohort, compare } from "@undercut/utils";
+
+export function sort<T>(comparator: Comparator<T>, order: any = asc): PushOperation<T> {
 	assertFunctor(comparator, `comparator`);
 	assertFunctor(order, `order`);
 
-	const compare = order(comparator);
+	const orderedComparator: Comparator<T> = order(comparator);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T>) {
 		const cohort = Cohort.of(observer);
-		const items = [];
+		const items: T[] = [];
 
 		try {
 			while (true) {
@@ -22,7 +22,7 @@ export function sort(comparator, order = asc) {
 		} finally {
 			close(cohort, () => {
 				if (cohort.isFine) {
-					items.sort(compare);
+					items.sort(orderedComparator);
 
 					for (const item of items) {
 						observer.next(item);
@@ -34,9 +34,9 @@ export function sort(comparator, order = asc) {
 }
 
 export function sortNumbers(order = asc) {
-	return sort(numbers, order);
+	return sort(compare.numbers, order);
 }
 
 export function sortStrings(order = asc) {
-	return sort(strings, order);
+	return sort(compare.strings, order);
 }

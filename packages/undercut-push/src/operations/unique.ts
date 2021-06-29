@@ -1,19 +1,21 @@
-import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { identity } from "@undercut/utils/src/function.js";
+import type { PushOperation, Selector } from "@undercut/types";
 
-import { unionBy } from "./union.js";
+import { assertFunctor } from "@undercut/utils/assert";
+import { identity } from "@undercut/utils";
+
+import { unionBy } from "./union";
 
 /**
  * Multisets are not supported.
  */
-export function unique() {
+export function unique<T>(): PushOperation<T> {
 	return unionBy(identity);
 }
 
 /**
  * Multisets are not supported.
  */
-export function uniqueBy(selector) {
+export function uniqueBy<T, K>(selector: Selector<T, K>): PushOperation<T> {
 	assertFunctor(selector, `selector`);
 
 	return unionBy(selector);

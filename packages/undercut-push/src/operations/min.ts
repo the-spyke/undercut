@@ -1,14 +1,16 @@
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
+import type { Observer, PushOperation } from "@undercut/types";
 
-export function min() {
-	return asObserver(function* (observer) {
+import { abort, asObserver, close, Cohort } from "@undercut/utils";
+
+export function min(): PushOperation<number> {
+	return asObserver(function* (observer: Observer<number>) {
 		const cohort = Cohort.of(observer);
 
-		let min = null;
+		let min: number | null = null;
 
 		try {
 			while (true) {
-				const item = yield;
+				const item: number = yield;
 
 				if (min === null || item < min) {
 					min = item;

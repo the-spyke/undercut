@@ -1,10 +1,11 @@
-import { abort, asObserver, close } from "@undercut/utils/src/coroutine.js";
-import { getRecursiveMapper } from "@undercut/utils/src/iterable.js";
+import type { Observer, PushOperation, RecMapper, RecNarrower } from "@undercut/types";
 
-export function flatMap(predicate, mapper) {
+import { abort, asObserver, close, getRecursiveMapper } from "@undercut/utils";
+
+export function flatMap<T, R extends T = T>(predicate: RecNarrower<R>, mapper?: RecMapper<T, R>): PushOperation<T, R> {
 	const recursiveMapper = getRecursiveMapper(predicate, mapper);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<R>) {
 		try {
 			let index = 0;
 

@@ -2,7 +2,7 @@ import { expect, describe, test } from "@jest/globals";
 
 import * as tests from "@undercut/tests";
 
-import * as operations from "./push_operations.js";
+import * as operations from "./push_operations";
 
 describe(`Push Operations`, () => {
 	test(`all operations should be covered by tests`, () => {
@@ -13,5 +13,5 @@ describe(`Push Operations`, () => {
 	});
 
 	// eslint-disable-next-line import/namespace
-	describe.each(Object.entries(operations))(`%s`, (name, operation) => tests[name](`push`, operation));
+	describe.each(Object.entries(operations))(`%s`, (name, operation) => (tests as any)[name](`push`, operation));
 });

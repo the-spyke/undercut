@@ -1,16 +1,17 @@
-import { assert } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close } from "@undercut/utils/src/coroutine.js";
-import { isPositiveOrZero } from "@undercut/utils/src/language.js";
+import type { Observer, PushOperation } from "@undercut/types";
 
-export function nth(n) {
+import { assert } from "@undercut/utils/assert";
+import { abort, asObserver, close, isPositiveOrZero } from "@undercut/utils";
+
+export function nth<T>(n: number): PushOperation<T> {
 	assert(isPositiveOrZero(n), `"n" is required, must be a number >= 0.`);
 
 	n = Math.trunc(n);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T>) {
 		try {
 			let index = -1;
-			let item;
+			let item: T;
 
 			do {
 				item = yield;

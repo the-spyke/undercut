@@ -1,5 +1,7 @@
-import { reduce } from "./reduce.js";
+import type { PushOperation } from "@undercut/types";
 
-export function sum() {
+import { reduce } from "./reduce";
+
+export function sum(): PushOperation<number> {
 	return reduce((acc, x) => acc + x, 0);
 }

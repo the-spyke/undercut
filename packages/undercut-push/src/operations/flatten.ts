@@ -1,11 +1,11 @@
-import { assert, assertFunctor } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close } from "@undercut/utils/src/coroutine.js";
-import { identity } from "@undercut/utils/src/function.js";
-import { isIterable, isPositiveOrZero } from "@undercut/utils/src/language.js";
+import type { Observer, PushOperation, RecNarrower } from "@undercut/types";
 
-import { flatMap } from "./flat_map.js";
+import { assert, assertFunctor } from "@undercut/utils/assert";
+import { abort, asObserver, close, identity, isIterable, isPositiveOrZero } from "@undercut/utils";
 
-export function flatten(predicate, depth = 1) {
+import { flatMap } from "./flat_map";
+
+export function flatten<T>(predicate: RecNarrower<T>, depth = 1): PushOperation<T> {
 	assert(isPositiveOrZero(depth), `"depth" is required, must be a number >= 0.`);
 
 	depth = Math.trunc(depth);
@@ -18,26 +18,26 @@ export function flatten(predicate, depth = 1) {
 		return flatten1(predicate);
 	}
 
-	return flatMap((item, index, itemDepth) => itemDepth < depth && predicate(item, index, itemDepth));
+	return flatMap((item, index, itemDepth): item is Iterable<T> => itemDepth < depth && predicate(item, index, itemDepth));
 }
 
-export function flattenArrays(depth = 1) {
+export function flattenArrays<T>(depth = 1): PushOperation<T> {
 	return flatten(Array.isArray, depth);
 }
 
-export function flattenIterables(depth = 1) {
+export function flattenIterables<T>(depth = 1): PushOperation<T> {
 	return flatten(isIterable, depth);
 }
 
-function flatten1(predicate) {
+function flatten1<T>(predicate: RecNarrower<T>): PushOperation<T> {
 	assertFunctor(predicate, `predicate`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<T>) {
 		try {
 			let index = 0;
 
 			while (true) {
-				const item = yield;
+				const item: T = yield;
 
 				if (predicate(item, index, 0)) {
 					for (const childItem of item) {

@@ -1,11 +1,13 @@
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
+import type { Observer, PushOperation } from "@undercut/types";
 
-export function last() {
-	return asObserver(function* (observer) {
+import { abort, asObserver, close, Cohort } from "@undercut/utils";
+
+export function last<T>(): PushOperation<T> {
+	return asObserver(function* (observer: Observer<T>) {
 		const cohort = Cohort.of(observer);
 
 		let hasItems = false;
-		let item = undefined;
+		let item: T | undefined = undefined;
 
 		try {
 			while (true) {
@@ -17,7 +19,7 @@ export function last() {
 		} finally {
 			close(cohort, () => {
 				if (cohort.isFine && hasItems) {
-					observer.next(item);
+					observer.next(item as T);
 				}
 			});
 		}

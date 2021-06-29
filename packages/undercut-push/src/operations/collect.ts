@@ -1,11 +1,13 @@
-import { assertFunctor } from "@undercut/utils/src/assert.js";
-import { abort, asObserver, close, Cohort } from "@undercut/utils/src/coroutine.js";
+import type { AnyObject, Observer, PushOperation } from "@undercut/types";
 
-export function collect(collector, factory) {
+import { assertFunctor } from "@undercut/utils/assert";
+import { abort, asObserver, close, Cohort } from "@undercut/utils";
+
+export function collect<T, C>(collector: (collection: C, item: T, index: number) => void, factory: () => C): PushOperation<T, C> {
 	assertFunctor(collector, `collector`);
 	assertFunctor(factory, `factory`);
 
-	return asObserver(function* (observer) {
+	return asObserver(function* (observer: Observer<C>) {
 		const cohort = Cohort.of(observer);
 		const collection = factory();
 
@@ -28,18 +30,18 @@ export function collect(collector, factory) {
 	});
 }
 
-export function collectArray() {
-	return collect((arr, item) => arr.push(item), () => []);
+export function collectArray<T>(): PushOperation<T, T[]> {
+	return collect((arr, item) => arr.push(item), () => [] as T[]);
 }
 
-export function collectMap() {
-	return collect((map, [key, value]) => map.set(key, value), () => new Map());
+export function collectMap<T extends [K, V], K = unknown, V = unknown>(): PushOperation<T, Map<K, V>> {
+	return collect((map, [key, value]) => map.set(key, value), () => new Map<K, V>());
 }
 
-export function collectObject() {
-	return collect((obj, [key, value]) => (obj[key] = value), () => ({}));
+export function collectObject<T extends [PropertyKey, V], V = unknown, O extends AnyObject<V> = AnyObject<V>>(): PushOperation<T, O> {
+	return collect((obj, [key, value]) => ((obj as any)[key] = value), () => ({} as O));
 }
 
-export function collectSet() {
-	return collect((set, key) => set.add(key), () => new Set());
+export function collectSet<T>(): PushOperation<T, Set<T>> {
+	return collect((set, key) => set.add(key), () => new Set<T>());
 }
