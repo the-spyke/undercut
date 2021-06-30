@@ -8,6 +8,7 @@ export default {
 	coverageProvider: `v8`,
 	injectGlobals: false,
 	moduleFileExtensions: [`js`, `cjs`, `mjs`, `json`, `jsx`, `ts`, `tsx`, `node`],
+	modulePathIgnorePatterns: IGNORE_PATTERNS,
 	testMatch: [
 		`<rootDir>/src/**/*.test?(.*).(js|ts)`,
 	],
