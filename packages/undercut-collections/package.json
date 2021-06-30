@@ -1,13 +1,11 @@
 {
   "name": "@undercut/collections",
-  "version": "0.6.0",
-  "description": "Useful collections and data structures.",
+  "version": "0.6.1",
+  "description": "Collections and data structures.",
   "author": "Anton Alexandrenok",
   "license": "MIT",
-  "private": true,
   "type": "module",
   "main": "./src/index.ts",
-  "types": "./src/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "build": ". scripts/build.sh",
@@ -20,7 +18,7 @@
     "ts": "tsc --noEmit"
   },
   "dependencies": {
-    "@undercut/utils": "^0.6.0"
+    "@undercut/utils": "^0.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
