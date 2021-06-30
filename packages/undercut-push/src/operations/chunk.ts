@@ -1,14 +1,16 @@
-import type { Observer, PushOperation } from "@undercut/types";
+import type { PushOperation } from "@undercut/types";
 
 import { assert } from "@undercut/utils/assert";
-import { abort, asObserver, close, Cohort, isPositive } from "@undercut/utils";
+import { abort, close, Cohort, isPositive } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function chunk<T>(size: number): PushOperation<T, T[]> {
 	assert(isPositive(size) && size >= 1, `"size" is required, must be a number >= 1.`);
 
 	size = Math.trunc(size);
 
-	return asObserver(function* (observer: Observer<T[]>) {
+	return asPushOperation<T, T[]>(function* (observer) {
 		const cohort = Cohort.of(observer);
 
 		let chunk: T[] = [];

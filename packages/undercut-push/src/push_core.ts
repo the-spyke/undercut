@@ -1,11 +1,13 @@
 import { Observer, PushOperation } from "@undercut/types";
 
 import { assert, assertPipeline, assertSource } from "@undercut/utils/assert";
-import { abort, close, isObserver, isFunction } from "@undercut/utils";
+import { abort, asObserverFactory, close, isObserver, isFunction } from "@undercut/utils";
 
 import { toArray, toValue } from "./push_targets";
 
 const operationErrorMessage = `An operation must be a function taking and returning an Observer.`;
+
+export const asPushOperation: <T, R = T>(generator: (observer: Observer<R>) => Observer<T>) => PushOperation<T, R> = asObserverFactory;
 
 function connectPipeline<T, P = T>(pipeline: Iterable<PushOperation<any>>, target: Observer<T>): Observer<P> {
 	assertPipeline(pipeline);

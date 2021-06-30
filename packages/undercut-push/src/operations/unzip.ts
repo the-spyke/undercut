@@ -1,7 +1,9 @@
-import type { Mapper, Observer, PushOperation } from "@undercut/types";
+import type { Mapper, PushOperation } from "@undercut/types";
 
 import { assert } from "@undercut/utils/assert";
-import { abort, asObserver, close, Cohort, identity, isFunction } from "@undercut/utils";
+import { abort, close, Cohort, identity, isFunction } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function unzip<T>(): PushOperation<T[]> {
 	return unzipWith(identity);
@@ -10,7 +12,7 @@ export function unzip<T>(): PushOperation<T[]> {
 export function unzipWith<T, R>(itemsExtractor: Mapper<T, R[]>): PushOperation<T, R[]> {
 	assert(isFunction(itemsExtractor), `"itemsExtractor" is required, must be a function.`);
 
-	return asObserver(function* (observer: Observer<R[]>) {
+	return asPushOperation<T, R[]>(function* (observer) {
 		const cohort = Cohort.of(observer);
 		const results: R[][] = [];
 

@@ -1,9 +1,11 @@
-import type { Observer, PushOperation } from "@undercut/types";
+import type { PushOperation } from "@undercut/types";
 
-import { abort, asObserver, close, Cohort } from "@undercut/utils";
+import { abort, close, Cohort } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function last<T>(): PushOperation<T> {
-	return asObserver(function* (observer: Observer<T>) {
+	return asPushOperation<T>(function* (observer) {
 		const cohort = Cohort.of(observer);
 
 		let hasItems = false;

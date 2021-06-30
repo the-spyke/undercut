@@ -1,13 +1,15 @@
-import type { AnyObject, Observer, PushOperation } from "@undercut/types";
+import type { AnyObject, PushOperation } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
-import { abort, asObserver, close, Cohort } from "@undercut/utils";
+import { abort, close, Cohort } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function collect<T, C>(collector: (collection: C, item: T, index: number) => void, factory: () => C): PushOperation<T, C> {
 	assertFunctor(collector, `collector`);
 	assertFunctor(factory, `factory`);
 
-	return asObserver(function* (observer: Observer<C>) {
+	return asPushOperation<T, C>(function* (observer) {
 		const cohort = Cohort.of(observer);
 		const collection = factory();
 

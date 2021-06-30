@@ -1,12 +1,14 @@
-import type { Mapper, Observer, PushOperation } from "@undercut/types";
+import type { Mapper, PushOperation } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
-import { abort, asObserver, close, Cohort } from "@undercut/utils";
+import { abort, close, Cohort } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function groupBy<T, K>(keySelector: Mapper<T, K>): PushOperation<T, [K, T[]]> {
 	assertFunctor(keySelector, `keySelector`);
 
-	return asObserver(function* (observer: Observer<[K, T[]]>) {
+	return asPushOperation<T, [K, T[]]>(function* (observer) {
 		const cohort = Cohort.of(observer);
 		const groups = new Map<K, T[]>();
 

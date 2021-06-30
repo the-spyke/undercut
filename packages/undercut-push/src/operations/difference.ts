@@ -1,7 +1,9 @@
-import type { Observer, PushOperation, Selector } from "@undercut/types";
+import type { PushOperation, Selector } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
-import { abort, asObserver, close, Cohort, identity } from "@undercut/utils";
+import { abort, close, Cohort, identity } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 type KeyInfo<T> = { count: number, item: T };
 
@@ -16,7 +18,7 @@ export const difference: <T>(...sources: Iterable<T>[]) => PushOperation<T> = di
 export function differenceBy<T, K>(selector: Selector<T, K>, ...sources: Iterable<T>[]): PushOperation<T> {
 	assertFunctor(selector, `selector`);
 
-	return asObserver(function* (observer: Observer<T>) {
+	return asPushOperation<T>(function* (observer) {
 		try {
 			let keys = null;
 
@@ -55,7 +57,7 @@ export const symmetricDifference: <T>(...sources: Iterable<T>[]) => PushOperatio
 export function symmetricDifferenceBy<T, K>(selector: Selector<T, K>, ...sources: Iterable<T>[]): PushOperation<T> {
 	assertFunctor(selector, `selector`);
 
-	return asObserver(function* (observer: Observer<T>) {
+	return asPushOperation<T>(function* (observer) {
 		const cohort = Cohort.of(observer);
 		const keyInfos = new Map<K, KeyInfo<T>>();
 

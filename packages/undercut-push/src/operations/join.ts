@@ -1,11 +1,13 @@
-import type { Observer, PushOperation } from "@undercut/types";
+import type { PushOperation } from "@undercut/types";
 
-import { abort, asObserver, close, Cohort } from "@undercut/utils";
+import { abort, close, Cohort } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function join<T>(separator = `,`): PushOperation<T, string> {
 	separator = String(separator);
 
-	return asObserver(function* (observer: Observer<string>) {
+	return asPushOperation<T, string>(function* (observer) {
 		const cohort = Cohort.of(observer);
 
 		let result: string | null = null;

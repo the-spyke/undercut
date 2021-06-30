@@ -1,7 +1,7 @@
 import { Action, Observer } from "@undercut/types";
 
 import { assert, assertFunctor } from "@undercut/utils/assert";
-import { asObserver, isFunction, isUndefined, noop, rethrow } from "@undercut/utils";
+import { asObserverFactory, isFunction, isUndefined, noop, rethrow } from "@undercut/utils";
 
 export function toArray<T = unknown>() {
 	return {
@@ -14,7 +14,7 @@ export function toArray<T = unknown>() {
 	};
 }
 
-const consumerTarget = asObserver(function* (consumer, finalizer) {
+const consumerTarget = asObserverFactory(function* (consumer, finalizer) {
 	let error = undefined;
 	let index = 0;
 

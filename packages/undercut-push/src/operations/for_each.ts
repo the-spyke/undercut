@@ -1,12 +1,14 @@
-import type { Action, Observer, PushOperation } from "@undercut/types";
+import type { Action, PushOperation } from "@undercut/types";
 
 import { assert } from "@undercut/utils/assert";
-import { abort, asObserver, close, isFunction } from "@undercut/utils";
+import { abort, close, isFunction } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function forEach<T>(action: Action<T>): PushOperation<T> {
 	assert(isFunction(action), `"action" is required, must be a function.`);
 
-	return asObserver(function* (observer: Observer<T>) {
+	return asPushOperation<T>(function* (observer) {
 		try {
 			let index = 0;
 

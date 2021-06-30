@@ -1,7 +1,9 @@
 import type { Observer, PushOperation, Selector } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
-import { abort, asObserver, close, Cohort, identity } from "@undercut/utils";
+import { abort, close, Cohort, identity } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 /**
  * Multisets are not supported.
@@ -14,7 +16,7 @@ export const union: <T>(...sources: Iterable<T>[]) => PushOperation<T> = unionBy
 export function unionBy<T, K>(selector: Selector<T, K>, ...sources: Iterable<T>[]): PushOperation<T> {
 	assertFunctor(selector, `selector`);
 
-	return asObserver(function* (observer: Observer<T>) {
+	return asPushOperation<T>(function* (observer) {
 		const cohort = Cohort.of(observer);
 		const keys = new Set<K>();
 

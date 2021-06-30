@@ -1,7 +1,9 @@
-import type { Comparator, Observer, PushOperation } from "@undercut/types";
+import type { Comparator, PushOperation } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
-import { abort, asObserver, asc, close, Cohort, compare } from "@undercut/utils";
+import { abort, asc, close, Cohort, compare } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function sort<T>(comparator: Comparator<T>, order: any = asc): PushOperation<T> {
 	assertFunctor(comparator, `comparator`);
@@ -9,7 +11,7 @@ export function sort<T>(comparator: Comparator<T>, order: any = asc): PushOperat
 
 	const orderedComparator: Comparator<T> = order(comparator);
 
-	return asObserver(function* (observer: Observer<T>) {
+	return asPushOperation<T>(function* (observer) {
 		const cohort = Cohort.of(observer);
 		const items: T[] = [];
 

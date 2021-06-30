@@ -1,12 +1,14 @@
-import type { Observer, PushOperation } from "@undercut/types";
+import type { PushOperation } from "@undercut/types";
 
 import { assertSource } from "@undercut/utils/assert";
-import { abort, asObserver, close, Cohort } from "@undercut/utils";
+import { abort, close, Cohort } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function concatStart<T, S = T>(source: Iterable<S>): PushOperation<T, T | S> {
 	assertSource(source);
 
-	return asObserver(function* (observer: Observer<T | S>) {
+	return asPushOperation<T, T | S>(function* (observer) {
 		const cohort = Cohort.of(observer);
 
 		let hasItems = false;
@@ -42,7 +44,7 @@ export function concatStart<T, S = T>(source: Iterable<S>): PushOperation<T, T |
 export function concatEnd<T, S = T>(source: Iterable<S>): PushOperation<T, T | S> {
 	assertSource(source);
 
-	return asObserver(function* (observer: Observer<T | S>) {
+	return asPushOperation<T, T | S>(function* (observer) {
 		const cohort = Cohort.of(observer);
 
 		try {
