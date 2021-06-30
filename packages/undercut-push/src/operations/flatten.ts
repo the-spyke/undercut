@@ -1,7 +1,9 @@
-import type { Observer, PushOperation, RecNarrower } from "@undercut/types";
+import type { PushOperation, RecNarrower } from "@undercut/types";
 
 import { assert, assertFunctor } from "@undercut/utils/assert";
-import { abort, asObserver, close, identity, isIterable, isPositiveOrZero } from "@undercut/utils";
+import { abort, close, identity, isIterable, isPositiveOrZero } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 import { flatMap } from "./flat_map";
 
@@ -32,7 +34,7 @@ export function flattenIterables<T>(depth = 1): PushOperation<T> {
 function flatten1<T>(predicate: RecNarrower<T>): PushOperation<T> {
 	assertFunctor(predicate, `predicate`);
 
-	return asObserver(function* (observer: Observer<T>) {
+	return asPushOperation<T>(function* (observer) {
 		try {
 			let index = 0;
 

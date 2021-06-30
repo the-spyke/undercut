@@ -12,10 +12,10 @@ export function abort(coroutine: Coroutine, error: Error): never {
 	throw error;
 }
 
-type ObserverGenerator<T = any, A extends any[] = any[]> = (...args: A) => Observer<T>;
-type ExtractObserverType<T> = T extends ObserverGenerator<infer X, any[]> ? X : never;
+type ObserverGenerator<T = any> = (...args: any[]) => Observer<T>;
+type ExtractObserverType<T> = T extends ObserverGenerator<infer X> ? X : never;
 
-export function asObserver<Gen extends ObserverGenerator<T>, T = ExtractObserverType<Gen>>(generator: Gen) {
+export function asObserverFactory<Gen extends ObserverGenerator<T>, T = ExtractObserverType<Gen>>(generator: Gen) {
 	return function (...args: Parameters<Gen>): Observer<T> {
 		const observer = generator(...args);
 

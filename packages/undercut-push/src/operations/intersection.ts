@@ -1,7 +1,9 @@
-import type { Observer, PushOperation, Selector } from "@undercut/types";
+import type { PushOperation, Selector } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
-import { abort, asObserver, close, identity } from "@undercut/utils";
+import { abort, close, identity } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 /**
  * Multisets are not supported.
@@ -14,7 +16,7 @@ export const intersection: <T>(...sources: Iterable<T>[]) => PushOperation<T> = 
 export function intersectionBy<T, K>(selector: Selector<T, K>, ...sources: Iterable<T>[]): PushOperation<T> {
 	assertFunctor(selector, `selector`);
 
-	return asObserver(function* (observer: Observer<T>) {
+	return asPushOperation<T>(function* (observer) {
 		try {
 			if (!sources.length) {
 				return;

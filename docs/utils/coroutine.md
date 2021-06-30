@@ -10,7 +10,7 @@ Corutines are processes with an API of a Generator Object. So, an Observer is a 
 
 Helps to call coroutine's `throw` method.
 
-### asObserver
+### asObserverFactory
 
 `asObserver(generator) => Observer`
 

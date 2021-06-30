@@ -1,6 +1,8 @@
+import type { Observer } from "@undercut/types";
+
 import { expect, jest, test } from "@jest/globals";
 
-import { asObserver } from "@undercut/utils";
+import { asObserverFactory } from "@undercut/utils";
 
 import {
 	toArray,
@@ -78,7 +80,7 @@ test(`toObserver`, () => {
 	expect(() => toObserver(1 as any)).toThrow();
 
 	const values: number[] = [];
-	const getObserver = asObserver(function* () {
+	const getObserver = asObserverFactory(function* (): Observer<number> {
 		while (true) {
 			const x: number = yield;
 

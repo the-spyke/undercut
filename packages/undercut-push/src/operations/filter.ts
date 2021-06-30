@@ -1,14 +1,16 @@
-import type { Narrower, Observer, Predicate, PushOperation } from "@undercut/types";
+import type { Narrower, Predicate, PushOperation } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
-import { abort, asObserver, close } from "@undercut/utils";
+import { abort, close } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 function filter<T, R extends T>(predicate: Narrower<T, R>): PushOperation<T, R>;
 function filter<T>(predicate: Predicate<T>): PushOperation<T>;
 function filter<T, R extends T>(predicate: Narrower<T, R> | Predicate<T>): PushOperation<T, R> {
 	assertFunctor(predicate, `predicate`);
 
-	return asObserver(function* (observer: Observer<R>) {
+	return asPushOperation<T, R>(function* (observer) {
 		try {
 			let index = 0;
 

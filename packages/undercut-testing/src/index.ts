@@ -1,6 +1,6 @@
 import type { Observer, PullOperation, PushOperation } from "@undercut/types";
 
-import { abort, asObserver, close } from "@undercut/utils";
+import { abort, asObserverFactory, close } from "@undercut/utils";
 
 import { createBySpecFactory, testOperation } from "./test_operation";
 import { getArrayObserver } from "./utils";
@@ -85,10 +85,10 @@ export function asLimitedPullOp<T, R = T>(operation: PullOperation<T, R>, limit:
 }
 
 export function asLimitedPushOp<T, R = T>(operation: PushOperation<T, R>, limit: number): PushOperation<T, R> {
-	return function (observer) {
+	return function (targetObserver: Observer<R>): Observer<T> {
 		let isOpen = true;
 
-		const opBefore = asObserver(function* (observer: Observer<T>): Generator<any, void, T> {
+		const opBefore = asObserverFactory(function* (observer: Observer<T>): Observer<T> {
 			try {
 				if (!limit && isOpen) {
 					throw new Error(`Observer wasn't closed on initialization in case of 0 items`);
@@ -111,7 +111,7 @@ export function asLimitedPushOp<T, R = T>(operation: PushOperation<T, R>, limit:
 			}
 		});
 
-		const opAfter = asObserver(function* (observer: Observer<R>): Generator<any, void, R> {
+		const opAfter = asObserverFactory(function* (observer: Observer<R>): Observer<R> {
 			try {
 				while (true) {
 					observer.next(yield);
@@ -124,6 +124,6 @@ export function asLimitedPushOp<T, R = T>(operation: PushOperation<T, R>, limit:
 			}
 		});
 
-		return opBefore(operation(opAfter(observer)));
+		return opBefore(operation(opAfter(targetObserver)));
 	};
 }

@@ -1,7 +1,9 @@
-import type { Observer, Predicate, PushOperation } from "@undercut/types";
+import type { Predicate, PushOperation } from "@undercut/types";
 
 import { assert, assertFunctor } from "@undercut/utils/assert";
-import { abort, asObserver, close, isPositiveOrZero } from "@undercut/utils";
+import { abort, close, isPositiveOrZero } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function skip<T>(count: number): PushOperation<T> {
 	assert(isPositiveOrZero(count), `"count" is required, must be a number >= 0.`);
@@ -14,7 +16,7 @@ export function skip<T>(count: number): PushOperation<T> {
 export function skipWhile<T>(predicate: Predicate<T>): PushOperation<T> {
 	assertFunctor(predicate, `predicate`);
 
-	return asObserver(function* (observer: Observer<T>) {
+	return asPushOperation<T>(function* (observer) {
 		try {
 			let skip = true;
 			let index = 0;

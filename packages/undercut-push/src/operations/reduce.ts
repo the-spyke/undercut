@@ -1,12 +1,14 @@
-import { Observer, PushOperation, Reducer } from "@undercut/types";
+import { PushOperation, Reducer } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
-import { abort, asObserver, close, Cohort } from "@undercut/utils";
+import { abort, close, Cohort } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function reduce<T, R>(reducer: Reducer<T, R>, initial: R): PushOperation<T, R> {
 	assertFunctor(reducer, `predicate`);
 
-	return asObserver(function* (observer: Observer<R>) {
+	return asPushOperation<T, R>(function* (observer) {
 		const cohort = Cohort.of(observer);
 
 		let acc: R = initial;

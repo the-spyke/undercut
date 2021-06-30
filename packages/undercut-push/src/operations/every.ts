@@ -1,12 +1,14 @@
-import type { Observer, Predicate, PushOperation } from "@undercut/types";
+import type { Predicate, PushOperation } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
-import { abort, asObserver, close, Cohort } from "@undercut/utils";
+import { abort, close, Cohort } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function every<T>(predicate: Predicate<T>): PushOperation<T, boolean> {
 	assertFunctor(predicate, `predicate`);
 
-	return asObserver(function* (observer: Observer<boolean>) {
+	return asPushOperation<T, boolean>(function* (observer) {
 		const cohort = Cohort.of(observer);
 
 		let result = true;

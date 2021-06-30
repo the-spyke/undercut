@@ -5,7 +5,7 @@ import { resolve } from "path";
 import { createInterface } from "readline";
 import { createContext, runInContext } from "vm";
 
-import { asObserver, isObserver, isString } from "@undercut/node/utils";
+import { asObserverFactory, isObserver, isString } from "@undercut/node/utils";
 
 /**
  * @param {ReadableStream<string>} stream
@@ -25,7 +25,7 @@ export function pushFromStream(stream, observer) {
 	return () => rl.close();
 }
 
-export const toStream = asObserver(function* (/** @type {WritableStream<string>} */ stream, onEnd) {
+export const toStream = asObserverFactory(function* (/** @type {WritableStream<string>} */ stream, onEnd) {
 	let success = true;
 
 	try {

@@ -1,7 +1,9 @@
-import type { Mapper, Observer, PushOperation } from "@undercut/types";
+import type { Mapper, PushOperation } from "@undercut/types";
 
 import { assert, assertSources } from "@undercut/utils/assert";
-import { abort, asObserver, close, Cohort, getIterator, identity, isFunction } from "@undercut/utils";
+import { abort, close, Cohort, getIterator, identity, isFunction } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function zip<T>(...sources: Iterable<T>[]): PushOperation<T, Array<T | undefined>> {
 	return zipCore(identity, sources);
@@ -15,7 +17,7 @@ function zipCore<T, R>(itemFactory: Mapper<Array<T | undefined>, R>, sources: It
 	assert(isFunction(itemFactory), `"itemFactory" is required, must be a function.`);
 	assertSources(sources);
 
-	return asObserver(function* (observer: Observer<R>) {
+	return asPushOperation<T, R>(function* (observer) {
 		const cohort = Cohort.of(observer);
 
 		let index = 0;

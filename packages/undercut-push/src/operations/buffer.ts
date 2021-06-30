@@ -1,7 +1,9 @@
-import type { Observer, PushOperation } from "@undercut/types";
+import type { PushOperation } from "@undercut/types";
 
 import { assert } from "@undercut/utils/assert";
-import { abort, asObserver, close, Cohort, identity, isPositiveOrZero } from "@undercut/utils";
+import { abort, close, Cohort, identity, isPositiveOrZero } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function buffer<T>(size: number): PushOperation<T> {
 	assert(isPositiveOrZero(size), `"size" is required, must be a number >= 0.`);
@@ -12,7 +14,7 @@ export function buffer<T>(size: number): PushOperation<T> {
 		return identity;
 	}
 
-	return asObserver(function* (observer: Observer<T>) {
+	return asPushOperation<T>(function* (observer) {
 		const cohort = Cohort.of(observer);
 		const buffer = new Array<T>(size);
 
@@ -48,7 +50,7 @@ export function buffer<T>(size: number): PushOperation<T> {
 }
 
 export function bufferAll<T>(): PushOperation<T> {
-	return asObserver(function* (observer: Observer<T>) {
+	return asPushOperation<T>(function* (observer) {
 		const cohort = Cohort.of(observer);
 		const buffer: T[] = [];
 

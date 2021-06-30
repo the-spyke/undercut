@@ -1,14 +1,16 @@
-import type { Observer, Predicate, PushOperation } from "@undercut/types";
+import type { Predicate, PushOperation } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
-import { abort, asObserver, close } from "@undercut/utils";
+import { abort, close } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 function findCore<T>(predicate: Predicate<T>, isIndex: true): PushOperation<T, number>;
 function findCore<T>(predicate: Predicate<T>, isIndex: false): PushOperation<T, T>;
 function findCore<T>(predicate: Predicate<T>, isIndex: boolean): PushOperation<T, T | number> {
 	assertFunctor(predicate, `predicate`);
 
-	return asObserver(function* (observer: Observer<T | number>) {
+	return asPushOperation<T, T | number>(function* (observer) {
 		try {
 			let index = 0;
 

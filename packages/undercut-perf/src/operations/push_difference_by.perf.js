@@ -1,5 +1,5 @@
-import { composeOperations, pushArray, pushLine } from "@undercut/push";
-import { abort, asObserver, close, identity } from "@undercut/utils";
+import { asPushOperation, composeOperations, pushArray, pushLine } from "@undercut/push";
+import { abort, close, identity } from "@undercut/utils";
 
 import { runPerfSuite } from "../perf.js";
 
@@ -14,7 +14,7 @@ function scanToSet(keys, selector, source) {
 }
 
 function differenceByImperative(selector, ...sources) {
-	return asObserver(function* (observer) {
+	return asPushOperation(function* (observer) {
 		try {
 			let keys = null;
 
@@ -43,7 +43,7 @@ function differenceByImperative(selector, ...sources) {
 }
 
 function filter(predicate) {
-	return asObserver(function* (observer) {
+	return asPushOperation(function* (observer) {
 		try {
 			let index = 0;
 

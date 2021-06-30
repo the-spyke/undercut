@@ -1,9 +1,11 @@
-import type { Observer, PushOperation } from "@undercut/types";
+import type { PushOperation } from "@undercut/types";
 
-import { abort, asObserver, close } from "@undercut/utils";
+import { abort, close } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function first<T>(): PushOperation<T> {
-	return asObserver(function* (observer: Observer<T>) {
+	return asPushOperation<T>(function* (observer) {
 		try {
 			observer.next(yield);
 		} catch (error) {

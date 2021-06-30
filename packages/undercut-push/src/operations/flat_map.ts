@@ -1,11 +1,13 @@
-import type { Observer, PushOperation, RecMapper, RecNarrower } from "@undercut/types";
+import type { PushOperation, RecMapper, RecNarrower } from "@undercut/types";
 
-import { abort, asObserver, close, getRecursiveMapper } from "@undercut/utils";
+import { abort, close, getRecursiveMapper } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function flatMap<T, R extends T = T>(predicate: RecNarrower<R>, mapper?: RecMapper<T, R>): PushOperation<T, R> {
 	const recursiveMapper = getRecursiveMapper(predicate, mapper);
 
-	return asObserver(function* (observer: Observer<R>) {
+	return asPushOperation<T, R>(function* (observer) {
 		try {
 			let index = 0;
 

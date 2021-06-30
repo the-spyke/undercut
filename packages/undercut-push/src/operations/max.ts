@@ -1,9 +1,11 @@
-import type { Observer, PushOperation } from "@undercut/types";
+import type { PushOperation } from "@undercut/types";
 
-import { abort, asObserver, close, Cohort } from "@undercut/utils";
+import { abort, close, Cohort } from "@undercut/utils";
+
+import { asPushOperation } from "../push_core";
 
 export function max(): PushOperation<number> {
-	return asObserver(function* (observer: Observer<number>) {
+	return asPushOperation<number>(function* (observer) {
 		const cohort = Cohort.of(observer);
 
 		let max: number | null = null;
