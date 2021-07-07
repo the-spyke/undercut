@@ -1,7 +1,7 @@
 import type { Comparator, PushOperation } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
-import { abort, asc, close, Cohort, compare } from "@undercut/utils";
+import { abort, asc, close, Cohort, compare } from "@undercut/utils"; // eslint-disable-line import/named
 
 import { asPushOperation } from "../push_core";
 

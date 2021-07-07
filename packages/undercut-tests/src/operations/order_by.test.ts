@@ -2,7 +2,7 @@ import { expect, test } from "@jest/globals";
 
 import { createTestOperation } from "@undercut/testing";
 
-import { compare, asc, desc } from "@undercut/utils";
+import { compare, asc, desc } from "@undercut/utils"; // eslint-disable-line import/named
 
 export function orderBy(type, orderBy) {
 	const testOperation = createTestOperation(type);

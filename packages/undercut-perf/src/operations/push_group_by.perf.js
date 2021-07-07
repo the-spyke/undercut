@@ -5,7 +5,7 @@ import {
 	reduce
 } from "@undercut/push";
 import { isIterable } from "@undercut/utils";
-import { assertFunctor } from "@undercut/utils/assert";
+import { assertFunctor } from "@undercut/utils/assert"; // eslint-disable-line import/extensions, import/no-unresolved
 
 import { runPerfSuite } from "../perf.js";
 

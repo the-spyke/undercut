@@ -1,7 +1,7 @@
 import type { Comparator, PullOperation } from "@undercut/types";
 
 import { assertFunctor } from "@undercut/utils/assert";
-import { asc, compare } from "@undercut/utils";
+import { asc, compare } from "@undercut/utils"; // eslint-disable-line import/named
 
 export function sort<T>(comparator: Comparator<T>, order: any = asc): PullOperation<T> {
 	assertFunctor(comparator, `comparator`);

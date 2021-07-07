@@ -16,7 +16,7 @@ function* rangeGen(start: number, end: number, step: number): Iterator<number> {
 /**
  * Creates an iterable of numbers in range `[start, end)` with an optional step.
  */
-export function range(start: number, end: number, step: number = 1): Iterable<number> {
+export function range(start: number, end: number, step = 1): Iterable<number> {
 	assert(Number.isFinite(start), `"start" is required, must be a number.`);
 	assert(Number.isFinite(end), `"end" is required, must be a number.`);
 	assert(Number.isFinite(step) && step > 0, `"step" must be an absolute non-zero number.`);
