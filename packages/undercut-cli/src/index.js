@@ -5,7 +5,7 @@ import { resolve } from "path";
 import { createInterface } from "readline";
 import { createContext, runInContext } from "vm";
 
-import { asObserverFactory, isObserver, isString } from "@undercut/node/utils";
+import { asObserverFactory, isObserver, isString } from "@undercut/node/utils"; // eslint-disable-line import/extensions, import/no-unresolved
 
 /**
  * @param {ReadableStream<string>} stream

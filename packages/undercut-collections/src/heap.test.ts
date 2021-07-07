@@ -4,7 +4,7 @@ import {
 	getParentIndex,
 	getLeftChildIndex,
 	getRightChildIndex,
-	Heap,
+	Heap, // eslint-disable-line @typescript-eslint/no-unused-vars
 	MaxHeap,
 	MinHeap,
 } from "./heap";
