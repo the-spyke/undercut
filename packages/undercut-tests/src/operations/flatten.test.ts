@@ -3,8 +3,8 @@ import { expect, test } from "@jest/globals";
 import { createExpectBySpec } from "@undercut/testing";
 import { isMap, isString, noop } from "@undercut/utils";
 
-export function flatten(type, flatten) {
-	const expectBySpec = createExpectBySpec(type, flatten);
+export function flatten(type, flatten, executor) {
+	const expectBySpec = createExpectBySpec(executor, flatten);
 
 	test(`should throw on invalid or missing args`, () => {
 		expect(() => flatten()).toThrow();
@@ -108,8 +108,8 @@ export function flatten(type, flatten) {
 	});
 }
 
-export function flattenArrays(type, flattenArrays) {
-	const expectBySpec = createExpectBySpec(type, flattenArrays);
+export function flattenArrays(type, flattenArrays, executor) {
+	const expectBySpec = createExpectBySpec(executor, flattenArrays);
 
 	test(`should throw on invalid args`, () => {
 		expect(() => flattenArrays(-1)).toThrow();
@@ -157,8 +157,8 @@ export function flattenArrays(type, flattenArrays) {
 	});
 }
 
-export function flattenIterables(type, flattenIterables) {
-	const expectBySpec = createExpectBySpec(type, flattenIterables);
+export function flattenIterables(type, flattenIterables, executor) {
+	const expectBySpec = createExpectBySpec(executor, flattenIterables);
 
 	test(`should throw on invalid args`, () => {
 		expect(() => flattenIterables(-1)).toThrow();

@@ -3,6 +3,7 @@
 exports[`Push exports of the main "push" entry should be stable 1`] = `
 Array [
   "append",
+  "asPushOperation",
   "average",
   "buffer",
   "bufferAll",

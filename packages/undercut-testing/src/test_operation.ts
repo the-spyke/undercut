@@ -21,7 +21,7 @@ function getOperationSpy(
 	}
 
 	const args = factoryArgs.slice();
-	const spy = args[callbackPosition];
+	const spy = jest.fn(args[callbackPosition]);
 
 	args[callbackPosition] = spy;
 
@@ -43,8 +43,10 @@ export function testOperation(
 	}
 }
 
+type ExecuteAsArray<I, O> = (pipeline: [AnyOperation<I, O>], source: Iterable<I>) => O[];
+
 interface TesterTools<I, O> {
-	getArray: (pipeline: [AnyOperation<I, O>], source: Iterable<I>) => O[],
+	executeAsArray: ExecuteAsArray<I, O>,
 	asLimitedOp: <OP extends AnyOperation<I, O>>(operation: OP, limit: number) => OP,
 }
 
@@ -59,18 +61,18 @@ export interface CallbackTesterOptions<A extends unknown[], I, CA extends unknow
 }
 
 function callbackTester<A extends unknown[], I, CA extends unknown[]>(
-	{ getArray }: TesterTools<I, unknown>,
 	operationFactory: OperationFactory<A, I, unknown>,
+	{ executeAsArray }: TesterTools<I, unknown>,
 	{ args, source, callbackPosition = 0, callbackArgs }: CallbackTesterOptions<A, I, CA>
 ) {
 	const spy = jest.fn<AnyOperation<I, unknown>, CA>(args[callbackPosition] as any);
-	const factoryArgs = args.slice() as A;
+	const customArgs = args.slice() as A;
 
-	factoryArgs[callbackPosition] = spy;
+	customArgs[callbackPosition] = spy;
 
-	const operation = operationFactory(...args);
+	const operation = operationFactory(...customArgs);
 
-	getArray([operation], source);
+	executeAsArray([operation], source);
 
 	expect(spy.mock.calls).toEqual(callbackArgs);
 }
@@ -82,14 +84,14 @@ export interface LimitTesterOptions<A extends unknown[], I> extends BaseTesterOp
 }
 
 function limitTester<A extends unknown[], I>(
-	{ getArray, asLimitedOp }: TesterTools<I, unknown>,
 	operationFactory: OperationFactory<A, I, unknown>,
+	{ executeAsArray, asLimitedOp }: TesterTools<I, unknown>,
 	{ args, source, limit }: LimitTesterOptions<Parameters<typeof operationFactory>, I>
 ) {
 	const operation = operationFactory(...(args || []));
 	const limitedOperation = asLimitedOp(operation, limit);
 
-	expect(() => getArray([limitedOperation], source)).not.toThrow();
+	expect(() => executeAsArray([limitedOperation], source)).not.toThrow();
 }
 
 limitTester.specProps = [`limit`];
@@ -99,13 +101,13 @@ export interface TargetTesterOptions<A extends unknown[], I, O extends unknown[]
 }
 
 function targetTester<A extends unknown[], I, O>(
-	{ getArray }: TesterTools<I, O>,
 	operationFactory: OperationFactory<A, I, O>,
+	{ executeAsArray }: TesterTools<I, O>,
 	{ args, source, target }: TargetTesterOptions<Parameters<typeof operationFactory>, I, O[]>
 ) {
 	const operation = operationFactory(...(args || []));
 
-	expect(getArray([operation], source)).toEqual(target);
+	expect(executeAsArray([operation], source)).toEqual(target);
 }
 
 targetTester.specProps = [`target`];
@@ -140,12 +142,32 @@ function findTesterForSpec<A extends unknown[], I>(testSpec: BaseTesterOptions<A
 	return tester;
 }
 
+export interface SpecConfig<I, O> {
+	type: OperationType;
+	executeAsArray: ExecuteAsArray<I, O>;
+}
+
 export function createBySpecFactory(helpers: { pull: any, push: any; }) {
 	if (!helpers) throw new Error(`"helpers" is required`);
 
-	return function createBySpec<A extends unknown[], FI, FO>(type: OperationType, operationFactory: OperationFactory<A, FI, FO>) {
-		if (!(type in helpers)) throw new Error(`Unknown test type: ${type}`);
+	return function createBySpec<A extends unknown[], FI, FO>(
+		executeAsArray: ExecuteAsArray<FI, FO>,
+		operationFactory: OperationFactory<A, FI, FO>,
+	) {
+		// if (!(type in helpers)) throw new Error(`Unknown test type: ${type}`);
 		if (!operationFactory) throw new Error(`"operationFactory" is required`);
+
+		let type: OperationType;
+
+		if (executeAsArray.name.startsWith(`pull`)) {
+			type = `pull`;
+		} else if (executeAsArray.name.startsWith(`push`)) {
+			type = `push`;
+		} else {
+			throw new Error(`Can't get operation type from executor's name.`);
+		}
+
+		const tools = { executeAsArray, ...helpers[type] };
 
 		function expectBySpec<I extends FI, O extends FO>(testSpec: TargetTesterOptions<A, I, O[]>): void;
 		function expectBySpec<I extends FI, CA extends unknown[]>(testSpec: CallbackTesterOptions<A, I, CA>): void;
@@ -153,7 +175,7 @@ export function createBySpecFactory(helpers: { pull: any, push: any; }) {
 		function expectBySpec(testSpec: any) {
 			const tester: any = findTesterForSpec(testSpec);
 
-			tester(helpers[type], operationFactory, testSpec);
+			tester(operationFactory, tools, testSpec);
 		}
 
 		return expectBySpec;
