@@ -37,85 +37,85 @@ export function orderBy(type, orderBy) {
 		];
 
 		testOperation(orderBy, {
-			args: [asc(compare.strings, u => u.name)],
+			args: [asc(compare.strings, (u: any) => u.name)],
 			source: users,
 			target: [users[4], users[1], users[3], users[2], users[0]]
 		});
 		testOperation(orderBy, {
-			args: [desc(compare.strings, u => u.name)],
+			args: [desc(compare.strings, (u: any) => u.name)],
 			source: users,
 			target: [users[0], users[2], users[1], users[3], users[4]]
 		});
 		testOperation(orderBy, {
-			args: [asc(compare.numbers, u => u.posts)],
+			args: [asc(compare.numbers, (u: any) => u.posts)],
 			source: users,
 			target: [users[2], users[4], users[3], users[1], users[0]]
 		});
 		testOperation(orderBy, {
-			args: [desc(compare.numbers, u => u.posts)],
+			args: [desc(compare.numbers, (u: any) => u.posts)],
 			source: users,
 			target: [users[0], users[1], users[3], users[2], users[4]]
 		});
 		testOperation(orderBy, {
 			args: [
-				asc(compare.strings, u => u.name),
-				asc(compare.numbers, u => u.posts)
+				asc(compare.strings, (u: any) => u.name),
+				asc(compare.numbers, (u: any) => u.posts)
 			],
 			source: users,
 			target: [users[4], users[3], users[1], users[2], users[0]]
 		});
 		testOperation(orderBy, {
 			args: [
-				asc(compare.strings, u => u.name),
-				desc(compare.numbers, u => u.posts)
+				asc(compare.strings, (u: any) => u.name),
+				desc(compare.numbers, (u: any) => u.posts)
 			],
 			source: users,
 			target: [users[4], users[1], users[3], users[2], users[0]]
 		});
 		testOperation(orderBy, {
 			args: [
-				desc(compare.strings, u => u.name),
-				desc(compare.numbers, u => u.posts)
+				desc(compare.strings, (u: any) => u.name),
+				desc(compare.numbers, (u: any) => u.posts)
 			],
 			source: users,
 			target: [users[0], users[2], users[1], users[3], users[4]]
 		});
 		testOperation(orderBy, {
 			args: [
-				desc(compare.strings, u => u.name),
-				asc(compare.numbers, u => u.posts)
+				desc(compare.strings, (u: any) => u.name),
+				asc(compare.numbers, (u: any) => u.posts)
 			],
 			source: users,
 			target: [users[0], users[2], users[3], users[1], users[4]]
 		});
 		testOperation(orderBy, {
 			args: [
-				asc(compare.numbers, u => u.posts),
-				asc(compare.strings, u => u.name)
+				asc(compare.numbers, (u: any) => u.posts),
+				asc(compare.strings, (u: any) => u.name)
 			],
 			source: users,
 			target: [users[4], users[2], users[3], users[1], users[0]]
 		});
 		testOperation(orderBy, {
 			args: [
-				asc(compare.numbers, u => u.posts),
-				desc(compare.strings, u => u.name)
+				asc(compare.numbers, (u: any) => u.posts),
+				desc(compare.strings, (u: any) => u.name)
 			],
 			source: users,
 			target: [users[2], users[4], users[3], users[1], users[0]]
 		});
 		testOperation(orderBy, {
 			args: [
-				desc(compare.numbers, u => u.posts),
-				desc(compare.strings, u => u.name)
+				desc(compare.numbers, (u: any) => u.posts),
+				desc(compare.strings, (u: any) => u.name)
 			],
 			source: users,
 			target: [users[0], users[1], users[3], users[2], users[4]]
 		});
 		testOperation(orderBy, {
 			args: [
-				desc(compare.numbers, u => u.posts),
-				asc(compare.strings, u => u.name)
+				desc(compare.numbers, (u: any) => u.posts),
+				asc(compare.strings, (u: any) => u.name)
 			],
 			source: users,
 			target: [users[0], users[1], users[3], users[4], users[2]]

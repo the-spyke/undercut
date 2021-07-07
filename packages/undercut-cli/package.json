@@ -16,7 +16,7 @@
     "build": ". scripts/build.sh",
     "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
-    "lint": "eslint --format='unix' '**/*.?(c|m)js'",
+    "lint": "eslint --format='unix' '**/*.@(cjs|mjs|js|ts)'",
     "prepack": "test -d lib",
     "test": "jest"
   },

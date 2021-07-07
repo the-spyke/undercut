@@ -2,7 +2,7 @@ import type { PullOperation } from "@undercut/types";
 
 export function last<T>(): PullOperation<T> {
 	return function* (iterable) {
-		let lastItem = undefined;
+		let lastItem: T | undefined = undefined;
 		let hasItems = false;
 
 		for (const item of iterable) {

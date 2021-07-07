@@ -16,7 +16,7 @@
   "scripts": {
     "build": ". scripts/build.sh",
     "build:babel": "babel src --extensions '.js','.ts' --root-mode upward --ignore \"src/**/*.test.ts\",\"src/**/*.test.*.ts\"",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
     "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
     "lint": "eslint --format='unix' '**/*.@(cjs|mjs|js|ts)'",

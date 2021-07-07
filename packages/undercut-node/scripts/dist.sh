@@ -7,7 +7,7 @@ PATH="$CWD/node_modules/.bin:$PATH"
 BUILD="$CWD/build"
 DIST="$CWD/dist"
 
-test -f "$BUILD/lib/index.js"
+test -f "$BUILD/src/index.js"
 
 rm -rf $DIST
 mkdir $DIST

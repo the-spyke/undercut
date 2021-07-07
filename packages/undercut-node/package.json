@@ -22,10 +22,10 @@
   },
   "scripts": {
     "build": ". scripts/build.sh",
-    "build:babel": "babel src --ignore \"src/**/*.test.js\",\"src/**/*.test.*.js\"",
+    "build:babel": "babel src --extensions '.js','.ts' --ignore \"src/**/*.test.ts\",\"src/**/*.test.*.ts\"",
     "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
-    "lint": "eslint --format='unix' '**/*.?(c|m)js'",
+    "lint": "eslint --format='unix' '**/*.@(cjs|mjs|js|ts)'",
     "prepack": "test ! -d scripts",
     "test": "jest --config ./jest.config.full.js"
   },
@@ -56,8 +56,11 @@
     "directory": "build"
   },
   "files": [
-    "*.js",
-    "*.js.map",
+    "node/",
+    "pull/",
+    "push/",
+    "src/",
+    "utils/",
     "LICENSE",
     "README.md"
   ],
