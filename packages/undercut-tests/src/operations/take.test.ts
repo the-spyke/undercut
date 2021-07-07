@@ -2,8 +2,8 @@ import { expect, test } from "@jest/globals";
 
 import { createExpectBySpec } from "@undercut/testing";
 
-export function take(type, take) {
-	const expectBySpec = createExpectBySpec(type, take);
+export function take(type, take, executor) {
+	const expectBySpec = createExpectBySpec(executor, take);
 
 	test(`should throw on invalid or missing args`, () => {
 		expect(() => take()).toThrow();
@@ -91,8 +91,8 @@ export function take(type, take) {
 	});
 }
 
-export function takeWhile(type, takeWhile) {
-	const expectBySpec = createExpectBySpec(type, takeWhile);
+export function takeWhile(type, takeWhile, executor) {
+	const expectBySpec = createExpectBySpec(executor, takeWhile);
 
 	test(`should throw on invalid or missing args`, () => {
 		expect(() => takeWhile()).toThrow();

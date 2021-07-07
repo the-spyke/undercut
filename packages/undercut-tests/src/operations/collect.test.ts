@@ -2,8 +2,8 @@ import { expect, test } from "@jest/globals";
 
 import { createExpectBySpec } from "@undercut/testing";
 
-export function collect(type, collect) {
-	const expectBySpec = createExpectBySpec(type, collect);
+export function collect(type, collect, executor) {
+	const expectBySpec = createExpectBySpec(executor, collect);
 
 	test(`should throw on invalid or missing args`, () => {
 		expect(() => collect()).toThrow();
@@ -37,8 +37,8 @@ export function collect(type, collect) {
 	});
 }
 
-export function collectArray(type, collectArray) {
-	const expectBySpec = createExpectBySpec(type, collectArray);
+export function collectArray(type, collectArray, executor) {
+	const expectBySpec = createExpectBySpec(executor, collectArray);
 
 	test(`should work with an empty source`, () => {
 		expectBySpec({
@@ -65,8 +65,8 @@ export function collectArray(type, collectArray) {
 	});
 }
 
-export function collectMap(type, collectMap) {
-	const expectBySpec = createExpectBySpec(type, collectMap);
+export function collectMap(type, collectMap, executor) {
+	const expectBySpec = createExpectBySpec(executor, collectMap);
 
 	test(`should work with an empty source`, () => {
 		expectBySpec({
@@ -93,8 +93,8 @@ export function collectMap(type, collectMap) {
 	});
 }
 
-export function collectObject(type, collectObject) {
-	const expectBySpec = createExpectBySpec(type, collectObject);
+export function collectObject(type, collectObject, executor) {
+	const expectBySpec = createExpectBySpec(executor, collectObject);
 
 	test(`should work with an empty source`, () => {
 		expectBySpec({
@@ -121,8 +121,8 @@ export function collectObject(type, collectObject) {
 	});
 }
 
-export function collectSet(type, collectSet) {
-	const expectBySpec = createExpectBySpec(type, collectSet);
+export function collectSet(type, collectSet, executor) {
+	const expectBySpec = createExpectBySpec(executor, collectSet);
 
 	test(`should work with an empty source`, () => {
 		expectBySpec({

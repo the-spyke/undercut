@@ -36,15 +36,11 @@ export function createTestOperation(type: OperationType) {
 	throw new Error(`Unknown operation type: ${type}`);
 }
 
-export type { OperationType };
-
 export const createExpectBySpec = createBySpecFactory({
 	pull: {
-		simulate: simulatePull,
 		asLimitedOp: asLimitedPullOp,
 	},
 	push: {
-		simulate: simulatePush,
 		asLimitedOp: asLimitedPushOp,
 	}
 });

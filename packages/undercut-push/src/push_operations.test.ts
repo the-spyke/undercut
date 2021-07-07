@@ -2,6 +2,7 @@ import { expect, describe, test } from "@jest/globals";
 
 import * as tests from "@undercut/tests";
 
+import { pushArray } from "./push_core";
 import * as operations from "./push_operations";
 
 describe(`Push Operations`, () => {
@@ -12,6 +13,5 @@ describe(`Push Operations`, () => {
 		expect(testNames).toEqual(operationNames);
 	});
 
-	// eslint-disable-next-line import/namespace
-	describe.each(Object.entries(operations))(`%s`, (name, operation) => (tests as any)[name](`push`, operation));
+	describe.each(Object.entries(operations))(`%s`, (name, operation) => (tests as any)[name](`push`, operation, pushArray));
 });

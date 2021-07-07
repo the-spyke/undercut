@@ -4,7 +4,7 @@ exports[`Utils exports of the main "utils" entry should be stable 1`] = `
 Array [
   "Cohort",
   "abort",
-  "asObserver",
+  "asObserverFactory",
   "asUnclosable",
   "asc",
   "close",

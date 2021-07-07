@@ -3,8 +3,8 @@ import { expect, test } from "@jest/globals";
 import { createExpectBySpec } from "@undercut/testing";
 import { isIterable, isNumberValue, isString, noop } from "@undercut/utils";
 
-export function flatMap(type, flatMap) {
-	const expectBySpec = createExpectBySpec(type, flatMap);
+export function flatMap(type, flatMap, executor) {
+	const expectBySpec = createExpectBySpec(executor, flatMap);
 
 	test(`should throw on invalid or missing args`, () => {
 		expect(() => flatMap()).toThrow();
