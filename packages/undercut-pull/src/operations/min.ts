@@ -2,7 +2,7 @@ import type { PullOperation } from "@undercut/types";
 
 export function min(): PullOperation<number> {
 	return function* (iterable) {
-		let min = null;
+		let min: number | null = null;
 
 		for (const item of iterable) {
 			if (min === null || item < min) {

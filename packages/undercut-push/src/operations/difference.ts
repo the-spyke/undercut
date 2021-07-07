@@ -20,7 +20,7 @@ export function differenceBy<T, K>(selector: Selector<T, K>, ...sources: Iterabl
 
 	return asPushOperation<T>(function* (observer) {
 		try {
-			let keys = null;
+			let keys: Set<K> | null = null;
 
 			while (true) {
 				const item: T = yield;

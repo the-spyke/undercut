@@ -21,6 +21,7 @@ export function join(type, join) {
 		testOperation(join, {
 			args: [null],
 			source: [1, 3, 5],
+			// @ts-expect-error
 			target: [[1, 3, 5].join(null)]
 		});
 		testOperation(join, {
@@ -31,7 +32,7 @@ export function join(type, join) {
 		testOperation(join, {
 			args: [33],
 			source: [undefined, 1, ``],
-			target: [[undefined, 1, ``].join(33)]
+			target: [[undefined, 1, ``].join(`33`)]
 		});
 	});
 }
