@@ -2,6 +2,8 @@ export type Action<T> = (value: T, index: number) => void;
 
 export type AnyObject<V = unknown> = Record<PropertyKey, V>;
 
+export type AnyOperation<I, O = I> = PullOperation<I, O> | PushOperation<I, O>
+
 export type Comparator<T> = (a: T, b: T) => number;
 
 export type Coroutine<I = unknown, O = I> = FullCoroutine<I, O> | Observer<I> | SimpleIterator<O>;
