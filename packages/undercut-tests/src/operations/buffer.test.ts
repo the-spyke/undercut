@@ -1,13 +1,17 @@
+import type { AnyOperation } from "@undercut/types";
+
 import { expect, test } from "@jest/globals";
 
-import { createBySpec } from "@undercut/testing";
+import { createExpectBySpec, OperationType } from "@undercut/testing";
 
-export function buffer(type, buffer) {
-	const bySpec = createBySpec(type, buffer);
+export function buffer(type: OperationType, buffer: <I>(size: number) => AnyOperation<I>) {
+	const bySpec = createExpectBySpec(type, buffer);
 
 	test(`should throw on invalid or missing args`, () => {
+		// @ts-expect-error
 		expect(() => buffer()).toThrow();
 		expect(() => buffer(-1)).toThrow();
+		// @ts-expect-error
 		expect(() => buffer(`1`)).toThrow();
 	});
 
@@ -60,11 +64,12 @@ export function buffer(type, buffer) {
 	});
 }
 
-export function bufferAll(type, bufferAll) {
-	const bySpec = createBySpec(type, bufferAll);
+export function bufferAll(type: OperationType, bufferAll: <I>() => AnyOperation<I>) {
+	const bySpec = createExpectBySpec(type, bufferAll);
 
 	test(`should work with empty source`, () => {
 		bySpec({
+			args: [],
 			source: [],
 			target: [],
 		});
@@ -72,6 +77,7 @@ export function bufferAll(type, bufferAll) {
 
 	test(`should work with different data types`, () => {
 		bySpec({
+			args: [],
 			source: [1, false, null, `s`, {}],
 			target: [1, false, null, `s`, {}],
 		});

@@ -2,7 +2,7 @@ import type { Observer, PullOperation, PushOperation } from "@undercut/types";
 
 import { abort, asObserverFactory, close } from "@undercut/utils";
 
-import { createBySpecFactory, testOperation } from "./test_operation";
+import { createBySpecFactory, OperationType, testOperation } from "./test_operation";
 import { getArrayObserver } from "./utils";
 
 export function simulatePull<T, R = T>(operation: PullOperation<T, R>, source: Iterable<T>): Array<R> {
@@ -29,14 +29,16 @@ export function simulatePush<T, R = T>(operation: PushOperation<T, R>, source: I
 export const testOperationPull = testOperation.bind(undefined, simulatePull as any);
 export const testOperationPush = testOperation.bind(undefined, simulatePush as any);
 
-export function createTestOperation(type: `pull` | `push`) {
+export function createTestOperation(type: OperationType) {
 	if (type === `pull`) return testOperationPull;
 	if (type === `push`) return testOperationPush;
 
 	throw new Error(`Unknown operation type: ${type}`);
 }
 
-export const createBySpec = createBySpecFactory({
+export type { OperationType };
+
+export const createExpectBySpec = createBySpecFactory({
 	pull: {
 		simulate: simulatePull,
 		asLimitedOp: asLimitedPullOp,

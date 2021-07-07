@@ -1,10 +1,10 @@
 import { expect, test } from "@jest/globals";
 
-import { createBySpec } from "@undercut/testing";
+import { createExpectBySpec } from "@undercut/testing";
 import { isIterable, isNumberValue, isString, noop } from "@undercut/utils";
 
 export function flatMap(type, flatMap) {
-	const bySpec = createBySpec(type, flatMap);
+	const expectBySpec = createExpectBySpec(type, flatMap);
 
 	test(`should throw on invalid or missing args`, () => {
 		expect(() => flatMap()).toThrow();
@@ -13,7 +13,7 @@ export function flatMap(type, flatMap) {
 	});
 
 	test(`should work without mapper`, () => {
-		bySpec({
+		expectBySpec({
 			args: [Array.isArray],
 			source: [[7], 2, 4, [[5]], `test`],
 			target: [7, 2, 4, 5, `test`],
@@ -21,7 +21,7 @@ export function flatMap(type, flatMap) {
 	});
 
 	test(`should pass item, index, depth into the predicate`, () => {
-		bySpec({
+		expectBySpec({
 			args: [Array.isArray],
 			source: [[7], 2, 4, [false, [5]], `test`],
 			callbackArgs: [
@@ -39,7 +39,7 @@ export function flatMap(type, flatMap) {
 	});
 
 	test(`should pass item, index, depth into the mapper`, () => {
-		bySpec({
+		expectBySpec({
 			args: [Array.isArray, x => x],
 			source: [[7], 2, 4, [false, [5]], `test`],
 			callbackPosition: 1,
@@ -58,7 +58,7 @@ export function flatMap(type, flatMap) {
 	});
 
 	test(`should flatten only items for which predicate has returned true`, () => {
-		bySpec({
+		expectBySpec({
 			args: [item => isString(item) && item.length > 1],
 			source: [[7], 2, 4, [false, [5]], `test`],
 			target: [[7], 2, 4, [false, [5]], `t`, `e`, `s`, `t`],
@@ -66,7 +66,7 @@ export function flatMap(type, flatMap) {
 	});
 
 	test(`should map all the items independently of the predicate's return value`, () => {
-		bySpec({
+		expectBySpec({
 			args: [
 				(item, index, depth) => Array.isArray(item) && depth < 1,
 				item => isNumberValue(item) ? item + 0.5 : item
@@ -77,7 +77,7 @@ export function flatMap(type, flatMap) {
 	});
 
 	test(`should work with any iterable items`, () => {
-		bySpec({
+		expectBySpec({
 			args: [
 				isIterable,
 				item => Array.isArray(item) ? item.values() : item
