@@ -10,6 +10,6 @@ rm -rf $BUILD
 mkdir $BUILD
 
 cp -v LICENSE README.md $BUILD
-node scripts/fix_package_json.cjs package.json $BUILD/package.json
+node ./scripts/fix_package_json.js package.json $BUILD/package.json
 
-babel src/cli.js src/index.js src/polyfills.js --out-dir $BUILD/lib --source-maps
+babel ./src/cli.js ./src/index.js ./src/polyfills.js --out-dir $BUILD/lib --source-maps

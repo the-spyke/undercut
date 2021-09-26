@@ -1,11 +1,34 @@
 /* eslint-env node*/
 
+const lightCodeTheme = require(`prism-react-renderer/themes/github`);
+const darkCodeTheme = require(`prism-react-renderer/themes/dracula`);
+
+/** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
 	title: `Undercut`,
 	tagline: `JavaScript lazy data processing pipelines and utilities`,
 	url: `https://undercut.js.org`,
 	baseUrl: `/`,
 	favicon: `img/favicon.ico`,
+	onBrokenLinks: `throw`,
+	onBrokenMarkdownLinks: `warn`,
+	presets: [
+		[
+			`@docusaurus/preset-classic`,
+			/** @type {import('@docusaurus/preset-classic').Options} */
+			{
+				docs: {
+					editUrl: `https://github.com/the-spyke/undercut/edit/master/docs/`,
+					path: `../docs`,
+					sidebarPath: require.resolve(`./sidebars.js`),
+				},
+				theme: {
+					customCss: require.resolve(`./src/css/custom.css`),
+				},
+			},
+		],
+	],
+	/** @type {import('@docusaurus/preset-classic').ThemeConfig} */
 	themeConfig: {
 		navbar: {
 			title: `Undercut`,
@@ -48,20 +71,9 @@ module.exports = {
 		googleAnalytics: {
 			trackingID: `UA-156198423-1`,
 		},
+		prism: {
+			theme: lightCodeTheme,
+			darkTheme: darkCodeTheme,
+		},
 	},
-	presets: [
-		[
-			require.resolve(`@docusaurus/preset-classic`),
-			{
-				docs: {
-					editUrl: `https://github.com/the-spyke/undercut/edit/master/docs/`,
-					path: `../docs`,
-					sidebarPath: require.resolve(`./sidebars.js`),
-				},
-				theme: {
-					customCss: require.resolve(`./src/css/custom.css`),
-				},
-			},
-		],
-	],
 };

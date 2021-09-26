@@ -4,12 +4,9 @@ executors:
   node_12:
     docker:
       - image: node:12-buster
-  node_14:
+  node:
     docker:
-      - image: node:14-buster
-  node_15:
-    docker:
-      - image: node:15-buster
+      - image: node:16-buster
 
 orbs:
   codecov: codecov/codecov@1.1.2
@@ -180,7 +177,7 @@ jobs:
       - finalize
 
   build_collections:
-    executor: node_15
+    executor: node
     working_directory: /mnt/ramdisk
     steps:
       - initialize
@@ -189,7 +186,7 @@ jobs:
       - finalize
 
   build_node:
-    executor: node_12
+    executor: node
     working_directory: /mnt/ramdisk
     steps:
       - initialize
@@ -200,7 +197,7 @@ jobs:
       - finalize
 
   build_pull:
-    executor: node_15
+    executor: node
     working_directory: /mnt/ramdisk
     steps:
       - initialize
@@ -209,7 +206,7 @@ jobs:
       - finalize
 
   build_push:
-    executor: node_15
+    executor: node
     working_directory: /mnt/ramdisk
     steps:
       - initialize
@@ -217,8 +214,17 @@ jobs:
           path: packages/undercut-push
       - finalize
 
+  build_types:
+    executor: node
+    working_directory: /mnt/ramdisk
+    steps:
+      - initialize
+      - build:
+          path: packages/undercut-types
+      - finalize
+
   build_utils:
-    executor: node_15
+    executor: node
     working_directory: /mnt/ramdisk
     steps:
       - initialize
@@ -227,7 +233,7 @@ jobs:
       - finalize
 
   build_web_2019:
-    executor: node_15
+    executor: node
     working_directory: /mnt/ramdisk
     steps:
       - initialize
@@ -238,7 +244,7 @@ jobs:
       - finalize
 
   build_website:
-    executor: node_15
+    executor: node
     working_directory: /mnt/ramdisk
     steps:
       - initialize
@@ -247,7 +253,7 @@ jobs:
       - finalize
 
   setup:
-    executor: node_15
+    executor: node
     working_directory: /mnt/ramdisk
     steps:
       - initialize:
@@ -261,7 +267,7 @@ jobs:
           persist: false
 
   test_core:
-    executor: node_15
+    executor: node
     working_directory: /mnt/ramdisk
     steps:
       - initialize
@@ -271,7 +277,7 @@ jobs:
           persist: false
 
   release:
-    executor: node_15
+    executor: node
     working_directory: /mnt/ramdisk
     steps:
       - attach_workspace:
@@ -312,6 +318,11 @@ workflows:
             - test_core
           filters:
             <<: *filters-release
+      - build_types:
+          requires:
+            - test_core
+          filters:
+            <<: *filters-release
       - build_utils:
           requires:
             - test_core
@@ -345,8 +356,10 @@ workflows:
           requires:
             - build_cli
             - build_collections
+            - build_node
             - build_pull
             - build_push
+            - build_types
             - build_utils
             - build_web_2019
             - build_website

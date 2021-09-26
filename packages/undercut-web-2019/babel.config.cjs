@@ -16,6 +16,7 @@ module.exports = {
 				targets: `since 2019, edge >= 18, not android > 0`,
 				useBuiltIns: `entry`,
 			}
-		]
+		],
+		`@babel/preset-typescript`,
 	],
 };
