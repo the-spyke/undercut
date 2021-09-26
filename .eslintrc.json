@@ -18,11 +18,12 @@
 				"plugin:@typescript-eslint/recommended"
 			],
 			"files": [
-				"**/*.ts"
+				"*.ts",
+				"*.tsx"
 			],
 			"parser": "@typescript-eslint/parser",
 			"plugins": [
-				"@typescript-eslint"
+				"@typescript-eslint/eslint-plugin"
 			],
 			"rules": {
 				"@typescript-eslint/ban-ts-comment": "off", // We-re using ts-ignore and ts-expect-error.
@@ -37,7 +38,15 @@
 					}
 				],
 				"@typescript-eslint/explicit-module-boundary-types": "off", // Temporary.
-				"@typescript-eslint/no-explicit-any": "off" // We're using any.
+				"@typescript-eslint/no-explicit-any": "off", // We're using any.
+				"import/extensions": [
+					"error",
+					"always",
+					{
+						"ts": "never",
+						"tsx": "never"
+					}
+				]
 			},
 			"settings": {
 				"import/parsers": {
@@ -47,9 +56,15 @@
 					]
 				},
 				"import/resolver": {
-					"typescript": {
-						"alwaysTryTypes": true,
-						"project": "packages/*/tsconfig.json"
+					"node": {
+						"extensions": [
+							".cjs",
+							".js",
+							".jsx",
+							".mjs",
+							".ts",
+							".tsx"
+						]
 					}
 				}
 			}
@@ -99,25 +114,22 @@
 		"quotes": [
 			"error",
 			"backtick"
-		],
-		"import/extensions": [
-			"error",
-			"always",
-			{
-				"ts": "never"
-			}
 		]
 	},
 	"settings": {
 		"import/extensions": [
 			".cjs",
-			".js"
+			".js",
+			".jsx",
+			".mjs"
 		],
 		"import/resolver": {
 			"node": {
 				"extensions": [
 					".cjs",
-					".js"
+					".js",
+					".jsx",
+					".mjs"
 				]
 			}
 		}

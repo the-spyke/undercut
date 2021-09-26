@@ -13,5 +13,6 @@ describe(`Pull Operations`, () => {
 		expect(testNames).toEqual(operationNames);
 	});
 
+	// eslint-disable-next-line jest/valid-describe
 	describe.each(Object.entries(operations))(`%s`, (name, operation) => (tests as any)[name](`pull`, operation, pullArray));
 });
