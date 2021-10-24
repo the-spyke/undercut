@@ -176,13 +176,13 @@ jobs:
           path: packages/undercut-cli
       - finalize
 
-  build_collections:
+  build_struct:
     executor: node
     working_directory: /mnt/ramdisk
     steps:
       - initialize
       - build:
-          path: packages/undercut-collections
+          path: packages/undercut-struct
       - finalize
 
   build_node:
@@ -303,7 +303,7 @@ workflows:
             - setup
           filters:
             <<: *filters-release
-      - build_collections:
+      - build_struct:
           requires:
             - test_core
           filters:
@@ -355,7 +355,7 @@ workflows:
       - release:
           requires:
             - build_cli
-            - build_collections
+            - build_struct
             - build_node
             - build_pull
             - build_push

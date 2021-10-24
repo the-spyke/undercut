@@ -1,6 +1,6 @@
-# @undercut/collections
+# @undercut/struct
 
-[![downloads](https://img.shields.io/npm/dm/@undercut/collections)](https://www.npmjs.com/package/@undercut/collections)
+[![downloads](https://img.shields.io/npm/dm/@undercut/struct)](https://www.npmjs.com/package/@undercut/struct)
 [![circleci](https://circleci.com/gh/the-spyke/undercut.svg?style=shield)](https://circleci.com/gh/the-spyke/undercut)
 [![codecov](https://codecov.io/gh/the-spyke/undercut/branch/master/graph/badge.svg)](https://codecov.io/gh/the-spyke/undercut)
 [![rms](https://img.shields.io/badge/RMS-0.3.0-blue)](https://github.com/the-spyke/rms)
@@ -22,7 +22,7 @@ Please visit [undercut.js.org](https://undercut.js.org) for broader overview and
 ## Usage
 
 ```js
-import { MinHeap } from "@undercut/collections";
+import { MinHeap } from "@undercut/struct";
 
 const heap = MinHeap.of(9, 6, 1, 7, 2);
 
@@ -42,9 +42,9 @@ Most modern apps already have such infrastructure or use similar tools. So most 
 ## Installation
 
 ```sh
-npm install @undercut/collections
+npm install @undercut/struct
 # or
-yarn add @undercut/collections
+yarn add @undercut/struct
 ```
 
 ## Updating

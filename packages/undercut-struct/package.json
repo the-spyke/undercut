@@ -1,5 +1,5 @@
 {
-  "name": "@undercut/collections",
+  "name": "@undercut/struct",
   "version": "0.6.1",
   "description": "Collections and data structures.",
   "author": "Anton Alexandrenok",
@@ -39,7 +39,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/the-spyke/undercut",
-    "directory": "packages/undercut-collections"
+    "directory": "packages/undercut-struct"
   },
   "files": [
     "src/",
