@@ -12,10 +12,12 @@
     "lint": "./scripts/lint.sh",
     "postinstall": "patch-package",
     "release": "lerna version --no-git-tag-version --no-private --no-push --conventional-commits",
-    "test": "jest --testPathPattern='\\.test\\.(js|ts)$'",
+    "test": "yarn test:unit",
     "test:all": "jest",
     "test:int": "jest --testPathPattern='\\.test\\.int\\.(js|ts)$'",
-    "ts": "tsc --noEmit"
+    "test:unit": "jest --testPathPattern='\\.test\\.(js|ts)$'",
+    "ts": "tsc --noEmit",
+    "undercut": "node --loader babel-register-esm ./packages/undercut-cli/src/bin.js"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -30,6 +32,7 @@
     "@undercut/config": "^1.0.0",
     "babel-jest": "^26.6.3",
     "babel-plugin-add-import-extension": "=1.6.0",
+    "babel-register-esm": "^1.1.3",
     "core-js": "^3.8.1",
     "eslint": "^7.15.0",
     "eslint-import-resolver-typescript": "^2.4.0",

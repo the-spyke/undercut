@@ -7,19 +7,15 @@ import { createContext, runInContext } from "vm";
 
 import { asObserverFactory, isObserver, isString } from "@undercut/node/utils"; // eslint-disable-line import/extensions, import/no-unresolved
 
-/**
- * @param {ReadableStream<string>} stream
- * @param {Observer} observer
- */
-export function pushFromStream(stream, observer) {
+export function pushFromStream(stream: NodeJS.ReadableStream, observer: unknown) {
 	if (!stream) throw new Error(`"stream" is required.`);
-	if (!isObserver(observer)) throw new Error(`"observer" is required.`);
+	if (!isObserver<string>(observer)) throw new Error(`"observer" is required.`);
 
 	const rl = createInterface({ input: stream });
 
-	rl.on(`close`, () => observer.return());
-	rl.on(`end`, () => observer.return());
-	rl.on(`error`, error => observer.throw(error));
+	rl.on(`close`, () => observer.return?.());
+	rl.on(`end`, () => observer.return?.());
+	rl.on(`error`, error => observer.throw?.(error));
 	rl.on(`line`, line => observer.next(line));
 
 	return () => rl.close();
@@ -127,18 +123,13 @@ function parseSource(source) {
 	return undefined;
 }
 
-function parseOperations(operations = []) {
+function parseOperations(operations: string[] = []) {
 	if (!Array.isArray(operations) || !operations.every(isString)) throw new Error(`"operations" is required and must be an array of strings.`);
 
 	return operations.map(o => o.trim()).filter(Boolean);
 }
 
-/**
- * @param {string[]} operations
- * @param {object} options
- * @returns {void}
-*/
-export function run(operations, options = {}) {
+export function run(operations: string[], options: any = {}) {
 	runCore(
 		parseImports(options.imports),
 		parseSource(options.source),

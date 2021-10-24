@@ -24,12 +24,12 @@ test(`asUnclosable`, () => {
 
 	const unclosable = asUnclosable(observer);
 
-	unclosable.next(123);
+	unclosable.next?.(123);
 
 	expect(observer.next.mock.calls).toEqual([[123]]);
 	expect(observer.return.mock.calls).toEqual([]);
 
-	unclosable.return();
+	unclosable.return?.();
 
 	expect(observer.return.mock.calls).toEqual([]);
 
@@ -37,7 +37,7 @@ test(`asUnclosable`, () => {
 
 	expect(observer.next.mock.calls).toEqual([[123], [54]]);
 
-	expect(() => unclosable.throw(new Error())).toThrow();
+	expect(() => unclosable.throw?.(new Error())).toThrow();
 
 	unclosable.next(28);
 

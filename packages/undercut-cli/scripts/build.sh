@@ -12,4 +12,9 @@ mkdir $BUILD
 cp -v LICENSE README.md $BUILD
 node ./scripts/fix_package_json.js package.json $BUILD/package.json
 
-babel ./src/cli.js ./src/index.js ./src/polyfills.js --out-dir $BUILD/lib --source-maps
+babel ./src \
+	--extensions ".js,.cjs,.mjs,.ts" \
+	--ignore "**/*.test.js","**/*.test.int.js" \
+	--out-dir $BUILD/lib \
+	--root-mode upward \
+	--source-maps

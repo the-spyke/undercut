@@ -17,7 +17,7 @@
   "dependencies": {
     "core-js": "*",
     "jest-diff": "^26.6.2",
-    "yargs": "^16.2.0"
+    "yargs": "^17.2.1"
   },
   "devDependencies": {
     "eslint": "^7.14.0"

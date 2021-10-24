@@ -1,6 +1,6 @@
 import { expect, test } from "@jest/globals";
 
-import { parseImport } from "./index.js";
+import { parseImport } from "./index.ts";
 
 test(`parseImports`, () => {
 	expect(() => parseImport()).toThrow();

@@ -1,5 +1,4 @@
 import { afterEach, beforeEach, describe, expect, jest, test } from "@jest/globals";
-// @ts-expect-error
 import PromiseMock from "promise-mock";
 
 import {

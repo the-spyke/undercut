@@ -7,7 +7,7 @@ import { EOL } from "os";
 import yargsFactory from "yargs";
 import { hideBin } from "yargs/helpers"; // eslint-disable-line import/extensions
 
-import { run } from "./index.js";
+import { run } from "./index";
 
 const GROUP_OPTIONS = `Options:`;
 const GROUP_OTHER = `Other:`;
@@ -94,14 +94,14 @@ const argv = yargs
 if (!argv.import) argv.import = [];
 if (typeof argv.import === `string`) argv.import = [argv.import];
 
-if (argv.pull) argv.import.push(`pull::@undercut/node/pull`);
-if (argv.utils) argv.import.push(`utils::@undercut/node/utils`);
+if (argv.pull) (argv as any).import.push(`pull::@undercut/node/pull`);
+if (argv.utils) (argv as any).import.push(`utils::@undercut/node/utils`);
 
 if (argv.debug) {
 	console.log(argv); // eslint-disable-line no-console
 }
 
-run(argv._, {
+run(argv._.map(String), {
 	imports: argv.import,
 	source: argv.source,
 });

@@ -190,8 +190,8 @@ describe(`randomInteger`, () => {
 	});
 });
 
-function tryMany(action: (i: number) => any) {
-	const results = [];
+function tryMany<R>(action: (i: number) => R) {
+	const results: R[] = [];
 
 	for (let i = 0; i < 10; i++) {
 		results.push(action(i));
