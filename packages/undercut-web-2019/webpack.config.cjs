@@ -4,7 +4,7 @@
 
 const path = require(`path`);
 
-const { PROD } = require(`@undercut/config`);
+const { PROD } = require(`@undercut/config/index.cjs`);
 
 const BUILD_DIR = path.join(__dirname, `build`);
 
@@ -19,7 +19,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(c|m)?js$/,
+				test: /\.(cjs|js|jsx|mjs|ts|tsx)$/,
 				loader: `babel-loader`,
 			}
 		]
@@ -29,6 +29,9 @@ module.exports = {
 		library: [`undercut`, `[name]`],
 		libraryTarget: `umd`,
 		path: BUILD_DIR,
+	},
+	resolve: {
+		extensions: [`.cjs`, `.js`, `.jsx`, `.mjs`, `.ts`, `.tsx`],
 	},
 	target: `web`,
 };

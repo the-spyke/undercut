@@ -24,18 +24,16 @@ undercut [...options] [...operations]
 
 [List of available operations.](../operations/overview)
 
-You're building a `Push Line` where the source is `stdin` and the target is `stdout`. Operations should be single quoted (prevents parsing by the shell) and separated by spaces. You can use everything that is available in the global context of Node.js. There're predefined variables with imports from Undercut packages: `pull`, `push`, and `utils`.
+You're building a `Push Line` where the source is `stdin` and the target is `stdout`. Operations should be single quoted (prevents parsing by the shell) and separated by spaces. You can use everything that is available in the global context of Node.js. oreover, all exoprts from the `@undercut/push` are loaded into global scope by default, it's also available as a namespace object by the name of `push`. You could also quickly import `@undercut/pull` and `@undercult/utils` as namespaces using `-p` and `-u` keys.
 
 ```sh
-undercut 'map(s => parseInt(s, 10))' 'filter(utils.isNumberValue)'
+undercut -u 'map(s => parseInt(s, 10))' 'filter(utils.isNumberValue)'
 ```
-
-If your expression starts with a call to a `push` function, you may omit the `"push."` prefix there:
 
 ```sh
 undercut 'composeOperations([push.sortStrings(utils.desc)])'
-          ^                  ^--- but not here
-          |--- skip prefix here
+          ^                  ^--- but you can also access them throught the push namespace
+          |--- exports from push are available in global scope
 ```
 
 Any valid JavaScript expression resulting into a `PushOperation` works:
@@ -51,7 +49,7 @@ undercut 'observer => observer' # Does nothing useful, but works.
 Import a Node.js module to use it in expressions. The specifier has the format `name::id`. Module will be loaded by this `id` and accessible under this `name`.
 
 ```sh
-$ undercut -i 'pad::left-pad' -s 'range(0, 3)' 'map(x => pad(x, 3, 0))'
+$ undercut -i 'pad::left-pad' -p -s 'pull.range(0, 3)' 'map(x => pad(x, 3, 0))'
 000
 001
 002
@@ -60,7 +58,7 @@ $ undercut -i 'pad::left-pad' -s 'range(0, 3)' 'map(x => pad(x, 3, 0))'
 A specifier is translated into something like this:
 
 ```js
-const name = require("id");
+const name = await import("id");
 ```
 
 So, the `name` should be a valid JS identifier, and the `id` should allow Node to load the module (like a path to a `.js` file or a name of npm package).
@@ -69,24 +67,22 @@ You may omit the name if your `id` is a valid identifier:
 
 ```js
 // -i 'chalk'
-const chalk = require("chalk");
+const chalk = await import("chalk");
 ```
 
 Or use a destructuring expression:
 
 ```js
 // -i '{green,blue}::chalk'
-const {green,blue} = require("chalk");
+const {green,blue} = await import("chalk");
 ```
 
 ### `-s`, `--source=EXPRESSION`
 
 Specify a JavaScript expression of an Iterable to read input values from. In this case `stdin` will be ignored.
 
-You can skip the `"pull."` prefix for a function from the `pull` package.
-
 ```sh
-$ undercut -s 'range(0, 5)' 'sum()'
+$ undercut -p -s 'range(0, 5)' 'sum()'
 10
 ```
 

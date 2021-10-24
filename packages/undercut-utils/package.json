@@ -5,25 +5,38 @@
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "type": "module",
-  "main": "src/index.js",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./array": "./src/array.ts",
+    "./assert": "./src/assert.ts",
+    "./package.json": "./package.json"
+  },
   "sideEffects": false,
   "scripts": {
-    "build": "echo 'Empty build step'",
+    "build": ". scripts/build.sh",
+    "build:babel": "babel ./src --extensions '.js','.ts' --ignore '**/*.test.ts','**/*.test.int.ts' --root-mode upward",
+    "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
     "clear": "rm -rf build dist",
-    "dist": "rm -rf dist && mkdir dist && cd dist && npm pack ../",
-    "lint": "eslint --format='unix' '**/*.?(c|m)js'",
-    "test": "jest"
+    "dist": ". scripts/dist.sh",
+    "lint": "eslint --format='unix' '**/*.@(cjs|mjs|js|ts)'",
+    "test": "jest",
+    "ts": "tsc --noEmit"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.16",
     "@jest/globals": "^26.6.2",
     "@undercut/config": "^1.0.0",
     "babel-jest": "^26.6.3",
+    "babel-plugin-add-import-extension": "=1.6.0",
     "core-js": "^3.8.1",
     "eslint": "^7.15.0",
     "jest": "^26.6.3",
-    "promise-mock": "^2.1.0"
+    "jest-circus": "^26.6.3",
+    "promise-mock": "^2.1.0",
+    "typescript": "^4.1.5"
   },
   "homepage": "https://undercut.js.org",
   "repository": {

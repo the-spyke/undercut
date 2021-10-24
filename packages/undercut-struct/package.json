@@ -1,0 +1,58 @@
+{
+  "name": "@undercut/struct",
+  "version": "0.6.1",
+  "description": "Collections and data structures.",
+  "author": "Anton Alexandrenok",
+  "license": "MIT",
+  "type": "module",
+  "main": "./src/index.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": ". scripts/build.sh",
+    "build:babel": "babel ./src --extensions '.js','.ts' --ignore '**/*.test.ts','**/*.test.int.ts' --root-mode upward",
+    "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
+    "clear": "rm -rf build dist",
+    "dist": ". scripts/dist.sh",
+    "lint": "eslint --format='unix' '**/*.@(cjs|mjs|js|ts)'",
+    "test": "jest",
+    "ts": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@undercut/utils": "^0.6.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.16",
+    "@jest/globals": "^26.6.2",
+    "@undercut/config": "^1.0.0",
+    "@undercut/testing": "^1.0.0",
+    "babel-jest": "^26.6.3",
+    "babel-plugin-add-import-extension": "=1.6.0",
+    "core-js": "^3.8.1",
+    "eslint": "^7.15.0",
+    "jest": "^26.6.3",
+    "jest-circus": "^26.6.3",
+    "typescript": "^4.1.5"
+  },
+  "homepage": "https://undercut.js.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/the-spyke/undercut",
+    "directory": "packages/undercut-struct"
+  },
+  "files": [
+    "src/",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "collection",
+    "es6",
+    "esm",
+    "esnext",
+    "data structure",
+    "heap",
+    "stdlib"
+  ]
+}

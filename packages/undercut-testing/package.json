@@ -6,23 +6,30 @@
   "license": "MIT",
   "private": true,
   "type": "module",
-  "main": "src/index.js",
+  "main": "./src/index.ts",
   "sideEffects": false,
   "scripts": {
     "build": "echo 'Empty build step'",
     "clear": "rm -rf build dist",
     "dist": "echo 'This package doesn't support publishing!' && exit 1",
-    "lint": "eslint --format='unix' '**/*.?(c|m)js'",
-    "test": "jest"
+    "lint": "eslint --format='unix' '**/*.@(cjs|mjs|js|ts)'",
+    "test": "jest",
+    "ts": "tsc --noEmit"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.16",
     "@jest/globals": "^26.6.2",
     "@undercut/config": "^1.0.0",
+    "@undercut/utils": "*",
+    "@undercut/types": "*",
     "babel-jest": "^26.6.3",
+    "babel-plugin-add-import-extension": "=1.6.0",
     "core-js": "^3.8.1",
     "eslint": "^7.15.0",
-    "jest": "^26.6.3"
+    "jest": "^26.6.3",
+    "jest-circus": "^26.6.3",
+    "typescript": "^4.1.5"
   }
 }

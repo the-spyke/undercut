@@ -10,6 +10,10 @@ rm -rf $BUILD
 mkdir $BUILD
 
 cp -v LICENSE README.md $BUILD
-node scripts/fix_package_json.cjs package.json $BUILD/package.json
+node ./scripts/fix_package_json.js package.json $BUILD/package.json
 
-babel src/cli.js src/index.js src/polyfills.js --out-dir $BUILD/lib --source-maps
+export NODE_BUILD_TARGET="12.17"
+
+echo "----> Building package for '${NODE_BUILD_TARGET}'"
+yarn build:babel --out-dir $BUILD/lib --source-maps
+yarn build:types --outDir $BUILD/lib

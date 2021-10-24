@@ -5,14 +5,19 @@
   "author": "Anton Alexandrenok",
   "license": "MIT",
   "private": true,
-  "type": "commonjs",
-  "main": "index.cjs",
+  "type": "module",
+  "main": "./index.js",
   "scripts": {
     "build": "echo 'Empty build step'",
     "clear": "rm -rf build dist",
     "dist": "echo 'This package doesn't support publishing!' && exit 1",
     "lint": "eslint --format='unix' '**/*.?(c|m)js'",
     "test": "echo 'No tests'"
+  },
+  "dependencies": {
+    "core-js": "*",
+    "jest-diff": "^26.6.2",
+    "yargs": "^17.2.1"
   },
   "devDependencies": {
     "eslint": "^7.14.0"
