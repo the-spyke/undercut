@@ -1,4 +1,4 @@
-import type { Defined, Falsy, Nullish } from "@undercut/types";
+import type { Defined, Falsy, FullCoroutine, Nullish, Observer, SimpleIterator } from "@undercut/types";
 
 const objectPrototype: Object = Object.getPrototypeOf({}); // eslint-disable-line @typescript-eslint/ban-types
 
@@ -24,7 +24,7 @@ export function isBoolean(value: unknown): value is boolean {
 	return typeof value === `boolean`;
 }
 
-export function isCoroutine<T>(value: unknown): value is Iterator<T> {
+export function isCoroutine<I, O>(value: unknown): value is FullCoroutine<I, O> {
 	return isObjectValue(value) && isFunction((value as any).next);
 }
 
@@ -52,7 +52,9 @@ export function isIterable<T>(value: unknown): value is Iterable<T> {
 	return isObjectValue(value) ? isFunction((value as any)[Symbol.iterator]) : isString(value);
 }
 
-export { isCoroutine as isIterator };
+export function isIterator<T>(value: unknown): value is SimpleIterator<T> {
+	return isObjectValue(value) && isFunction((value as any).next);
+}
 
 export function isMap<K = unknown, V = unknown>(value: unknown): value is Map<K, V> {
 	return value instanceof Map;
@@ -99,7 +101,9 @@ export function isObjectValue(value: unknown): value is object {
 	return isObject(value) && value !== null;
 }
 
-export { isCoroutine as isObserver };
+export function isObserver<T>(value: unknown): value is Observer<T> {
+	return isObjectValue(value) && isFunction((value as any).next);
+}
 
 export function isPlainObject(value: unknown): value is object {
 	if (!isObjectValue(value)) {
