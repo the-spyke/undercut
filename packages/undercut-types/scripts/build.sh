@@ -14,6 +14,5 @@ node scripts/fix_package_json.js package.json $BUILD/package.json
 
 export NODE_BUILD_TARGET="rms"
 
-echo "----> Build package for '${NODE_BUILD_TARGET}'"
-yarn build:babel --out-dir $BUILD/src --source-maps
+echo "----> Building package for '${NODE_BUILD_TARGET}'"
 yarn build:types --outDir $BUILD/src

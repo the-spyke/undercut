@@ -9,8 +9,7 @@
   "sideEffects": false,
   "scripts": {
     "build": ". scripts/build.sh",
-    "build:babel": "babel src --root-mode upward --ignore \"src/**/*.test.js\",\"src/**/*.test.*.js\"",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
     "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
     "lint": "eslint --format='unix' '**/*.@(cjs|mjs|js|ts)'",

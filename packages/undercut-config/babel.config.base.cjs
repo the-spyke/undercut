@@ -26,6 +26,6 @@ module.exports = {
 		`@babel/preset-typescript`,
 	].filter(Boolean),
 	targets: {
-		node: NODE_BUILD_TARGET
+		node: NODE_BUILD_TARGET === RMS ? `current` : NODE_BUILD_TARGET
 	},
 };
