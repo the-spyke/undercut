@@ -24,6 +24,6 @@ export function not(value: unknown): boolean {
 	return !value;
 }
 
-export function rethrow(error: Error): never {
+export function rethrow(error: unknown): never {
 	throw error;
 }
