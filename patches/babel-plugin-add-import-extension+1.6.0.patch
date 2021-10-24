@@ -1,0 +1,14 @@
+diff --git a/node_modules/babel-plugin-add-import-extension/src/plugin.js b/node_modules/babel-plugin-add-import-extension/src/plugin.js
+index 7fdbf79..0c13eb8 100644
+--- a/node_modules/babel-plugin-add-import-extension/src/plugin.js
++++ b/node_modules/babel-plugin-add-import-extension/src/plugin.js
+@@ -29,8 +29,7 @@ const skipModule = (module, { replace, extension, observedScriptExtensions }) =>
+     replace && (isActiveExtension(module, observedScriptExtensions) || extname(module) === `.${extension}`)
+       ? extname(module) === `.${extension}`
+       : extname(module).length &&
+-        (isActiveExtension(module, observedScriptExtensions) || extname(module) === `.${extension}`) &&
+-        extname(module) === `.${extension}`
++        (isActiveExtension(module, observedScriptExtensions) || extname(module) === `.${extension}`)
+   )
+ 
+ const makeDeclaration =

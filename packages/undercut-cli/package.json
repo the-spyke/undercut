@@ -32,6 +32,7 @@
     "@jest/globals": "^26.6.2",
     "@undercut/config": "^1.0.0",
     "babel-jest": "^26.6.3",
+    "babel-plugin-add-import-extension": "=1.6.0",
     "eslint": "^7.15.0",
     "jest": "^26.6.3",
     "jest-circus": "^26.6.3",

@@ -10,6 +10,7 @@
     "clear": ". scripts/clear.sh",
     "lerna": "lerna",
     "lint": "./scripts/lint.sh",
+    "postinstall": "patch-package",
     "release": "lerna version --no-git-tag-version --no-private --no-push --conventional-commits",
     "test": "jest --testPathPattern='\\.test\\.(js|ts)$'",
     "test:all": "jest",
@@ -28,7 +29,7 @@
     "@typescript-eslint/parser": "^4.15.2",
     "@undercut/config": "^1.0.0",
     "babel-jest": "^26.6.3",
-    "babel-plugin-add-import-extension": "^1.4.3",
+    "babel-plugin-add-import-extension": "=1.6.0",
     "core-js": "^3.8.1",
     "eslint": "^7.15.0",
     "eslint-import-resolver-typescript": "^2.4.0",
@@ -39,6 +40,8 @@
     "jest-junit": "^12.0.0",
     "json": "^10.0.0",
     "lerna": "^3.22.1",
+    "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0",
     "typescript": "^4.1.5"
   },
   "resolutions": {
