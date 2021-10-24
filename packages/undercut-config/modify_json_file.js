@@ -10,7 +10,7 @@ export async function modifyJsonFile(action) {
 	const yargs = yargsFactory(hideBin(process.argv));
 	const [source, target = source] = yargs.argv._;
 
-	console.log(`----> Applying JSON modification to '${source}'`); // eslint-disable-line no-console
+	console.log(`Applying JSON modification from '${source}' to '${target}'`); // eslint-disable-line no-console
 
 	const sourceText = await readFile(source, `utf8`);
 	const obj = JSON.parse(sourceText);
@@ -22,6 +22,4 @@ export async function modifyJsonFile(action) {
 	console.log(diffStringsUnified(sourceText, targetText, { expand: false })); // eslint-disable-line no-console
 
 	await writeFile(target, targetText, `utf8`);
-
-	console.log(`----> Sucessfully applied ${source === target ? `inplace` : `to a copy at '${target}'`}`); // eslint-disable-line no-console
 }

@@ -9,7 +9,7 @@
   "sideEffects": false,
   "scripts": {
     "build": ". scripts/build.sh",
-    "build:babel": "babel src --extensions '.js','.ts' --root-mode upward --ignore \"src/**/*.test.js\",\"src/**/*.test.*.js\"",
+    "build:babel": "babel ./src --extensions '.js','.ts' --ignore '**/*.test.ts','**/*.test.int.ts' --root-mode upward",
     "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
     "clear": "rm -rf build dist",
     "dist": ". scripts/dist.sh",
