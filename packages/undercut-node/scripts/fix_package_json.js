@@ -14,4 +14,6 @@ modifyJsonFile(json => {
 		"./utils/assert": `./utils/assert.js`,
 		"./package.json": `./package.json`,
 	};
+	json.main = `./src/index.js`;
+	json.types = `./src/index.d.ts`;
 });
