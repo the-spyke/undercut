@@ -20,7 +20,10 @@
     "dist": ". scripts/dist.sh",
     "lint": "eslint --format='unix' '**/*.@(cjs|mjs|js|ts)'",
     "prepack": "test -d lib",
-    "test": "jest",
+    "test": "yarn test:unit",
+    "test:all": "jest",
+    "test:int": "jest --testPathPattern='\\.test\\.int\\.(js|ts)$'",
+    "test:unit": "jest --testPathPattern='\\.test\\.(js|ts)$'",
     "ts": "tsc --noEmit",
     "undercut": "node --loader babel-register-esm ./src/cli.ts"
   },
