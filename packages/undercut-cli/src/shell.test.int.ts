@@ -9,7 +9,7 @@ describe(`Undercut command in a shell`, () => {
 	// HACK: As Jest tests are converted to CJS we can't use import.meta for resolving paths.
 	const cliPath = resolve(__dirname, `cli.ts`);
 	const undercut = (command, pipe = shell) => {
-		const result = pipe.exec(`NODE_ENV=development node --loader babel-register-esm ${cliPath} ${command}`, { silent: true });
+		const result = pipe.exec(`NODE_ENV=development node ${cliPath} ${command}`, { silent: true });
 
 		if (result.code !== 0) {
 			throw new Error(result.stderr);
