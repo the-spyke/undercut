@@ -122,7 +122,9 @@ commands:
             - persist_to_workspace:
                 root: workspace
                 paths:
-                  - version
+                  - release-grade
+                  - version-base
+                  - version-full
       - run:
           name: Setup artifacts directory
           command: |
@@ -318,7 +320,7 @@ jobs:
           name: Compose release package
           command: |
             mkdir artifacts
-            tar -cv -f "artifacts/undercut-$(cat ./undercut/version).tar" undercut
+            tar -cv -f "artifacts/undercut-$(cat ./undercut/version-full).tar" undercut
       - store_artifacts:
           path: artifacts
 
