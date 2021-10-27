@@ -18,6 +18,7 @@ pids
 node_modules/
 
 # Output of 'npm pack'
+*.snap
 *.tgz
 
 # Yarn Integrity file
@@ -33,4 +34,5 @@ node_modules/
 build/
 coverage/
 dist/
+snap-build/
 junit.xml

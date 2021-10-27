@@ -1,0 +1,73 @@
+name: undercut
+summary: Process shell data using operations from Undercut and other JS expressions
+description: |
+  ```
+  $ undercut [...options] [...operations]
+  ```
+
+  Specify SPK operations as quoted strings separated by spaces:
+
+  ```
+  'map(x => x + 1)' 'filter(x => x > 2)' ...
+  ```
+
+  Undercut CLI is designed around Push Lines. So, besides usual Node.js globals all `@undercut/push` exports are loaded by default. Quotes are required to stop the shell from parsing the expressions. Push exports are also available as a namespace by the global name `push`. You may quickly import `@undercut/pull` and `@undercut/utils` by using -p and -u options.
+
+  Pipe in a text file line-by-line, trim each line, filter lines longer than 10 symbols, save into "output.txt":
+
+  ```
+  $ cat strings.txt | undercut 'map(l => l.trim())' 'filter(l => l.length > 10)' > output.txt
+  ```
+
+  Generate a range of numbers and calculate their sum. The result will be outputed as a string.
+
+  ```
+  $ undercut -p -s 'pull.range(1, 9)' 'sum()'`,
+  ```
+
+  Import the `chalk` npm package (should be installed) and make lines green:
+
+  ```
+  $ cat file.txt | undercut -i 'chalk' 'map(s => chalk.green(s))'
+  ```
+
+adopt-info: undercut
+architectures:
+  - build-on: amd64
+base: core20
+compression: lzo
+confinement: strict
+license: MIT
+
+apps:
+  undercut:
+    plugs:
+      - home
+      - removable-media
+    command: bin/undercut
+
+parts:
+  undercut:
+    plugin: nil
+    source: ./snap-build
+    override-pull: |
+      snapcraftctl pull
+
+      RELEASE_GRADE="$(cat ./release-grade)"
+
+      if [ "$RELEASE_GRADE" = "devel" ]; then
+        RELEASE_VERSION="$(cat ./version-full)"
+      else
+        RELEASE_VERSION="$(cat ./version-base)"
+      fi
+
+      snapcraftctl set-grade $RELEASE_GRADE
+      snapcraftctl set-version $RELEASE_VERSION
+    build-snaps:
+      - node/16/stable
+    override-build: |
+      npm install --global --prefix "${SNAPCRAFT_PART_INSTALL}" \
+        ./undercut-node-*.tgz \
+        ./undercut-cli-*.tgz
+    stage-snaps:
+      - node/16/stable

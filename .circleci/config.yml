@@ -7,6 +7,9 @@ executors:
   node:
     docker:
       - image: node:16-buster
+  snapcraft:
+    docker:
+      - image: cibuilds/snapcraft:stable
 
 orbs:
   codecov: codecov/codecov@1.1.2
@@ -100,16 +103,22 @@ commands:
             - run:
                 name: Compute release version
                 command: |
-                  RELEASE_VERSION="$(./node_modules/.bin/json version < lerna.json)"
+                  RELEASE_VERSION_BASE="$(./node_modules/.bin/json version < lerna.json)"
 
                   if [[ -z "<< pipeline.git.tag >>" ]]; then
-                    RELEASE_VERSION="${RELEASE_VERSION}-next.${CIRCLE_BUILD_NUM}+${CIRCLE_SHA1:0:7}"
+                    RELEASE_VERSION_FULL="${RELEASE_VERSION_BASE}-next.${CIRCLE_BUILD_NUM}+git.${CIRCLE_SHA1:0:7}"
+                    RELEASE_GRADE=devel
                   else
-                    RELEASE_VERSION="${RELEASE_VERSION}+${CIRCLE_SHA1:0:7}"
+                    RELEASE_VERSION_FULL="${RELEASE_VERSION_BASE}+git.${CIRCLE_SHA1:0:7}"
+                    RELEASE_GRADE=stable
                   fi
 
-                  echo "Release version is: $RELEASE_VERSION"
-                  echo "$RELEASE_VERSION" > ./workspace/version
+                  echo "Release grade = $RELEASE_GRADE"
+                  echo "Release version = $RELEASE_VERSION_FULL"
+
+                  echo "$RELEASE_GRADE" > ./workspace/release-grade
+                  echo "$RELEASE_VERSION_BASE" > ./workspace/version-base
+                  echo "$RELEASE_VERSION_FULL" > ./workspace/version-full
             - persist_to_workspace:
                 root: workspace
                 paths:
@@ -123,11 +132,16 @@ commands:
       - run:
           name: Set release version
           command: |
-            RELEASE_VERSION="$(cat ./workspace/version)"
-            echo "export RELEASE_VERSION=\"${RELEASE_VERSION}\"" >> $BASH_ENV
+            RELEASE_GRADE="$(cat ./workspace/release-grade)"
+            RELEASE_VERSION_BASE="$(cat ./workspace/version-base)"
+            RELEASE_VERSION_FULL="$(cat ./workspace/version-full)"
+
+            echo "export RELEASE_GRADE=\"${RELEASE_GRADE}\"" >> $BASH_ENV
+            echo "export RELEASE_VERSION_BASE=\"${RELEASE_VERSION_BASE}\"" >> $BASH_ENV
+            echo "export RELEASE_VERSION_FULL=\"${RELEASE_VERSION_FULL}\"" >> $BASH_ENV
 
             if [[ -z "<< pipeline.git.tag >>" ]]; then
-              yarn lerna version --ignore-scripts --no-git-tag-version --no-private --no-push --yes "${RELEASE_VERSION}"
+              yarn lerna version --ignore-scripts --no-git-tag-version --no-private --no-push --yes "${RELEASE_VERSION_FULL}"
             fi
   finalize:
     description: Finalize a JS project build and upload its artifacts.
@@ -213,6 +227,24 @@ jobs:
       - build:
           path: packages/undercut-push
       - finalize
+
+  build_snap:
+    executor: snapcraft
+    working_directory: /mnt/ramdisk
+    steps:
+      - attach_workspace:
+          at: snap-build
+      - run:
+          name: Build snap
+          command: |
+            mkdir artifacts
+            snapcraft
+            cp -v ./undercut*.snap artifacts
+      - store_artifacts:
+          path: artifacts
+      - persist_to_workspace:
+          root: artifacts
+          paths: ["*.snap"]
 
   build_types:
     executor: node
@@ -340,6 +372,12 @@ workflows:
             - build_node
           filters:
             <<: *filters-release
+      - build_snap:
+          requires:
+            - build_cli
+            - build_node
+          filters:
+            <<: *filters-release
       - build_web_2019:
           requires:
             - build_pull
@@ -359,6 +397,7 @@ workflows:
             - build_node
             - build_pull
             - build_push
+            - build_snap
             - build_types
             - build_utils
             - build_web_2019
