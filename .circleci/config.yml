@@ -234,6 +234,7 @@ jobs:
     executor: snapcraft
     working_directory: /mnt/ramdisk
     steps:
+      - checkout
       - attach_workspace:
           at: snap-build
       - run:
